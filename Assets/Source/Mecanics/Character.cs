@@ -104,12 +104,10 @@ namespace Game.Mecanics
         protected virtual void Update()
         {
             UpdateRotation(Time.deltaTime);
+            UpdateMoviment(Time.deltaTime);
         }
 
-        protected virtual void FixedUpdate()
-        {
-            UpdateMoviment(Time.fixedDeltaTime);
-        }
+        protected virtual void FixedUpdate() { }
 
         private void UpdateMoviment(float delta)
         {

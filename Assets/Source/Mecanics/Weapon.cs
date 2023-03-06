@@ -97,7 +97,7 @@ namespace Game.Mecanics
             {
                 return;
             }
-            
+
             Animation.Animator.SetBool(Animation.AttackAnimParameter, IsAttacking);
         }
     }
