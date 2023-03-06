@@ -4,26 +4,11 @@ using UnityEngine;
 
 namespace Game.Mecanics
 {
-    [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
     public class MelleWeapon : Weapon
     {
         public float AttackLength;
         public float Damage;
         public Collider WeaponCollider;
-
-        private Character _weaponTarget;
-
-        public bool IsAttacking
-        {
-            set
-            {
-                enabled = value;
-            }
-            get
-            {
-                return enabled;
-            }
-        }
 
         public float CurrentAttackDuration { get; private set; }
 
@@ -46,8 +31,12 @@ namespace Game.Mecanics
         protected override void Awake()
         {
             base.Awake();
+            
             SetupWeapon();
             IsAttacking = false;
+
+            OnEnableAttack += EnableWeapon;
+            OnDisableAttack += DisableWeapon;
         }
 
         protected override void Update()
@@ -72,9 +61,9 @@ namespace Game.Mecanics
             if (other.gameObject.TryGetComponent<Character>(out var anotherCharacter))
             {
                 // when the weapon has a target, check if the anotherCharacter is the target to apply damage
-                if (_weaponTarget)
+                if (WeaponTarget)
                 {
-                    if (anotherCharacter.gameObject == _weaponTarget.gameObject)
+                    if (anotherCharacter.gameObject == WeaponTarget.gameObject)
                     {
                         anotherCharacter.AddDamage(Damage);
                     }
@@ -111,27 +100,19 @@ namespace Game.Mecanics
                 {
                     CurrentAttackDuration = 0f;
                     IsAttacking = false;
-                    _weaponTarget = null;
+                    WeaponTarget = null;
                 }
             }
         }
 
-        public override void Attack()
+        private void DisableWeapon()
         {
-            if (IsAttacking)
-            {
-                return;
-            }
-
-            IsAttacking = true;
+            WeaponCollider.enabled = false;
         }
 
-        public override void Attack(Character target)
+        private void EnableWeapon()
         {
-            base.Attack(target);
-            
-            Attack();
-            _weaponTarget = target;
+            WeaponCollider.enabled = true;
         }
     }
 }

@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
 --- !u!114 &6675851420747044059 stripped
@@ -121,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8305775239971130606, guid: 75f67f6cd4ca00944aab9901866eae4d, type: 3}
       propertyPath: m_Name
-      value: Enemy Soldier Variant
+      value: Enemy Soldier
       objectReference: {fileID: 0}
     - target: {fileID: 8501272935429945275, guid: 75f67f6cd4ca00944aab9901866eae4d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -154,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movimentation:
-    MoveSpeed: 10
+    MoveSpeed: 5
     Gravity: 10
     TurnSpeed: 10
   Weapon:
