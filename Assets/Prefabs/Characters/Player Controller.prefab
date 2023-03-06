@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &935705571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935705572}
+  m_Layer: 0
+  m_Name: Weapon Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935705572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935705571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.525, y: 1.077, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7636267930241118374}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2871460149167479736
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +41,6 @@ GameObject:
   - component: {fileID: 7152773985592570180}
   - component: {fileID: 1557489676529095947}
   - component: {fileID: 2590712489323931171}
-  - component: {fileID: 1600108388963731290}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -60,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d27a760a7f52e442baab7254639b0af, type: 2}
+  - {fileID: 2100000, guid: 2f614369d402efb4da59ca4ba570bb4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,19 +111,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1600108388963731290
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2871460149167479736}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4641900539518364550
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c69002a48d1449548a9bbb17a595bf05, type: 2}
+  - {fileID: 2100000, guid: 5b721fb02ff31114eb0bdc27c7cdca30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -207,6 +223,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4641900539518364546}
+  - {fileID: 935705572}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,11 +243,24 @@ MonoBehaviour:
     MoveSpeed: 10
     Gravity: 10
     TurnSpeed: 10
+  Weapon:
+    WeaponObject: {fileID: 0}
+    Hand: {fileID: 935705572}
+  Life:
+    LifeAmount: 100
+    AutoDestroyOnDeathDelay: 1
   InputMaps:
     InputAsset: {fileID: -944628639613478452, guid: 1d6fcabe57a241c46859b791e193fac6, type: 3}
     VerticalAction: Vertical
     HorizontalAction: Horizontal
     MobileJoystickAction: Mobile Joystick
+  EnemiesDetection:
+    EnemiesLayer:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    FindEnemeiesInterval: 0.3
+    FinEnemiesDistance: 0
+    AttackDistance: 3
 --- !u!143 &5477160553361611913
 CharacterController:
   m_ObjectHideFlags: 0

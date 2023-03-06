@@ -8,7 +8,7 @@ namespace Game.Mecanics
     /// <summary>
     /// A character with player controls.
     /// </summary>
-    public class PlayerCharacter : Character
+    public sealed class PlayerCharacter : Character
     {
         [System.Serializable]
         public class PlayerInputs
@@ -37,16 +37,38 @@ namespace Game.Mecanics
             }
         }
 
+        [System.Serializable]
+        public class EnemyDetection
+        {
+            public LayerMask EnemiesLayer;
+            [Min(0)] public float FindEnemeiesInterval;
+            [Min(2)] public float FinEnemiesDistance;
+            [Space]
+            [Min(1)] public float AttackDistance;
+
+            public EnemyDetection()
+            {
+                EnemiesLayer = -1;
+                AttackDistance = 3;
+                FindEnemeiesInterval = 0.3f;
+            }
+        }
+
         /// <summary>
         /// Has all settings of player control. 
         /// </summary>
         public PlayerInputs InputMaps;
+        public EnemyDetection EnemiesDetection;
 
         public InputAction VerticalAction { get; private set; }
         public InputAction HorizontalAction { get; private set; }
         public InputAction MobileJoystickAction { get; private set; }
 
         public Vector3 Forward { get; set; }
+
+        public bool SearchEnemies => IsStoped;
+        public bool IsAttacking => IsStoped && NearEnemies.Length > 0;
+        public Character[] NearEnemies { get; private set; }
 
         private void OnEnable()
         {
@@ -62,6 +84,7 @@ namespace Game.Mecanics
         {
             base.Awake();
             Forward = transform.forward;
+            NearEnemies = new Character[0] { };
         }
 
         protected override void Start()
@@ -83,6 +106,12 @@ namespace Game.Mecanics
         {
             base.Update();
             UpdatePlayerControls();
+
+            if (Weapon.WeaponObject)
+            {
+                UpdateNearEnemiesList();
+                AttackEnemies();
+            }
         }
 
         private void UpdatePlayerControls()
@@ -110,6 +139,38 @@ namespace Game.Mecanics
             var _moveDirection = ((_forward * _vertical) + (_right * _horizontal)).normalized;
 
             CharacterMoveDirection = _moveDirection;
+        }
+
+        private void UpdateNearEnemiesList()
+        {
+            var _allCharacter = new List<Character>(FindObjectsOfType<Character>());
+            _allCharacter.Remove(this);  // remove self player of all characters list
+
+            // remove all distant characters 
+            for (int i = 0; i < _allCharacter.Count; i++)
+            {
+                var _weaponPosition = Weapon.WeaponObject.transform.position;
+                var _enemyPosition = _allCharacter[i].transform.position;
+
+                if (Vector3.Distance(_weaponPosition, _enemyPosition) > Weapon.WeaponObject.AttackRange)
+                {
+                    _allCharacter.Remove(_allCharacter[i]);
+                }
+            }
+
+            // check if list is equals to avoid desnecerary memory allocation 
+            if (_allCharacter.Count != NearEnemies.Length)
+            {
+                NearEnemies = _allCharacter.ToArray();
+            }
+        }
+
+        private void AttackEnemies()
+        {
+            if (IsAttacking)
+            {
+                Weapon.WeaponObject.Attack();
+            }
         }
     }
 }

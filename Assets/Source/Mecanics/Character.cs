@@ -10,6 +10,7 @@ namespace Game.Mecanics
     /// Can move, or attack.
     /// Dont have self-control / AI
     /// </summary>
+    [RequireComponent(typeof(CharacterController))]
     public class Character : MonoBehaviour
     {
         [System.Serializable]
@@ -27,7 +28,28 @@ namespace Game.Mecanics
             }
         }
 
+        [System.Serializable]
+        public class WeaponSlot
+        {
+            public Weapon WeaponObject;
+            public Transform Hand;
+        }
+
+        [System.Serializable]
+        public class LifeStorage
+        {
+            [Min(1)] public float LifeAmount;
+            [Min(0.1f)] public float AutoDestroyOnDeathDelay;
+
+            public LifeStorage()
+            {
+                LifeAmount = 100;
+            }
+        }
+
         public Moviment Movimentation;
+        public WeaponSlot Weapon;
+        public LifeStorage Life;
 
         private Vector3 _moveDirection;
         private CharacterController _characterController;
@@ -35,6 +57,7 @@ namespace Game.Mecanics
         public CharacterController CharacterController => _characterController;
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
+        public bool IsDeath => Life.LifeAmount <= 0;
 
         /// <summary>
         /// Current player moviment velocity with gravity
@@ -48,8 +71,6 @@ namespace Game.Mecanics
         /// <returns></returns>
         public Vector3 CharacterMoveDirection { get => _moveDirection; set => _moveDirection = new Vector3(value.x, 0, value.z).normalized; }
 
-
-
         protected virtual void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -61,7 +82,13 @@ namespace Game.Mecanics
             }
         }
 
-        protected virtual void Start() { }
+        protected virtual void Start()
+        {
+            if (Weapon.WeaponObject)
+            {
+                SetWeapon(Weapon.WeaponObject);
+            }
+        }
 
         protected virtual void Update()
         {
@@ -100,6 +127,38 @@ namespace Game.Mecanics
             var _targetRot = Quaternion.LookRotation(CharacterMoveDirection / CharacterMoveDirection.magnitude);
 
             transform.rotation = Quaternion.Lerp(_currentRot, _targetRot, _turnSpeed);
+        }
+
+        public void SetWeapon(Game.Mecanics.Weapon weapon)
+        {
+            if (!Weapon.Hand)
+            {
+                Debug.LogError($"Character '{gameObject.name}' does not have '{nameof(Weapon.Hand)}' of '{nameof(Weapon)}' assigned. Is not possible set the weapon.");
+                return;
+            }
+
+            weapon.transform.parent = Weapon.Hand;
+            weapon.transform.localPosition = Vector3.zero;
+            weapon.transform.localRotation = Quaternion.identity;
+            weapon.Owner = this;
+        }
+
+        public void AddDamage(float damage)
+        {
+            Life.LifeAmount -= damage;
+
+            if (Life.LifeAmount <= 0)
+            {
+                Life.LifeAmount = 0;
+                KillCharacter();
+            }
+        }
+
+        public void KillCharacter()
+        {
+            enabled = false;
+
+            Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
         }
     }
 }
