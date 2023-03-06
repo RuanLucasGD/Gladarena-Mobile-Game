@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Game.Mecanics
 {
@@ -12,6 +14,8 @@ namespace Game.Mecanics
     public class GameManager : MonoBehaviour
     {
         public Camera GameplayCamera;
+        [Space]
+        public float RestartGameDelay;
 
         private static GameManager _gameManager;
 
@@ -58,6 +62,8 @@ namespace Game.Mecanics
         void Start()
         {
             SetPlayerForwardDirection();
+
+            Player.OnDeath.AddListener(RestartGameDeleyed);
         }
 
         private void SetPlayerForwardDirection()
@@ -75,6 +81,22 @@ namespace Game.Mecanics
 
             // set player forward direction to move to camera forward
             Player.Forward = Vector3.ProjectOnPlane(GameplayCamera.transform.forward, Vector3.up);
+        }
+
+        public void RestartGameImmediatly()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        public void RestartGameDeleyed()
+        {
+            StartCoroutine(Delay(RestartGameDelay, RestartGameImmediatly));
+        }
+
+        private IEnumerator Delay(float delay, UnityAction onCompleted)
+        {
+            yield return new WaitForSeconds(delay);
+            onCompleted();
         }
     }
 }
