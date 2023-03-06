@@ -19,7 +19,6 @@ namespace Game.Mecanics
 
         private static GameManager _gameManager;
 
-
         public PlayerCharacter Player { get; private set; }
 
         public static GameManager Instance

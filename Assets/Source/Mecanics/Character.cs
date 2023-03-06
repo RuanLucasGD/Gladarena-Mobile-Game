@@ -65,6 +65,7 @@ namespace Game.Mecanics
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
         public bool IsDeath => Life.LifeAmount <= 0;
+        public bool HasWeapon => Weapon.WeaponObject;
 
         /// <summary>
         /// Current player moviment velocity with gravity
@@ -78,9 +79,12 @@ namespace Game.Mecanics
         /// <returns></returns>
         public Vector3 CharacterMoveDirection { get => _moveDirection; set => _moveDirection = new Vector3(value.x, 0, value.z).normalized; }
 
+        public Vector3 LookAtDirection { get; set; }
+
         protected virtual void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+            LookAtDirection = transform.forward;
 
             if (!CharacterController)
             {
@@ -123,15 +127,15 @@ namespace Game.Mecanics
 
         private void UpdateRotation(float delta)
         {
-            if (IsStoped)
-            {
-                // don't need to rotate if is stoped
-                return;
-            }
-
             var _turnSpeed = Mathf.Clamp01(delta * Movimentation.TurnSpeed);
             var _currentRot = transform.rotation;
-            var _targetRot = Quaternion.LookRotation(CharacterMoveDirection / CharacterMoveDirection.magnitude);
+
+            if (!IsStoped)
+            {
+                LookAtDirection = CharacterMoveDirection / CharacterMoveDirection.magnitude;
+            }
+
+            var _targetRot = Quaternion.LookRotation(LookAtDirection);
 
             transform.rotation = Quaternion.Lerp(_currentRot, _targetRot, _turnSpeed);
         }

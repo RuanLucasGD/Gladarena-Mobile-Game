@@ -24,5 +24,7 @@ namespace Game.Mecanics
         protected virtual void FixedUpdate() { }
 
         public virtual void Attack() { }
+
+        public virtual void Attack(Character target) { }
     }
 }

@@ -186,6 +186,15 @@ MonoBehaviour:
   Life:
     LifeAmount: 100
     AutoDestroyOnDeathDelay: 1
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSetWeapon:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2059154547
 BoxCollider:
   m_ObjectHideFlags: 0

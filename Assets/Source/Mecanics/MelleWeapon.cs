@@ -11,7 +11,7 @@ namespace Game.Mecanics
         public float Damage;
         public Collider WeaponCollider;
 
-
+        private Character _weaponTarget;
 
         public bool IsAttacking
         {
@@ -24,6 +24,7 @@ namespace Game.Mecanics
                 return enabled;
             }
         }
+
         public float CurrentAttackDuration { get; private set; }
 
         public MelleWeapon()
@@ -70,7 +71,19 @@ namespace Game.Mecanics
             // TODO: optimize enemy attack avoid TryGetComponent on earch call of OnTriggerEnter
             if (other.gameObject.TryGetComponent<Character>(out var anotherCharacter))
             {
-                anotherCharacter.AddDamage(Damage);
+                // when the weapon has a target, check if the anotherCharacter is the target to apply damage
+                if (_weaponTarget)
+                {
+                    if (anotherCharacter.gameObject == _weaponTarget.gameObject)
+                    {
+                        anotherCharacter.AddDamage(Damage);
+                    }
+                }
+                // if doesn't has a target, the weapon can to apply damage in any characters
+                else
+                {
+                    anotherCharacter.AddDamage(Damage);
+                }
             }
         }
 
@@ -98,7 +111,7 @@ namespace Game.Mecanics
                 {
                     CurrentAttackDuration = 0f;
                     IsAttacking = false;
-
+                    _weaponTarget = null;
                 }
             }
         }
@@ -111,6 +124,14 @@ namespace Game.Mecanics
             }
 
             IsAttacking = true;
+        }
+
+        public override void Attack(Character target)
+        {
+            base.Attack(target);
+            
+            Attack();
+            _weaponTarget = target;
         }
     }
 }

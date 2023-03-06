@@ -37,28 +37,10 @@ namespace Game.Mecanics
             }
         }
 
-        [System.Serializable]
-        public class EnemyDetection
-        {
-            public LayerMask EnemiesLayer;
-            [Min(0)] public float FindEnemeiesInterval;
-            [Min(2)] public float FinEnemiesDistance;
-            [Space]
-            [Min(1)] public float AttackDistance;
-
-            public EnemyDetection()
-            {
-                EnemiesLayer = -1;
-                AttackDistance = 3;
-                FindEnemeiesInterval = 0.3f;
-            }
-        }
-
         /// <summary>
         /// Has all settings of player control. 
         /// </summary>
         public PlayerInputs InputMaps;
-        public EnemyDetection EnemiesDetection;
 
         public InputAction VerticalAction { get; private set; }
         public InputAction HorizontalAction { get; private set; }
@@ -107,7 +89,7 @@ namespace Game.Mecanics
             base.Update();
             UpdatePlayerControls();
 
-            if (Weapon.WeaponObject)
+            if (HasWeapon)
             {
                 UpdateNearEnemiesList();
                 AttackEnemies();
