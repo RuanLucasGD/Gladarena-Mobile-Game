@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
@@ -50,6 +51,12 @@ namespace Game.Mecanics
         public Moviment Movimentation;
         public WeaponSlot Weapon;
         public LifeStorage Life;
+
+        [Space]
+
+        public UnityEvent OnDeath;
+        public UnityEvent OnDamaged;
+        public UnityEvent OnSetWeapon;
 
         private Vector3 _moveDirection;
         private CharacterController _characterController;
@@ -141,16 +148,20 @@ namespace Game.Mecanics
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
             weapon.Owner = this;
+
+            OnSetWeapon.Invoke();
         }
 
         public void AddDamage(float damage)
         {
             Life.LifeAmount -= damage;
+            OnDamaged.Invoke();
 
             if (Life.LifeAmount <= 0)
             {
                 Life.LifeAmount = 0;
                 KillCharacter();
+                OnDeath.Invoke();
             }
         }
 
