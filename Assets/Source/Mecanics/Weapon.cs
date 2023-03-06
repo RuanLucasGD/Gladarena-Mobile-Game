@@ -17,6 +17,7 @@ namespace Game.Mecanics
         }
 
         public float AttackRange;
+        public float Damage;
 
         [Space]
         public AnimationControl Animation;
@@ -33,6 +34,11 @@ namespace Game.Mecanics
             }
             set
             {
+                if (_isAttacking == value)
+                {
+                    return;
+                }
+                
                 _isAttacking = value;
                 if (_isAttacking) OnEnableAttack();
                 else OnDisableAttack();
@@ -58,6 +64,7 @@ namespace Game.Mecanics
         public Weapon()
         {
             AttackRange = 3;
+            Damage = 40;
         }
 
         protected virtual void Awake()

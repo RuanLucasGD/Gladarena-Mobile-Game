@@ -20,12 +20,14 @@ namespace Game.Mecanics
             [Min(0)] public float MoveSpeed;
             [Min(0)] public float Gravity;
             [Min(0)] public float TurnSpeed;
+            [Min(0)] public float ExternalForceDeceleration;
 
             public Moviment()
             {
                 MoveSpeed = 10;
                 Gravity = 10;
                 TurnSpeed = 10;
+                ExternalForceDeceleration = 2;
             }
         }
 
@@ -59,6 +61,7 @@ namespace Game.Mecanics
         public UnityEvent OnSetWeapon;
 
         private Vector3 _moveDirection;
+        private Vector3 _externalForce;
         private CharacterController _characterController;
 
         public CharacterController CharacterController => _characterController;
@@ -105,6 +108,7 @@ namespace Game.Mecanics
         {
             UpdateRotation(Time.deltaTime);
             UpdateMoviment(Time.deltaTime);
+            UpdateExternalForce(Time.deltaTime);
         }
 
         protected virtual void FixedUpdate() { }
@@ -118,8 +122,9 @@ namespace Game.Mecanics
 
             CharacterVelocity = new Vector3(CharacterMoveDirection.x, -Movimentation.Gravity, CharacterMoveDirection.z);
             CharacterVelocity *= Movimentation.MoveSpeed;
+            CharacterVelocity += _externalForce;
             CharacterVelocity *= delta;
-
+            
             CharacterController.Move(CharacterVelocity);
         }
 
@@ -136,6 +141,11 @@ namespace Game.Mecanics
             var _targetRot = Quaternion.LookRotation(LookAtDirection);
 
             transform.rotation = Quaternion.Lerp(_currentRot, _targetRot, _turnSpeed);
+        }
+
+        private void UpdateExternalForce(float delta)
+        {
+            _externalForce -= _externalForce * Mathf.Clamp(delta * Movimentation.ExternalForceDeceleration, 0, _externalForce.magnitude);
         }
 
         public void SetWeapon(Game.Mecanics.Weapon weapon)
@@ -172,6 +182,11 @@ namespace Game.Mecanics
             enabled = false;
 
             Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
+        }
+
+        public void AddExternalForce(Vector3 force)
+        {
+            _externalForce += force;
         }
     }
 }

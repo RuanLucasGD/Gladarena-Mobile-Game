@@ -7,7 +7,7 @@ namespace Game.Mecanics
     public class MelleWeapon : Weapon
     {
         public float AttackLength;
-        public float Damage;
+        
         public Collider WeaponCollider;
 
         public float CurrentAttackDuration { get; private set; }
@@ -15,7 +15,6 @@ namespace Game.Mecanics
         public MelleWeapon()
         {
             AttackLength = 0.5f;
-            Damage = 40;
         }
 
         protected virtual void OnEnable()

@@ -153,6 +153,10 @@ namespace Game.Mecanics
             {
                 Weapon.WeaponObject.Attack();
             }
+            else
+            {
+                Weapon.WeaponObject.IsAttacking = false;
+            }
         }
     }
 }
