@@ -38,7 +38,7 @@ namespace Game.Mecanics
                 {
                     return;
                 }
-                
+
                 _isAttacking = value;
                 if (_isAttacking) OnEnableAttack();
                 else OnDisableAttack();
@@ -82,7 +82,7 @@ namespace Game.Mecanics
             UpdateAnimations();
         }
 
-        public virtual void Attack()
+        public virtual void Attack(Character target = null)
         {
             if (IsAttacking)
             {
@@ -90,11 +90,6 @@ namespace Game.Mecanics
             }
 
             IsAttacking = true;
-        }
-
-        public virtual void Attack(Character target)
-        {
-            Attack();
             WeaponTarget = target;
         }
 

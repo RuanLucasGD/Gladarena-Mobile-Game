@@ -7,10 +7,8 @@ namespace Game.Mecanics
     public class MelleWeapon : Weapon
     {
         public float AttackLength;
-        
-        public Collider WeaponCollider;
 
-        public float CurrentAttackDuration { get; private set; }
+        public Collider WeaponCollider;
 
         public MelleWeapon()
         {
@@ -30,18 +28,12 @@ namespace Game.Mecanics
         protected override void Awake()
         {
             base.Awake();
-            
+
             SetupWeapon();
             IsAttacking = false;
 
             OnEnableAttack += EnableWeapon;
             OnDisableAttack += DisableWeapon;
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-            UpdateAttackTimer();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -84,26 +76,6 @@ namespace Game.Mecanics
             if (_rigidBody) _rigidBody.useGravity = false;
         }
 
-        private void UpdateAttackTimer()
-        {
-            if (!IsAttacking)
-            {
-                return;
-            }
-
-            if (CurrentAttackDuration < AttackLength)
-            {
-                CurrentAttackDuration += Time.deltaTime;
-
-                if (CurrentAttackDuration > AttackLength)
-                {
-                    CurrentAttackDuration = 0f;
-                    IsAttacking = false;
-                    WeaponTarget = null;
-                }
-            }
-        }
-
         private void DisableWeapon()
         {
             WeaponCollider.enabled = false;
@@ -112,6 +84,14 @@ namespace Game.Mecanics
         private void EnableWeapon()
         {
             WeaponCollider.enabled = true;
+            StartCoroutine(DisableAttackAfterTime());
+        }
+
+        private IEnumerator DisableAttackAfterTime()
+        {
+            yield return new WaitForSeconds(AttackLength);
+            IsAttacking = false;
+            WeaponTarget = null;
         }
     }
 }

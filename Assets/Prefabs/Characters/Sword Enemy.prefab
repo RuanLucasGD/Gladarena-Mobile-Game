@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8305775239971130606, guid: 75f67f6cd4ca00944aab9901866eae4d, type: 3}
       propertyPath: m_Name
-      value: Enemy Soldier
+      value: Enemy Soldier Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8501272935429945275, guid: 75f67f6cd4ca00944aab9901866eae4d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -161,9 +161,12 @@ MonoBehaviour:
     MoveSpeed: 5
     Gravity: 10
     TurnSpeed: 10
+    ExternalForceDeceleration: 2
+    StopDistance: 0.3
   Weapon:
     WeaponObject: {fileID: 6675851420747044059}
     Hand: {fileID: 8813778739184038490}
+    DelayToAttack: 0.5
   Life:
     LifeAmount: 100
     AutoDestroyOnDeathDelay: 1

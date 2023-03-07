@@ -179,12 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b9ad500b960814fb4cfd2f63c4974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 2
+  AttackRange: 3
+  Damage: 20
   Animation:
     Animator: {fileID: 5469765281718002603}
     AttackAnimParameter: Is Attacking
-  AttackLength: 0.5
-  Damage: 20
+  AttackLength: 0.2
   WeaponCollider: {fileID: 726577881357305177}
 --- !u!54 &5257832587854458426
 Rigidbody:

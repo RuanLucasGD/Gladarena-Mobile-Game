@@ -49,8 +49,8 @@ namespace Game.Mecanics
         public Vector3 Forward { get; set; }
 
         public bool SearchEnemies => IsStoped;
-        public bool IsAttacking => IsStoped && NearEnemies.Length > 0;
-        public Character[] NearEnemies { get; private set; }
+
+        public Character NearEnemy { get; private set; }
 
         private void OnEnable()
         {
@@ -66,7 +66,6 @@ namespace Game.Mecanics
         {
             base.Awake();
             Forward = transform.forward;
-            NearEnemies = new Character[0] { };
         }
 
         protected override void Start()
@@ -92,7 +91,7 @@ namespace Game.Mecanics
             if (HasWeapon)
             {
                 UpdateNearEnemiesList();
-                AttackEnemies();
+                Attack();
             }
         }
 
@@ -128,35 +127,32 @@ namespace Game.Mecanics
             var _allCharacter = new List<Character>(FindObjectsOfType<Character>());
             _allCharacter.Remove(this);  // remove self player of all characters list
 
-            // remove all distant characters 
             for (int i = 0; i < _allCharacter.Count; i++)
             {
-                var _weaponPosition = Weapon.WeaponObject.transform.position;
+                var _weaponPosition = transform.position;
                 var _enemyPosition = _allCharacter[i].transform.position;
 
-                if (Vector3.Distance(_weaponPosition, _enemyPosition) > Weapon.WeaponObject.AttackRange)
+                if (Vector3.Distance(_weaponPosition, _enemyPosition) < Weapon.WeaponObject.AttackRange)
                 {
-                    _allCharacter.Remove(_allCharacter[i]);
+                    NearEnemy = _allCharacter[i];
+                    return;
                 }
             }
 
-            // check if list is equals to avoid desnecerary memory allocation 
-            if (_allCharacter.Count != NearEnemies.Length)
-            {
-                NearEnemies = _allCharacter.ToArray();
-            }
+            // didn't find any enemy
+            NearEnemy = null;
         }
 
-        private void AttackEnemies()
+        public override void Attack(Character target = null)
         {
-            if (IsAttacking)
+            if (!NearEnemy)
             {
-                Weapon.WeaponObject.Attack();
+                return;
             }
-            else
-            {
-                Weapon.WeaponObject.IsAttacking = false;
-            }
+
+            LookAtDirection = NearEnemy.transform.position - transform.position;
+            // attack any hear enemy 
+            base.Attack(null);
         }
     }
 }

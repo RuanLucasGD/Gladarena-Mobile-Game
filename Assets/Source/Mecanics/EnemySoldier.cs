@@ -7,15 +7,8 @@ namespace Game.Mecanics
     public class EnemySoldier : Character
     {
         public PlayerCharacter Player => GameManager.Instance.Player;
-        
-        public bool IsFollowingPlayer
-        {
-            get
-            {
-                var _playerDistance = Vector3.Distance(Player.transform.position, Weapon.WeaponObject.transform.position);
-                return _playerDistance > Weapon.WeaponObject.AttackRange;
-            }
-        }
+
+        public bool IsFollowingPlayer => Vector3.Distance(transform.position, Player.transform.position) > Movimentation.StopDistance;
 
         protected override void Update()
         {
@@ -44,21 +37,22 @@ namespace Game.Mecanics
             }
             else
             {
-                AttackPlayer();
+                Attack(Player);
             }
         }
 
         private void FollowPlayer()
         {
             var _directionToPlayer = (Player.transform.position - transform.position).normalized;
+            _directionToPlayer /= _directionToPlayer.magnitude;
             CharacterMoveDirection = _directionToPlayer;
         }
 
-        private void AttackPlayer()
+        public override void Attack(Character target = null)
         {
             LookAtDirection = (Player.transform.position - transform.position).normalized;
-            Weapon.WeaponObject.Attack(Player);
             CharacterMoveDirection = Vector3.zero;
+            base.Attack(target);
         }
     }
 }

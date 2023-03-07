@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
     public class SlegehammerWeapon : Weapon
     {
+        public float ApplyAttackDelay;
         public float DeactiveAttackDelay;
 
         [Space]
@@ -13,35 +15,21 @@ namespace Game.Mecanics
         public float AttackForceBack;
         public float AttackForceUp;
 
-        private float _attackTimer;
-
-        protected override void Update()
+        protected override void Start()
         {
-            base.Update();
-            UpdateAttackTimer();
+            base.Start();
+
+            OnEnableAttack += () => StartCoroutine(Delay(ApplyAttackDelay, ApplySlegehammerAttack, onProgress: DeactiveOwnerMovimentation));
+            OnEnableAttack += () => StartCoroutine(Delay(DeactiveAttackDelay, DeactiveAttack));
+            OnEnableAttack += () => StartCoroutine(Delay(DeactiveAttackDelay, ActiveOwnerMovimentation));
         }
 
-        private void UpdateAttackTimer()
+        private void DeactiveAttack()
         {
-            if (!IsAttacking)
-            {
-                return;
-            }
-
-            _attackTimer += Time.deltaTime;
-
-            if (_attackTimer > DeactiveAttackDelay)
-            {
-                _attackTimer = 0f;
-                IsAttacking = false;
-            }
+            IsAttacking = false;
         }
 
-        /// <summary>
-        /// Apply attack on enemies.
-        /// Called on Unity Animation Event - On Weapon animation
-        /// </summary>
-        public void ApplySlegehammerAttack()
+        private void ApplySlegehammerAttack()
         {
             if (!IsAttacking)
             {
@@ -63,24 +51,45 @@ namespace Game.Mecanics
 
         private Character[] GetNearCharacters()
         {
-            var _characters = new List<Character>(FindObjectsOfType<Character>());
+            var _allCharacters = FindObjectsOfType<Character>();
 
-            // remove the owner of this weapon. Apply damage only on enemies
-            _characters.Remove(Owner);
+            var _nearCharacters = new List<Character>();
 
             // remove all distant characters 
-            for (int i = 0; i < _characters.Count; i++)
+            for (int i = 0; i < _allCharacters.Length; i++)
             {
                 var _weaponPosition = ApplyDamagePoint.position;
-                var _enemyPosition = _characters[i].transform.position;
+                var _enemyPosition = _allCharacters[i].transform.position;
+                var _enemyDistance = Vector3.Distance(_weaponPosition, _enemyPosition);
 
-                if (Vector3.Distance(_weaponPosition, _enemyPosition) > AttackRange)
+                if (_enemyDistance < AttackRange && _allCharacters[i] != Owner)
                 {
-                    _characters.Remove(_characters[i]);
+                    _nearCharacters.Add(_allCharacters[i]);
                 }
             }
 
-            return _characters.ToArray();
+            return _nearCharacters.ToArray();
+        }
+
+        private void DeactiveOwnerMovimentation()
+        {
+            Owner.CanMove = false;
+        }
+
+        private void ActiveOwnerMovimentation()
+        {
+            Owner.CanMove = true;
+        }
+
+        private IEnumerator Delay(float delay, UnityAction onCompleted, UnityAction onProgress = null)
+        {
+            if (onProgress != null)
+            {
+                onProgress();
+            }
+
+            yield return new WaitForSeconds(delay);
+            onCompleted();
         }
     }
 }

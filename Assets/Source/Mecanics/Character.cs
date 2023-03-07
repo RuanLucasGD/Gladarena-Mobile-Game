@@ -21,6 +21,7 @@ namespace Game.Mecanics
             [Min(0)] public float Gravity;
             [Min(0)] public float TurnSpeed;
             [Min(0)] public float ExternalForceDeceleration;
+            [Min(0)] public float StopDistance;
 
             public Moviment()
             {
@@ -28,6 +29,7 @@ namespace Game.Mecanics
                 Gravity = 10;
                 TurnSpeed = 10;
                 ExternalForceDeceleration = 2;
+                StopDistance = 1;
             }
         }
 
@@ -36,6 +38,12 @@ namespace Game.Mecanics
         {
             public Weapon WeaponObject;
             public Transform Hand;
+            [Min(0)] public float DelayToAttack;
+
+            public WeaponSlot()
+            {
+                DelayToAttack = 0.5f;
+            }
         }
 
         [System.Serializable]
@@ -60,6 +68,7 @@ namespace Game.Mecanics
         public UnityEvent OnDamaged;
         public UnityEvent OnSetWeapon;
 
+        private bool _deleyedAttackStarted;
         private Vector3 _moveDirection;
         private Vector3 _externalForce;
         private CharacterController _characterController;
@@ -68,7 +77,10 @@ namespace Game.Mecanics
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
         public bool IsDeath => Life.LifeAmount <= 0;
+        public bool IsAttacking => IsStoped;
         public bool HasWeapon => Weapon.WeaponObject;
+
+        public bool CanMove { get; set; }
 
         /// <summary>
         /// Current player moviment velocity with gravity
@@ -88,6 +100,7 @@ namespace Game.Mecanics
         {
             _characterController = GetComponent<CharacterController>();
             LookAtDirection = transform.forward;
+            CanMove = true;
 
             if (!CharacterController)
             {
@@ -120,11 +133,16 @@ namespace Game.Mecanics
                 return;
             }
 
+            if (!CanMove)
+            {
+                CharacterMoveDirection = Vector3.zero;
+            }
+
             CharacterVelocity = new Vector3(CharacterMoveDirection.x, -Movimentation.Gravity, CharacterMoveDirection.z);
             CharacterVelocity *= Movimentation.MoveSpeed;
             CharacterVelocity += _externalForce;
             CharacterVelocity *= delta;
-            
+
             CharacterController.Move(CharacterVelocity);
         }
 
@@ -146,6 +164,13 @@ namespace Game.Mecanics
         private void UpdateExternalForce(float delta)
         {
             _externalForce -= _externalForce * Mathf.Clamp(delta * Movimentation.ExternalForceDeceleration, 0, _externalForce.magnitude);
+        }
+
+        private IEnumerator AttackDeleyed(Character target)
+        {
+            yield return new WaitForSeconds(Weapon.DelayToAttack);
+            Weapon.WeaponObject.Attack(target);
+            _deleyedAttackStarted = false;
         }
 
         public void SetWeapon(Game.Mecanics.Weapon weapon)
@@ -187,6 +212,20 @@ namespace Game.Mecanics
         public void AddExternalForce(Vector3 force)
         {
             _externalForce += force;
+        }
+
+        public virtual void Attack(Character target = null)
+        {
+            if (!Weapon.WeaponObject || Weapon.WeaponObject.IsAttacking)
+            {
+                return;
+            }
+
+            if (IsStoped && !_deleyedAttackStarted)
+            {
+                _deleyedAttackStarted = true;
+                StartCoroutine(AttackDeleyed(target));
+            }
         }
     }
 }
