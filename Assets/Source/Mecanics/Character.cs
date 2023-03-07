@@ -197,16 +197,16 @@ namespace Game.Mecanics
             if (Life.LifeAmount <= 0)
             {
                 Life.LifeAmount = 0;
-                KillCharacter();
+                enabled = false;
+
                 OnDeath.Invoke();
+                Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
             }
         }
 
         public void KillCharacter()
         {
-            enabled = false;
-
-            Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
+            AddDamage(Mathf.Infinity);
         }
 
         public void AddExternalForce(Vector3 force)
