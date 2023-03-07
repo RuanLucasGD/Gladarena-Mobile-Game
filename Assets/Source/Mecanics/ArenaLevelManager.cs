@@ -79,7 +79,7 @@ namespace Game.Mecanics
         private void SpawnEnemy(EnemySpawn enemySpawn)
         {
             var _player = GameManager.Instance.Player;
-            var _spawnPosition = GenerateRandomPointInArena();
+            var _spawnPosition = GenerateSpawnPoint();
             var _lookAtPlayer = Quaternion.LookRotation(_spawnPosition - _player.transform.position);
             var _enemyCharacter = Instantiate(enemySpawn.EnemyType.gameObject, _spawnPosition, _lookAtPlayer).GetComponent<Character>();
 
@@ -90,12 +90,50 @@ namespace Game.Mecanics
             _enemyCharacter.OnDeath.AddListener(CheckLevelCompleted);
         }
 
-        private Vector3 GenerateRandomPointInArena()
+        /// <summary>
+        /// General random position inside arena area.
+        /// The random position needs to be out player view
+        /// and inside NavMesh area
+        /// </summary>
+        /// <returns></returns>
+        private Vector3 GenerateSpawnPoint()
         {
-            var _randomX = Random.Range(-ArenaCaracteristics.ArenaSize, ArenaCaracteristics.ArenaSize);
-            var _randomZ = Random.Range(-ArenaCaracteristics.ArenaSize, ArenaCaracteristics.ArenaSize);
-            var _rawPosition = Vector3.ClampMagnitude(new Vector3(_randomX, 0, _randomZ), ArenaCaracteristics.ArenaSize) + ArenaCaracteristics.Center.position;
-            return _rawPosition;
+            Vector3 GenerateRawPosition()
+            {
+                var _randomX = Random.Range(-ArenaCaracteristics.ArenaSize, ArenaCaracteristics.ArenaSize);
+                var _randomZ = Random.Range(-ArenaCaracteristics.ArenaSize, ArenaCaracteristics.ArenaSize);
+                var _rawPosition = Vector3.ClampMagnitude(new Vector3(_randomX, 0, _randomZ), ArenaCaracteristics.ArenaSize) + ArenaCaracteristics.Center.position;
+                return _rawPosition;
+            }
+
+            var _randomPoint = GenerateRawPosition();
+
+            // check if is out player view
+            while (IsPointOnView(_randomPoint))
+            {
+                _randomPoint = GenerateRawPosition();
+            }
+
+            return _randomPoint;
+        }
+
+        private bool IsPointOnView(Vector3 point)
+        {
+            var _camera = Camera.main;
+            var _direction = point - _camera.transform.position;
+
+            // the point is on back of the camera
+            if (Vector3.Dot(_direction.normalized, _camera.transform.forward) <= 0)
+            {
+                return false;
+            }
+
+            var _pointOnScreen = _camera.WorldToScreenPoint(point);
+
+            return (_pointOnScreen.x > 0) &&
+                    (_pointOnScreen.y > 0) &&
+                    (_pointOnScreen.x < Screen.width) &&
+                    (_pointOnScreen.y < Screen.height);
         }
 
         private void CheckLevelCompleted()
