@@ -157,7 +157,7 @@ MonoBehaviour:
     Hand: {fileID: 8813778739184038490}
     DelayToAttack: 0.2
   Life:
-    LifeAmount: 100
+    LifeAmount: 50
     AutoDestroyOnDeathDelay: 1
   OnDeath:
     m_PersistentCalls:
@@ -338,6 +338,10 @@ PrefabInstance:
     - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: Damage
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
+      propertyPath: AttackForce
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}

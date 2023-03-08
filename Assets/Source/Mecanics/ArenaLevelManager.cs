@@ -10,10 +10,11 @@ namespace Game.Mecanics
         [System.Serializable]
         public class EnemySpawn
         {
+            [SerializeField] private string Name;
+
             public Character EnemyType;
             [Min(0)] public int MaxEnemiesInScene;
             [Min(0)] public int MaxEnemiesSpawned;
-            [Min(1)] public int CheckInterval;
 
             [HideInInspector] public float SpawnTimer;
             [HideInInspector] public int EnemiesOnScene;
@@ -24,13 +25,23 @@ namespace Game.Mecanics
         }
 
         [System.Serializable]
-        public class Level
+        public class Horder
         {
-            public string name;
+            [SerializeField] private string name;
 
             [Space]
 
-            public EnemySpawn[] Enemies;
+            public EnemySpawn[] EnemiesSpawn;
+        }
+
+        [System.Serializable]
+        public class Level
+        {
+            [SerializeField] private string name;
+
+            [Space]
+
+            public Horder[] Horders;
         }
 
         [System.Serializable]
@@ -40,14 +51,41 @@ namespace Game.Mecanics
             public float ArenaSize;
         }
 
+        [System.Serializable]
+        public class Interval
+        {
+            public float HordeInterval;
+            public float LevelInterval;
+
+            [Space]
+
+            public UnityEvent OnStartHordeInterval;
+            public UnityEvent OnFinishHordeInterval;
+
+            [Space]
+
+            public UnityEvent OnStartLevelInterval;
+            public UnityEvent OnFinishLevelInterval;
+        }
+
         public Arena ArenaCaracteristics;
+        public Interval Intervals;
         public Level[] Levels;
 
+        public UnityEvent OnCompletHorder;
         public UnityEvent OnCompleteLevel;
         public UnityEvent OnCompleteGame;
 
-        public int CurrentLevel { get; private set; }
+        private int _currentHorderIndex;
+        private int _currentLevelIndex;
+
+        public int CurrentLevelInxed { get => _currentLevelIndex; private set => _currentLevelIndex = Mathf.Clamp(value, 0, Levels.Length - 1); }
+        public int CurrentHorderIndex { get => _currentHorderIndex; private set => _currentHorderIndex = Mathf.Clamp(value, 0, CurrentLevel.Horders.Length - 1); }
         public bool GameWin { get; private set; }
+        public bool CanSpawnEnemies { get; set; }
+        public bool IsOnInterval { get; private set; }
+        public Level CurrentLevel => Levels[CurrentLevelInxed];
+        public Horder CurrentHorder => CurrentLevel.Horders[CurrentHorderIndex];
 
         private void Start()
         {
@@ -60,18 +98,16 @@ namespace Game.Mecanics
 
         private void UpdateEnemiesSpawn()
         {
-            if (Levels.Length == 0 && !GameWin)
+            if (Levels.Length == 0 || GameWin)
             {
                 return;
             }
 
-            for (int i = 0; i < Levels[CurrentLevel].Enemies.Length; i++)
+            foreach (var e in CurrentHorder.EnemiesSpawn)
             {
-                var _enemySpawn = Levels[CurrentLevel].Enemies[i];
-
-                if (_enemySpawn.IsMissingEnemies)
+                if (e.IsMissingEnemies)
                 {
-                    SpawnEnemy(_enemySpawn);
+                    SpawnEnemy(e);
                 }
             }
         }
@@ -87,7 +123,7 @@ namespace Game.Mecanics
             enemySpawn.SpawnsAmount++;
 
             _enemyCharacter.OnDeath.AddListener(() => enemySpawn.EnemiesOnScene--);
-            _enemyCharacter.OnDeath.AddListener(CheckLevelCompleted);
+            _enemyCharacter.OnDeath.AddListener(CheckHorderCompleted);
         }
 
         /// <summary>
@@ -136,11 +172,11 @@ namespace Game.Mecanics
                     (_pointOnScreen.y < Screen.height);
         }
 
-        private void CheckLevelCompleted()
+        private void CheckHorderCompleted()
         {
             var _isCompleted = true;
 
-            foreach (var enemySpawn in Levels[CurrentLevel].Enemies)
+            foreach (var enemySpawn in CurrentHorder.EnemiesSpawn)
             {
                 if (!enemySpawn.SpawnCompleted)
                 {
@@ -151,20 +187,32 @@ namespace Game.Mecanics
 
             if (_isCompleted)
             {
-                OnCompleteLevel.Invoke();
+                OnCompletHorder.Invoke();
 
+                Debug.Log("Horder Completed");
+                CheckLevelCompleted();
+                if (CurrentHorderIndex < CurrentLevel.Horders.Length - 1)
+                {
+                    CurrentHorderIndex++;
+                }
+            }
+        }
 
+        private void CheckLevelCompleted()
+        {
+            if (CurrentHorderIndex >= CurrentLevel.Horders.Length - 1)
+            {
                 Debug.Log("Level Completed");
                 CheckGameCompleted();
 
-                if (CurrentLevel < Levels.Length - 1)
-                    CurrentLevel++;
+                CurrentHorderIndex = 0;
+                CurrentLevelInxed++;
             }
         }
 
         private void CheckGameCompleted()
         {
-            if (CurrentLevel >= Levels.Length - 1)
+            if (CurrentLevelInxed >= Levels.Length - 1)
             {
                 Debug.Log("Game Completed");
                 GameWin = true;
@@ -180,6 +228,23 @@ namespace Game.Mecanics
             }
 
             Gizmos.DrawWireSphere(ArenaCaracteristics.Center.position, ArenaCaracteristics.ArenaSize);
+        }
+
+        private void StartHordeInterval()
+        {
+            IsOnInterval = true;
+            Intervals.OnStartHordeInterval.Invoke();
+            StartCoroutine(Delay(Intervals.HordeInterval, () =>
+            {
+                Intervals.OnFinishHordeInterval.Invoke();
+                IsOnInterval = false;
+            }));
+        }
+
+        private IEnumerator Delay(float delay, UnityAction onCompleted)
+        {
+            yield return new WaitForSeconds(delay);
+            onCompleted();
         }
     }
 }

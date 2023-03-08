@@ -9423,32 +9423,36 @@ MonoBehaviour:
   ArenaCaracteristics:
     Center: {fileID: 2027619688}
     ArenaSize: 40
+  Intervals:
+    HordeInterval: 0
+    LevelInterval: 0
+    OnStartHordeInterval:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFinishHordeInterval:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStartLevelInterval:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFinishLevelInterval:
+      m_PersistentCalls:
+        m_Calls: []
   Levels:
   - name: Level 1
-    Enemies:
-    - EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-      MaxEnemiesInScene: 3
-      MaxEnemiesSpawned: 10
-      CheckInterval: 0
-      SpawnTimer: 0
-      EnemiesOnScene: 0
-      SpawnsAmount: 0
-  - name: Level 2
-    Enemies:
-    - EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-      MaxEnemiesInScene: 3
-      MaxEnemiesSpawned: 10
-      CheckInterval: 0
-      SpawnTimer: 0
-      EnemiesOnScene: 0
-      SpawnsAmount: 0
-    - EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-      MaxEnemiesInScene: 1
-      MaxEnemiesSpawned: 3
-      CheckInterval: 0
-      SpawnTimer: 0
-      EnemiesOnScene: 0
-      SpawnsAmount: 0
+    Horders:
+    - name: Horder 1
+      EnemiesSpawn:
+      - Name: Sword Soldier
+        EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
+        MaxEnemiesInScene: 2
+        MaxEnemiesSpawned: 4
+        SpawnTimer: 0
+        EnemiesOnScene: 0
+        SpawnsAmount: 0
+  OnCompletHorder:
+    m_PersistentCalls:
+      m_Calls: []
   OnCompleteLevel:
     m_PersistentCalls:
       m_Calls: []
