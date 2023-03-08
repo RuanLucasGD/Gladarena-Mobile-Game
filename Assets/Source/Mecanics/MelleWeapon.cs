@@ -39,7 +39,7 @@ namespace Game.Mecanics
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!Owner)
+            if (!Owner || !IsAttacking)
             {
                 return;
             }
