@@ -90,5 +90,13 @@ namespace Game.Mecanics
             yield return new WaitForSeconds(delay);
             onCompleted();
         }
+
+        public override void Attack(Character target = null)
+        {
+            if (Owner.IsStoped)
+            {
+                base.Attack(target);
+            }
+        }
     }
 }

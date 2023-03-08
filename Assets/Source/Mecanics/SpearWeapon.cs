@@ -170,7 +170,7 @@ namespace Game.Mecanics
 
         public override void Attack(Character target = null)
         {
-            if (IsAttacking)
+            if (IsAttacking || !Owner.IsStoped)
             {
                 return;
             }

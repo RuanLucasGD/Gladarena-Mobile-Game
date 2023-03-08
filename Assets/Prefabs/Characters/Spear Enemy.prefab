@@ -158,7 +158,7 @@ MonoBehaviour:
     DelayToAttack: 1
   Life:
     LifeAmount: 25
-    AutoDestroyOnDeathDelay: 1
+    AutoDestroyOnDeathDelay: 0.1
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

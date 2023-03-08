@@ -105,5 +105,13 @@ namespace Game.Mecanics
 
             target.AddExternalForce(_direction);
         }
+
+        public override void Attack(Character target = null)
+        {
+            if (Owner.IsStoped)
+            {
+                base.Attack(target);
+            }
+        }
     }
 }
