@@ -58,15 +58,15 @@ namespace Game.Mecanics
                     if (anotherCharacter.gameObject == WeaponTarget.gameObject)
                     {
                         anotherCharacter.AddDamage(Damage);
+                        AddAttackForce(anotherCharacter);
                     }
                 }
                 // if doesn't has a target, the weapon can to apply damage in any characters
                 else
                 {
                     anotherCharacter.AddDamage(Damage);
+                    AddAttackForce(anotherCharacter);
                 }
-
-                AddAttackForce(anotherCharacter);
             }
         }
 
