@@ -79,12 +79,12 @@ namespace Game.Mecanics
         private int _currentHorderIndex;
         private int _currentLevelIndex;
 
-        public int CurrentLevelInxed { get => _currentLevelIndex; private set => _currentLevelIndex = Mathf.Clamp(value, 0, Levels.Length - 1); }
+        public int CurrentLevelIndex { get => _currentLevelIndex; private set => _currentLevelIndex = Mathf.Clamp(value, 0, Levels.Length - 1); }
         public int CurrentHorderIndex { get => _currentHorderIndex; private set => _currentHorderIndex = Mathf.Clamp(value, 0, CurrentLevel.Horders.Length - 1); }
         public bool GameWin { get; private set; }
-        public bool CanSpawnEnemies { get; set; }
+        public bool CanSpawnEnemies => Levels.Length != 0 && !GameWin && !IsOnInterval && GameManager.Instance.Player;
         public bool IsOnInterval { get; private set; }
-        public Level CurrentLevel => Levels[CurrentLevelInxed];
+        public Level CurrentLevel => Levels[CurrentLevelIndex];
         public Horder CurrentHorder => CurrentLevel.Horders[CurrentHorderIndex];
 
         private void Start()
@@ -93,12 +93,13 @@ namespace Game.Mecanics
 
         private void Update()
         {
+            Debug.Log($"Level {CurrentLevelIndex + 1}/{Levels.Length}     Horder {CurrentHorderIndex + 1}/{CurrentLevel.Horders.Length}");
             UpdateEnemiesSpawn();
         }
 
         private void UpdateEnemiesSpawn()
         {
-            if (Levels.Length == 0 || GameWin)
+            if (!CanSpawnEnemies)
             {
                 return;
             }
@@ -123,7 +124,7 @@ namespace Game.Mecanics
             enemySpawn.SpawnsAmount++;
 
             _enemyCharacter.OnDeath.AddListener(() => enemySpawn.EnemiesOnScene--);
-            _enemyCharacter.OnDeath.AddListener(CheckHorderCompleted);
+            _enemyCharacter.OnDeath.AddListener(CheckGameProgression);
         }
 
         /// <summary>
@@ -172,52 +173,73 @@ namespace Game.Mecanics
                     (_pointOnScreen.y < Screen.height);
         }
 
-        private void CheckHorderCompleted()
+        private void CheckGameProgression()
         {
-            var _isCompleted = true;
+            var _currentHorderIndex = CurrentHorderIndex;
+            var _currentLevelIndex = CurrentLevelIndex;
+
+            if (!CheckHorderCompleted())
+            {
+                return;
+            }
+
+            CurrentHorderIndex++;
+            StartHordeInterval();
+            OnCompletHorder.Invoke();
+
+            if (!CheckLevelCompleted(_currentHorderIndex))
+            {
+                return;
+            }
+
+            if (++CurrentLevelIndex < Levels.Length - 1)
+            {
+                CurrentHorderIndex = 0;
+                CurrentLevelIndex++;
+            }
+
+            OnCompleteLevel.Invoke();
+
+            if (!CheckGameCompleted(_currentLevelIndex))
+            {
+                return;
+            }
+
+            GameWin = true;
+            OnCompleteGame.Invoke();
+
+        }
+
+        private bool CheckHorderCompleted()
+        {
+            // to complete the horder, the player has to kill all enemies on scene and
+            // the spawn needs to be has marked as completed
 
             foreach (var enemySpawn in CurrentHorder.EnemiesSpawn)
             {
-                if (!enemySpawn.SpawnCompleted)
+                var _hasEnemiesOnScene = enemySpawn.EnemiesOnScene > 0;
+                var _spawnedAllEnemies = enemySpawn.SpawnCompleted;
+
+                if (_hasEnemiesOnScene || !_spawnedAllEnemies)
                 {
-                    _isCompleted = false;
-                    break;
+                    return false;
                 }
             }
 
-            if (_isCompleted)
-            {
-                OnCompletHorder.Invoke();
-
-                Debug.Log("Horder Completed");
-                CheckLevelCompleted();
-                if (CurrentHorderIndex < CurrentLevel.Horders.Length - 1)
-                {
-                    CurrentHorderIndex++;
-                }
-            }
+            Debug.Log("Horder Completed");
+            return true;
         }
 
-        private void CheckLevelCompleted()
+        private bool CheckLevelCompleted(int horderIndex)
         {
-            if (CurrentHorderIndex >= CurrentLevel.Horders.Length - 1)
-            {
-                Debug.Log("Level Completed");
-                CheckGameCompleted();
-
-                CurrentHorderIndex = 0;
-                CurrentLevelInxed++;
-            }
+            Debug.Log("Level Completed");
+            return horderIndex >= CurrentLevel.Horders.Length - 1;
         }
 
-        private void CheckGameCompleted()
+        private bool CheckGameCompleted(int levelIndex)
         {
-            if (CurrentLevelInxed >= Levels.Length - 1)
-            {
-                Debug.Log("Game Completed");
-                GameWin = true;
-                OnCompleteGame.Invoke();
-            }
+            Debug.Log("Game Completed");
+            return CurrentLevelIndex >= Levels.Length - 1;
         }
 
         private void OnDrawGizmos()
