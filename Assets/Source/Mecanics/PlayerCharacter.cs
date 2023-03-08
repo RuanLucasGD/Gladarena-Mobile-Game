@@ -90,7 +90,7 @@ namespace Game.Mecanics
 
             if (HasWeapon)
             {
-                UpdateNearEnemiesList();
+                FindNearEnemy();
                 Attack();
             }
         }
@@ -122,25 +122,38 @@ namespace Game.Mecanics
             CharacterMoveDirection = _moveDirection;
         }
 
-        private void UpdateNearEnemiesList()
+        private void FindNearEnemy()
         {
             var _allCharacter = new List<Character>(FindObjectsOfType<Character>());
             _allCharacter.Remove(this);  // remove self player of all characters list
 
-            for (int i = 0; i < _allCharacter.Count; i++)
+            if (_allCharacter.Count == 0)
             {
-                var _weaponPosition = transform.position;
-                var _enemyPosition = _allCharacter[i].transform.position;
+                NearEnemy = null;
+                return;
+            }
 
-                if (Vector3.Distance(_weaponPosition, _enemyPosition) < Weapon.WeaponObject.AttackRange)
+            var _near = _allCharacter[0];
+            var _distance = Vector3.Distance(transform.position, _near.transform.position);
+
+            foreach (var c in _allCharacter)
+            {
+                var _characterDistance = Vector3.Distance(transform.position, c.transform.position);
+
+                if (_characterDistance < _distance)
                 {
-                    NearEnemy = _allCharacter[i];
-                    return;
+                    _distance = _characterDistance;
+                    _near = c;
                 }
             }
 
-            // didn't find any enemy
-            NearEnemy = null;
+            if (_distance > Weapon.WeaponObject.AttackRange)
+            {
+                NearEnemy = null;
+                return;
+            }
+
+            NearEnemy = _near;
         }
 
         public override void Attack(Character target = null)

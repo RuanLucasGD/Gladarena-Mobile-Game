@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 6658774884365413529}
   - component: {fileID: 8760356429039698102}
   - component: {fileID: 6887273906623189999}
-  - component: {fileID: 2059154547}
   m_Layer: 0
   m_Name: Character Base
   m_TagString: Untagged
@@ -180,12 +179,15 @@ MonoBehaviour:
     MoveSpeed: 10
     Gravity: 10
     TurnSpeed: 10
+    ExternalForceDeceleration: 4
+    StopDistance: 1
   Weapon:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 0}
+    DelayToAttack: 0.5
   Life:
     LifeAmount: 100
-    AutoDestroyOnDeathDelay: 1
+    AutoDestroyOnDeathDelay: 0.1
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -195,19 +197,6 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
---- !u!65 &2059154547
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8305775239971130606}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8501272935429945273
 GameObject:
   m_ObjectHideFlags: 0
