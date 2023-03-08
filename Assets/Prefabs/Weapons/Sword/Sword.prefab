@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b9ad500b960814fb4cfd2f63c4974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackForce: 5
   AttackRange: 3
   Damage: 20
   Animation:

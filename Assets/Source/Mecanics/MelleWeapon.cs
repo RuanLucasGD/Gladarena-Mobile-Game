@@ -6,6 +6,7 @@ namespace Game.Mecanics
 {
     public class MelleWeapon : Weapon
     {
+
         public float AttackLength;
 
         public Collider WeaponCollider;
@@ -64,6 +65,8 @@ namespace Game.Mecanics
                 {
                     anotherCharacter.AddDamage(Damage);
                 }
+
+                AddAttackForce(anotherCharacter);
             }
         }
 
@@ -92,6 +95,15 @@ namespace Game.Mecanics
             yield return new WaitForSeconds(AttackLength);
             IsAttacking = false;
             WeaponTarget = null;
+        }
+
+        private void AddAttackForce(Character target)
+        {
+            var _direction = target.transform.position - Owner.transform.position;
+            _direction /= _direction.magnitude;
+            _direction *= AttackForce;
+
+            target.AddExternalForce(_direction);
         }
     }
 }

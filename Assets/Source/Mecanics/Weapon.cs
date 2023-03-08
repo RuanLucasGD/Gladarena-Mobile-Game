@@ -16,6 +16,7 @@ namespace Game.Mecanics
             public string AttackAnimParameter;
         }
 
+        public float AttackForce;
         public float AttackRange;
         public float Damage;
 

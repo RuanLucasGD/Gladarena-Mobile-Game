@@ -69,7 +69,7 @@ MonoBehaviour:
     Gravity: 10
     TurnSpeed: 10
     ExternalForceDeceleration: 2
-    StopDistance: 2
+    StopDistance: 5
   Weapon:
     WeaponObject: {fileID: 8905242506229434397}
     Hand: {fileID: 8905242507830291449}
@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ac557868c78a142a16dcd1806922aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackForce: 0
   AttackRange: 7
   Damage: 70
   Animation:
@@ -476,7 +477,6 @@ MonoBehaviour:
   ApplyAttackDelay: 1.05
   DeactiveAttackDelay: 1.5
   ApplyDamagePoint: {fileID: 8905242507561980660}
-  AttackForceBack: 50
   AttackForceUp: 1
 --- !u!95 &8905242507588681520
 Animator:

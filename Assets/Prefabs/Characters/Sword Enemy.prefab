@@ -151,7 +151,7 @@ MonoBehaviour:
     Gravity: 10
     TurnSpeed: 10
     ExternalForceDeceleration: 2
-    StopDistance: 2
+    StopDistance: 3
   Weapon:
     WeaponObject: {fileID: 6675851420747044059}
     Hand: {fileID: 8813778739184038490}

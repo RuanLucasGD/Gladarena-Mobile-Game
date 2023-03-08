@@ -12,7 +12,6 @@ namespace Game.Mecanics
 
         [Space]
         public Transform ApplyDamagePoint;
-        public float AttackForceBack;
         public float AttackForceUp;
 
         protected override void Start()
@@ -41,7 +40,7 @@ namespace Game.Mecanics
             foreach (var character in _characters)
             {
                 var _forceDirection = Vector3.ProjectOnPlane((character.transform.position - ApplyDamagePoint.position).normalized, Vector3.up);
-                _forceDirection *= AttackForceBack;
+                _forceDirection *= AttackForce;
                 _forceDirection += Vector3.up * AttackForceUp;
 
                 character.AddDamage(Damage);

@@ -12,7 +12,6 @@ namespace Game.Mecanics
 
         [Space]
         public float AttackSpeed;
-        public float AttackForce;
 
         [Tooltip("Model size (z axis) of the weapon.")]
         public float SpearSize;
