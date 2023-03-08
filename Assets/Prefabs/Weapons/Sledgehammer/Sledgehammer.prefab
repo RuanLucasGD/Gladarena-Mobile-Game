@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ac557868c78a142a16dcd1806922aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackForce: 0
   AttackRange: 7
   Damage: 70
   Animation:
@@ -309,7 +310,6 @@ MonoBehaviour:
   ApplyAttackDelay: 1.05
   DeactiveAttackDelay: 1.5
   ApplyDamagePoint: {fileID: 8203173583351824499}
-  AttackForceBack: 50
   AttackForceUp: 1
 --- !u!95 &1866821207
 Animator:

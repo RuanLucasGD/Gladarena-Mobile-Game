@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b0fd500eac73947adfc8101c83f527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackForce: 15
+  AttackForce: 50
   AttackRange: 10
   Damage: 30
   Animation:
@@ -244,7 +244,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   WeaponCollider: {fileID: 1973641760929820256}
-  AttackSpeed: 1
+  AttackSpeed: 1.5
   SpearSize: 5
 --- !u!54 &1973641761611290147
 Rigidbody:

@@ -185,6 +185,7 @@ namespace Game.Mecanics
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
             weapon.Owner = this;
+            Weapon.WeaponObject = weapon;
 
             OnSetWeapon.Invoke();
         }
