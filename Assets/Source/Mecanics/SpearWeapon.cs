@@ -55,7 +55,6 @@ namespace Game.Mecanics
                 {
                     _currentTarget.AddDamage(Damage);
                     AddAttackForce(_currentTarget);
-                    IsAttacking = false;
                 }
             }
         }
