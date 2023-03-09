@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackForce: 30
-  AttackRange: 15
+  AttackRange: 13
   Damage: 35
   Animation:
     Animator: {fileID: 1866821207}

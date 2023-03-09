@@ -18,17 +18,20 @@ namespace Game.Mecanics
         {
             base.Start();
 
-            OnEnableAttack += () => StartCoroutine(Delay(ApplyAttackDelay, ApplySlegehammerAttack, onProgress: DeactiveOwnerMovimentation));
             OnEnableAttack += () => StartCoroutine(Delay(DeactiveAttackDelay, DeactiveAttack));
-            OnEnableAttack += () => StartCoroutine(Delay(DeactiveAttackDelay, ActiveOwnerMovimentation));
         }
 
-        private void DeactiveAttack()
+        protected override void Update()
         {
-            IsAttacking = false;
+            base.Update();
+            if (!Owner.IsStoped)
+            {
+                IsAttacking = false;
+            }
         }
 
-        private void ApplySlegehammerAttack()
+        // Called on Animation ovent of this weapon
+        public void ApplySlegehammerAttack()
         {
             if (!IsAttacking)
             {
@@ -70,14 +73,9 @@ namespace Game.Mecanics
             return _nearCharacters.ToArray();
         }
 
-        private void DeactiveOwnerMovimentation()
+        private void DeactiveAttack()
         {
-            Owner.CanMove = false;
-        }
-
-        private void ActiveOwnerMovimentation()
-        {
-            Owner.CanMove = true;
+            IsAttacking = false;
         }
 
         private IEnumerator Delay(float delay, UnityAction onCompleted, UnityAction onProgress = null)
