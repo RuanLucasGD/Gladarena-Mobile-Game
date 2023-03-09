@@ -82,13 +82,15 @@ namespace Game.Mecanics
         public int CurrentLevelIndex { get => _currentLevelIndex; private set => _currentLevelIndex = Mathf.Clamp(value, 0, Levels.Length - 1); }
         public int CurrentHorderIndex { get => _currentHorderIndex; private set => _currentHorderIndex = Mathf.Clamp(value, 0, CurrentLevel.Horders.Length - 1); }
         public bool GameWin { get; private set; }
-        public bool CanSpawnEnemies => Levels.Length != 0 && !GameWin && !IsOnInterval && GameManager.Instance.Player;
+        public bool CanSpawnEnemies => Levels.Length != 0 && !GameWin && !IsOnInterval && GameManager.Instance.Player && !IsPaused;
         public bool IsOnInterval { get; private set; }
+        public bool IsPaused { get; set; }
         public Level CurrentLevel => Levels[CurrentLevelIndex];
         public Horder CurrentHorder => CurrentLevel.Horders[CurrentHorderIndex];
 
-        private void Start()
+        private void Awake()
         {
+            IsPaused = true;
         }
 
         private void Update()

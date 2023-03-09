@@ -301,14 +301,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ac557868c78a142a16dcd1806922aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackForce: 0
-  AttackRange: 7
-  Damage: 70
+  AttackForce: 30
+  AttackRange: 15
+  Damage: 35
   Animation:
     Animator: {fileID: 1866821207}
     AttackAnimParameter: Is Attacking
-  ApplyAttackDelay: 1.05
-  DeactiveAttackDelay: 1.5
+  ApplyAttackDelay: 1.3
+  DeactiveAttackDelay: 2.3
   ApplyDamagePoint: {fileID: 8203173583351824499}
   AttackForceUp: 1
 --- !u!95 &1866821207
