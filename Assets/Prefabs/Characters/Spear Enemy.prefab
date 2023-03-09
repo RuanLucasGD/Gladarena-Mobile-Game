@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 7
-    Gravity: 10
+    Gravity: 2
     TurnSpeed: 10
     ExternalForceDeceleration: 2
     StopDistance: 9
@@ -302,6 +302,26 @@ PrefabInstance:
     - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
       propertyPath: AttackSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
+      propertyPath: AttackAnimationCurve.m_Curve.Array.data[1].time
+      value: 0.031993
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
+      propertyPath: AttackAnimationCurve.m_Curve.Array.data[2].time
+      value: 0.13534905
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
+      propertyPath: AttackAnimationCurve.m_Curve.Array.data[3].time
+      value: 0.3645584
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
+      propertyPath: AttackAnimationCurve.m_Curve.Array.data[0].inSlope
+      value: 31.01199
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
+      propertyPath: AttackAnimationCurve.m_Curve.Array.data[0].outSlope
+      value: 31.01199
       objectReference: {fileID: 0}
     - target: {fileID: 1973641761611290145, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
       propertyPath: m_RootOrder

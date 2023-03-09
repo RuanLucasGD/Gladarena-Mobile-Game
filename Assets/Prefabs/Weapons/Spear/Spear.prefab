@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b0fd500eac73947adfc8101c83f527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackForce: 50
+  AttackForce: 35
   AttackRange: 10
   Damage: 30
   Animation:
@@ -198,14 +198,14 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 22.98692
-      outSlope: 22.98692
+      inSlope: 53.502407
+      outSlope: 53.502407
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.043162227
+      time: 0.018544337
       value: 0.99216664
       inSlope: -0.051987052
       outSlope: -0.051987052
@@ -214,7 +214,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.30487874
     - serializedVersion: 3
-      time: 0.18260139
+      time: 0.078453355
       value: 0.50379217
       inSlope: -3.0246232
       outSlope: -3.0246232
@@ -223,7 +223,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.13186058
     - serializedVersion: 3
-      time: 0.4918311
+      time: 0.21131164
       value: 0.026653579
       inSlope: -0.11714583
       outSlope: -0.11714583
@@ -244,7 +244,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   WeaponCollider: {fileID: 1973641760929820256}
-  AttackSpeed: 1.5
+  AttackSpeed: 1
   SpearSize: 5
 --- !u!54 &1973641761611290147
 Rigidbody:

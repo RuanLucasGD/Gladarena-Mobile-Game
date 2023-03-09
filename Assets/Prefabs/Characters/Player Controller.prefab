@@ -202,8 +202,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7636267930241118374}
-  - component: {fileID: 1448692789631899809}
   - component: {fileID: 5477160553361611913}
+  - component: {fileID: 1448692789631899809}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -227,6 +227,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &5477160553361611913
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104209847460090065}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1448692789631899809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 10
-    Gravity: 10
+    Gravity: 2
     TurnSpeed: 10
     ExternalForceDeceleration: 0.1
     StopDistance: 1
@@ -266,21 +284,3 @@ MonoBehaviour:
     VerticalAction: Vertical
     HorizontalAction: Horizontal
     MobileJoystickAction: Mobile Joystick
---- !u!143 &5477160553361611913
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5104209847460090065}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}

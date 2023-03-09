@@ -122,9 +122,12 @@ namespace Game.Mecanics
             UpdateRotation(Time.deltaTime);
             UpdateMoviment(Time.deltaTime);
             UpdateExternalForce(Time.deltaTime);
-        }
 
-        protected virtual void FixedUpdate() { }
+            if (transform.position.y < -100)
+            {
+                KillCharacter();
+            }
+        }
 
         private void UpdateMoviment(float delta)
         {
@@ -133,7 +136,7 @@ namespace Game.Mecanics
                 return;
             }
 
-            if (!CanMove)
+            if (!CanMove || !CharacterController.isGrounded)
             {
                 CharacterMoveDirection = Vector3.zero;
             }

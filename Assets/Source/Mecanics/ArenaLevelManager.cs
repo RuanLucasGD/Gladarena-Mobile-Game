@@ -95,7 +95,7 @@ namespace Game.Mecanics
 
         private void Update()
         {
-            Debug.Log($"Level {CurrentLevelIndex + 1}/{Levels.Length}     Horder {CurrentHorderIndex + 1}/{CurrentLevel.Horders.Length}");
+            //Debug.Log($"Level {CurrentLevelIndex + 1}/{Levels.Length}     Horder {CurrentHorderIndex + 1}/{CurrentLevel.Horders.Length}");
             UpdateEnemiesSpawn();
         }
 

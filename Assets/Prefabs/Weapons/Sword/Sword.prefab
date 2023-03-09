@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackForce: 10
   AttackRange: 3
-  Damage: 5
+  Damage: 25
   Animation:
     Animator: {fileID: 5469765281718002603}
     AttackAnimParameter: Is Attacking

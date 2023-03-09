@@ -310,7 +310,7 @@ MonoBehaviour:
   ApplyAttackDelay: 1.3
   DeactiveAttackDelay: 2.3
   ApplyDamagePoint: {fileID: 8203173583351824499}
-  AttackForceUp: 1
+  AttackForceUp: 30
 --- !u!95 &1866821207
 Animator:
   serializedVersion: 5

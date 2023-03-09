@@ -35,12 +35,9 @@ namespace Game.Mecanics
             var _speed = Mathf.Max(MoveSpeed, (Target.CharacterVelocity.magnitude + MoveSpeed)) * delta;
             _speed = Mathf.Clamp01(_speed);
 
-            transform.position = Vector3.Lerp(transform.position, Target.transform.position + Offset, _speed);
-        }
+            var _targetPosition = new Vector3(Target.transform.position.x, 0, Target.transform.position.z);
 
-        private void UpdateCameraRotation()
-        {
-            transform.LookAt(Target.transform.position);
+            transform.position = Vector3.Lerp(transform.position, _targetPosition + Offset, _speed);
         }
     }
 }

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 5
-    Gravity: 10
+    Gravity: 2
     TurnSpeed: 10
     ExternalForceDeceleration: 5
     StopDistance: 9

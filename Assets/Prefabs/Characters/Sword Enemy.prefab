@@ -148,10 +148,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 7
-    Gravity: 10
+    Gravity: 2
     TurnSpeed: 10
     ExternalForceDeceleration: 2
-    StopDistance: 3
+    StopDistance: 3.5
   Weapon:
     WeaponObject: {fileID: 6675851420747044059}
     Hand: {fileID: 8813778739184038490}
@@ -287,6 +287,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8813778739184038490}
     m_Modifications:
+    - target: {fileID: 203360975082478048, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2967694
+      objectReference: {fileID: 0}
     - target: {fileID: 5670727181611026883, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -341,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: AttackForce
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
