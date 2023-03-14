@@ -30,7 +30,6 @@ namespace Game.Mecanics
             [SerializeField] private string name;
 
             [Space]
-
             public EnemySpawn[] EnemiesSpawn;
         }
 
@@ -56,37 +55,54 @@ namespace Game.Mecanics
         {
             public float HordeInterval;
             public float LevelInterval;
-
-            [Space]
-
-            public UnityEvent OnStartHordeInterval;
-            public UnityEvent OnFinishHordeInterval;
-
-            [Space]
-
-            public UnityEvent OnStartLevelInterval;
-            public UnityEvent OnFinishLevelInterval;
         }
+
+        [SerializeField] private bool DebugLog;
 
         public Arena ArenaCaracteristics;
         public Interval Intervals;
         public Level[] Levels;
 
-        public UnityEvent OnCompletHorder;
+        public UnityEvent OnStartGame;
+        public UnityEvent OnStartHorder;
+        public UnityEvent OnStartLevel;
+        public UnityEvent OnCompleteHorder;
         public UnityEvent OnCompleteLevel;
         public UnityEvent OnCompleteGame;
 
         private int _currentHorderIndex;
         private int _currentLevelIndex;
 
+        public bool CurrentHorderFinalized { get; private set; }
         public int CurrentLevelIndex { get => _currentLevelIndex; private set => _currentLevelIndex = Mathf.Clamp(value, 0, Levels.Length - 1); }
         public int CurrentHorderIndex { get => _currentHorderIndex; private set => _currentHorderIndex = Mathf.Clamp(value, 0, CurrentLevel.Horders.Length - 1); }
-        public bool GameWin { get; private set; }
-        public bool CanSpawnEnemies => Levels.Length != 0 && !GameWin && !IsOnInterval && GameManager.Instance.Player && !IsPaused;
+        public bool CanSpawnEnemies => Levels.Length != 0 && !GameWin && GameStarted && !IsOnInterval && GameManager.Instance.Player && !IsPaused && !CurrentHorderFinalized;
         public bool IsOnInterval { get; private set; }
         public bool IsPaused { get; set; }
+        public bool GameStarted { get; private set; }
+        public bool GameWin { get; private set; }
         public Level CurrentLevel => Levels[CurrentLevelIndex];
         public Horder CurrentHorder => CurrentLevel.Horders[CurrentHorderIndex];
+
+        private static ArenaLevelManager _arenaManager;
+
+        public static ArenaLevelManager Instance
+        {
+            get
+            {
+                if (!_arenaManager)
+                {
+                    _arenaManager = FindObjectOfType<ArenaLevelManager>();
+
+                    if (!_arenaManager)
+                    {
+                        Debug.LogError($"Does not exist any {nameof(ArenaLevelManager)} on this scene");
+                    }
+                }
+
+                return _arenaManager;
+            }
+        }
 
         private void Awake()
         {
@@ -177,47 +193,24 @@ namespace Game.Mecanics
 
         private void CheckGameProgression()
         {
-            var _currentHorderIndex = CurrentHorderIndex;
-            var _currentLevelIndex = CurrentLevelIndex;
-            var _nextLevelIsTheLast = ++_currentLevelIndex < Levels.Length - 1;
+            if (CurrentHorderFinalized)
+            {
+                return;
+            }
+
             var _horderCompleted = CheckHorderCompleted();
-            var _levelCompleted = CheckLevelCompleted(_currentHorderIndex);
-            var _gameCompleted = CheckGameCompleted(_currentLevelIndex);
+            var _levelCompleted = CheckLevelCompleted(CurrentHorderIndex);
+            var _gameCompleted = CheckGameCompleted(CurrentLevelIndex);
 
-            if (!_horderCompleted)
-            {
-                return;
-            }
+            if (!_horderCompleted) return;
+            FinalizeCurrentHorder();
+            StartNextHorderIntervaled();
 
-            Debug.Log($"Horder {CurrentHorderIndex} Completed of level {CurrentLevelIndex}");
+            if (!_levelCompleted) return;
+            FinalizeCurrentLevel();
 
-            StartNewHordeInterval();
-            OnCompletHorder.Invoke();
-
-            if (!_levelCompleted)
-            {
-                return;
-            }
-
-            Debug.Log($"Level {CurrentLevelIndex} Completed");
-
-            if (!_nextLevelIsTheLast)
-            {
-                CurrentHorderIndex = 0;
-                CurrentLevelIndex++;
-            }
-
-            OnCompleteLevel.Invoke();
-
-            if (!_gameCompleted)
-            {
-                return;
-            }
-
-            Debug.Log("Game Completed");
-
-            GameWin = true;
-            OnCompleteGame.Invoke();
+            if (!_gameCompleted) return;
+            FinalizeGame();
         }
 
         private bool CheckHorderCompleted()
@@ -259,26 +252,95 @@ namespace Game.Mecanics
             Gizmos.DrawWireSphere(ArenaCaracteristics.Center.position, ArenaCaracteristics.ArenaSize);
         }
 
-        private void StartNewHordeInterval()
+        private void FinalizeCurrentHorder()
         {
             IsOnInterval = true;
-            Intervals.OnStartHordeInterval.Invoke();
-            StartCoroutine(Delay(Intervals.HordeInterval, () =>
-            {
-                Intervals.OnFinishHordeInterval.Invoke();
-                IsOnInterval = false;
-                CurrentHorderIndex++;
+            CurrentHorderFinalized = true;
+            OnCompleteHorder.Invoke();
 
-                Debug.Log($"New horde {CurrentHorderIndex} started on level {CurrentLevelIndex}");
-            }));
+            if (DebugLog) Debug.Log($"Horder finalized {CurrentHorderIndex}");
         }
 
-        private IEnumerator Delay(float delay, UnityAction onCompleted)
+        private void FinalizeCurrentLevel()
         {
-            yield return new WaitForSeconds(delay);
-            onCompleted();
+            OnCompleteLevel.Invoke();
+
+            if (DebugLog) Debug.Log($"Level {CurrentLevelIndex} Completed");
+        }
+
+        private void FinalizeGame()
+        {
+            GameWin = true;
+            OnCompleteGame.Invoke();
+
+            if (DebugLog) Debug.Log("Game Completed");
+        }
+
+        private void StartNextHorderImmediatly()
+        {
+            IsOnInterval = false;
+            CurrentHorderFinalized = false;
+            CurrentHorderIndex++;
+            OnStartHorder.Invoke();
+
+            if (DebugLog) Debug.Log($"New horde {CurrentHorderIndex} started on level {CurrentLevelIndex}");
+        }
+
+        private void StartNextLevelImmediatly()
+        {
+            var _nextLevelIsTheLast = ++_currentLevelIndex < Levels.Length - 1;
+
+            if (!_nextLevelIsTheLast)
+            {
+                CurrentHorderIndex = 0;
+                CurrentLevelIndex++;
+            }
+
+            OnStartLevel.Invoke();
+        }
+
+        /// <summary>
+        /// Start new enemies horder after interval
+        /// </summary>
+        public void StartNextHorderIntervaled()
+        {
+            if (!CurrentHorderFinalized)
+            {
+                Debug.LogError("Does not possible to start next horder bacause the current horder isn't finalized. Kill all enemies before.");
+                return;
+            }
+
+            GameManager.Instance.Delay(Intervals.HordeInterval, StartNextHorderImmediatly);
+        }
+
+        /// <summary>
+        /// Start new level after interval
+        /// </summary>
+        public void StartNextLevelIntervaled()
+        {
+            if (!CurrentHorderFinalized)
+            {
+                Debug.LogError("Does not possible to start next level bacause the current horder isn't finalized. Kill all enemies before.");
+                return;
+            }
+
+            GameManager.Instance.Delay(Intervals.LevelInterval, StartNextLevelImmediatly);
+        }
+
+        public void StartGame()
+        {
+            if (GameStarted)
+            {
+                Debug.LogError("The game's already started");
+                return;
+            }
+
+            GameStarted = true;
+            OnStartGame.Invoke();
+            OnStartLevel.Invoke();
+            OnStartHorder.Invoke();
+
+            if (DebugLog) Debug.Log("Game Started");
         }
     }
 }
-
-

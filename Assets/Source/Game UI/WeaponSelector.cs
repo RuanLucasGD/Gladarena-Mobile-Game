@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Game.Mecanics;
@@ -28,11 +26,12 @@ namespace Game.UI
             }
 
             var _weapon = Instantiate(Weapons[index].gameObject).GetComponent<Weapon>();
-            
             _player.SetWeapon(_weapon);
-            OnSelectWeapon.Invoke();
+
+            ArenaLevelManager.Instance.StartGame();
             gameObject.SetActive(false);
 
+            OnSelectWeapon.Invoke();
         }
     }
 }

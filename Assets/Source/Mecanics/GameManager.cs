@@ -14,6 +14,7 @@ namespace Game.Mecanics
     public class GameManager : MonoBehaviour
     {
         public Camera GameplayCamera;
+        public ArenaLevelManager ArenaManager;
 
         [Space]
 
@@ -23,6 +24,8 @@ namespace Game.Mecanics
 
         public bool DisablePlayerOnStart;
         public UnityEvent OnStart;
+
+        [Space]
 
         private static GameManager _gameManager;
 
@@ -61,6 +64,12 @@ namespace Game.Mecanics
             if (!Player)
             {
                 Debug.LogError("Player not finded on scene");
+                return;
+            }
+
+            if (!ArenaManager)
+            {
+                Debug.LogError($"Add {nameof(ArenaManager)} to GameManager of this scene");
                 return;
             }
         }
@@ -108,13 +117,28 @@ namespace Game.Mecanics
 
         public void RestartGameDeleyed()
         {
-            StartCoroutine(Delay(RestartGameDelay, RestartGameImmediatly));
+            Delay(RestartGameDelay, RestartGameImmediatly);
         }
 
-        private IEnumerator Delay(float delay, UnityAction onCompleted)
+        public void ResetPlayerLife()
         {
-            yield return new WaitForSeconds(delay);
-            onCompleted();
+            if (!Player)
+            {
+                return;
+            }
+
+            Player.ResetLife();
+        }
+
+        public void Delay(float delay, UnityAction onCompleted)
+        {
+            IEnumerator _Delay()
+            {
+                yield return new WaitForSeconds(delay);
+                onCompleted();
+            }
+
+            StartCoroutine(_Delay());
         }
     }
 }
