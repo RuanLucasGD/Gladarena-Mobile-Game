@@ -51,6 +51,7 @@ namespace Game.Mecanics
         {
             [Min(1)] public float LifeAmount;
             [Min(0.1f)] public float AutoDestroyOnDeathDelay;
+            public UnityEvent OnResetLife;
 
             public LifeStorage()
             {
@@ -76,9 +77,10 @@ namespace Game.Mecanics
         public CharacterController CharacterController => _characterController;
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
-        public bool IsDeath => Life.LifeAmount <= 0;
+        public bool IsDeath => CurrentLife <= 0;
         public bool IsAttacking => IsStoped;
         public bool HasWeapon => Weapon.WeaponObject;
+        public float CurrentLife { get; private set; }
 
         public bool CanMove { get; set; }
 
@@ -99,8 +101,10 @@ namespace Game.Mecanics
         protected virtual void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            LookAtDirection = transform.forward;
+
             CanMove = true;
+            CurrentLife = Life.LifeAmount;
+            LookAtDirection = transform.forward;
 
             if (!CharacterController)
             {
@@ -195,12 +199,12 @@ namespace Game.Mecanics
 
         public void AddDamage(float damage)
         {
-            Life.LifeAmount -= damage;
+            CurrentLife -= damage;
             OnDamaged.Invoke();
 
-            if (Life.LifeAmount <= 0)
+            if (CurrentLife <= 0)
             {
-                Life.LifeAmount = 0;
+                CurrentLife = 0;
                 enabled = false;
 
                 OnDeath.Invoke();
@@ -211,6 +215,11 @@ namespace Game.Mecanics
         public void KillCharacter()
         {
             AddDamage(Mathf.Infinity);
+        }
+
+        public void ResetLife()
+        {
+            CurrentLife = Life.LifeAmount;
         }
 
         public void AddExternalForce(Vector3 force)

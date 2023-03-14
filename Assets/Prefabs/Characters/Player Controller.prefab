@@ -258,10 +258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movimentation:
-    MoveSpeed: 10
+    MoveSpeed: 13
     Gravity: 2
     TurnSpeed: 10
-    ExternalForceDeceleration: 0.1
+    ExternalForceDeceleration: 4
     StopDistance: 1
   Weapon:
     WeaponObject: {fileID: 0}
