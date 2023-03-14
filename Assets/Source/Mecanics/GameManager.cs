@@ -14,8 +14,15 @@ namespace Game.Mecanics
     public class GameManager : MonoBehaviour
     {
         public Camera GameplayCamera;
+
         [Space]
+
         public float RestartGameDelay;
+
+        [Space]
+
+        public bool DisablePlayerOnStart;
+        public UnityEvent OnStart;
 
         private static GameManager _gameManager;
 
@@ -62,6 +69,13 @@ namespace Game.Mecanics
         {
             SetPlayerForwardDirection();
 
+            if (Player)
+            {
+                SetEnablePlayerControl(!DisablePlayerOnStart);
+            }
+
+            OnStart.Invoke();
+
             Player.OnDeath.AddListener(RestartGameDeleyed);
         }
 
@@ -80,6 +94,11 @@ namespace Game.Mecanics
 
             // set player forward direction to move to camera forward
             Player.Forward = Vector3.ProjectOnPlane(GameplayCamera.transform.forward, Vector3.up);
+        }
+
+        public void SetEnablePlayerControl(bool enabled)
+        {
+            Player.CanMove = enabled;
         }
 
         public void RestartGameImmediatly()
