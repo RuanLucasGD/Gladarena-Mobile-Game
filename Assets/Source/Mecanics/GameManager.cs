@@ -14,7 +14,6 @@ namespace Game.Mecanics
     public class GameManager : MonoBehaviour
     {
         public Camera GameplayCamera;
-        public ArenaLevelManager ArenaManager;
 
         [Space]
 
@@ -64,12 +63,6 @@ namespace Game.Mecanics
             if (!Player)
             {
                 Debug.LogError("Player not finded on scene");
-                return;
-            }
-
-            if (!ArenaManager)
-            {
-                Debug.LogError($"Add {nameof(ArenaManager)} to GameManager of this scene");
                 return;
             }
         }
