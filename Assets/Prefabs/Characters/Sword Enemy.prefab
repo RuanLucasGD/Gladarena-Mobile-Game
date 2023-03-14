@@ -157,8 +157,11 @@ MonoBehaviour:
     Hand: {fileID: 8813778739184038490}
     DelayToAttack: 0.5
   Life:
-    LifeAmount: 50
+    LifeAmount: 30
     AutoDestroyOnDeathDelay: 0.1
+    OnResetLife:
+      m_PersistentCalls:
+        m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

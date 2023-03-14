@@ -179,22 +179,29 @@ namespace Game.Mecanics
         {
             var _currentHorderIndex = CurrentHorderIndex;
             var _currentLevelIndex = CurrentLevelIndex;
+            var _nextLevelIsTheLast = ++_currentLevelIndex < Levels.Length - 1;
+            var _horderCompleted = CheckHorderCompleted();
+            var _levelCompleted = CheckLevelCompleted(_currentHorderIndex);
+            var _gameCompleted = CheckGameCompleted(_currentLevelIndex);
 
-            if (!CheckHorderCompleted())
+            if (!_horderCompleted)
             {
                 return;
             }
 
-            CurrentHorderIndex++;
-            StartHordeInterval();
+            Debug.Log($"Horder {CurrentHorderIndex} Completed of level {CurrentLevelIndex}");
+
+            StartNewHordeInterval();
             OnCompletHorder.Invoke();
 
-            if (!CheckLevelCompleted(_currentHorderIndex))
+            if (!_levelCompleted)
             {
                 return;
             }
 
-            if (++CurrentLevelIndex < Levels.Length - 1)
+            Debug.Log($"Level {CurrentLevelIndex} Completed");
+
+            if (!_nextLevelIsTheLast)
             {
                 CurrentHorderIndex = 0;
                 CurrentLevelIndex++;
@@ -202,14 +209,15 @@ namespace Game.Mecanics
 
             OnCompleteLevel.Invoke();
 
-            if (!CheckGameCompleted(_currentLevelIndex))
+            if (!_gameCompleted)
             {
                 return;
             }
 
+            Debug.Log("Game Completed");
+
             GameWin = true;
             OnCompleteGame.Invoke();
-
         }
 
         private bool CheckHorderCompleted()
@@ -222,25 +230,22 @@ namespace Game.Mecanics
                 var _hasEnemiesOnScene = enemySpawn.EnemiesOnScene > 0;
                 var _spawnedAllEnemies = enemySpawn.SpawnCompleted;
 
-                if (_hasEnemiesOnScene || !_spawnedAllEnemies)
+                if (!_hasEnemiesOnScene && _spawnedAllEnemies)
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            Debug.Log("Horder Completed");
-            return true;
+            return false;
         }
 
-        private bool CheckLevelCompleted(int horderIndex)
+        private bool CheckLevelCompleted(int currentHorderIndex)
         {
-            Debug.Log("Level Completed");
-            return horderIndex >= CurrentLevel.Horders.Length - 1;
+            return currentHorderIndex >= CurrentLevel.Horders.Length - 1;
         }
 
         private bool CheckGameCompleted(int levelIndex)
         {
-            Debug.Log("Game Completed");
             return CurrentLevelIndex >= Levels.Length - 1;
         }
 
@@ -254,7 +259,7 @@ namespace Game.Mecanics
             Gizmos.DrawWireSphere(ArenaCaracteristics.Center.position, ArenaCaracteristics.ArenaSize);
         }
 
-        private void StartHordeInterval()
+        private void StartNewHordeInterval()
         {
             IsOnInterval = true;
             Intervals.OnStartHordeInterval.Invoke();
@@ -262,6 +267,9 @@ namespace Game.Mecanics
             {
                 Intervals.OnFinishHordeInterval.Invoke();
                 IsOnInterval = false;
+                CurrentHorderIndex++;
+
+                Debug.Log($"New horde {CurrentHorderIndex} started on level {CurrentLevelIndex}");
             }));
         }
 
