@@ -66,11 +66,11 @@ namespace Game.Mecanics
         public Level[] Levels;
 
         public UnityEvent OnStartGame;
-        public UnityEvent OnStartHorder;
-        public UnityEvent OnStartLevel;
-        public UnityEvent OnCompleteHorder;
-        public UnityEvent OnCompleteLevel;
-        public UnityEvent OnCompleteGame;
+        public UnityEvent<int> OnStartHorder;
+        public UnityEvent<int> OnStartLevel;
+        public UnityEvent<int> OnCompleteHorder;
+        public UnityEvent<int> OnCompleteLevel;
+        public UnityEvent OnGameWin;
 
         private int _currentHorderIndex;
         private int _currentLevelIndex;
@@ -230,14 +230,14 @@ namespace Game.Mecanics
         {
             IsOnInterval = true;
             CurrentHorderFinalized = true;
-            OnCompleteHorder.Invoke();
+            OnCompleteHorder.Invoke(CurrentHorderIndex);
 
             if (DebugLog) Debug.Log($"Horder finalized {CurrentHorderIndex}");
         }
 
         private void FinalizeCurrentLevel()
         {
-            OnCompleteLevel.Invoke();
+            OnCompleteLevel.Invoke(CurrentLevelIndex);
 
             if (DebugLog) Debug.Log($"Level {CurrentLevelIndex} Completed");
         }
@@ -245,7 +245,7 @@ namespace Game.Mecanics
         private void FinalizeGame()
         {
             GameWin = true;
-            OnCompleteGame.Invoke();
+            OnGameWin.Invoke();
 
             if (DebugLog) Debug.Log("Game Completed");
         }
@@ -255,7 +255,7 @@ namespace Game.Mecanics
             IsOnInterval = false;
             CurrentHorderFinalized = false;
             CurrentHorderIndex++;
-            OnStartHorder.Invoke();
+            OnStartHorder.Invoke(CurrentHorderIndex);
 
             if (DebugLog) Debug.Log($"New horde {CurrentHorderIndex} started on level {CurrentLevelIndex}");
         }
@@ -270,7 +270,7 @@ namespace Game.Mecanics
                 CurrentLevelIndex++;
             }
 
-            OnStartLevel.Invoke();
+            OnStartLevel.Invoke(CurrentLevelIndex);
         }
 
         /// <summary>
@@ -311,8 +311,8 @@ namespace Game.Mecanics
 
             GameStarted = true;
             OnStartGame.Invoke();
-            OnStartLevel.Invoke();
-            OnStartHorder.Invoke();
+            OnStartLevel.Invoke(0);
+            OnStartHorder.Invoke(0);
 
             if (DebugLog) Debug.Log("Game Started");
         }

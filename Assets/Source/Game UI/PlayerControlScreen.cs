@@ -7,8 +7,8 @@ namespace Game.UI
     {
         private void Awake()
         {
-            ArenaLevelManager.Instance.OnStartLevel.AddListener(EnableControl);
-            ArenaLevelManager.Instance.OnCompleteLevel.AddListener(DisableControl);
+            ArenaManager.Instance.OnStartLevel.AddListener((l) => EnableControl());
+            ArenaManager.Instance.OnCompleteLevel.AddListener((l) => DisableControl());
 
             DisableControl();
         }

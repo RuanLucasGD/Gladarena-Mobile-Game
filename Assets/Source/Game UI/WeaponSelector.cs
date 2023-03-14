@@ -28,7 +28,7 @@ namespace Game.UI
             var _weapon = Instantiate(Weapons[index].gameObject).GetComponent<Weapon>();
             _player.SetWeapon(_weapon);
 
-            ArenaLevelManager.Instance.StartGame();
+            ArenaManager.Instance.StartGame();
             gameObject.SetActive(false);
 
             OnSelectWeapon.Invoke();

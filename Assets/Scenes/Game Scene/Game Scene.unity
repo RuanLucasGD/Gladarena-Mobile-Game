@@ -7904,7 +7904,7 @@ MonoBehaviour:
     ArenaSize: 40
   Intervals:
     HordeInterval: 5
-    LevelInterval: 0
+    LevelInterval: 2
   Levels:
   - name: Level 1
     Horders:
@@ -7913,7 +7913,7 @@ MonoBehaviour:
       - Name: Sword Soldier
         EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
         MaxEnemiesInScene: 10
-        MaxEnemiesSpawned: 10
+        MaxEnemiesSpawned: 3
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -7933,25 +7933,13 @@ MonoBehaviour:
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
-    - name: Horder 3
+  - name: Level 2
+    Horders:
+    - name: Horder 1
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 5
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-      - Name: Spear Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 3
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-      - Name: Slegehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 3
+        MaxEnemiesInScene: 10
         MaxEnemiesSpawned: 3
         SpawnTimer: 0
         EnemiesOnScene: 0
@@ -7971,7 +7959,7 @@ MonoBehaviour:
   OnCompleteLevel:
     m_PersistentCalls:
       m_Calls: []
-  OnCompleteGame:
+  OnGameWin:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &2027619688
@@ -8178,11 +8166,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061977582}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2067920412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5320226329349583933, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-  m_PrefabInstance: {fileID: 4010695032991564416}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2089694085
 GameObject:
   m_ObjectHideFlags: 0
@@ -8466,23 +8449,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
---- !u!1 &2139284195 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4010695033980349264, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-  m_PrefabInstance: {fileID: 4010695032991564416}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2139284196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139284195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdff47b0e04d5624fb5aacd311883e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4010695032991564416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8562,26 +8528,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4010695034577743677, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: ArenaManager
-      value: 
-      objectReference: {fileID: 2027619687}
-    - target: {fileID: 4010695034577743677, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010695034577743677, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2067920412}
-    - target: {fileID: 4010695034577743677, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: OnStartHorder.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010695034577743677, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: OnStartHorder.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4010695034649643412, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8614,8 +8560,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4010695033980349269, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
 --- !u!1001 &4641900538648228974
 PrefabInstance:
