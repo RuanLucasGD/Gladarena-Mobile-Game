@@ -618,19 +618,19 @@ MonoBehaviour:
   StartHorder:
     MainObject: {fileID: 1527024923300649206}
     Text: {fileID: 435525367638049975}
-    LifeTime: 2
+    LifeTime: 5
   CompleteHorder:
     MainObject: {fileID: 912836386188372966}
     Text: {fileID: 5706667242657127434}
-    LifeTime: 2
+    LifeTime: 5
   StartLevel:
     MainObject: {fileID: 6305506241364094214}
     Text: {fileID: 1593933253903400363}
-    LifeTime: 2
+    LifeTime: 5
   CompleteLevel:
     MainObject: {fileID: 7604337763712064901}
     Text: {fileID: 546033748861708979}
-    LifeTime: 2
+    LifeTime: 5
   GameWin:
     MainObject: {fileID: 3623716089706956622}
     Text: {fileID: 915148359521124502}
@@ -1156,43 +1156,7 @@ MonoBehaviour:
   - {fileID: 8203173583476270049, guid: 36d017a0df2156a40bd21363b4ca9e01, type: 3}
   OnSelectWeapon:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Game.Mecanics.ArenaLevelManager, Game.Mecanics
-        m_MethodName: set_IsPaused
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4010695033980349264}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 4010695034577743677}
-        m_TargetAssemblyTypeName: Game.Mecanics.GameManager, Game.Mecanics
-        m_MethodName: SetEnablePlayerControl
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4010695033980349264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,19 +1467,7 @@ MonoBehaviour:
   DisablePlayerOnStart: 1
   OnStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5320226329349583933}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4010695034585152026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,13 +2017,14 @@ GameObject:
   - component: {fileID: 5617607637739891709}
   - component: {fileID: 8751335705837195225}
   - component: {fileID: 6560458744999524583}
+  - component: {fileID: 1626570255219331491}
   m_Layer: 0
   m_Name: PowerUp Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8832264625508421634
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2154,6 +2107,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1626570255219331491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320226329349583933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bccd196f20179b44befbf5f977e8e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5999394216208093120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,9 +2153,9 @@ RectTransform:
   m_Father: {fileID: 6641719725609013963}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 815, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 199.269, y: 126.7186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6273976944970727975
@@ -2404,9 +2369,9 @@ RectTransform:
   m_Father: {fileID: 6641719725609013963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 265, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 199.269, y: 126.7186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3019984770893225325
@@ -2490,43 +2455,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 56067634253084027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4010695034577743677}
-        m_TargetAssemblyTypeName: Game.Mecanics.GameManager, Game.Mecanics
-        m_MethodName: StartNextHorder
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4010695034577743677}
-        m_TargetAssemblyTypeName: Game.Mecanics.GameManager, Game.Mecanics
-        m_MethodName: ResetPlayerLife
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5320226329349583933}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7604337763712064901
 GameObject:
   m_ObjectHideFlags: 0

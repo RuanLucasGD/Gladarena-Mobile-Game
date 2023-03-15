@@ -9,6 +9,12 @@ namespace Game.UI
         public Weapon[] Weapons;
         public UnityEvent OnSelectWeapon;
 
+        private void Awake()
+        {
+            OnSelectWeapon.AddListener(ArenaManager.Instance.StartGame);
+            ArenaManager.Instance.OnStartGame.AddListener(HiddenWeaponSelector);
+        }
+
         public void SetWeapon(int index)
         {
             if (index > Weapons.Length)
@@ -28,10 +34,12 @@ namespace Game.UI
             var _weapon = Instantiate(Weapons[index].gameObject).GetComponent<Weapon>();
             _player.SetWeapon(_weapon);
 
-            ArenaManager.Instance.StartGame();
-            gameObject.SetActive(false);
-
             OnSelectWeapon.Invoke();
+        }
+
+        private void HiddenWeaponSelector()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

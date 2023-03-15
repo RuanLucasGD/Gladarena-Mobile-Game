@@ -19,9 +19,12 @@ namespace Game.Mecanics
             [HideInInspector] public float SpawnTimer;
             [HideInInspector] public int EnemiesOnScene;
             [HideInInspector] public int SpawnsAmount;
+            [HideInInspector] public int KillsAmount;
 
             public bool SpawnCompleted => SpawnsAmount >= MaxEnemiesSpawned;
+            public bool KilledAllEnemies => KillsAmount >= MaxEnemiesSpawned;
             public bool IsMissingEnemies => (EnemiesOnScene < MaxEnemiesInScene) && !SpawnCompleted;
+
         }
 
         [System.Serializable]
@@ -75,16 +78,39 @@ namespace Game.Mecanics
         private int _currentHorderIndex;
         private int _currentLevelIndex;
 
-        public bool CurrentHorderFinalized { get; private set; }
+        private bool _startHorderCalled;    // avoid to start horder multiple times
+        private bool _startLevelCalled;     // avoid to start level multiple times
+
+        public bool LevelStarted { get; private set; }
+        public bool HorderStarted { get; private set; }
+
         public int CurrentLevelIndex { get => _currentLevelIndex; private set => _currentLevelIndex = Mathf.Clamp(value, 0, Levels.Length - 1); }
         public int CurrentHorderIndex { get => _currentHorderIndex; private set => _currentHorderIndex = Mathf.Clamp(value, 0, CurrentLevel.Horders.Length - 1); }
-        public bool CanSpawnEnemies => Levels.Length != 0 && !GameWin && GameStarted && !IsOnInterval && GameManager.Instance.Player && !SpawnPaused && !CurrentHorderFinalized;
-        public bool IsOnInterval { get; private set; }
+
         public bool SpawnPaused { get; set; }
         public bool GameStarted { get; private set; }
         public bool GameWin { get; private set; }
+
+        public bool CanSpawnEnemies => GameStarted &&
+                                        GameManager.Instance.Player &&
+                                        !GameManager.Instance.Player.IsDeath &&
+                                        !GameWin &&
+                                        !SpawnPaused &&
+                                        LevelStarted &&
+                                        HorderStarted;
+
         public Level CurrentLevel => Levels[CurrentLevelIndex];
         public Horder CurrentHorder => CurrentLevel.Horders[CurrentHorderIndex];
+
+        /// <summary>
+        /// Return true if current horder is lasted horder of the current level
+        /// </summary>
+        public bool IsLastedHorder => CurrentHorderIndex >= CurrentLevel.Horders.Length - 1;
+
+        /// <summary>
+        /// Return true if current level is lasted level of the levels list
+        /// </summary>
+        public bool IsLastedLevel => CurrentLevelIndex >= Levels.Length - 1;
 
         private static ArenaManager _arenaManager;
 
@@ -106,18 +132,13 @@ namespace Game.Mecanics
             }
         }
 
-        protected virtual void Awake()
-        {
-        }
+        protected virtual void Awake() { }
 
-        protected virtual void Start()
-        {
-        }
+        protected virtual void Start() { }
 
-        protected virtual void Update()
-        {
-            //Debug.Log($"Level {CurrentLevelIndex + 1}/{Levels.Length}     Horder {CurrentHorderIndex + 1}/{CurrentLevel.Horders.Length}");
-        }
+        protected virtual void Update() { }
+
+        protected virtual void LateUpdate() { }
 
         protected virtual void OnDrawGizmos()
         {
@@ -156,7 +177,7 @@ namespace Game.Mecanics
             return _randomPoint;
         }
 
-        protected bool IsSpawnPointOnView(Vector3 point)
+        private bool IsSpawnPointOnView(Vector3 point)
         {
             var _camera = Camera.main;
             var _direction = point - _camera.transform.position;
@@ -175,9 +196,24 @@ namespace Game.Mecanics
                     (_pointOnScreen.y < Screen.height);
         }
 
+        protected void SpawnEnemy(EnemySpawn enemySpawn)
+        {
+
+            var _player = GameManager.Instance.Player;
+            var _spawnPosition = GenerateSpawnPoint();
+            var _lookAtPlayer = Quaternion.LookRotation(_spawnPosition - _player.transform.position);
+            var _enemyCharacter = Instantiate(enemySpawn.EnemyType.gameObject, _spawnPosition, _lookAtPlayer).GetComponent<Character>();
+
+            enemySpawn.EnemiesOnScene++;
+            enemySpawn.SpawnsAmount++;
+
+            _enemyCharacter.OnDeath.AddListener(() => enemySpawn.EnemiesOnScene--);
+            _enemyCharacter.OnDeath.AddListener(() => enemySpawn.KillsAmount++);
+        }
+
         protected void CheckGameProgression()
         {
-            if (CurrentHorderFinalized)
+            if (!LevelStarted || !HorderStarted)
             {
                 return;
             }
@@ -186,13 +222,26 @@ namespace Game.Mecanics
             var _levelCompleted = CheckLevelCompleted(CurrentHorderIndex);
             var _gameCompleted = CheckGameCompleted(CurrentLevelIndex);
 
+            // horder progression
             if (!_horderCompleted) return;
             FinalizeCurrentHorder();
-            StartNextHorderIntervaled();
 
+            if ((_gameCompleted || _levelCompleted) == false)
+            {
+                SetNextHorder();
+                StartHorder();
+            }
+
+            // level progression
             if (!_levelCompleted) return;
             FinalizeCurrentLevel();
 
+            if (!IsLastedLevel)
+            {
+                SetNextLevel();
+            }
+
+            // game progression
             if (!_gameCompleted) return;
             FinalizeGame();
         }
@@ -204,16 +253,13 @@ namespace Game.Mecanics
 
             foreach (var enemySpawn in CurrentHorder.EnemiesSpawn)
             {
-                var _hasEnemiesOnScene = enemySpawn.EnemiesOnScene > 0;
-                var _spawnedAllEnemies = enemySpawn.SpawnCompleted;
-
-                if (!_hasEnemiesOnScene && _spawnedAllEnemies)
+                if (!enemySpawn.KilledAllEnemies)
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         private bool CheckLevelCompleted(int currentHorderIndex)
@@ -228,8 +274,13 @@ namespace Game.Mecanics
 
         private void FinalizeCurrentHorder()
         {
-            IsOnInterval = true;
-            CurrentHorderFinalized = true;
+            if (!HorderStarted)
+            {
+                Debug.LogError("Current horder is already finalized");
+                return;
+            }
+
+            HorderStarted = false;
             OnCompleteHorder.Invoke(CurrentHorderIndex);
 
             if (DebugLog) Debug.Log($"Horder finalized {CurrentHorderIndex}");
@@ -237,7 +288,16 @@ namespace Game.Mecanics
 
         private void FinalizeCurrentLevel()
         {
+            if (!LevelStarted)
+            {
+                Debug.LogError("Current level is already finalized");
+                return;
+            }
+
+            LevelStarted = false;
             OnCompleteLevel.Invoke(CurrentLevelIndex);
+
+            SetNextHorder();
 
             if (DebugLog) Debug.Log($"Level {CurrentLevelIndex} Completed");
         }
@@ -250,55 +310,101 @@ namespace Game.Mecanics
             if (DebugLog) Debug.Log("Game Completed");
         }
 
-        private void StartNextHorderImmediatly()
+        private void StartHorder()
         {
-            IsOnInterval = false;
-            CurrentHorderFinalized = false;
-            CurrentHorderIndex++;
-            OnStartHorder.Invoke(CurrentHorderIndex);
-
-            if (DebugLog) Debug.Log($"New horde {CurrentHorderIndex} started on level {CurrentLevelIndex}");
-        }
-
-        private void StartNextLevelImmediatly()
-        {
-            var _nextLevelIsTheLast = ++_currentLevelIndex < Levels.Length - 1;
-
-            if (!_nextLevelIsTheLast)
+            if (!LevelStarted)
             {
-                CurrentHorderIndex = 0;
-                CurrentLevelIndex++;
-            }
-
-            OnStartLevel.Invoke(CurrentLevelIndex);
-        }
-
-        /// <summary>
-        /// Start new enemies horder after interval
-        /// </summary>
-        public void StartNextHorderIntervaled()
-        {
-            if (!CurrentHorderFinalized)
-            {
-                Debug.LogError("Does not possible to start next horder bacause the current horder isn't finalized. Kill all enemies before.");
+                Debug.LogError("Does not possible to start horder bacause the current level isn't started. Start level before.");
                 return;
             }
 
-            GameManager.Instance.Delay(Intervals.HordeInterval, StartNextHorderImmediatly);
+            if (HorderStarted)
+            {
+                Debug.LogError("Does not possible to start horder bacause the current horder isn't finalized. Kill all enemies before.");
+                return;
+            }
+
+            if (_startHorderCalled)
+            {
+                return;
+            }
+
+            _startHorderCalled = true;
+
+            GameManager.Instance.Delay(Intervals.HordeInterval, () =>
+            {
+                _startHorderCalled = false;
+
+                HorderStarted = true;
+                OnStartHorder.Invoke(CurrentHorderIndex);
+
+                if (DebugLog) Debug.Log($"New horde {CurrentHorderIndex} started on level {CurrentLevelIndex}/{Levels.Length - 1}");
+            });
+        }
+
+        private void SetNextHorder()
+        {
+            if (HorderStarted)
+            {
+                Debug.LogError("Does not possible to set to next horder bacause the current horder isn't finalized. Kill all enemies before.");
+                return;
+            }
+
+            if (CurrentHorderIndex < CurrentLevel.Horders.Length - 1)
+            {
+                CurrentHorderIndex++;
+                if (DebugLog) Debug.Log($"Set next horder {CurrentHorderIndex}");
+            }
         }
 
         /// <summary>
         /// Start new level after interval
         /// </summary>
-        public void StartNextLevelIntervaled()
+        public void StartCurrentLevel()
         {
-            if (!CurrentHorderFinalized)
+            if (LevelStarted)
             {
-                Debug.LogError("Does not possible to start next level bacause the current horder isn't finalized. Kill all enemies before.");
+                Debug.LogError("Does not possible to start level bacause the level is already started.");
                 return;
             }
 
-            GameManager.Instance.Delay(Intervals.LevelInterval, StartNextLevelImmediatly);
+            if (_startLevelCalled)
+            {
+                return;
+            }
+
+            _startLevelCalled = true;
+
+            GameManager.Instance.Delay(Intervals.LevelInterval, () =>
+            {
+                _startLevelCalled = false;
+
+                LevelStarted = true;
+                OnStartLevel.Invoke(CurrentLevelIndex);
+                StartHorder();
+
+                if (DebugLog) Debug.Log($"Level started {CurrentHorderIndex}");
+            });
+        }
+
+        /// <summary>
+        /// Set to next level if this isn't lasted level
+        /// </summary>
+        public void SetNextLevel()
+        {
+            if (LevelStarted)
+            {
+                Debug.LogError("Does not possible to set next level bacause the current level is started. Finalize the level before");
+                return;
+            }
+
+            if (_currentLevelIndex < Levels.Length - 1)
+            {
+                CurrentHorderIndex = 0;
+                CurrentLevelIndex++;
+            }
+
+            if (DebugLog) Debug.Log($"Set next level {CurrentHorderIndex}");
         }
 
         public void StartGame()
@@ -310,9 +416,10 @@ namespace Game.Mecanics
             }
 
             GameStarted = true;
+
+            // starting first level
+            StartCurrentLevel();
             OnStartGame.Invoke();
-            OnStartLevel.Invoke(0);
-            OnStartHorder.Invoke(0);
 
             if (DebugLog) Debug.Log("Game Started");
         }

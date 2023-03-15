@@ -1768,6 +1768,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316048930}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &402948299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1626570255219331491, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+  m_PrefabInstance: {fileID: 4010695032991564416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bccd196f20179b44befbf5f977e8e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &425543486
 GameObject:
   m_ObjectHideFlags: 0
@@ -7898,7 +7909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ed9b8a1786a1144b574e7722bb1034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugLog: 1
+  DebugLog: 0
   ArenaCaracteristics:
     Center: {fileID: 2027619688}
     ArenaSize: 40
@@ -7912,38 +7923,34 @@ MonoBehaviour:
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-        MaxEnemiesInScene: 10
+        MaxEnemiesInScene: 3
         MaxEnemiesSpawned: 3
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
+        KillsAmount: 0
     - name: Horder 2
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-        MaxEnemiesInScene: 4
-        MaxEnemiesSpawned: 5
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-      - Name: Spear Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
         MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 5
+        MaxEnemiesSpawned: 3
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
+        KillsAmount: 0
   - name: Level 2
     Horders:
     - name: Horder 1
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-        MaxEnemiesInScene: 10
-        MaxEnemiesSpawned: 3
+        MaxEnemiesInScene: 1
+        MaxEnemiesSpawned: 1
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
+        KillsAmount: 0
   OnStartGame:
     m_PersistentCalls:
       m_Calls: []
@@ -8460,6 +8467,22 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1615058122}
+    - target: {fileID: 2469472963206560197, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469472963206560197, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469472963206560197, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469472963206560197, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4010695033026146475, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8476,10 +8499,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4010695033862940237, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: OnSelectWeapon.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2027619687}
     - target: {fileID: 4010695034577743675, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_Name
       value: Game Management
@@ -8557,6 +8576,50 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4010695034873259102, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 402948299}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectPowerUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.UI.PowerUpSelectionScreen, Game.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494710863027232536, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494710863027232536, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494710863027232536, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494710863027232536, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}

@@ -87,16 +87,19 @@ namespace Game.UI
         private void ShowCompletedHorderWidget(int completedHorder)
         {
             ShowWidget(CompleteHorder, $"HORDER {++completedHorder} COMPLETED!");
+            DisableWidget(StartHorder);
         }
 
         private void ShowStartLevelWidget(int newLevel)
         {
             ShowWidget(StartLevel, $"LEVEL {++newLevel} STARTED!");
+            DisableWidget(StartLevel);
         }
 
         private void ShowCompletedLevelWidget(int completedLevel)
         {
             ShowWidget(CompleteLevel, $"LEVEL {++completedLevel} COMPLETED!");
+            DisableWidget(CompleteHorder);
         }
 
         private void ShowGameWinWidget()

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
@@ -17,6 +14,7 @@ namespace Game.Mecanics
             base.Update();
 
             UpdateEnemiesSpawn();
+            CheckGameProgression();
         }
 
         private void UpdateEnemiesSpawn()
@@ -26,27 +24,13 @@ namespace Game.Mecanics
                 return;
             }
 
-            foreach (var e in CurrentHorder.EnemiesSpawn)
+            foreach (var s in CurrentHorder.EnemiesSpawn)
             {
-                if (e.IsMissingEnemies)
+                if (s.IsMissingEnemies)
                 {
-                    SpawnEnemy(e);
+                    SpawnEnemy(s);
                 }
             }
-        }
-
-        private void SpawnEnemy(EnemySpawn enemySpawn)
-        {
-            var _player = GameManager.Instance.Player;
-            var _spawnPosition = GenerateSpawnPoint();
-            var _lookAtPlayer = Quaternion.LookRotation(_spawnPosition - _player.transform.position);
-            var _enemyCharacter = Instantiate(enemySpawn.EnemyType.gameObject, _spawnPosition, _lookAtPlayer).GetComponent<Character>();
-
-            enemySpawn.EnemiesOnScene++;
-            enemySpawn.SpawnsAmount++;
-
-            _enemyCharacter.OnDeath.AddListener(() => enemySpawn.EnemiesOnScene--);
-            _enemyCharacter.OnDeath.AddListener(CheckGameProgression);
         }
     }
 }

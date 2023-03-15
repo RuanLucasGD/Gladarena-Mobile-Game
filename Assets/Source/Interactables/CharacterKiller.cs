@@ -7,6 +7,12 @@ namespace Game.Mecanics
     [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
     public class CharacterKiller : MonoBehaviour
     {
-       
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<Character>(out var c))
+            {
+                c.KillCharacter();
+            }
+        }
     }
 }

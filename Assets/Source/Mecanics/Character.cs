@@ -77,7 +77,7 @@ namespace Game.Mecanics
         public CharacterController CharacterController => _characterController;
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
-        public bool IsDeath => CurrentLife <= 0;
+        public bool IsDeath { get; private set; }
         public bool IsAttacking => IsStoped;
         public bool HasWeapon => Weapon.WeaponObject;
         public float CurrentLife { get; private set; }
@@ -199,6 +199,11 @@ namespace Game.Mecanics
 
         public void AddDamage(float damage)
         {
+            if (IsDeath)
+            {
+                return;
+            }
+
             CurrentLife -= damage;
             OnDamaged.Invoke();
 
@@ -206,6 +211,7 @@ namespace Game.Mecanics
             {
                 CurrentLife = 0;
                 enabled = false;
+                IsDeath = true;
 
                 OnDeath.Invoke();
                 Destroy(gameObject, Life.AutoDestroyOnDeathDelay);

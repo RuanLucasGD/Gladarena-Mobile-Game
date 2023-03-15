@@ -22,7 +22,6 @@ namespace Game.Mecanics
         [Space]
 
         public bool DisablePlayerOnStart;
-        public UnityEvent OnStart;
 
         [Space]
 
@@ -65,20 +64,16 @@ namespace Game.Mecanics
                 Debug.LogError("Player not finded on scene");
                 return;
             }
+
+            Player.OnDeath.AddListener(RestartGameDeleyed);
+            ArenaManager.Instance.OnStartLevel.AddListener(l => SetEnablePlayerControl(true));
+            ArenaManager.Instance.OnCompleteLevel.AddListener(l => SetEnablePlayerControl(false));
         }
 
         void Start()
         {
             SetPlayerForwardDirection();
-
-            if (Player)
-            {
-                SetEnablePlayerControl(!DisablePlayerOnStart);
-            }
-
-            OnStart.Invoke();
-
-            Player.OnDeath.AddListener(RestartGameDeleyed);
+            SetEnablePlayerControl(!DisablePlayerOnStart);
         }
 
         private void SetPlayerForwardDirection()
