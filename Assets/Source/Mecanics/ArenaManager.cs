@@ -91,7 +91,7 @@ namespace Game.Mecanics
         public bool GameStarted { get; private set; }
         public bool GameWin { get; private set; }
 
-        public bool CanSpawnEnemies => GameStarted &&
+        public bool CanSpawnEnemies =>  GameStarted &&
                                         GameManager.Instance.Player &&
                                         !GameManager.Instance.Player.IsDeath &&
                                         !GameWin &&

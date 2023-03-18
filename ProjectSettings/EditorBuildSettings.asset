@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scene/Game Scene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 0
-    path: Assets/Scenes/Tests/AI.unity
+    path: Assets/Scenes/Tests/Map Generator.unity
     guid: ed959e9dad8418f43b0401c80a97462a
   m_configObjects: {}
