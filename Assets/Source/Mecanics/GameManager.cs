@@ -66,8 +66,12 @@ namespace Game.Mecanics
             }
 
             Player.OnDeath.AddListener(RestartGameDeleyed);
-            ArenaManager.Instance.OnStartLevel.AddListener(l => SetEnablePlayerControl(true));
-            ArenaManager.Instance.OnCompleteLevel.AddListener(l => SetEnablePlayerControl(false));
+
+            if (ArenaManager.Instance)
+            {
+                ArenaManager.Instance.OnStartLevel.AddListener(l => SetEnablePlayerControl(true));
+                ArenaManager.Instance.OnCompleteLevel.AddListener(l => SetEnablePlayerControl(false));
+            }
         }
 
         void Start()

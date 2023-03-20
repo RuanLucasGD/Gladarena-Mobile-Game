@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Game.Utils;
 
 namespace Game.Mecanics
 {
@@ -49,8 +50,7 @@ namespace Game.Mecanics
         [System.Serializable]
         public class Arena
         {
-            public Transform Center;
-            public float ArenaSize;
+            public string EnemySpawnsTag;
         }
 
         [System.Serializable]
@@ -91,7 +91,7 @@ namespace Game.Mecanics
         public bool GameStarted { get; private set; }
         public bool GameWin { get; private set; }
 
-        public bool CanSpawnEnemies =>  GameStarted &&
+        public bool CanSpawnEnemies => GameStarted &&
                                         GameManager.Instance.Player &&
                                         !GameManager.Instance.Player.IsDeath &&
                                         !GameWin &&
@@ -140,14 +140,13 @@ namespace Game.Mecanics
 
         protected virtual void LateUpdate() { }
 
-        protected virtual void OnDrawGizmos()
+        /// <summary>
+        /// Return all spawn point transforms active on scene 
+        /// </summary>
+        /// <returns></returns>
+        protected GameObject[] FindAllEnemySpawnPoints()
         {
-            if (!ArenaCaracteristics.Center)
-            {
-                return;
-            }
-
-            Gizmos.DrawWireSphere(ArenaCaracteristics.Center.position, ArenaCaracteristics.ArenaSize);
+            return GameObject.FindGameObjectsWithTag(ArenaCaracteristics.EnemySpawnsTag);
         }
 
         /// <summary>
@@ -158,42 +157,23 @@ namespace Game.Mecanics
         /// <returns></returns>
         protected Vector3 GenerateSpawnPoint()
         {
-            Vector3 GenerateRawPosition()
+            var _points = FindAllEnemySpawnPoints();
+
+            if (_points.Length == 0)
             {
-                var _randomX = Random.Range(-ArenaCaracteristics.ArenaSize, ArenaCaracteristics.ArenaSize);
-                var _randomZ = Random.Range(-ArenaCaracteristics.ArenaSize, ArenaCaracteristics.ArenaSize);
-                var _rawPosition = Vector3.ClampMagnitude(new Vector3(_randomX, 0, _randomZ), ArenaCaracteristics.ArenaSize) + ArenaCaracteristics.Center.position;
-                return _rawPosition;
+                Debug.LogError("No spawn point finded.");
+                return Vector3.zero;
             }
 
-            var _randomPoint = GenerateRawPosition();
+            var _randomPoint = _points[Random.Range(0, _points.Length - 1)].transform.position;
 
             // check if is out player view
-            while (IsSpawnPointOnView(_randomPoint))
+            while (CameraUtils.IsSpawnPointOnView(_randomPoint, Camera.main))
             {
-                _randomPoint = GenerateRawPosition();
+                _randomPoint = _points[Random.Range(0, _points.Length)].transform.position;
             }
 
             return _randomPoint;
-        }
-
-        private bool IsSpawnPointOnView(Vector3 point)
-        {
-            var _camera = Camera.main;
-            var _direction = point - _camera.transform.position;
-
-            // the point is on back of the camera
-            if (Vector3.Dot(_direction.normalized, _camera.transform.forward) <= 0)
-            {
-                return false;
-            }
-
-            var _pointOnScreen = _camera.WorldToScreenPoint(point);
-
-            return (_pointOnScreen.x > 0) &&
-                    (_pointOnScreen.y > 0) &&
-                    (_pointOnScreen.x < Screen.width) &&
-                    (_pointOnScreen.y < Screen.height);
         }
 
         protected void SpawnEnemy(EnemySpawn enemySpawn)

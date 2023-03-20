@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 namespace Game.Mecanics
@@ -72,6 +73,7 @@ namespace Game.Mecanics
         private bool _deleyedAttackStarted;
         private Vector3 _moveDirection;
         private Vector3 _externalForce;
+        private NavMeshPath _aiPath;
         private CharacterController _characterController;
 
         public CharacterController CharacterController => _characterController;
@@ -100,6 +102,7 @@ namespace Game.Mecanics
 
         protected virtual void Awake()
         {
+            _aiPath = new NavMeshPath();
             _characterController = GetComponent<CharacterController>();
 
             CanMove = true;
@@ -178,6 +181,24 @@ namespace Game.Mecanics
             yield return new WaitForSeconds(Weapon.DelayToAttack);
             Weapon.WeaponObject.Attack(target);
             _deleyedAttackStarted = false;
+        }
+
+        protected Vector3 GetAiPathDirection(Vector3 target)
+        {
+            if (NavMesh.SamplePosition(target, out var hit, Vector3.Distance(transform.position, target), 0))
+                target = hit.position;
+            var _pathFounded = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, _aiPath);
+            var _direction = Vector3.zero;
+
+            if (_pathFounded)
+            {
+                if (_aiPath.corners.Length > 1)
+                {
+                    _direction = (_aiPath.corners[1] - _aiPath.corners[0]).normalized;
+                }
+            }
+
+            return _direction;
         }
 
         public void SetWeapon(Game.Mecanics.Weapon weapon)
