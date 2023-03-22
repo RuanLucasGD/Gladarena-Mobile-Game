@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Mecanics;
 
+#if UNITY_EDITOR
+
 namespace Game.Experimental
 {
     public class DevHelper : MonoBehaviour
@@ -21,6 +23,7 @@ namespace Game.Experimental
         private PlayerCharacter Player => FindObjectOfType<PlayerCharacter>();
 
 
+
         // Start is called before the first frame update
         void Start()
         {
@@ -28,7 +31,7 @@ namespace Game.Experimental
 
             titleLabel = new GUIStyle();
             titleLabel.fontStyle = FontStyle.Bold;
-            titleLabel.fontSize = 30;
+            titleLabel.fontSize = 40;
             titleLabel.normal.textColor = Color.white;
 
             normalLabel = new GUIStyle();
@@ -40,31 +43,27 @@ namespace Game.Experimental
         // Update is called once per frame
         void Update()
         {
-#if !UNITY_STANDALONE
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            isShowing = !isShowing;
-        }
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                isShowing = !isShowing;
+            }
 
-        if (isShowing)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) currentTab = 1;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) currentTab = 2;
-        }
-#endif
-
+            if (isShowing)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1)) currentTab = 1;
+                if (Input.GetKeyDown(KeyCode.Alpha2)) currentTab = 2;
+                if (Input.GetKeyDown(KeyCode.Alpha3)) currentTab = 3;
+            }
         }
 
         void OnGUI()
         {
-#if !UNITY_STANDALONE
-        if (!isShowing)
-        {
-            return;
-        }
+            if (!isShowing)
+            {
+                return;
+            }
 
-        ShowGui();
-#endif
+            ShowGui();
         }
 
         void ShowGui()
@@ -72,10 +71,11 @@ namespace Game.Experimental
             var _currentGuiPosY = 0;
 
             _currentGuiPosY += 30;
-            GUI.Label(new Rect(30, _currentGuiPosY, 50, 50), "Change current GUI table using 1, 2...", normalLabel);
+            GUI.Label(new Rect(30, _currentGuiPosY, 50, 50), "Change current GUI table using 1, 2, 3...", normalLabel);
 
             if (currentTab == 1) PlayerTab(ref _currentGuiPosY);
             if (currentTab == 2) PlayerPowerUps(ref _currentGuiPosY);
+            if (currentTab == 3) ArenaProgression(ref _currentGuiPosY);
         }
 
         void AddDamageOnPlayer()
@@ -208,5 +208,25 @@ namespace Game.Experimental
                 }
             }
         }
+
+        void ArenaProgression(ref int currentGuiPosY)
+        {
+            if (!ArenaManager.Instance)
+            {
+                currentGuiPosY += 50;
+                GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"None {nameof(ArenaManager)} finded on this scene", normalLabel);
+                return;
+            }
+
+            currentGuiPosY += 30;
+            GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Current level {ArenaManager.Instance.CurrentLevelIndex + 1}", normalLabel);
+
+            currentGuiPosY += 30;
+            GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Current horder {ArenaManager.Instance.CurrentHorderIndex + 1}", normalLabel);
+
+            currentGuiPosY += 30;
+            GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Can Spawn Enemies {ArenaManager.Instance.CanSpawnEnemies}", normalLabel);
+        }
     }
 }
+#endif
