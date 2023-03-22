@@ -36,7 +36,11 @@ namespace Game.Mecanics
                 if (!_player)
                 {
                     _player = FindObjectOfType<PlayerCharacter>();
-                    SetPlayerForwardDirection();
+                    if (_player)
+                    {
+                        SetPlayerForwardDirection();
+                    }
+                   
                 }
 
                 return _player;

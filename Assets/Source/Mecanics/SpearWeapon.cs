@@ -11,10 +11,11 @@ namespace Game.Mecanics
         public Collider WeaponCollider;
 
         [Space]
-        public float AttackSpeed;
+        [Min(0)] public float AttackSpeed;
+        [Range(0, 1)] public float MinDotAngleToAttack;
 
         [Tooltip("Model size (z axis) of the weapon.")]
-        public float SpearSize;
+        [Min(0)] public float SpearSize;
 
         private float _currentAttackAnimTime;
         private Character _currentTarget;
@@ -24,6 +25,7 @@ namespace Game.Mecanics
             AttackSpeed = 5;
             AttackForce = 15;
             SpearSize = 5;
+            MinDotAngleToAttack = 0.8f;
         }
 
         protected override void Awake()
@@ -63,6 +65,12 @@ namespace Game.Mecanics
         {
             var _animIntensity = AttackAnimationCurve.Evaluate(_currentAttackAnimTime);
             var _attacking = IsAttacking && _currentTarget;
+
+            if (_attacking)
+            {
+                var _angleToTarget = Vector3.Dot((_currentTarget.transform.position - transform.position).normalized, transform.forward);
+                _attacking = _attacking && _angleToTarget >= MinDotAngleToAttack;
+            }
 
             // the animation needs to be completed even if not attaking
             var _updateAnim = _currentAttackAnimTime > 0 || _attacking;
