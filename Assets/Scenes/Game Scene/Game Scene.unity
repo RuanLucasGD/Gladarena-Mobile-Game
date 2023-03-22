@@ -5312,17 +5312,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5918751300018734577, guid: e8b9973d48f3ae646902a8d58d2c44da, type: 3}
   m_PrefabInstance: {fileID: 402155881}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &402948299 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1626570255219331491, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-  m_PrefabInstance: {fileID: 4010695032991564416}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bccd196f20179b44befbf5f977e8e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &409083826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30635,34 +30624,6 @@ PrefabInstance:
     - target: {fileID: 4010695034873259102, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 402948299}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectPowerUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.UI.PowerUpSelectionScreen, Game.UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6494710863027232536, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchorMax.y

@@ -387,6 +387,9 @@ namespace Game.Mecanics
             if (DebugLog) Debug.Log($"Set next level {CurrentHorderIndex}");
         }
 
+        /// <summary>
+        /// Start first level and horder
+        /// </summary>
         public void StartGame()
         {
             if (GameStarted)

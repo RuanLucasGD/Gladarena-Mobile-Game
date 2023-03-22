@@ -11,8 +11,7 @@ namespace Game.UI
 
         private void Awake()
         {
-            OnSelectWeapon.AddListener(ArenaManager.Instance.StartGame);
-            ArenaManager.Instance.OnStartGame.AddListener(HiddenWeaponSelector);
+            OnSelectWeapon.AddListener(HiddenWeaponSelector);
         }
 
         public void SetWeapon(int index)

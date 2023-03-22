@@ -17,6 +17,7 @@ namespace Game.Mecanics
 
         [Space]
 
+        public bool RestartOnKillPlayer;
         public float RestartGameDelay;
 
         [Space]
@@ -25,9 +26,22 @@ namespace Game.Mecanics
 
         [Space]
 
+        private PlayerCharacter _player;
         private static GameManager _gameManager;
 
-        public PlayerCharacter Player { get; private set; }
+        public PlayerCharacter Player
+        {
+            get
+            {
+                if (!_player)
+                {
+                    _player = FindObjectOfType<PlayerCharacter>();
+                    SetPlayerForwardDirection();
+                }
+
+                return _player;
+            }
+        }
 
         public static GameManager Instance
         {
@@ -47,6 +61,13 @@ namespace Game.Mecanics
             }
         }
 
+        public GameManager()
+        {
+            RestartOnKillPlayer = true;
+            RestartGameDelay = 2;
+            DisablePlayerOnStart = false;
+        }
+
         private void Awake()
         {
             var _anotherManager = FindObjectOfType<GameManager>();
@@ -57,15 +78,16 @@ namespace Game.Mecanics
                 return;
             }
 
-            Player = FindObjectOfType<PlayerCharacter>();
-
             if (!Player)
             {
                 Debug.LogError("Player not finded on scene");
                 return;
             }
 
-            Player.OnDeath.AddListener(RestartGameDeleyed);
+            if (RestartOnKillPlayer)
+            {
+                Player.OnDeath.AddListener(RestartGameDeleyed);
+            }
 
             if (ArenaManager.Instance)
             {
@@ -76,8 +98,14 @@ namespace Game.Mecanics
 
         void Start()
         {
-            SetPlayerForwardDirection();
+            if (!GameplayCamera)
+            {
+                GameplayCamera = Camera.main;
+            }
+
             SetEnablePlayerControl(!DisablePlayerOnStart);
+
+            SetPlayerForwardDirection();
         }
 
         private void SetPlayerForwardDirection()

@@ -81,6 +81,11 @@ namespace Game.Mecanics
             VerticalAction = InputMaps.InputAsset.FindAction(InputMaps.VerticalAction, throwIfNotFound: true);
             HorizontalAction = InputMaps.InputAsset.FindAction(InputMaps.HorizontalAction, throwIfNotFound: true);
             MobileJoystickAction = InputMaps.InputAsset.FindAction(InputMaps.MobileJoystickAction, throwIfNotFound: true);
+
+            if (ArenaManager.Instance)
+            {
+                ArenaManager.Instance.OnCompleteLevel.AddListener(RemovePowerUpsOnFinishLevel);
+            }
         }
 
         protected override void Update()
@@ -154,6 +159,11 @@ namespace Game.Mecanics
             }
 
             NearEnemy = _near;
+        }
+
+        private void RemovePowerUpsOnFinishLevel(int currentLevel)
+        {
+            SetPowerUp(null, true);
         }
 
         public override void Attack(Character target = null)

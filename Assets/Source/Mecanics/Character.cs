@@ -75,6 +75,7 @@ namespace Game.Mecanics
         private Vector3 _externalForce;
         private NavMeshPath _aiPath;
         private CharacterController _characterController;
+        private PowerUp _powerUp;
 
         public CharacterController CharacterController => _characterController;
 
@@ -265,6 +266,42 @@ namespace Game.Mecanics
             {
                 _deleyedAttackStarted = true;
                 StartCoroutine(AttackDeleyed(target));
+            }
+        }
+
+        public void SetPowerUp(PowerUp powerUp, bool destroyWhenRemove = true)
+        {
+            if (powerUp)
+            {
+                powerUp.gameObject.transform.parent = transform;
+                powerUp.gameObject.transform.localPosition = Vector3.zero;
+                powerUp.gameObject.transform.localRotation = Quaternion.identity;
+                powerUp.Owner = this;
+            }
+            else if (_powerUp)
+            {
+                if (destroyWhenRemove)
+                {
+                    Destroy(_powerUp.gameObject);
+                }
+                else
+                {
+                    _powerUp.transform.parent = null;
+                }
+
+                _powerUp.Owner = null;
+            }
+
+            _powerUp = powerUp;
+        }
+
+        public PowerUp GetPowerUp() => _powerUp;
+
+        public void UsePowerUp()
+        {
+            if (GetPowerUp())
+            {
+                GetPowerUp().UsePowerUp();
             }
         }
     }

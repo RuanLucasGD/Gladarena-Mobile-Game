@@ -11,10 +11,13 @@ namespace Game.UI
     {
         private void Awake()
         {
-            ArenaManager.Instance.OnStartLevel.AddListener(l => EnableControl());
-            ArenaManager.Instance.OnCompleteLevel.AddListener(l => DisableControl());
+            if (ArenaManager.Instance)
+            {
+                ArenaManager.Instance.OnStartLevel.AddListener(l => EnableControl());
+                ArenaManager.Instance.OnCompleteLevel.AddListener(l => DisableControl());
 
-            DisableControl();
+                DisableControl();
+            }
         }
 
         public void DisableControl()
