@@ -151,13 +151,13 @@ MonoBehaviour:
     Gravity: 2
     TurnSpeed: 10
     ExternalForceDeceleration: 2
-    StopDistance: 3.5
+    StopDistance: 3
   Weapon:
     WeaponObject: {fileID: 6675851420747044059}
     Hand: {fileID: 8813778739184038490}
     DelayToAttack: 0.5
   Life:
-    LifeAmount: 30
+    LifeAmount: 50
     AutoDestroyOnDeathDelay: 0.1
     OnResetLife:
       m_PersistentCalls:
@@ -171,6 +171,7 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
+  UseNavMeshAI: 0
 --- !u!1 &6740108370375643654
 GameObject:
   m_ObjectHideFlags: 0
