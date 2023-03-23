@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 603699718646348087}
   - component: {fileID: 3411984103957053444}
   m_Layer: 0
-  m_Name: Restore Life
+  m_Name: Life Power Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,8 +11,7 @@ namespace Game.Experimental
     {
         public GameObject PlayerPrefab;
 
-        [Header("Power Ups")]
-        public RestoreLifePowerUp LifePowerUp;
+        public PowerUp[] PowerUps;
 
         private bool isShowing;
         private int currentTab;
@@ -201,10 +200,13 @@ namespace Game.Experimental
             }
             else
             {
-                currentGuiPosY += 30;
-                if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), "Set Life Power Up"))
+                foreach (var p in PowerUps)
                 {
-                    SetPlayerPowerUp(LifePowerUp);
+                    currentGuiPosY += 40;
+                    if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), p.name))
+                    {
+                        SetPlayerPowerUp(p);
+                    }
                 }
             }
         }

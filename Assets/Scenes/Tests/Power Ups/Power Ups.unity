@@ -770,7 +770,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 5104209847460090065, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
-  LifePowerUp: {fileID: 3411984103957053444, guid: b27d6f836da876e448bac31c7fa87773, type: 3}
+  PowerUps:
+  - {fileID: 3411984103957053444, guid: b27d6f836da876e448bac31c7fa87773, type: 3}
+  - {fileID: -7896025392777872110, guid: 5ba919e7d754c1a4ebb2058d4105bd6b, type: 3}
 --- !u!4 &857299717
 Transform:
   m_ObjectHideFlags: 0

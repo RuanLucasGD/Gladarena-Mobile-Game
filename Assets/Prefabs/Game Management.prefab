@@ -496,7 +496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POWER UP
+  m_Text: RAY
 --- !u!1 &2557749978972407388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1289,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 5104209847460090065, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
-  LifePowerUp: {fileID: 3411984103957053444, guid: b27d6f836da876e448bac31c7fa87773, type: 3}
+  PowerUps:
+  - {fileID: 3411984103957053444, guid: b27d6f836da876e448bac31c7fa87773, type: 3}
+  - {fileID: -7896025392777872110, guid: 5ba919e7d754c1a4ebb2058d4105bd6b, type: 3}
 --- !u!1 &4010695034585152026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,11 +2062,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 668021136816944256}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626570255219331491}
+        m_TargetAssemblyTypeName: Game.UI.PowerUpSelectionScreen, Game.UI
+        m_MethodName: SelectPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -7896025392777872110, guid: 5ba919e7d754c1a4ebb2058d4105bd6b, type: 3}
+          m_ObjectArgumentAssemblyTypeName: Game.Mecanics.PowerUp, Game.Mecanics
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6305506241364094214
 GameObject:
   m_ObjectHideFlags: 0
