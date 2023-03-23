@@ -187,7 +187,7 @@ namespace Game.Experimental
                     foreach (var w in Weapons)
                     {
                         currentGuiPosY += 30;
-                        if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), w.name))
+                        if (GUI.Button(new Rect(30, currentGuiPosY, 200, 30), w.name))
                         {
                             SetPlayerWeapon(w);
                         }
@@ -242,7 +242,7 @@ namespace Game.Experimental
                 foreach (var p in PowerUps)
                 {
                     currentGuiPosY += 40;
-                    if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), p.name))
+                    if (GUI.Button(new Rect(30, currentGuiPosY, 200, 30), p.name))
                     {
                         SetPlayerPowerUp(p);
                     }
