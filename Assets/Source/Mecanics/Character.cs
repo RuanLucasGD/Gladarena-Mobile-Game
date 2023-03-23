@@ -203,7 +203,7 @@ namespace Game.Mecanics
             return _direction;
         }
 
-        public void SetWeapon(Game.Mecanics.Weapon weapon)
+        public void SetWeapon(Game.Mecanics.Weapon newWeapon)
         {
             if (!Weapon.Hand)
             {
@@ -211,11 +211,20 @@ namespace Game.Mecanics
                 return;
             }
 
-            weapon.transform.parent = Weapon.Hand;
-            weapon.transform.localPosition = Vector3.zero;
-            weapon.transform.localRotation = Quaternion.identity;
-            weapon.Owner = this;
-            Weapon.WeaponObject = weapon;
+            if (!newWeapon)
+            {
+                if (Weapon.WeaponObject)
+                {
+                    Destroy(Weapon.WeaponObject.gameObject);
+                    return;
+                }
+            }
+
+            newWeapon.transform.parent = Weapon.Hand;
+            newWeapon.transform.localPosition = Vector3.zero;
+            newWeapon.transform.localRotation = Quaternion.identity;
+            newWeapon.Owner = this;
+            Weapon.WeaponObject = newWeapon;
 
             OnSetWeapon.Invoke();
         }

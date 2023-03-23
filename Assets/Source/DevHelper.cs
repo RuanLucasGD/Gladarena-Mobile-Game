@@ -12,6 +12,7 @@ namespace Game.Experimental
         public GameObject PlayerPrefab;
 
         public PowerUp[] PowerUps;
+        public Weapon[] Weapons;
 
         private bool isShowing;
         private int currentTab;
@@ -127,6 +128,24 @@ namespace Game.Experimental
             }
         }
 
+        void SetPlayerWeapon(Weapon weapon)
+        {
+            if (!Player)
+            {
+                return;
+            }
+
+            if (weapon)
+            {
+                var _weapon = Instantiate(weapon.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Weapon>();
+                Player.SetWeapon(_weapon);
+            }
+            else
+            {
+                Player.SetWeapon(null);
+            }
+        }
+
         void PlayerTab(ref int currentGuiPosY)
         {
             currentGuiPosY += 50;
@@ -153,6 +172,26 @@ namespace Game.Experimental
                 if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), "Restore Player Life"))
                 {
                     RestorePlayerLife();
+                }
+
+                if (Player.HasWeapon)
+                {
+                    currentGuiPosY += 30;
+                    if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), "Remove Weapon"))
+                    {
+                        SetPlayerWeapon(null);
+                    }
+                }
+                else
+                {
+                    foreach (var w in Weapons)
+                    {
+                        currentGuiPosY += 30;
+                        if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), w.name))
+                        {
+                            SetPlayerWeapon(w);
+                        }
+                    }
                 }
             }
             else
