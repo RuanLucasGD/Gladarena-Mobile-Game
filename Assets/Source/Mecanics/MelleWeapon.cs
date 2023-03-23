@@ -57,15 +57,13 @@ namespace Game.Mecanics
                 {
                     if (anotherCharacter.gameObject == WeaponTarget.gameObject)
                     {
-                        anotherCharacter.AddDamage(Damage);
-                        AddAttackForce(anotherCharacter);
+                        anotherCharacter.AddDamage(Damage, GetAttackForce(anotherCharacter));
                     }
                 }
                 // if doesn't has a target, the weapon can to apply damage in any characters
                 else
                 {
-                    anotherCharacter.AddDamage(Damage);
-                    AddAttackForce(anotherCharacter);
+                    anotherCharacter.AddDamage(Damage, GetAttackForce(anotherCharacter));
                 }
             }
         }
@@ -97,13 +95,13 @@ namespace Game.Mecanics
             WeaponTarget = null;
         }
 
-        private void AddAttackForce(Character target)
+        private Vector3 GetAttackForce(Character target)
         {
             var _direction = target.transform.position - Owner.transform.position;
             _direction /= _direction.magnitude;
             _direction *= AttackForce;
 
-            target.AddExternalForce(_direction);
+            return _direction;
         }
 
         public override void Attack(Character target = null)

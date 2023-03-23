@@ -55,8 +55,7 @@ namespace Game.Mecanics
             {
                 if (character == _currentTarget)
                 {
-                    _currentTarget.AddDamage(Damage);
-                    AddAttackForce(_currentTarget);
+                    _currentTarget.AddDamage(Damage, GetAttackForce(_currentTarget));
                 }
             }
         }
@@ -166,14 +165,14 @@ namespace Game.Mecanics
             _currentTarget = null;
         }
 
-        private void AddAttackForce(Character target)
+        private Vector3 GetAttackForce(Character target)
         {
             var _direction = (GetCharacterCenter(target) - AnimAttackBoby.position);
 
             _direction /= _direction.magnitude;
             _direction *= AttackForce;
 
-            target.AddExternalForce(_direction);
+            return _direction;
         }
 
         public override void Attack(Character target = null)

@@ -80,6 +80,7 @@ namespace Game.Mecanics
         public CharacterController CharacterController => _characterController;
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
+        public bool IsInvencible { get; set; }
         public bool IsDeath { get; private set; }
         public bool IsAttacking => IsStoped;
         public bool HasWeapon => Weapon.WeaponObject;
@@ -219,14 +220,15 @@ namespace Game.Mecanics
             OnSetWeapon.Invoke();
         }
 
-        public void AddDamage(float damage)
+        public void AddDamage(float damage, Vector3 attackForce = default)
         {
-            if (IsDeath)
+            if (IsDeath || IsInvencible)
             {
                 return;
             }
 
             CurrentLife -= damage;
+            AddExternalForce(attackForce);
             OnDamaged.Invoke();
 
             if (CurrentLife <= 0)
