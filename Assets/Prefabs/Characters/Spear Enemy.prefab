@@ -171,6 +171,7 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
+  UseNavMeshAI: 0
 --- !u!1 &6740108370375643654
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +293,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
       propertyPath: Damage
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
       propertyPath: AttackForce

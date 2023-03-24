@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b9ad500b960814fb4cfd2f63c4974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackForce: 10
+  AttackForce: 15
   AttackRange: 3
-  Damage: 50
+  Damage: 35
   Animation:
     Animator: {fileID: 5469765281718002603}
     AttackAnimParameter: Is Attacking
