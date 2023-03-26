@@ -48,6 +48,15 @@ namespace Game.UI
             if (PausedGameScreen) PausedGameScreen.SetActive(false);
         }
 
+        private void Update()
+        {
+            // when player press back of mobile navigation buttons pause the game
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PauseGame();
+            }
+        }
+
         private void PauseGame()
         {
             GameManager.Instance.GamePaused = true;
