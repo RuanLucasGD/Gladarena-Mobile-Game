@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movimentation:
-    MoveSpeed: 7
+    MoveSpeed: 5.5
     Gravity: 2
     TurnSpeed: 10
     ExternalForceDeceleration: 2

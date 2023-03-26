@@ -205,6 +205,11 @@ namespace Game.Mecanics
 
         public void SetWeapon(Game.Mecanics.Weapon newWeapon)
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             if (!Weapon.Hand)
             {
                 Debug.LogError($"Character '{gameObject.name}' does not have '{nameof(Weapon.Hand)}' of '{nameof(Weapon)}' assigned. Is not possible set the weapon.");
@@ -231,7 +236,7 @@ namespace Game.Mecanics
 
         public void AddDamage(float damage, Vector3 attackForce = default)
         {
-            if (IsDeath || IsInvencible)
+            if (IsDeath || IsInvencible || !enabled)
             {
                 return;
             }
@@ -258,17 +263,27 @@ namespace Game.Mecanics
 
         public void ResetLife()
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             CurrentLife = Life.LifeAmount;
         }
 
         public void AddExternalForce(Vector3 force)
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             _externalForce += force;
         }
 
         public virtual void Attack(Character target = null)
         {
-            if (!Weapon.WeaponObject || Weapon.WeaponObject.IsAttacking)
+            if (!Weapon.WeaponObject || Weapon.WeaponObject.IsAttacking || !enabled)
             {
                 return;
             }
@@ -282,6 +297,11 @@ namespace Game.Mecanics
 
         public void SetPowerUp(PowerUp powerUp, bool destroyWhenRemove = true)
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             if (powerUp)
             {
                 powerUp.gameObject.transform.parent = transform;
@@ -310,6 +330,11 @@ namespace Game.Mecanics
 
         public void UsePowerUp()
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             if (GetPowerUp())
             {
                 GetPowerUp().UsePowerUp();

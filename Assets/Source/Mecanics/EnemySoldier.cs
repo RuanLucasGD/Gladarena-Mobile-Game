@@ -62,6 +62,11 @@ namespace Game.Mecanics
 
         public override void Attack(Character target = null)
         {
+            if (!enabled)
+            {
+                return;
+            }
+            
             LookAtDirection = (Player.transform.position - transform.position).normalized;
             CharacterMoveDirection = Vector3.zero;
             base.Attack(target);

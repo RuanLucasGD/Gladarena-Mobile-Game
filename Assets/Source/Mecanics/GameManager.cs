@@ -25,9 +25,30 @@ namespace Game.Mecanics
         public bool DisablePlayerOnStart;
 
         [Space]
+        public UnityEvent<bool> OnSetPausedGame;
 
+        private bool _gamePaused;
         private PlayerCharacter _player;
         private static GameManager _gameManager;
+
+        public bool GamePaused
+        {
+            get => _gamePaused; set
+            {
+                if (value != _gamePaused)
+                {
+                    // disable characters control when pause game
+                    foreach (var c in FindObjectsOfType<Character>(true))
+                    {
+                        c.enabled = !value;
+                    }
+
+                    Time.timeScale = value ? 0 : 1;
+                    _gamePaused = value;
+                    OnSetPausedGame.Invoke(value);
+                }
+            }
+        }
 
         public PlayerCharacter Player
         {
@@ -40,7 +61,7 @@ namespace Game.Mecanics
                     {
                         SetPlayerForwardDirection();
                     }
-                   
+
                 }
 
                 return _player;
