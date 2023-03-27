@@ -266,10 +266,14 @@ MonoBehaviour:
   Weapon:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 935705572}
-    DelayToAttack: 0.1
+    DelayToAttack: 0.5
+    DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 200
     AutoDestroyOnDeathDelay: 1
+    OnResetLife:
+      m_PersistentCalls:
+        m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

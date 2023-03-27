@@ -40,10 +40,12 @@ namespace Game.Mecanics
             public Weapon WeaponObject;
             public Transform Hand;
             [Min(0)] public float DelayToAttack;
+            [HideInInspector] public float DelatyToAttackMultiplier;
 
             public WeaponSlot()
             {
                 DelayToAttack = 0.5f;
+                DelatyToAttackMultiplier = 1;
             }
         }
 
@@ -76,6 +78,8 @@ namespace Game.Mecanics
         private NavMeshPath _aiPath;
         private CharacterController _characterController;
         private PowerUp _powerUp;
+
+        private float DelayToAttack => Weapon.DelayToAttack * Weapon.DelatyToAttackMultiplier;
 
         public CharacterController CharacterController => _characterController;
 
@@ -110,6 +114,7 @@ namespace Game.Mecanics
             CanMove = true;
             CurrentLife = Life.LifeAmount;
             LookAtDirection = transform.forward;
+            Weapon.DelatyToAttackMultiplier = 1;
 
             if (!CharacterController)
             {
@@ -180,7 +185,7 @@ namespace Game.Mecanics
 
         private IEnumerator AttackDeleyed(Character target)
         {
-            yield return new WaitForSeconds(Weapon.DelayToAttack);
+            yield return new WaitForSeconds(DelayToAttack);
             Weapon.WeaponObject.Attack(target);
             _deleyedAttackStarted = false;
         }

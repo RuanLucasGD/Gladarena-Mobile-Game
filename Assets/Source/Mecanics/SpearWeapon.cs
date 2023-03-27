@@ -69,7 +69,7 @@ namespace Game.Mecanics
 
             if (_updateAnim)
             {
-                _currentAttackAnimTime += Time.deltaTime * AttackSpeed;
+                _currentAttackAnimTime += Time.deltaTime * AttackSpeed * FinalAttackLength;
 
                 if (_currentAttackAnimTime > 1)
                 {
@@ -163,7 +163,7 @@ namespace Game.Mecanics
 
         private IEnumerator DisableAttackDeleyed()
         {
-            yield return new WaitForSeconds(AttackLength);
+            yield return new WaitForSeconds(FinalAttackLength);
 
             IsAttacking = false;
             _currentTarget = null;
@@ -181,11 +181,11 @@ namespace Game.Mecanics
                 _currentTarget = FindNearEnemy();
             }
 
-            if (!target)
+            if (!_currentTarget)
             {
                 return;
             }
-
+            
             var _angleToTarget = Vector3.Dot((_currentTarget.transform.position - transform.position).normalized, transform.forward);
 
             if (_angleToTarget <= MinDotAngleToAttack)

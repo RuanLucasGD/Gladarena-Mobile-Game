@@ -21,7 +21,7 @@ namespace Game.Mecanics
 
         private void Attack()
         {
-            if (!Owner)
+            if (!Owner || !Owner.enabled)
             {
                 return;
             }

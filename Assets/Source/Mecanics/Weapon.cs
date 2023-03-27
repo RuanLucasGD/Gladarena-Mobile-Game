@@ -47,6 +47,12 @@ namespace Game.Mecanics
             }
         }
 
+        private float _attackLengthMultiplier;
+
+        public float AttackLengthMultiplier { get => _attackLengthMultiplier; set => _attackLengthMultiplier = Mathf.Max(value, 0.1f); }
+
+        public float FinalAttackLength => AttackLength * AttackLengthMultiplier;
+
         /// <summary>
         /// Pass custom actions to weapon when enable
         /// </summary>
@@ -71,6 +77,8 @@ namespace Game.Mecanics
 
         protected virtual void Awake()
         {
+            AttackLengthMultiplier = 1;
+
             OnEnableAttack = () => { };
             OnDisableAttack = () => { };
         }
