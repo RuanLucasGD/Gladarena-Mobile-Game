@@ -30062,14 +30062,6 @@ MonoBehaviour:
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 3
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
     - name: Horder 2
       EnemiesSpawn:
       - Name: Sword Soldier
@@ -30088,14 +30080,6 @@ MonoBehaviour:
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 6
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
     - name: Horder 3
       EnemiesSpawn:
       - Name: Sword Soldier
@@ -30110,14 +30094,6 @@ MonoBehaviour:
         EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
         MaxEnemiesInScene: 6
         MaxEnemiesSpawned: 17
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 10
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -30142,14 +30118,6 @@ MonoBehaviour:
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 3
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
     - name: Horder 2
       EnemiesSpawn:
       - Name: Sword Soldier
@@ -30168,14 +30136,6 @@ MonoBehaviour:
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 6
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
     - name: Horder 3
       EnemiesSpawn:
       - Name: Sword Soldier
@@ -30190,14 +30150,6 @@ MonoBehaviour:
         EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
         MaxEnemiesInScene: 6
         MaxEnemiesSpawned: 17
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 10
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -30222,14 +30174,6 @@ MonoBehaviour:
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 10
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
     - name: Horder 2
       EnemiesSpawn:
       - Name: Sword Soldier
@@ -30248,14 +30192,6 @@ MonoBehaviour:
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 7
-        MaxEnemiesSpawned: 6
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
     - name: Horder 3
       EnemiesSpawn:
       - Name: Sword Soldier
@@ -30270,14 +30206,6 @@ MonoBehaviour:
         EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
         MaxEnemiesInScene: 7
         MaxEnemiesSpawned: 17
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Sledgehammer Soldier
-        EnemyType: {fileID: 8905242505778883830, guid: 75d9c3e377771d0458ea894948832404, type: 3}
-        MaxEnemiesInScene: 7
-        MaxEnemiesSpawned: 15
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
