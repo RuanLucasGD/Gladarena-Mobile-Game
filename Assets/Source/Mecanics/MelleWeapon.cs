@@ -6,9 +6,6 @@ namespace Game.Mecanics
 {
     public class MelleWeapon : Weapon
     {
-
-        public float AttackLength;
-
         public Collider WeaponCollider;
 
         public MelleWeapon()

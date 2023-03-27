@@ -34,7 +34,6 @@ namespace Game.Mecanics
 
             OnEnableAttack += EnableWeaponCollider;
             OnDisableAttack += DisableWeaponCollider;
-            OnDisableAttack += ResetWeaponTarget;
         }
 
         protected override void Update()
@@ -65,12 +64,6 @@ namespace Game.Mecanics
             var _animIntensity = AttackAnimationCurve.Evaluate(_currentAttackAnimTime);
             var _attacking = IsAttacking && _currentTarget;
 
-            if (_attacking)
-            {
-                var _angleToTarget = Vector3.Dot((_currentTarget.transform.position - transform.position).normalized, transform.forward);
-                _attacking = _attacking && _angleToTarget >= MinDotAngleToAttack;
-            }
-
             // the animation needs to be completed even if not attaking
             var _updateAnim = _currentAttackAnimTime > 0 || _attacking;
 
@@ -81,8 +74,6 @@ namespace Game.Mecanics
                 if (_currentAttackAnimTime > 1)
                 {
                     // restart animation and finish attack
-                    ResetWeaponTarget();
-                    IsAttacking = false;
                     _currentAttackAnimTime = 0f;
                 }
             }
@@ -160,11 +151,6 @@ namespace Game.Mecanics
             WeaponCollider.enabled = false;
         }
 
-        private void ResetWeaponTarget()
-        {
-            _currentTarget = null;
-        }
-
         private Vector3 GetAttackForce(Character target)
         {
             var _direction = (GetCharacterCenter(target) - AnimAttackBoby.position);
@@ -175,6 +161,14 @@ namespace Game.Mecanics
             return _direction;
         }
 
+        private IEnumerator DisableAttackDeleyed()
+        {
+            yield return new WaitForSeconds(AttackLength);
+
+            IsAttacking = false;
+            _currentTarget = null;
+        }
+
         public override void Attack(Character target = null)
         {
             if (IsAttacking || !Owner.IsStoped)
@@ -182,11 +176,27 @@ namespace Game.Mecanics
                 return;
             }
 
-            _currentTarget = target ? target : FindNearEnemy();
+            if (!target)
+            {
+                _currentTarget = FindNearEnemy();
+            }
+
+            if (!target)
+            {
+                return;
+            }
+
+            var _angleToTarget = Vector3.Dot((_currentTarget.transform.position - transform.position).normalized, transform.forward);
+
+            if (_angleToTarget <= MinDotAngleToAttack)
+            {
+                return;
+            }
 
             if (_currentTarget)
             {
                 base.Attack(target);
+                StartCoroutine(DisableAttackDeleyed());
             }
         }
     }

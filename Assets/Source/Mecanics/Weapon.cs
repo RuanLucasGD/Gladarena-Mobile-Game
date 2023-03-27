@@ -19,6 +19,7 @@ namespace Game.Mecanics
         public float AttackForce;
         public float AttackRange;
         public float Damage;
+        public float AttackLength;
 
         [Space]
         public AnimationControl Animation;

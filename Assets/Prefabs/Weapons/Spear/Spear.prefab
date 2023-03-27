@@ -188,6 +188,7 @@ MonoBehaviour:
   AttackForce: 35
   AttackRange: 10
   Damage: 30
+  AttackLength: 1
   Animation:
     Animator: {fileID: 0}
     AttackAnimParameter: 
@@ -245,6 +246,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   WeaponCollider: {fileID: 1973641760929820256}
   AttackSpeed: 1
+  MinDotAngleToAttack: 0.8
   SpearSize: 5
 --- !u!54 &1973641761611290147
 Rigidbody:
