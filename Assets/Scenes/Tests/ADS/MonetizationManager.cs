@@ -127,11 +127,6 @@ namespace Game.Experimental
             InitializeAds();
         }
 
-        private void Update()
-        {
-            Debug.Log(_adsListener.OnAdsShowed);
-        }
-
         private void InitializeAds(UnityAction onInitialize = null, UnityAction<UnityAdsInitializationError, string> onInitializeFail = null)
         {
 #if UNITY_ANDROID
