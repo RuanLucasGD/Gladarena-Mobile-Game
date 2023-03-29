@@ -266,7 +266,7 @@ MonoBehaviour:
   Weapon:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 935705572}
-    DelayToAttack: 0.5
+    DelayToAttack: 0.2
     DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 200

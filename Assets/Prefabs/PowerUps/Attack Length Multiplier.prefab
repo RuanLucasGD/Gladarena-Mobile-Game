@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57bd687d831f9649a4d386ea22db9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackIntervalMultiplier: 0.1
-  AttackLengthMultiplier: 0.2
+  CharacterInterval: 0.1
+  WeaponInterval: 0.2

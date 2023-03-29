@@ -6,8 +6,9 @@ namespace Game.Mecanics
 {
     public class MultipleAttackPowerUp : PowerUp
     {
-        public float AttackIntervalMultiplier;
-        public float AttackLengthMultiplier;
+        [Header("Multiplier Velocity")]
+        public float CharacterInterval;
+        public float WeaponInterval;
 
         public override Character Owner
         {
@@ -28,12 +29,12 @@ namespace Game.Mecanics
 
                 if (value && value.HasWeapon)
                 {
-                    value.Weapon.WeaponObject.AttackLengthMultiplier = AttackLengthMultiplier;
+                    value.Weapon.WeaponObject.AttackLengthMultiplier = WeaponInterval;
                 }
 
                 if (value)
                 {
-                    value.Weapon.DelatyToAttackMultiplier = AttackIntervalMultiplier;
+                    value.Weapon.DelatyToAttackMultiplier = CharacterInterval;
                 }
 
                 base.Owner = value;

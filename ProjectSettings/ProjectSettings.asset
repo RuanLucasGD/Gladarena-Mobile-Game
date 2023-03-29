@@ -775,6 +775,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     UNet: 1
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -792,7 +793,7 @@ PlayerSettings:
   cloudProjectId: 6e86eba7-e677-4907-9f92-c2909402c1ba
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Prototype
+  projectName: Gladarena
   organizationId: hello-humans-as-publisher
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
