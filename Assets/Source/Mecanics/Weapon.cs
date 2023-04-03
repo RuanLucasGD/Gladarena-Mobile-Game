@@ -7,26 +7,17 @@ namespace Game.Mecanics
 {
     public class Weapon : MonoBehaviour
     {
-        [System.Serializable]
-        public class AnimationControl
-        {
-            public Animator Animator;
-
-            [Header("Parameters")]
-            public string AttackAnimParameter;
-        }
-
         public float AttackForce;
         public float AttackRange;
         public float Damage;
         public float AttackLength;
 
-        [Space]
-        public AnimationControl Animation;
+        [Header("Animation")]
+        public int AnimationID;
 
         private bool _isAttacking;
 
-        public Character Owner { get; set; }
+        public virtual Character Owner { get; set; }
 
         public bool IsAttacking
         {
@@ -73,6 +64,7 @@ namespace Game.Mecanics
         {
             AttackRange = 3;
             Damage = 40;
+            AttackLength = 1;
         }
 
         protected virtual void Awake()
@@ -89,7 +81,6 @@ namespace Game.Mecanics
 
         protected virtual void Update()
         {
-            UpdateAnimations();
         }
 
         public virtual void Attack(Character target = null)
@@ -101,16 +92,6 @@ namespace Game.Mecanics
 
             IsAttacking = true;
             WeaponTarget = target;
-        }
-
-        protected virtual void UpdateAnimations()
-        {
-            if (!Animation.Animator)
-            {
-                return;
-            }
-
-            Animation.Animator.SetBool(Animation.AttackAnimParameter, IsAttacking);
         }
     }
 }

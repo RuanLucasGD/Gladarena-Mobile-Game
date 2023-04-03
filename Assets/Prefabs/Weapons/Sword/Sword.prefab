@@ -180,12 +180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackForce: 15
-  AttackRange: 3
+  AttackRange: 4
   Damage: 35
-  Animation:
-    Animator: {fileID: 5469765281718002603}
-    AttackAnimParameter: Is Attacking
-  AttackLength: 0.2
+  AttackLength: 1.1
+  AnimationID: 0
+  DotAttackAngle: 0.6
   WeaponCollider: {fileID: 726577881357305177}
 --- !u!54 &5257832587854458426
 Rigidbody:

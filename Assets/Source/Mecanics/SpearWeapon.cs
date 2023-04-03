@@ -6,25 +6,15 @@ namespace Game.Mecanics
 {
     public class SpearWeapon : Weapon
     {
-        public Transform AnimAttackBoby;
-        public AnimationCurve AttackAnimationCurve;
-        public Collider WeaponCollider;
-
-        [Space]
-        [Min(0)] public float AttackSpeed;
+        [Header("Spear Attack")]
         [Range(0, 1)] public float MinDotAngleToAttack;
 
-        [Tooltip("Model size (z axis) of the weapon.")]
-        [Min(0)] public float SpearSize;
-
-        private float _currentAttackAnimTime;
-        private Character _currentTarget;
+        [Header("Components")]
+        public Collider WeaponCollider;
 
         public SpearWeapon()
         {
-            AttackSpeed = 5;
             AttackForce = 15;
-            SpearSize = 5;
             MinDotAngleToAttack = 0.8f;
         }
 
@@ -34,17 +24,13 @@ namespace Game.Mecanics
 
             OnEnableAttack += EnableWeaponCollider;
             OnDisableAttack += DisableWeaponCollider;
-        }
 
-        protected override void Update()
-        {
-            base.Update();
-            UpdateAttackAnimation();
+            DisableWeaponCollider();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!IsAttacking || !_currentTarget)
+            if (!IsAttacking || !WeaponTarget)
             {
                 return;
             }
@@ -52,45 +38,10 @@ namespace Game.Mecanics
             // apply attack on detect target
             if (other.gameObject.TryGetComponent<Character>(out var character))
             {
-                if (character == _currentTarget)
+                if (character == WeaponTarget)
                 {
-                    _currentTarget.AddDamage(Damage, GetAttackForce(_currentTarget));
+                    WeaponTarget.AddDamage(Damage, Owner.transform.forward * AttackForce);
                 }
-            }
-        }
-
-        private void UpdateAttackAnimation()
-        {
-            var _animIntensity = AttackAnimationCurve.Evaluate(_currentAttackAnimTime);
-            var _attacking = IsAttacking && _currentTarget;
-
-            // the animation needs to be completed even if not attaking
-            var _updateAnim = _currentAttackAnimTime > 0 || _attacking;
-
-            if (_updateAnim)
-            {
-                _currentAttackAnimTime += Time.deltaTime * AttackSpeed * FinalAttackLength;
-
-                if (_currentAttackAnimTime > 1)
-                {
-                    // restart animation and finish attack
-                    _currentAttackAnimTime = 0f;
-                }
-            }
-
-            // adjust the attack lenght to get distant targets
-            if (_currentTarget)
-            {
-                var _targetDistance = Vector3.Distance(Owner.transform.position, _currentTarget.transform.position);
-                _targetDistance = Mathf.Max(_targetDistance - SpearSize, 1);
-                _animIntensity *= _targetDistance;
-            }
-
-            // update spear position only when necessary
-            var _currenPosition = AnimAttackBoby.localPosition;
-            if (_currenPosition.z != _currentAttackAnimTime)
-            {
-                AnimAttackBoby.localPosition = Vector3.forward * _animIntensity;
             }
         }
 
@@ -151,22 +102,12 @@ namespace Game.Mecanics
             WeaponCollider.enabled = false;
         }
 
-        private Vector3 GetAttackForce(Character target)
-        {
-            var _direction = (GetCharacterCenter(target) - AnimAttackBoby.position);
-
-            _direction /= _direction.magnitude;
-            _direction *= AttackForce;
-
-            return _direction;
-        }
-
         private IEnumerator DisableAttackDeleyed()
         {
             yield return new WaitForSeconds(FinalAttackLength);
 
             IsAttacking = false;
-            _currentTarget = null;
+            WeaponTarget = null;
         }
 
         public override void Attack(Character target = null)
@@ -176,28 +117,23 @@ namespace Game.Mecanics
                 return;
             }
 
-            if (!target)
-            {
-                _currentTarget = FindNearEnemy();
-            }
+            WeaponTarget = target != null ? target : FindNearEnemy();
 
-            if (!_currentTarget)
+            if (!WeaponTarget)
             {
                 return;
             }
-            
-            var _angleToTarget = Vector3.Dot((_currentTarget.transform.position - transform.position).normalized, transform.forward);
+
+            var _angleToTarget = Vector3.Dot((WeaponTarget.transform.position - Owner.transform.position).normalized, Owner.transform.forward);
 
             if (_angleToTarget <= MinDotAngleToAttack)
             {
                 return;
             }
 
-            if (_currentTarget)
-            {
-                base.Attack(target);
-                StartCoroutine(DisableAttackDeleyed());
-            }
+            base.Attack(WeaponTarget);
+        
+            StartCoroutine(DisableAttackDeleyed());
         }
     }
 }

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 5.5
-    Gravity: 2
+    Gravity: 15
     TurnSpeed: 10
     ExternalForceDeceleration: 2
     StopDistance: 9
@@ -156,12 +156,19 @@ MonoBehaviour:
     WeaponObject: {fileID: 4045076290307821390}
     Hand: {fileID: 8813778739184038490}
     DelayToAttack: 1.2
+    DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 25
     AutoDestroyOnDeathDelay: 0.1
     OnResetLife:
       m_PersistentCalls:
         m_Calls: []
+  Animation:
+    Animator: {fileID: 0}
+    MovimentParam: Vertical
+    IsAttacking: Is Attacking
+    IsSuperAttack: Is Super Attack
+    AttackAnimationID: Attack Anim ID
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -171,6 +178,10 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
+  OnAttackAnimationEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  IsSuperAttack: 0
   UseNavMeshAI: 0
 --- !u!1 &6740108370375643654
 GameObject:
@@ -301,11 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
       propertyPath: AttackRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
-      propertyPath: AttackSpeed
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
       propertyPath: AttackAnimationCurve.m_Curve.Array.data[1].time

@@ -92,7 +92,7 @@ namespace Game.Mecanics
         {
             base.Update();
             UpdatePlayerControls();
-
+            
             if (HasWeapon)
             {
                 FindNearEnemy();

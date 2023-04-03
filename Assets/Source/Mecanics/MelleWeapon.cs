@@ -6,11 +6,35 @@ namespace Game.Mecanics
 {
     public class MelleWeapon : Weapon
     {
+        [Header("Melle Attack")]
+        [Range(0.1f, 1)]
+        public float DotAttackAngle;
+
+        [Header("Components")]
         public Collider WeaponCollider;
+
+        public override Character Owner
+        {
+            get => base.Owner;
+            set
+            {
+                if (base.Owner)
+                {
+                    base.Owner.OnAttackAnimationEvent.RemoveListener(ApplyDamageOnEnemies);
+                }
+
+                if (value)
+                {
+                    value.OnAttackAnimationEvent.AddListener(ApplyDamageOnEnemies);
+                }
+
+                base.Owner = value;
+            }
+        }
 
         public MelleWeapon()
         {
-            AttackLength = 0.5f;
+            DotAttackAngle = 0.5f;
         }
 
         protected virtual void OnEnable()
@@ -34,34 +58,13 @@ namespace Game.Mecanics
             OnDisableAttack += DisableWeapon;
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected override void Update()
         {
-            if (!Owner || !IsAttacking)
-            {
-                return;
-            }
+            base.Update();
 
-            if (other.gameObject == Owner.gameObject)
+            if (Owner && Owner.CharacterMoveDirection.magnitude > 0)
             {
-                return;
-            }
-
-            // TODO: optimize enemy attack avoid TryGetComponent on earch call of OnTriggerEnter
-            if (other.gameObject.TryGetComponent<Character>(out var anotherCharacter))
-            {
-                // when the weapon has a target, check if the anotherCharacter is the target to apply damage
-                if (WeaponTarget)
-                {
-                    if (anotherCharacter.gameObject == WeaponTarget.gameObject)
-                    {
-                        anotherCharacter.AddDamage(Damage, GetAttackForce(anotherCharacter));
-                    }
-                }
-                // if doesn't has a target, the weapon can to apply damage in any characters
-                else
-                {
-                    anotherCharacter.AddDamage(Damage, GetAttackForce(anotherCharacter));
-                }
+                DisableAttack();
             }
         }
 
@@ -85,11 +88,16 @@ namespace Game.Mecanics
             StartCoroutine(DisableAttackAfterTime());
         }
 
+        private void DisableAttack()
+        {
+            IsAttacking = false;
+            WeaponTarget = null;
+        }
+
         private IEnumerator DisableAttackAfterTime()
         {
             yield return new WaitForSeconds(FinalAttackLength);
-            IsAttacking = false;
-            WeaponTarget = null;
+            DisableAttack();
         }
 
         private Vector3 GetAttackForce(Character target)
@@ -101,12 +109,59 @@ namespace Game.Mecanics
             return _direction;
         }
 
+        private List<Character> GetNearInViewEnemies()
+        {
+            var _nearInView = new List<Character>();
+            var _characters = FindObjectsOfType<Character>();
+
+            foreach (var c in _characters)
+            {
+                // avoid own owner
+                if (c == Owner) continue;
+
+                // only near characters
+                if (Vector3.Distance(c.transform.position, Owner.transform.position) > AttackRange) continue;
+
+                // only in view characters
+                if (Vector3.Dot(Owner.transform.forward, (c.transform.position - Owner.transform.position).normalized) < DotAttackAngle) continue;
+
+                _nearInView.Add(c);
+            }
+
+            return _nearInView;
+        }
+
         public override void Attack(Character target = null)
         {
-            if (Owner.IsStoped)
+            var _nearInViewEnemies = GetNearInViewEnemies();
+
+            if (Owner.IsStoped && (_nearInViewEnemies.Count > 0 || target))
             {
                 base.Attack(target);
             }
+
+            _nearInViewEnemies = null;
+        }
+
+        // Called by owener character animation event
+        public void ApplyDamageOnEnemies()
+        {
+            if (!IsAttacking)
+            {
+                return;
+            }
+
+            // attack only the target
+            if (WeaponTarget)
+            {
+                WeaponTarget.AddDamage(Damage, GetAttackForce(WeaponTarget));
+                return;
+            }
+
+            // attack all near characters
+            var _nearInViewEnemies = GetNearInViewEnemies();
+            foreach (var c in _nearInViewEnemies) c.AddDamage(Damage, GetAttackForce(c));
+            _nearInViewEnemies = null;
         }
     }
 }

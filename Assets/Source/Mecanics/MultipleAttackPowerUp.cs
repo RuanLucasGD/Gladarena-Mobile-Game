@@ -21,10 +21,11 @@ namespace Game.Mecanics
                     Owner.Weapon.WeaponObject.AttackLengthMultiplier = 1;
                 }
 
-                // reset attack interval multiplier
+                // reset attack interval multiplier and attack anim type
                 if (Owner)
                 {
                     Owner.Weapon.DelatyToAttackMultiplier = 1;
+                    Owner.IsSuperAttack = false;
                 }
 
                 if (value && value.HasWeapon)
@@ -35,6 +36,7 @@ namespace Game.Mecanics
                 if (value)
                 {
                     value.Weapon.DelatyToAttackMultiplier = CharacterInterval;
+                    value.IsSuperAttack = true;
                 }
 
                 base.Owner = value;
