@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973641760929820287}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.0000029504295}
+  m_LocalPosition: {x: 0, y: -0.2, z: 7.43}
+  m_LocalScale: {x: 1, y: 1, z: 1.6089}
   m_Children:
   - {fileID: 1973641761567975769}
   m_Father: {fileID: 1973641761611290145}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!65 &1973641760929820256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 4.5}
-  m_Center: {x: 0, y: 0, z: 3}
+  m_Size: {x: 1, y: 1, z: 3.355855}
+  m_Center: {x: 0, y: -1.2581082e-14, z: 2.3005364}
 --- !u!1 &1973641761567975766
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973641761567975766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.471}
+  m_LocalPosition: {x: 0, y: 0, z: 3.131}
   m_LocalScale: {x: 0.1, y: 0.1, z: 5}
   m_Children: []
   m_Father: {fileID: 1973641760929820286}
@@ -186,68 +186,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackForce: 35
-  AttackRange: 10
+  AttackRange: 7
   Damage: 30
   AttackLength: 1
-  Animation:
-    Animator: {fileID: 0}
-    AttackAnimParameter: 
-  AnimAttackBoby: {fileID: 1973641760929820286}
-  AttackAnimationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 53.502407
-      outSlope: 53.502407
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.018544337
-      value: 0.99216664
-      inSlope: -0.051987052
-      outSlope: -0.051987052
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.30487874
-    - serializedVersion: 3
-      time: 0.078453355
-      value: 0.50379217
-      inSlope: -3.0246232
-      outSlope: -3.0246232
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.13186058
-    - serializedVersion: 3
-      time: 0.21131164
-      value: 0.026653579
-      inSlope: -0.11714583
-      outSlope: -0.11714583
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.2349592
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0.02154032
-      outSlope: 0.02154032
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.3700097
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  WeaponCollider: {fileID: 1973641760929820256}
-  AttackSpeed: 1
+  AnimationID: 1
+  AttackSpeed: 1.1
   MinDotAngleToAttack: 0.8
-  SpearSize: 5
+  WeaponCollider: {fileID: 1973641760929820256}
 --- !u!54 &1973641761611290147
 Rigidbody:
   m_ObjectHideFlags: 0

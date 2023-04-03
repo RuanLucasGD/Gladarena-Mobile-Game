@@ -185,9 +185,19 @@ MonoBehaviour:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 0}
     DelayToAttack: 0.5
+    DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 100
     AutoDestroyOnDeathDelay: 0.1
+    OnResetLife:
+      m_PersistentCalls:
+        m_Calls: []
+  Animation:
+    Animator: {fileID: 0}
+    MovimentParam: Vertical
+    IsAttacking: Is Attacking
+    IsSuperAttack: Is Super Attack
+    AttackAnimationID: Attack Anim ID
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -197,6 +207,10 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
+  OnAttackAnimationEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  IsSuperAttack: 0
 --- !u!1 &8501272935429945273
 GameObject:
   m_ObjectHideFlags: 0

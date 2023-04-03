@@ -62,15 +62,40 @@ namespace Game.Mecanics
             }
         }
 
+        [System.Serializable]
+        public class AnimationControl
+        {
+            [Space]
+            public Animator Animator;
+
+            [Tooltip("A value from 0 to 1 representing if the player is moving")]
+            public string MovimentParam;
+            public string IsAttacking;
+            public string IsSuperAttack;
+            public string AttackAnimationID;
+
+            public AnimationControl()
+            {
+                MovimentParam = "Vertical";
+                IsAttacking = "Is Attacking";
+                IsSuperAttack = "Is Super Attack";
+                AttackAnimationID = "Attack Animation ID";
+            }
+        }
+
         public Moviment Movimentation;
         public WeaponSlot Weapon;
         public LifeStorage Life;
+        public AnimationControl Animation;
 
         [Space]
 
         public UnityEvent OnDeath;
         public UnityEvent OnDamaged;
         public UnityEvent OnSetWeapon;
+
+        [Header("Animation Events")]
+        public UnityEvent OnAttackAnimationEvent;
 
         private bool _deleyedAttackStarted;
         private Vector3 _moveDirection;
@@ -86,9 +111,10 @@ namespace Game.Mecanics
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
         public bool IsInvencible { get; set; }
         public bool IsDeath { get; private set; }
-        public bool IsAttacking => IsStoped;
+        public bool IsAttacking => HasWeapon && Weapon.WeaponObject.IsAttacking;
         public bool HasWeapon => Weapon.WeaponObject;
         public float CurrentLife { get; private set; }
+        public bool IsSuperAttack;
 
         public bool CanMove { get; set; }
 
@@ -136,6 +162,7 @@ namespace Game.Mecanics
             UpdateRotation(Time.deltaTime);
             UpdateMoviment(Time.deltaTime);
             UpdateExternalForce(Time.deltaTime);
+            UpdateAnimations();
 
             if (transform.position.y < -100)
             {
@@ -150,13 +177,14 @@ namespace Game.Mecanics
                 return;
             }
 
-            if (!CanMove || !CharacterController.isGrounded)
+            if (!CanMove || IsAttacking)
             {
                 CharacterMoveDirection = Vector3.zero;
             }
 
-            CharacterVelocity = new Vector3(CharacterMoveDirection.x, -Movimentation.Gravity, CharacterMoveDirection.z);
+            CharacterVelocity =CharacterMoveDirection;
             CharacterVelocity *= Movimentation.MoveSpeed;
+            CharacterVelocity = new Vector3(CharacterVelocity.x, -Movimentation.Gravity, CharacterVelocity.z);
             CharacterVelocity += _externalForce;
             CharacterVelocity *= delta;
 
@@ -165,6 +193,11 @@ namespace Game.Mecanics
 
         private void UpdateRotation(float delta)
         {
+            if (!CanMove || IsAttacking)
+            {
+                return;
+            }
+
             var _turnSpeed = Mathf.Clamp01(delta * Movimentation.TurnSpeed);
             var _currentRot = transform.rotation;
 
@@ -206,6 +239,25 @@ namespace Game.Mecanics
             }
 
             return _direction;
+        }
+
+        protected void UpdateAnimations()
+        {
+            if (!Animation.Animator)
+            {
+                return;
+            }
+
+            var _isAttacking = HasWeapon ? Weapon.WeaponObject.IsAttacking : false;
+
+            Animation.Animator.SetFloat(Animation.MovimentParam, CharacterMoveDirection.magnitude);
+            Animation.Animator.SetBool(Animation.IsAttacking, _isAttacking);
+            Animation.Animator.SetBool(Animation.IsSuperAttack, IsSuperAttack);
+
+            if (HasWeapon)
+            {
+                Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
+            }
         }
 
         public void SetWeapon(Game.Mecanics.Weapon newWeapon)
@@ -344,6 +396,12 @@ namespace Game.Mecanics
             {
                 GetPowerUp().UsePowerUp();
             }
+        }
+
+        // called by character animation event
+        public void AttackAnimationEvent()
+        {
+            OnAttackAnimationEvent.Invoke();
         }
     }
 }

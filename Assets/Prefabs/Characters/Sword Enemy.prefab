@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 7
-    Gravity: 2
+    Gravity: 15
     TurnSpeed: 10
     ExternalForceDeceleration: 2
     StopDistance: 3
@@ -156,12 +156,19 @@ MonoBehaviour:
     WeaponObject: {fileID: 6675851420747044059}
     Hand: {fileID: 8813778739184038490}
     DelayToAttack: 0.5
+    DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 50
     AutoDestroyOnDeathDelay: 0.1
     OnResetLife:
       m_PersistentCalls:
         m_Calls: []
+  Animation:
+    Animator: {fileID: 0}
+    MovimentParam: Vertical
+    IsAttacking: Is Attacking
+    IsSuperAttack: Is Super Attack
+    AttackAnimationID: Attack Anim ID
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -171,6 +178,10 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
+  OnAttackAnimationEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  IsSuperAttack: 0
   UseNavMeshAI: 0
 --- !u!1 &6740108370375643654
 GameObject:
