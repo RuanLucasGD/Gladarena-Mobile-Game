@@ -52,7 +52,7 @@ namespace Game.Mecanics
                         }
                     }
 
-                    WeaponTarget.AddDamage(Damage, Owner.transform.forward * AttackForce);
+                    WeaponTarget.AddDamage(CurrentAttackDamage, Owner.transform.forward * CurrentAttackForce);
                     _attackedEnemies.Add(WeaponTarget);
                 }
             }
@@ -117,7 +117,7 @@ namespace Game.Mecanics
 
         private IEnumerator DisableAttackDeleyed()
         {
-            yield return new WaitForSeconds(FinalAttackLength);
+            yield return new WaitForSeconds(AttackLength);
 
             IsAttacking = false;
             WeaponTarget = null;
@@ -138,8 +138,10 @@ namespace Game.Mecanics
                 return;
             }
 
-            var _angleToTarget = Vector3.Dot((WeaponTarget.transform.position - Owner.transform.position).normalized, Owner.transform.forward);
+            var _directionToTarget = (WeaponTarget.transform.position - Owner.transform.position).normalized;
+            var _angleToTarget = Vector3.Dot(_directionToTarget, Owner.transform.forward);
 
+            // wait character turn to target to after attack
             if (_angleToTarget <= MinDotAngleToAttack)
             {
                 return;

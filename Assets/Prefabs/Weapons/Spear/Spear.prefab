@@ -186,11 +186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackForce: 35
-  AttackRange: 7
-  Damage: 30
+  AttackRange: 5
+  AttackDamage: 40
   AttackLength: 1
   AnimationID: 1
-  MinDotAngleToAttack: 0.8
+  MinDotAngleToAttack: 0.95
   WeaponCollider: {fileID: 1973641760929820256}
 --- !u!54 &1973641761611290147
 Rigidbody:

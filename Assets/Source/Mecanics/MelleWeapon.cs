@@ -96,7 +96,7 @@ namespace Game.Mecanics
 
         private IEnumerator DisableAttackAfterTime()
         {
-            yield return new WaitForSeconds(FinalAttackLength);
+            yield return new WaitForSeconds(AttackLength);
             DisableAttack();
         }
 
@@ -104,7 +104,7 @@ namespace Game.Mecanics
         {
             var _direction = target.transform.position - Owner.transform.position;
             _direction /= _direction.magnitude;
-            _direction *= AttackForce;
+            _direction *= CurrentAttackForce;
 
             return _direction;
         }
@@ -154,13 +154,13 @@ namespace Game.Mecanics
             // attack only the target
             if (WeaponTarget)
             {
-                WeaponTarget.AddDamage(Damage, GetAttackForce(WeaponTarget));
+                WeaponTarget.AddDamage(CurrentAttackDamage, GetAttackForce(WeaponTarget));
                 return;
             }
 
             // attack all near characters
             var _nearInViewEnemies = GetNearInViewEnemies();
-            foreach (var c in _nearInViewEnemies) c.AddDamage(Damage, GetAttackForce(c));
+            foreach (var c in _nearInViewEnemies) c.AddDamage(AttackDamageMultiplier, GetAttackForce(c));
             _nearInViewEnemies = null;
         }
     }

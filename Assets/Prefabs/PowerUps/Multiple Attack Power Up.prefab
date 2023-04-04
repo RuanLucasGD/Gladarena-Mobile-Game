@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8415374328229548219}
   - component: {fileID: 3458680171111286920}
   m_Layer: 0
-  m_Name: Attack Length Multiplier
+  m_Name: Multiple Attack Power Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57bd687d831f9649a4d386ea22db9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterInterval: 0.1
-  WeaponInterval: 0.2
+  AttackForceMultiplier: 2
+  AttackDamageMultiplier: 2

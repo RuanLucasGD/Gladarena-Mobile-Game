@@ -114,7 +114,6 @@ namespace Game.Mecanics
         public bool IsAttacking => HasWeapon && Weapon.WeaponObject.IsAttacking;
         public bool HasWeapon => Weapon.WeaponObject;
         public float CurrentLife { get; private set; }
-        public bool IsSuperAttack;
 
         public bool CanMove { get; set; }
 
@@ -252,10 +251,10 @@ namespace Game.Mecanics
 
             Animation.Animator.SetFloat(Animation.MovimentParam, CharacterMoveDirection.magnitude);
             Animation.Animator.SetBool(Animation.IsAttacking, _isAttacking);
-            Animation.Animator.SetBool(Animation.IsSuperAttack, IsSuperAttack);
 
             if (HasWeapon)
             {
+                Animation.Animator.SetBool(Animation.IsSuperAttack, Weapon.WeaponObject.IsSuperAttack);
                 Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
             }
         }

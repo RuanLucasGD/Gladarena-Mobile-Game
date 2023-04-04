@@ -9,7 +9,7 @@ namespace Game.Mecanics
     {
         public float AttackForce;
         public float AttackRange;
-        public float Damage;
+        public float AttackDamage;
         public float AttackLength;
 
         [Header("Animation")]
@@ -38,12 +38,6 @@ namespace Game.Mecanics
             }
         }
 
-        private float _attackLengthMultiplier;
-
-        public float AttackLengthMultiplier { get => _attackLengthMultiplier; set => _attackLengthMultiplier = Mathf.Max(value, 0.1f); }
-
-        public float FinalAttackLength => AttackLength * AttackLengthMultiplier;
-
         /// <summary>
         /// Pass custom actions to weapon when enable
         /// </summary>
@@ -60,17 +54,24 @@ namespace Game.Mecanics
         /// <value></value>
         protected Character WeaponTarget { get; set; }
 
+        public bool IsSuperAttack { get; set; }
+        public float AttackForceMultiplier { get; set; }
+        public float AttackDamageMultiplier { get; set; }
+
+        public float CurrentAttackForce => AttackForce * AttackForceMultiplier;
+        public float CurrentAttackDamage => AttackDamage* AttackDamageMultiplier;
+
         public Weapon()
         {
             AttackRange = 3;
-            Damage = 40;
+            AttackDamage = 40;
             AttackLength = 1;
         }
 
         protected virtual void Awake()
         {
-            AttackLengthMultiplier = 1;
-
+            AttackDamageMultiplier = 1;
+            AttackForceMultiplier = 1;
             OnEnableAttack = () => { };
             OnDisableAttack = () => { };
         }

@@ -46,7 +46,7 @@ namespace Game.Mecanics
                 _forceDirection *= AttackForce;
                 _forceDirection += Vector3.up * AttackForceUp;
 
-                character.AddDamage(Damage, _forceDirection);
+                character.AddDamage(AttackDamage, _forceDirection);
             }
         }
 
