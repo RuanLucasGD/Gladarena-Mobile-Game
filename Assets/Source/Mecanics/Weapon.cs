@@ -15,6 +15,9 @@ namespace Game.Mecanics
         [Header("Animation")]
         public int AnimationID;
 
+        [Header("Sound")]
+        public AudioSource AttackAudioSource;
+
         private bool _isAttacking;
 
         public virtual Character Owner { get; set; }
@@ -59,7 +62,7 @@ namespace Game.Mecanics
         public float AttackDamageMultiplier { get; set; }
 
         public float CurrentAttackForce => AttackForce * AttackForceMultiplier;
-        public float CurrentAttackDamage => AttackDamage* AttackDamageMultiplier;
+        public float CurrentAttackDamage => AttackDamage * AttackDamageMultiplier;
 
         public Weapon()
         {
@@ -93,6 +96,11 @@ namespace Game.Mecanics
 
             IsAttacking = true;
             WeaponTarget = target;
+
+            if (AttackAudioSource)
+            {
+                AttackAudioSource.Play();
+            }
         }
     }
 }
