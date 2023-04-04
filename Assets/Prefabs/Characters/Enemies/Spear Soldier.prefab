@@ -530,13 +530,14 @@ MonoBehaviour:
     DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 200
-    AutoDestroyOnDeathDelay: 0.1
+    AutoDestroyOnDeathDelay: 5
     OnResetLife:
       m_PersistentCalls:
         m_Calls: []
   Animation:
     Animator: {fileID: 7885569573177732896}
     MovimentParam: Vertical Input
+    IsDeath: Is Death
     IsAttacking: Is Attacking
     IsSuperAttack: Is Super Attack
     AttackAnimationID: Attack Anim ID
@@ -552,7 +553,6 @@ MonoBehaviour:
   OnAttackAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
-  IsSuperAttack: 0
   UseNavMeshAI: 0
 --- !u!1 &7885569573170339050
 GameObject:

@@ -47,6 +47,12 @@ namespace Game.Mecanics
 
         private void FollowPlayer()
         {
+            if (!Player || Player.IsDeath)
+            {
+                CharacterMoveDirection = Vector3.zero;
+                return;
+            }
+
             var _directionToPlayer = (Player.transform.position - transform.position).normalized;
 
             // the soldider needs to use navmesh when is out screen because the character can fall 
@@ -62,11 +68,11 @@ namespace Game.Mecanics
 
         public override void Attack(Character target = null)
         {
-            if (!enabled)
+            if (!enabled || !Player || Player.IsDeath)
             {
                 return;
             }
-            
+
             LookAtDirection = (Player.transform.position - transform.position).normalized;
             CharacterMoveDirection = Vector3.zero;
             base.Attack(target);

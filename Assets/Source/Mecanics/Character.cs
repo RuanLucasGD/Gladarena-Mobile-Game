@@ -68,15 +68,25 @@ namespace Game.Mecanics
             [Space]
             public Animator Animator;
 
-            [Tooltip("A value from 0 to 1 representing if the player is moving")]
+            [Tooltip("A interger value, from 0 to 1 representing if the player is moving")]
             public string MovimentParam;
+
+            [Tooltip("Bool parameter, check if the character is death")]
+            public string IsDeath;
+
+            [Tooltip("Bool parameter")]
             public string IsAttacking;
+
+            [Tooltip("Bool parameter, true if the character is using special attack animation")]
             public string IsSuperAttack;
+
+            [Tooltip("Interger parameter, what weapon animation ID is using on AnimatorController?")]
             public string AttackAnimationID;
 
             public AnimationControl()
             {
                 MovimentParam = "Vertical";
+                IsDeath = "Is Death";
                 IsAttacking = "Is Attacking";
                 IsSuperAttack = "Is Super Attack";
                 AttackAnimationID = "Attack Animation ID";
@@ -161,12 +171,17 @@ namespace Game.Mecanics
             UpdateRotation(Time.deltaTime);
             UpdateMoviment(Time.deltaTime);
             UpdateExternalForce(Time.deltaTime);
-            UpdateAnimations();
 
             if (transform.position.y < -100)
             {
                 KillCharacter();
             }
+        }
+
+        protected virtual void LateUpdate()
+        {
+            // update on late update to process all character logic
+            UpdateAnimations();
         }
 
         private void UpdateMoviment(float delta)
@@ -181,7 +196,7 @@ namespace Game.Mecanics
                 CharacterMoveDirection = Vector3.zero;
             }
 
-            CharacterVelocity =CharacterMoveDirection;
+            CharacterVelocity = CharacterMoveDirection;
             CharacterVelocity *= Movimentation.MoveSpeed;
             CharacterVelocity = new Vector3(CharacterVelocity.x, -Movimentation.Gravity, CharacterVelocity.z);
             CharacterVelocity += _externalForce;
@@ -247,10 +262,13 @@ namespace Game.Mecanics
                 return;
             }
 
-            var _isAttacking = HasWeapon ? Weapon.WeaponObject.IsAttacking : false;
+            var _isAttacking = false;
+            if (HasWeapon && Weapon.WeaponObject.IsAttacking) _isAttacking = true;
+            if (IsDeath) _isAttacking = false;
 
             Animation.Animator.SetFloat(Animation.MovimentParam, CharacterMoveDirection.magnitude);
             Animation.Animator.SetBool(Animation.IsAttacking, _isAttacking);
+            Animation.Animator.SetBool(Animation.IsDeath, IsDeath);
 
             if (HasWeapon)
             {
@@ -304,11 +322,18 @@ namespace Game.Mecanics
             if (CurrentLife <= 0)
             {
                 CurrentLife = 0;
-                enabled = false;
                 IsDeath = true;
+                StartCoroutine(DisableCharacter());
 
                 OnDeath.Invoke();
-                Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
+
+                // wait to finalize all character logic to desactive
+                IEnumerator DisableCharacter()
+                {
+                    yield return new WaitForEndOfFrame();
+                    enabled = false;
+                    Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
+                }
             }
         }
 

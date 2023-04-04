@@ -195,6 +195,7 @@ MonoBehaviour:
   Animation:
     Animator: {fileID: 0}
     MovimentParam: Vertical
+    IsDeath: Is Death
     IsAttacking: Is Attacking
     IsSuperAttack: Is Super Attack
     AttackAnimationID: Attack Anim ID
@@ -210,7 +211,6 @@ MonoBehaviour:
   OnAttackAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
-  IsSuperAttack: 0
 --- !u!1 &8501272935429945273
 GameObject:
   m_ObjectHideFlags: 0

@@ -168,7 +168,7 @@ namespace Game.Mecanics
 
         public override void Attack(Character target = null)
         {
-            if (!NearEnemy || !enabled)
+            if (!NearEnemy || NearEnemy.IsDeath || !enabled)
             {
                 return;
             }

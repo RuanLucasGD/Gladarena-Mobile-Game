@@ -703,7 +703,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movimentation:
     MoveSpeed: 13
-    Gravity: 15
+    Gravity: 5
     TurnSpeed: 10
     ExternalForceDeceleration: 4
     StopDistance: 1
@@ -734,13 +734,14 @@ MonoBehaviour:
     DelatyToAttackMultiplier: 1
   Life:
     LifeAmount: 200
-    AutoDestroyOnDeathDelay: 1
+    AutoDestroyOnDeathDelay: 100000
     OnResetLife:
       m_PersistentCalls:
         m_Calls: []
   Animation:
     Animator: {fileID: 4664960912877185069}
     MovimentParam: Vertical Input
+    IsDeath: Is Death
     IsAttacking: Is Attacking
     IsSuperAttack: Is Super Attack
     AttackAnimationID: Attack Anim ID
@@ -756,7 +757,6 @@ MonoBehaviour:
   OnAttackAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
-  IsSuperAttack: 0
   InputMaps:
     InputAsset: {fileID: -944628639613478452, guid: 1d6fcabe57a241c46859b791e193fac6, type: 3}
     VerticalAction: Vertical
