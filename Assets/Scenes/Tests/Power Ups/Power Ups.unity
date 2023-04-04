@@ -972,17 +972,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
---- !u!114 &1124449085 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
-  m_PrefabInstance: {fileID: 896599835}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b9ad500b960814fb4cfd2f63c4974d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1220161576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1152,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767978792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1973641761611290144, guid: 218098259ae584040b7bb5f32b4cdb51, type: 3}
+  m_PrefabInstance: {fileID: 989583599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fd500eac73947adfc8101c83f527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1881944977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 1448692789631899809, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: Weapon.WeaponObject
       value: 
-      objectReference: {fileID: 1124449085}
+      objectReference: {fileID: 1767978792}
     - target: {fileID: 4664960912877185069, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are

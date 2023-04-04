@@ -14,6 +14,28 @@ namespace Game.Mecanics
 
         private List<Character> _attackedEnemies; // list ta be contain all attacked enemies of earch attack
 
+        public override Character Owner
+        {
+            get => base.Owner;
+            set
+            {
+                if (value)
+                {
+                    // when character attack, enable weapon collider to detect weapon hits
+                    // the collider needs to set enable on animation events because the animation 
+                    // needs a delay to start attack definitive
+                    value.OnAttackAnimationEvent.AddListener(EnableWeaponCollider);
+                }
+
+                if (base.Owner)
+                {
+                    base.Owner.OnAttackAnimationEvent.RemoveListener(EnableWeaponCollider);
+                }
+
+                base.Owner = value;
+            }
+        }
+
         public SpearWeapon()
         {
             AttackForce = 15;
@@ -22,11 +44,11 @@ namespace Game.Mecanics
 
         protected override void Awake()
         {
-            _attackedEnemies = new List<Character>();
-
             base.Awake();
 
-            OnEnableAttack += EnableWeaponCollider;
+            _attackedEnemies = new List<Character>();
+
+            // disable weapon collider when finalize attack
             OnDisableAttack += DisableWeaponCollider;
 
             DisableWeaponCollider();
