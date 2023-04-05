@@ -7,6 +7,9 @@ namespace Game.Mecanics
 {
     public class Weapon : MonoBehaviour
     {
+        [SerializeField]
+        protected bool DebugLog;
+
         public float AttackForce;
         public float AttackRange;
         public float AttackDamage;

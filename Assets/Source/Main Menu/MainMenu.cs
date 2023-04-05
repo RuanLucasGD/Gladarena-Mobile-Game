@@ -7,11 +7,9 @@ namespace Game.Menu
 {
     public class MainMenu : MonoBehaviour
     {
-        public string GameScene;
-
-        public void LoadGameScene()
+        public void LoadScene(string scene)
         {
-            SceneManager.LoadScene(GameScene);
+            SceneManager.LoadScene(scene);
         }
     }
 }

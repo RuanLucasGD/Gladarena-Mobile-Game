@@ -47,11 +47,16 @@ namespace Game.Mecanics
             base.Awake();
 
             _attackedEnemies = new List<Character>();
+        }
 
-            // disable weapon collider when finalize attack
-            OnDisableAttack += DisableWeaponCollider;
+        protected override void Update()
+        {
+            base.Update();
 
-            DisableWeaponCollider();
+            if (Owner && !Owner.IsStoped)
+            {
+                DisableAttack();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -140,9 +145,14 @@ namespace Game.Mecanics
         private IEnumerator DisableAttackDeleyed()
         {
             yield return new WaitForSeconds(AttackLength);
+            DisableAttack();
+        }
 
+        private void DisableAttack()
+        {
             IsAttacking = false;
             WeaponTarget = null;
+            DisableWeaponCollider();
             _attackedEnemies.Clear();
         }
 

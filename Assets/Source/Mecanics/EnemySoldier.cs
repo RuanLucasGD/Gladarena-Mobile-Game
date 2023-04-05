@@ -10,7 +10,17 @@ namespace Game.Mecanics
         public bool UseNavMeshAI;
 
         public PlayerCharacter Player => GameManager.Instance.Player;
-        public bool IsFollowingPlayer => Vector3.Distance(transform.position, Player.transform.position) > Movimentation.StopDistance;
+
+        public bool IsFollowingTarget
+        {
+            get
+            {
+                var _stopDistance = Movimentation.StopDistance;
+                var _isAttacking = HasWeapon && Weapon.WeaponObject.IsAttacking;
+                var _distanceToTarget = Vector3.Distance(transform.position, Player.transform.position);
+                return (_distanceToTarget > _stopDistance) && !_isAttacking;
+            }
+        }
 
         private bool OnScreen => CameraUtils.IsSpawnPointOnView(transform.position, Camera.main);
 
@@ -34,7 +44,7 @@ namespace Game.Mecanics
 
         private void UpdateCharacterState()
         {
-            if (IsFollowingPlayer)
+            if (IsFollowingTarget)
             {
                 FollowPlayer();
 
