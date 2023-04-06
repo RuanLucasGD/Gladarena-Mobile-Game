@@ -12,8 +12,6 @@ namespace Game.Mecanics
         [Header("Components")]
         public Collider WeaponCollider;
 
-        private List<Character> _attackedEnemies; // list ta be contain all attacked enemies of earch attack
-
         public override Character Owner
         {
             get => base.Owner;
@@ -45,8 +43,6 @@ namespace Game.Mecanics
         protected override void Awake()
         {
             base.Awake();
-
-            _attackedEnemies = new List<Character>();
         }
 
         protected override void Update()
@@ -61,27 +57,21 @@ namespace Game.Mecanics
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!IsAttacking || !WeaponTarget)
+            if (!IsAttacking || other.gameObject == Owner.gameObject)
             {
                 return;
             }
 
-            // apply attack on detect target
+            // apply attack on detect character
             if (other.gameObject.TryGetComponent<Character>(out var character))
             {
-                if (character == WeaponTarget)  // attack only one enemy
+                // when has a specific target, attack only this target, if not attack any character
+                if (WeaponTarget && WeaponTarget != character)
                 {
-                    foreach (var attackedEnemy in _attackedEnemies)
-                    {
-                        if (character == attackedEnemy) // don't attack enemy if is already attacked
-                        {
-                            return;
-                        }
-                    }
-
-                    WeaponTarget.AddDamage(CurrentAttackDamage, Owner.transform.forward * CurrentAttackForce);
-                    _attackedEnemies.Add(WeaponTarget);
+                    return;
                 }
+
+                character.AddDamage(CurrentAttackDamage, Owner.transform.forward * CurrentAttackForce);
             }
         }
 
@@ -144,7 +134,7 @@ namespace Game.Mecanics
 
         private IEnumerator DisableAttackDeleyed()
         {
-            yield return new WaitForSeconds(AttackLength);
+            yield return new WaitForSeconds(CurrentAttackLength);
             DisableAttack();
         }
 
@@ -153,7 +143,6 @@ namespace Game.Mecanics
             IsAttacking = false;
             WeaponTarget = null;
             DisableWeaponCollider();
-            _attackedEnemies.Clear();
         }
 
         public override void Attack(Character target = null)
@@ -163,14 +152,14 @@ namespace Game.Mecanics
                 return;
             }
 
-            WeaponTarget = target != null ? target : FindNearEnemy();
+            var _targetToLookAt = target ? target : FindNearEnemy();
 
-            if (!WeaponTarget)
+            if (!_targetToLookAt)
             {
                 return;
             }
 
-            var _directionToTarget = (WeaponTarget.transform.position - Owner.transform.position).normalized;
+            var _directionToTarget = (_targetToLookAt.transform.position - Owner.transform.position).normalized;
             var _angleToTarget = Vector3.Dot(_directionToTarget, Owner.transform.forward);
 
             // wait character turn to target to after attack
@@ -179,7 +168,7 @@ namespace Game.Mecanics
                 return;
             }
 
-            base.Attack(WeaponTarget);
+            base.Attack(target);
 
             StartCoroutine(DisableAttackDeleyed());
         }

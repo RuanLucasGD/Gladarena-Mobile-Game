@@ -94,7 +94,7 @@ MonoBehaviour:
   DebugLog: 0
   AttackForce: 35
   AttackRange: 7
-  AttackDamage: 100
+  AttackDamage: 30
   AttackLength: 1
   AnimationID: 1
   AttackAudioSource: {fileID: 0}

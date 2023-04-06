@@ -63,9 +63,11 @@ namespace Game.Mecanics
         public bool IsSuperAttack { get; set; }
         public float AttackForceMultiplier { get; set; }
         public float AttackDamageMultiplier { get; set; }
+        public float AttackLengthMultiplier { get; set; }
 
         public float CurrentAttackForce => AttackForce * AttackForceMultiplier;
         public float CurrentAttackDamage => AttackDamage * AttackDamageMultiplier;
+        public float CurrentAttackLength => AttackLength * AttackLengthMultiplier;
 
         public Weapon()
         {
@@ -78,6 +80,7 @@ namespace Game.Mecanics
         {
             AttackDamageMultiplier = 1;
             AttackForceMultiplier = 1;
+            AttackLengthMultiplier = 1;
             OnEnableAttack = () => { };
             OnDisableAttack = () => { };
         }

@@ -6,6 +6,7 @@ namespace Game.Mecanics
 {
     public class SuperAttackPowerUp : PowerUp
     {
+        public float AttackLengthMultiplier;
         public float AttackForceMultiplier;
         public float AttackDamageMultiplier;
 
@@ -14,12 +15,13 @@ namespace Game.Mecanics
             get => base.Owner;
             set
             {
-                // reset attack force/damage multiplier
+                // reset attack multiplier
                 if (Owner && Owner.HasWeapon)
                 {
                     Owner.Weapon.WeaponObject.IsSuperAttack = false;
                     Owner.Weapon.WeaponObject.AttackDamageMultiplier = 1;
                     Owner.Weapon.WeaponObject.AttackForceMultiplier = 1;
+                    Owner.Weapon.WeaponObject.AttackLengthMultiplier = 1;
                 }
 
                 if (value && value.HasWeapon)
@@ -27,6 +29,7 @@ namespace Game.Mecanics
                     value.Weapon.WeaponObject.IsSuperAttack = true;
                     value.Weapon.WeaponObject.AttackDamageMultiplier = AttackDamageMultiplier;
                     value.Weapon.WeaponObject.AttackForceMultiplier = AttackForceMultiplier;
+                    value.Weapon.WeaponObject.AttackLengthMultiplier = AttackLengthMultiplier;
                 }
 
                 base.Owner = value;
@@ -37,6 +40,7 @@ namespace Game.Mecanics
         {
             AttackForceMultiplier = 2;
             AttackDamageMultiplier = 2;
+            AttackLengthMultiplier = 2;
         }
     }
 }

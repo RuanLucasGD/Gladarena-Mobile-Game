@@ -69,7 +69,7 @@ namespace Game.Mecanics
 
         private IEnumerator DisableAttackAfterTime()
         {
-            yield return new WaitForSeconds(AttackLength);
+            yield return new WaitForSeconds(CurrentAttackLength);
             DisableAttack();
         }
 
