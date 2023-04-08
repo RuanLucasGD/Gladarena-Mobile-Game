@@ -140,8 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af950db8d27ee94d85fd149220d5587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 30
+  Damage: 0
   Force: 30
+  SupportedHits: 10
+  RearmTime: 5
+  ShieldMesh: {fileID: 6911220966635967152}
 --- !u!54 &-7851535218811198728
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -311,13 +311,17 @@ namespace Game.Mecanics
 
         public void AddDamage(float damage, Vector3 attackForce = default)
         {
-            if (IsDeath || IsInvencible || !enabled)
+            if (IsDeath || !enabled)
             {
                 return;
             }
 
-            CurrentLife -= damage;
-            AddExternalForce(attackForce);
+            if (!IsInvencible)
+            {
+                CurrentLife -= damage;
+                AddExternalForce(attackForce);
+            }
+
             OnDamaged.Invoke();
 
             if (CurrentLife <= 0)
