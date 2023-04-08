@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TurnSpeed: 300
   Force: 30
+  DisarmAfterTime: 5
+  RearmAfterTime: 5
+  Model: {fileID: 6540740917255144038}
 --- !u!54 &5250648627521437534
 Rigidbody:
   m_ObjectHideFlags: 0
