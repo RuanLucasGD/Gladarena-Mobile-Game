@@ -15,7 +15,7 @@ namespace Game.Mecanics
             set
             {
                 base.Owner = value;
-                gameObject.SetActive(Owner != null);
+                gameObject.SetActive(true);
             }
         }
 

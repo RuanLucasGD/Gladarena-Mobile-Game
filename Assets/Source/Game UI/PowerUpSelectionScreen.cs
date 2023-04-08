@@ -40,7 +40,7 @@ namespace Game.UI
         {
             var _powerUp = Instantiate(powerUp.gameObject, Vector3.zero, Quaternion.identity).GetComponent<PowerUp>();
 
-            GameManager.Instance.Player.SetPowerUp(_powerUp);
+            GameManager.Instance.Player.AddPowerUp(_powerUp);
 
             HiddenPowerUpScreen();
             OnSelectPowerUp.Invoke();

@@ -1483,6 +1483,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5918751300018734577, guid: e8b9973d48f3ae646902a8d58d2c44da, type: 3}
   m_PrefabInstance: {fileID: 61968033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &66749006
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.572231
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.797102
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48063767
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8769194
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 122.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_Name
+      value: Sword Soldier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
 --- !u!1001 &69576811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5536,6 +5597,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5918751300018734577, guid: e8b9973d48f3ae646902a8d58d2c44da, type: 3}
   m_PrefabInstance: {fileID: 253776887}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &254734570
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.183144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.914402
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48063767
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8769194
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 122.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_Name
+      value: Sword Soldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
 --- !u!1001 &255815318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25528,7 +25650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1142721368
 PrefabInstance:
@@ -30861,7 +30983,7 @@ Transform:
   - {fileID: 1429400102}
   - {fileID: 826252869}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1361351792
 MonoBehaviour:
@@ -35402,6 +35524,67 @@ Transform:
   m_Father: {fileID: 1560415139}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1595318550
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.954664
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.751017
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48063767
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8769194
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 122.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_Name
+      value: Sword Soldier (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
 --- !u!1001 &1595594688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39857,6 +40040,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5918751300018734577, guid: e8b9973d48f3ae646902a8d58d2c44da, type: 3}
   m_PrefabInstance: {fileID: 1817049390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1820738751
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48063767
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8769194
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 122.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537977919782, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_Name
+      value: Sword Soldier (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871515537978414342, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
 --- !u!1001 &1821162533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42953,7 +43197,7 @@ Transform:
   - {fileID: 390412676}
   - {fileID: 1608080647}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1956739121
 PrefabInstance:
@@ -45383,8 +45627,8 @@ MonoBehaviour:
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 15
+        MaxEnemiesInScene: 1
+        MaxEnemiesSpawned: 2
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -45393,34 +45637,8 @@ MonoBehaviour:
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 15
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Spear Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: a7ef4fdb635622442807add3ed7b58d3, type: 3}
         MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 4
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-    - name: Horder 3
-      EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 15
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Spear Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: a7ef4fdb635622442807add3ed7b58d3, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 8
+        MaxEnemiesSpawned: 2
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -45431,8 +45649,8 @@ MonoBehaviour:
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 15
+        MaxEnemiesInScene: 1
+        MaxEnemiesSpawned: 2
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -45441,34 +45659,8 @@ MonoBehaviour:
       EnemiesSpawn:
       - Name: Sword Soldier
         EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 15
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Spear Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: a7ef4fdb635622442807add3ed7b58d3, type: 3}
         MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 4
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-    - name: Horder 3
-      EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 15
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Spear Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: a7ef4fdb635622442807add3ed7b58d3, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 8
+        MaxEnemiesSpawned: 2
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -45503,7 +45695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2040004909
 PrefabInstance:
@@ -49459,6 +49651,14 @@ PrefabInstance:
       propertyPath: Offset.z
       value: -9.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1687258584, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687258584, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
+      propertyPath: field of view
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 2258248914262863994, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -49553,7 +49753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4010695034577743676, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4010695034577743676, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49715,7 +49915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636267930241118374, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7636267930241118374, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: m_LocalPosition.x

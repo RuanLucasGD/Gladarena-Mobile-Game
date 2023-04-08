@@ -9,5 +9,6 @@ namespace Game.Mecanics
         public virtual Character Owner { get; set; }
 
         public virtual void UsePowerUp() { }
+        public virtual void OnRemove() { }
     }
 }

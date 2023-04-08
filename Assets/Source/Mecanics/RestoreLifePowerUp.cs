@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Mecanics
@@ -11,21 +9,7 @@ namespace Game.Mecanics
             get => base.Owner;
             set
             {
-                if (value)
-                {
-                    if (ArenaManager.Instance)
-                    {
-                        ArenaManager.Instance.OnStartLevel.AddListener(UseWhenStartLevel);
-                    }
-                }
-                else
-                {
-                    if (ArenaManager.Instance)
-                    {
-                        ArenaManager.Instance.OnStartLevel.RemoveListener(UseWhenStartLevel);
-                    }
-                }
-
+                SetupPowerUp();
                 base.Owner = value;
             }
         }
@@ -45,12 +29,33 @@ namespace Game.Mecanics
 
             base.UsePowerUp();
             Owner.ResetLife();
-            Owner.SetPowerUp(null, true);   // use this power up only once
+
+
+            Debug.Log("used");
+        }
+
+        public override void OnRemove()
+        {
+            base.OnRemove();
+            Debug.Log("removed");
         }
 
         private void UseWhenStartLevel(int currentHorder)
         {
             UsePowerUp();
+
+            // dont use this powerup anymore
+            Owner.RemovePowerUp(this);
+        }
+
+        private void SetupPowerUp()
+        {
+
+            if (ArenaManager.Instance)
+            {
+                ArenaManager.Instance.OnStartLevel.AddListener(UseWhenStartLevel);
+                ArenaManager.Instance.OnCompleteLevel.RemoveListener(UseWhenStartLevel);
+            }
         }
     }
 }

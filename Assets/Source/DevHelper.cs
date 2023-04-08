@@ -117,15 +117,8 @@ namespace Game.Experimental
                 return;
             }
 
-            if (powerUp)
-            {
-                var _powerUp = Instantiate(powerUp.gameObject, Vector3.zero, Quaternion.identity).GetComponent<PowerUp>();
-                Player.SetPowerUp(_powerUp);
-            }
-            else
-            {
-                Player.SetPowerUp(null, true);
-            }
+            var _powerUp = Instantiate(powerUp.gameObject, Vector3.zero, Quaternion.identity).GetComponent<PowerUp>();
+            Player.AddPowerUp(_powerUp);
         }
 
         void SetPlayerWeapon(Weapon weapon)
@@ -219,22 +212,27 @@ namespace Game.Experimental
             currentGuiPosY += 30;
             GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Player Life {(int)Player.CurrentLife}", normalLabel);
 
-            currentGuiPosY += 30;
-            var _powerUpName = Player.GetPowerUp() ? Player.GetPowerUp().name : "none";
-            GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Player Power Up: {_powerUpName}", normalLabel);
+            currentGuiPosY += 50;
+            GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Power Ups {(int)Player.GetPowerUps().Length}", titleLabel);
 
-            if (Player.GetPowerUp())
+            foreach (var p in Player.GetPowerUps())
+            {
+                currentGuiPosY += 30;
+                GUI.Label(new Rect(30, currentGuiPosY, 50, 50), $"Player Power Up: {p.name}", normalLabel);
+            }
+
+            if (Player.GetPowerUps().Length > 0)
             {
                 currentGuiPosY += 30;
                 if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), "Use Power Up"))
                 {
-                    Player.UsePowerUp();
+                    Player.UsePowerUps();
                 }
 
                 currentGuiPosY += 30;
-                if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), "Remove Power Up"))
+                if (GUI.Button(new Rect(30, currentGuiPosY, 150, 30), "Remove Power Ups:"))
                 {
-                    SetPlayerPowerUp(null);
+                    Player.RemovePowerUps();
                 }
             }
             else

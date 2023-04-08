@@ -15,16 +15,7 @@ namespace Game.Mecanics
             get => base.Owner;
             set
             {
-                // reset attack multiplier
-                if (Owner && Owner.HasWeapon)
-                {
-                    Owner.Weapon.WeaponObject.IsSuperAttack = false;
-                    Owner.Weapon.WeaponObject.AttackDamageMultiplier = 1;
-                    Owner.Weapon.WeaponObject.AttackForceMultiplier = 1;
-                    Owner.Weapon.WeaponObject.AttackLengthMultiplier = 1;
-                }
-
-                if (value && value.HasWeapon)
+                if (value.HasWeapon)
                 {
                     value.Weapon.WeaponObject.IsSuperAttack = true;
                     value.Weapon.WeaponObject.AttackDamageMultiplier = AttackDamageMultiplier;
@@ -41,6 +32,20 @@ namespace Game.Mecanics
             AttackForceMultiplier = 2;
             AttackDamageMultiplier = 2;
             AttackLengthMultiplier = 2;
+        }
+
+        public override void OnRemove()
+        {
+            base.OnRemove();
+
+            // reset attack multiplier
+            if (Owner && Owner.HasWeapon)
+            {
+                Owner.Weapon.WeaponObject.IsSuperAttack = false;
+                Owner.Weapon.WeaponObject.AttackDamageMultiplier = 1;
+                Owner.Weapon.WeaponObject.AttackForceMultiplier = 1;
+                Owner.Weapon.WeaponObject.AttackLengthMultiplier = 1;
+            }
         }
     }
 }

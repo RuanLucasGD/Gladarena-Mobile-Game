@@ -112,7 +112,7 @@ namespace Game.Mecanics
         private Vector3 _externalForce;
         private NavMeshPath _aiPath;
         private CharacterController _characterController;
-        private PowerUp _powerUp;
+        private List<PowerUp> _powerUps;
 
         private float DelayToAttack => Weapon.DelayToAttack * Weapon.DelatyToAttackMultiplier;
 
@@ -145,6 +145,7 @@ namespace Game.Mecanics
         {
             _aiPath = new NavMeshPath();
             _characterController = GetComponent<CharacterController>();
+            _powerUps = new List<PowerUp>();
 
             CanMove = true;
             CurrentLife = Life.LifeAmount;
@@ -376,50 +377,52 @@ namespace Game.Mecanics
             }
         }
 
-        public void SetPowerUp(PowerUp powerUp, bool destroyWhenRemove = true)
+        public void AddPowerUp(PowerUp powerUp)
         {
-            if (!enabled)
+            if (!enabled && !powerUp)
             {
                 return;
             }
 
-            if (powerUp)
-            {
-                powerUp.gameObject.transform.parent = transform;
-                powerUp.gameObject.transform.localPosition = Vector3.zero;
-                powerUp.gameObject.transform.localRotation = Quaternion.identity;
-                powerUp.Owner = this;
-            }
-            else if (_powerUp)
-            {
-                if (destroyWhenRemove)
-                {
-                    Destroy(_powerUp.gameObject);
-                }
-                else
-                {
-                    _powerUp.transform.parent = null;
-                }
+            powerUp.gameObject.transform.parent = transform;
+            powerUp.gameObject.transform.localPosition = Vector3.zero;
+            powerUp.gameObject.transform.localRotation = Quaternion.identity;
+            powerUp.Owner = this;
 
-                _powerUp.Owner = null;
-            }
-
-            _powerUp = powerUp;
+            _powerUps.Add(powerUp);
         }
 
-        public PowerUp GetPowerUp() => _powerUp;
+        public PowerUp[] GetPowerUps() => _powerUps.ToArray();
 
-        public void UsePowerUp()
+        public void UsePowerUps()
         {
             if (!enabled)
             {
                 return;
             }
 
-            if (GetPowerUp())
+            foreach (var p in _powerUps)
             {
-                GetPowerUp().UsePowerUp();
+                p.UsePowerUp();
             }
+        }
+
+        public void RemovePowerUp(PowerUp powerUp)
+        {
+            powerUp.OnRemove();
+            _powerUps.Remove(powerUp);
+            Destroy(powerUp.gameObject);
+        }
+
+        public void RemovePowerUps()
+        {
+            foreach (var p in _powerUps)
+            {
+                p.OnRemove();
+                Destroy(p.gameObject);
+            }
+
+            _powerUps.Clear();
         }
 
         // called by character animation event
