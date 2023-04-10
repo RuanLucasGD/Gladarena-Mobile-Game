@@ -28,6 +28,14 @@ namespace Game.Mecanics
                 set
                 {
                     _isEnabled = value;
+
+                    if (!Ground)
+                    {
+                        Debug.LogWarning("Add level ground on your level map generator");
+                        return;
+                    }
+
+
                     Ground.SetActive(value);
                 }
             }
