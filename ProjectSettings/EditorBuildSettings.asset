@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tests/ADS/ADS.unity
     guid: 54784038c30c77c41a0750317f836b21
+  - enabled: 1
+    path: Assets/Scenes/Ph scene/Game Scene.unity
+    guid: 528b9f31a580a394fb561cb2ff54dd2b
   m_configObjects: {}
