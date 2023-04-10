@@ -17,7 +17,6 @@ namespace Game.Mecanics
 
         [Space]
 
-        public bool RestartOnKillPlayer;
         public float RestartGameDelay;
 
         [Space]
@@ -88,7 +87,6 @@ namespace Game.Mecanics
 
         public GameManager()
         {
-            RestartOnKillPlayer = true;
             RestartGameDelay = 2;
             DisablePlayerOnStart = false;
         }
@@ -107,11 +105,6 @@ namespace Game.Mecanics
             {
                 Debug.LogError("Player not finded on scene");
                 return;
-            }
-
-            if (RestartOnKillPlayer)
-            {
-                Player.OnDeath.AddListener(RestartGameDeleyed);
             }
 
             if (ArenaManager.Instance)

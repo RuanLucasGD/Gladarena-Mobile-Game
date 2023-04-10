@@ -103,6 +103,7 @@ namespace Game.Mecanics
         public UnityEvent OnDeath;
         public UnityEvent OnDamaged;
         public UnityEvent OnSetWeapon;
+        public UnityEvent OnRevive;
 
         [Header("Animation Events")]
         public UnityEvent OnAttackAnimationEvent;
@@ -119,6 +120,7 @@ namespace Game.Mecanics
         public CharacterController CharacterController => _characterController;
 
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
+        public bool IsGrounded => CharacterController.isGrounded;
         public bool IsInvencible { get; set; }
         public bool IsDeath { get; private set; }
         public bool IsAttacking => HasWeapon && Weapon.WeaponObject.IsAttacking;
@@ -329,6 +331,7 @@ namespace Game.Mecanics
                 CurrentLife = 0;
                 IsDeath = true;
                 StartCoroutine(DisableCharacter());
+                StartCoroutine(DestroyCharacterDeleyed());
 
                 OnDeath.Invoke();
 
@@ -337,7 +340,17 @@ namespace Game.Mecanics
                 {
                     yield return new WaitForEndOfFrame();
                     enabled = false;
-                    Destroy(gameObject, Life.AutoDestroyOnDeathDelay);
+                }
+
+                IEnumerator DestroyCharacterDeleyed()
+                {
+                    yield return new WaitForSeconds(Life.AutoDestroyOnDeathDelay);
+
+                    if (IsDeath)
+                    {
+                        enabled = false;
+                        Destroy(gameObject);
+                    }
                 }
             }
         }
@@ -349,12 +362,14 @@ namespace Game.Mecanics
 
         public void ResetLife()
         {
-            if (!enabled)
-            {
-                return;
-            }
-
             CurrentLife = Life.LifeAmount;
+
+            if (IsDeath)
+            {
+                IsDeath = false;
+                enabled = true;
+                OnRevive.Invoke();
+            }
         }
 
         public void AddExternalForce(Vector3 force)

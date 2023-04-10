@@ -30,6 +30,7 @@ namespace Game.UI
             if (ExitGameButton) ExitGameButton.onClick.AddListener(ExitGame);
 
             GameManager.Instance.Player.OnDeath.AddListener(FinishGame);
+            GameManager.Instance.Player.OnDeath.AddListener(ContinueGame);
 
             if (ArenaManager.Instance)
             {

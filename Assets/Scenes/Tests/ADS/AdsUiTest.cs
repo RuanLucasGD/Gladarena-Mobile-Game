@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Game.Experimental;
 using UnityEngine.Advertisements;
+using Game.Monetization;
 
 public class AdsUiTest : MonoBehaviour
 {

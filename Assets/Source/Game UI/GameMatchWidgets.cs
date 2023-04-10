@@ -48,6 +48,7 @@ namespace Game.UI
             ArenaManager.Instance.OnGameWin.AddListener(ShowGameWinWidget);
 
             GameManager.Instance.Player.OnDeath.AddListener(ShowGameOverWidget);
+            GameManager.Instance.Player.OnRevive.AddListener(DisableAll);
         }
 
         private void ShowWidget(Widget widget, string message)
@@ -77,6 +78,16 @@ namespace Game.UI
         private void DisableWidget(Widget widget)
         {
             widget.MainObject.SetActive(false);
+        }
+
+        public void DisableAll()
+        {
+            DisableWidget(StartHorder);
+            DisableWidget(CompleteHorder);
+            DisableWidget(StartLevel);
+            DisableWidget(CompleteLevel);
+            DisableWidget(GameWin);
+            DisableWidget(GameOver);
         }
 
         private void ShowStartHorderWidget(int newHorder)

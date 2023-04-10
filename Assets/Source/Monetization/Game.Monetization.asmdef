@@ -1,9 +1,7 @@
 {
-    "name": "Game.UI",
+    "name": "Game.Monetization",
     "rootNamespace": "",
     "references": [
-        "GUID:4214bc9dffaf5994caa39792fff130ad",
-        "GUID:e5798eddcc4387647872582fe689c632",
         "GUID:ff6de30450f3748908ff580f6ec64d9a"
     ],
     "includePlatforms": [],

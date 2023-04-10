@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Advertisements;
 
-namespace Game.Experimental
+namespace Game.Monetization
 {
-
-
     /// <summary>
     /// Show ads 
     /// </summary>
@@ -92,6 +90,8 @@ namespace Game.Experimental
         private AdsListener _adsListener;
         private static MonetizationManager _monetizationManager;
 
+        public UnityEvent OnInitialized { get; set; }
+
         public bool HasAdsLoaded { get; set; }
         public bool IsLoadingAds { get; private set; }
 
@@ -121,10 +121,16 @@ namespace Game.Experimental
 
         private void Awake()
         {
+            if (this != MonetizationManager.Instance)
+            {
+                Destroy(this);
+            }
+
             _adsListener = new AdsListener();
+            OnInitialized = new UnityEvent();
 
             DontDestroyOnLoad(this);
-            InitializeAds();
+            InitializeAds(() => OnInitialized.Invoke());
         }
 
         private void InitializeAds(UnityAction onInitialize = null, UnityAction<UnityAdsInitializationError, string> onInitializeFail = null)
