@@ -183,7 +183,6 @@ namespace Game.Mecanics
 
         protected void SpawnEnemy(EnemySpawn enemySpawn)
         {
-
             var _player = GameManager.Instance.Player;
             var _spawnPosition = GenerateSpawnPoint();
             var _lookAtPlayer = Quaternion.LookRotation(_spawnPosition - _player.transform.position);

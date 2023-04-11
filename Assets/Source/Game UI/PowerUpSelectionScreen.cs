@@ -10,11 +10,11 @@ namespace Game.UI
 
         void Awake()
         {
-            HiddenScreen();
+            HideScreen();
 
             if (ArenaManager.Instance)
             {
-                ArenaManager.Instance.OnStartLevel.AddListener(HiddenOnStartLevel);
+                ArenaManager.Instance.OnStartLevel.AddListener(HideOnStartLevel);
                 ArenaManager.Instance.OnCompleteLevel.AddListener(ShowOnLevelCompleted);
             }
 
@@ -31,7 +31,7 @@ namespace Game.UI
             gameObject.SetActive(true);
         }
 
-        private void HiddenScreen()
+        private void HideScreen()
         {
             gameObject.SetActive(false);
         }
@@ -42,9 +42,9 @@ namespace Game.UI
             GameManager.Instance.Player.OnGetCenter.AddListener(CleanListeners);
         }
 
-        private void HiddenOnStartLevel(int level)
+        private void HideOnStartLevel(int level)
         {
-            HiddenScreen();
+            HideScreen();
         }
 
         private void CleanListeners()
@@ -59,7 +59,7 @@ namespace Game.UI
 
             GameManager.Instance.Player.AddPowerUp(_powerUp);
 
-            HiddenScreen();
+            HideScreen();
             OnSelectPowerUp.Invoke();
         }
 

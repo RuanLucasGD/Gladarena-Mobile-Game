@@ -11,7 +11,13 @@ namespace Game.UI
 
         private void Awake()
         {
-            OnSelectWeapon.AddListener(HiddenWeaponSelector);
+            OnSelectWeapon.AddListener(HideScreen);
+
+            if (MainMenuManager.Instance)
+            {
+                HideScreen();
+                MainMenuManager.Instance.OnHideMainMenu.AddListener(ShowWhenExitMainMenu);
+            }
         }
 
         public void SetWeapon(int index)
@@ -36,9 +42,19 @@ namespace Game.UI
             OnSelectWeapon.Invoke();
         }
 
-        private void HiddenWeaponSelector()
+        private void ShowScreen()
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void HideScreen()
         {
             gameObject.SetActive(false);
+        }
+
+        private void ShowWhenExitMainMenu()
+        {
+            ShowScreen();
         }
     }
 }
