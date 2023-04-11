@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugLog: 0
   AttackForce: 15
-  AttackRange: 4
-  AttackDamage: 40
+  AttackRange: 4.8
+  AttackDamage: 50
   AttackLength: 1.1
   AnimationID: 0
   AttackAudioSource: {fileID: 0}
