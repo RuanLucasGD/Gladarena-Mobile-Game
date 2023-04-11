@@ -45611,56 +45611,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 2027619686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ed9b8a1786a1144b574e7722bb1034, type: 3}
+  m_Script: {fileID: 11500000, guid: 36bdd9274fe499544a786ff32e25367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugLog: 0
+  DebugLog: 1
   ArenaCaracteristics:
     EnemySpawnsTag: Spawn
   Intervals:
     HordeInterval: 5
-    LevelInterval: 2
+    LevelInterval: 5
   Levels:
   - name: Level 1
     Horders:
     - name: Horder 1
       EnemiesSpawn:
-      - Name: Sword Soldier
+      - Name: Soldier
         EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
         MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 2
+        MaxEnemiesSpawned: 1
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-    - name: Horder 2
-      EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 2
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-  - name: Level 1
+  - name: Level 2
     Horders:
     - name: Horder 1
       EnemiesSpawn:
-      - Name: Sword Soldier
+      - Name: Soldier
         EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
         MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 2
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-    - name: Horder 2
-      EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
-        MaxEnemiesInScene: 1
-        MaxEnemiesSpawned: 2
+        MaxEnemiesSpawned: 1
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0

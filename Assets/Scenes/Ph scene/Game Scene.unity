@@ -4094,8 +4094,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2027619686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ed9b8a1786a1144b574e7722bb1034, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: 36bdd9274fe499544a786ff32e25367f, type: 3}
+m_Name: 
   m_EditorClassIdentifier: 
   DebugLog: 0
   ArenaCaracteristics:

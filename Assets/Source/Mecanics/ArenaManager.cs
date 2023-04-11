@@ -136,7 +136,11 @@ namespace Game.Mecanics
 
         protected virtual void Start() { }
 
-        protected virtual void Update() { }
+        protected virtual void Update()
+        {
+            UpdateEnemiesSpawn();
+            CheckGameProgression();
+        }
 
         protected virtual void LateUpdate() { }
 
@@ -224,6 +228,22 @@ namespace Game.Mecanics
             // game progression
             if (!_gameCompleted) return;
             FinalizeGame();
+        }
+
+        private void UpdateEnemiesSpawn()
+        {
+            if (!CanSpawnEnemies)
+            {
+                return;
+            }
+
+            foreach (var s in CurrentHorder.EnemiesSpawn)
+            {
+                if (s.IsMissingEnemies)
+                {
+                    SpawnEnemy(s);
+                }
+            }
         }
 
         private bool CheckHorderCompleted()
@@ -382,9 +402,9 @@ namespace Game.Mecanics
             {
                 CurrentHorderIndex = 0;
                 CurrentLevelIndex++;
-            }
 
-            if (DebugLog) Debug.Log($"Set next level {CurrentHorderIndex}");
+                if (DebugLog) Debug.Log($"Set next level {CurrentHorderIndex}");
+            }
         }
 
         /// <summary>
