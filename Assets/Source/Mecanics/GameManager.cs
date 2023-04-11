@@ -110,7 +110,8 @@ namespace Game.Mecanics
             if (ArenaManager.Instance)
             {
                 ArenaManager.Instance.OnStartLevel.AddListener(l => SetEnablePlayerControl(true));
-                ArenaManager.Instance.OnCompleteLevel.AddListener(l => SetEnablePlayerControl(false));
+                //ArenaManager.Instance.OnCompleteLevel.AddListener(l => SetEnablePlayerControl(false));
+                ArenaManager.Instance.OnCompleteLevel.AddListener(l => Player.MovePlayerToCenter());
             }
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Game.Mecanics
@@ -41,6 +42,7 @@ namespace Game.Mecanics
         /// Has all settings of player control. 
         /// </summary>
         public PlayerInputs InputMaps;
+        public UnityEvent OnGetCenter;
 
         public InputAction VerticalAction { get; private set; }
         public InputAction HorizontalAction { get; private set; }
@@ -51,6 +53,9 @@ namespace Game.Mecanics
         public bool SearchEnemies => IsStoped;
 
         public Character NearEnemy { get; private set; }
+        public bool IsMovingToCenter { get; private set; }
+
+        private Vector3 _ArenaCenter => ArenaManager.Instance ? ArenaManager.Instance.ArenaCaracteristics.ArenaCenter.position : Vector3.zero;
 
         private void OnEnable()
         {
@@ -86,8 +91,16 @@ namespace Game.Mecanics
         protected override void Update()
         {
             base.Update();
-            UpdatePlayerControls();
-            
+
+            if (IsMovingToCenter)
+            {
+                UpdateMoveToCenter();
+            }
+            else
+            {
+                UpdatePlayerControls();
+            }
+
             if (HasWeapon)
             {
                 FindNearEnemy();
@@ -120,6 +133,18 @@ namespace Game.Mecanics
             var _moveDirection = ((_forward * _vertical) + (_right * _horizontal)).normalized;
 
             CharacterMoveDirection = _moveDirection;
+        }
+
+        private void UpdateMoveToCenter()
+        {
+            if (Vector3.Distance(transform.position, _ArenaCenter) < Movimentation.StopDistance)
+            {
+                IsMovingToCenter = false;
+                OnGetCenter.Invoke();
+                return;
+            }
+
+            CharacterMoveDirection = GetAiPathDirection(_ArenaCenter);
         }
 
         private void FindNearEnemy()
@@ -166,6 +191,11 @@ namespace Game.Mecanics
             LookAtDirection = NearEnemy.transform.position - transform.position;
             // attack any hear enemy 
             base.Attack(null);
+        }
+
+        public void MovePlayerToCenter()
+        {
+            IsMovingToCenter = true;
         }
     }
 }

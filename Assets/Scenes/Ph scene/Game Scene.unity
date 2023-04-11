@@ -1171,22 +1171,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d723ec8be4c21247a430dc39270bba7, type: 3}
+--- !u!1 &374120723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 374120724}
+  m_Layer: 0
+  m_Name: Arena Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &374120724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374120723}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2027619688}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &382141850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2812611503630844524, guid: c2b42ae3d8525cc478e8ef8fa1698d85, type: 3}
   m_PrefabInstance: {fileID: 1607229647}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &402948299 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1626570255219331491, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-  m_PrefabInstance: {fileID: 4010695032991564416}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bccd196f20179b44befbf5f977e8e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &428883368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4095,11 +4114,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36bdd9274fe499544a786ff32e25367f, type: 3}
-m_Name: 
+  m_Name: 
   m_EditorClassIdentifier: 
   DebugLog: 0
   ArenaCaracteristics:
     EnemySpawnsTag: Spawn
+    ArenaCenter: {fileID: 374120724}
   Intervals:
     HordeInterval: 5
     LevelInterval: 2
@@ -4108,28 +4128,20 @@ m_Name:
     Horders:
     - name: Horder 1
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 10
-        SpawnTimer: 0
-        EnemiesOnScene: 0
-        SpawnsAmount: 0
-        KillsAmount: 0
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
-        MaxEnemiesInScene: 5
-        MaxEnemiesSpawned: 10
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+        MaxEnemiesInScene: 3
+        MaxEnemiesSpawned: 6
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
     - name: Horder 2
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
-        MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 6
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+        MaxEnemiesInScene: 5
+        MaxEnemiesSpawned: 10
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
@@ -4138,19 +4150,19 @@ m_Name:
     Horders:
     - name: Horder 1
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
         MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 10
+        MaxEnemiesSpawned: 6
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-    - name: Horder 1
+    - name: Horder 2
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
-        MaxEnemiesInScene: 3
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+        MaxEnemiesInScene: 5
         MaxEnemiesSpawned: 10
         SpawnTimer: 0
         EnemiesOnScene: 0
@@ -4160,19 +4172,19 @@ m_Name:
     Horders:
     - name: Horder 1
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
         MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 10
+        MaxEnemiesSpawned: 6
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-    - name: Horder 1
+    - name: Horder 2
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
-        MaxEnemiesInScene: 3
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+        MaxEnemiesInScene: 5
         MaxEnemiesSpawned: 10
         SpawnTimer: 0
         EnemiesOnScene: 0
@@ -4182,19 +4194,19 @@ m_Name:
     Horders:
     - name: Horder 1
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 6b9e045de9d6154409b7a6a1e8dca183, type: 3}
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
         MaxEnemiesInScene: 3
-        MaxEnemiesSpawned: 10
+        MaxEnemiesSpawned: 6
         SpawnTimer: 0
         EnemiesOnScene: 0
         SpawnsAmount: 0
         KillsAmount: 0
-    - name: Horder 1
+    - name: Horder 2
       EnemiesSpawn:
-      - Name: Sword Soldier
-        EnemyType: {fileID: 5805970691145038540, guid: 612705deb210d4d478b470f64252bcfc, type: 3}
-        MaxEnemiesInScene: 3
+      - Name: Sword
+        EnemyType: {fileID: 1535817813087277418, guid: 213bbb77c61304341a805f4a8ee26cef, type: 3}
+        MaxEnemiesInScene: 5
         MaxEnemiesSpawned: 10
         SpawnTimer: 0
         EnemiesOnScene: 0
@@ -4228,7 +4240,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 374120724}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4869,34 +4882,6 @@ PrefabInstance:
     - target: {fileID: 4010695034873259102, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 402948299}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectPowerUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.UI.PowerUpSelectionScreen, Game.UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586321007921878340, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6119001785003116698, guid: 2b4f6c371f0945e4894e74def8be0641, type: 3}
       propertyPath: m_AnchorMax.y

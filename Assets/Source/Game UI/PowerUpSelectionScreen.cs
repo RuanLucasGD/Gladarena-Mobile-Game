@@ -10,18 +10,18 @@ namespace Game.UI
 
         void Awake()
         {
-            HiddenPowerUpScreen();
+            HiddenScreen();
 
             if (ArenaManager.Instance)
             {
-                ArenaManager.Instance.OnStartLevel.AddListener(l => HiddenPowerUpScreen());
-                ArenaManager.Instance.OnCompleteLevel.AddListener(l => ShowPowerUpScreen());
+                ArenaManager.Instance.OnStartLevel.AddListener(HiddenOnStartLevel);
+                ArenaManager.Instance.OnCompleteLevel.AddListener(ShowOnLevelCompleted);
             }
 
             OnSelectPowerUp.AddListener(StartLevelWhenSelecPowerUp);
         }
 
-        private void ShowPowerUpScreen()
+        private void ShowScreen()
         {
             if (ArenaManager.Instance.GameWin)
             {
@@ -31,9 +31,26 @@ namespace Game.UI
             gameObject.SetActive(true);
         }
 
-        private void HiddenPowerUpScreen()
+        private void HiddenScreen()
         {
             gameObject.SetActive(false);
+        }
+
+        private void ShowOnLevelCompleted(int level)
+        {
+            GameManager.Instance.Player.OnGetCenter.AddListener(ShowScreen);
+            GameManager.Instance.Player.OnGetCenter.AddListener(CleanListeners);
+        }
+
+        private void HiddenOnStartLevel(int level)
+        {
+            HiddenScreen();
+        }
+
+        private void CleanListeners()
+        {
+            GameManager.Instance.Player.OnGetCenter.RemoveListener(CleanListeners);
+            GameManager.Instance.Player.OnGetCenter.RemoveListener(ShowScreen);
         }
 
         public void SelectPowerUp(PowerUp powerUp)
@@ -42,7 +59,7 @@ namespace Game.UI
 
             GameManager.Instance.Player.AddPowerUp(_powerUp);
 
-            HiddenPowerUpScreen();
+            HiddenScreen();
             OnSelectPowerUp.Invoke();
         }
 

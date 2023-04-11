@@ -51,6 +51,7 @@ namespace Game.Mecanics
         public class Arena
         {
             public string EnemySpawnsTag;
+            public Transform ArenaCenter;
         }
 
         [System.Serializable]
