@@ -125,7 +125,7 @@ namespace Game.Mecanics
 
                     if (!_arenaManager)
                     {
-                        Debug.LogError($"Does not exist any {nameof(ArenaManager)} on this scene");
+                        Debug.LogWarning($"Does not exist any {nameof(ArenaManager)} on this scene");
                     }
                 }
 

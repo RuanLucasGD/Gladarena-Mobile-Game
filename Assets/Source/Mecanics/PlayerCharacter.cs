@@ -70,7 +70,7 @@ namespace Game.Mecanics
         protected override void Awake()
         {
             base.Awake();
-            Forward = transform.forward;
+            Forward = Camera.main ? Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up) : transform.forward;
         }
 
         protected override void Start()

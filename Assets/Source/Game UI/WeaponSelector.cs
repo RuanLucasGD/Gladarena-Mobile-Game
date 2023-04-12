@@ -15,8 +15,8 @@ namespace Game.UI
 
             if (MainMenuManager.Instance)
             {
-                HideScreen();
                 MainMenuManager.Instance.OnHideMainMenu.AddListener(ShowWhenExitMainMenu);
+                HideScreen();
             }
         }
 

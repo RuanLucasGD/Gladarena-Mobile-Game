@@ -34,21 +34,19 @@ namespace Game.UI
 
         private void Start()
         {
-            DisableWidget(StartHorder);
-            DisableWidget(CompleteHorder);
-            DisableWidget(StartLevel);
-            DisableWidget(CompleteLevel);
-            DisableWidget(GameWin);
-            DisableWidget(GameOver);
+            DisableAll();
 
-            ArenaManager.Instance.OnStartHorder.AddListener(ShowStartHorderWidget);
-            ArenaManager.Instance.OnCompleteHorder.AddListener(ShowCompletedHorderWidget);
-            ArenaManager.Instance.OnStartLevel.AddListener(ShowStartLevelWidget);
-            ArenaManager.Instance.OnCompleteLevel.AddListener(ShowCompletedLevelWidget);
-            ArenaManager.Instance.OnGameWin.AddListener(ShowGameWinWidget);
+            if (ArenaManager.Instance)
+            {
+                ArenaManager.Instance.OnStartHorder.AddListener(ShowStartHorderWidget);
+                ArenaManager.Instance.OnCompleteHorder.AddListener(ShowCompletedHorderWidget);
+                ArenaManager.Instance.OnStartLevel.AddListener(ShowStartLevelWidget);
+                ArenaManager.Instance.OnCompleteLevel.AddListener(ShowCompletedLevelWidget);
+                ArenaManager.Instance.OnGameWin.AddListener(ShowGameWinWidget);
 
-            GameManager.Instance.Player.OnDeath.AddListener(ShowGameOverWidget);
-            GameManager.Instance.Player.OnRevive.AddListener(DisableAll);
+                GameManager.Instance.Player.OnDeath.AddListener(ShowGameOverWidget);
+                GameManager.Instance.Player.OnRevive.AddListener(DisableAll);
+            }
         }
 
         private void ShowWidget(Widget widget, string message)
