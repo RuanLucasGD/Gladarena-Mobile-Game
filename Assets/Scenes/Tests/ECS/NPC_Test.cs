@@ -35,7 +35,7 @@ public class NPC_Test : MonoBehaviour
         if (usePhysics) character.Move(_moveDir);
         else transform.Translate(_moveDir, Space.World);
         
-        if (Vector3.Distance(transform.position, target.position) < 2)
+        if (Vector3.Distance(transform.position, target.position) < 1)
         {
             Destroy(gameObject);
         }
