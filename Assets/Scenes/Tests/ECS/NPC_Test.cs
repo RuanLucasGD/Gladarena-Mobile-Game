@@ -40,16 +40,23 @@ public class NPC_Test : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(_moveDir.normalized);
 
-            if (Vector3.Distance(transform.position, target.position) < 2)
-            {
-                Destroy(gameObject);
-            }
+            // if (Vector3.Distance(transform.position, target.position) < 2)
+            // {
+            //     Destroy(gameObject);
+            // }
         }
     }
 
     void FixedUpdate()
     {
         var _moveDir = (target.position - transform.position).normalized * Time.fixedDeltaTime * moveSpeed;
+
+        transform.rotation = Quaternion.LookRotation(_moveDir.normalized);
+
+        if (Vector3.Distance(transform.position, target.position) < 5)
+        {
+            _moveDir = Vector3.zero;
+        }
 
         character.velocity = (_moveDir);
     }
