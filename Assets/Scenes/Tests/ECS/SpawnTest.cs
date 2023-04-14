@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnTest : MonoBehaviour
 {
+    public Text spawnText;
     public Transform follow;
     public NPC_Test Npc;
 
@@ -23,6 +25,8 @@ public class SpawnTest : MonoBehaviour
     void Update()
     {
         transform.position = follow.position;
+
+        spawnText.text = "Spawned: " + CurrentSpawnAmount.ToString();
     }
 
     void Spawn()

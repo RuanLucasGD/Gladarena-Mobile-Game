@@ -7,6 +7,8 @@ public class CheckVisible : MonoBehaviour
     public UnityEngine.Events.UnityEvent OnVisible;
     public UnityEngine.Events.UnityEvent OnInvisible;
 
+    public bool isVisible;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +24,12 @@ public class CheckVisible : MonoBehaviour
     void OnBecameVisible()
     {
         OnVisible.Invoke();
+        isVisible = true;
     }
 
     void OnBecameInvisible()
     {
         OnInvisible.Invoke();
+        isVisible = false;
     }
 }

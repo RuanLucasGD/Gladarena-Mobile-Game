@@ -27,7 +27,13 @@ namespace Game.Mecanics
                 return;
             }
 
-            UpdateCameraPosition(Time.deltaTime);
+            transform.LookAt(Target.transform.position);
+            
+        }
+
+        void FixedUpdate()
+        {
+            UpdateCameraPosition(Time.fixedDeltaTime);
         }
 
         private void UpdateCameraPosition(float delta)

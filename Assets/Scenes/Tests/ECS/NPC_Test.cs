@@ -6,7 +6,8 @@ using UnityEngine;
 public class NPC_Test : MonoBehaviour
 {
     public Transform target;
-    public CharacterController character;
+    public Rigidbody character;
+    public Animator Animator;
     public float moveSpeed;
     public float rotSpeed;
 
@@ -16,40 +17,52 @@ public class NPC_Test : MonoBehaviour
 
     public bool usePhysics;
 
-    void Start()
+    void Awake()
     {
         checkVisible.OnInvisible.AddListener(OnInvisible);
         checkVisible.OnVisible.AddListener(OnVisible);
+
+        if (!checkVisible.isVisible)
+            OnInvisible();
     }
 
     void OnDestroy()
     {
         OnDestroyEvent.Invoke();
+
     }
 
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(target.position - transform.position);
-        var _moveDir = transform.forward * Time.deltaTime * moveSpeed;
-        
-        if (usePhysics) character.Move(_moveDir);
-        else transform.Translate(_moveDir, Space.World);
-        
-        if (Vector3.Distance(transform.position, target.position) < 1)
+        var _moveDir = (target.position - transform.position).normalized;
+
+        if (usePhysics)
         {
-            Destroy(gameObject);
+            transform.rotation = Quaternion.LookRotation(_moveDir.normalized);
+
+            if (Vector3.Distance(transform.position, target.position) < 2)
+            {
+                Destroy(gameObject);
+            }
         }
+    }
+
+    void FixedUpdate()
+    {
+        var _moveDir = (target.position - transform.position).normalized * Time.fixedDeltaTime * moveSpeed;
+
+        character.velocity = (_moveDir);
     }
 
     void OnVisible()
     {
         usePhysics = true;
-        character.enabled = true;
+        Animator.enabled = true;
     }
 
     void OnInvisible()
     {
         usePhysics = false;
-        character.enabled = false;
+        Animator.enabled = false;
     }
 }
