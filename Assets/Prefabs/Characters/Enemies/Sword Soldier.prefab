@@ -168,7 +168,7 @@ Animator:
   m_GameObject: {fileID: 668775417943923497}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 84b42445372ad5347aebd5d216a95d4f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab8fa674f9479df4b915f4800e99ffec, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -224,11 +224,15 @@ MonoBehaviour:
   Target: {fileID: 0}
   Rb: {fileID: 668775417943923502}
   ModelRenderer: {fileID: 668775417957520929}
+  Animator: {fileID: 668775417953315041}
   MoveSpeed: 5
+  StopDistance: 2
   MaxLife: 100
   AttackDamage: 50
-  AttackInterval: 0.5
-  AttackDistance: 2
+  AttackInterval: 1
+  AttackDistance: 3
+  WeaponAnimID: 0
+  AnimationSettings: {fileID: 11400000, guid: 4fe95e00d7050c74eb21d994bbf1b2e2, type: 2}
 --- !u!1 &668775417943923499
 GameObject:
   m_ObjectHideFlags: 0

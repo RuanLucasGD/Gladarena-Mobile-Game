@@ -11,9 +11,11 @@ namespace Game.Mecanics
         [Header("Components")]
         public Rigidbody Rb;
         public Renderer ModelRenderer;
+        public Animator Animator;
 
         [Header("Basic")]
         public float MoveSpeed;
+        public float StopDistance;
         public float MaxLife;
         public float AttackDamage;
         public float AttackInterval;
@@ -25,10 +27,14 @@ namespace Game.Mecanics
 
         public float CurrentLife { get; private set; }
         public bool IsOnScreen { get; private set; }
+        public bool SuperAttack { get; set; }
 
         public bool IsDeath => CurrentLife <= 0;
-        public bool IsFollowingTarget => !IsDeath && Target ? Vector3.Distance(transform.position, Target.transform.position) > AttackDistance : false;
-        public bool IsAttacking => !IsDeath && !IsFollowingTarget;
+        public bool IsStoped => Target ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : false;
+        public bool IsTargetNearToAttack => Target ? Vector3.Distance(transform.position, Target.transform.position) < AttackDistance : false;
+        public bool IsAttacking { get; private set; }
+
+        private bool _attackDeleyedStarted;
 
         private void Start()
         {
@@ -41,11 +47,14 @@ namespace Game.Mecanics
                 Rb.constraints |= RigidbodyConstraints.FreezeRotationX;
                 Rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
             }
+
+            SetWeaponAnimation();
         }
 
         private void Update()
         {
             UpdateRotation();
+            UpdateAnimations();
 
             // don't use OnBecameVisible or OnBecameInvisible becase it's not called when object is created
             UpdateVisibility();
@@ -67,8 +76,13 @@ namespace Game.Mecanics
             _moveDirection *= MoveSpeed;
             _moveDirection *= delta;
 
-            if (!IsFollowingTarget)
+            if (IsStoped)
             {
+                if (!_attackDeleyedStarted)
+                {
+                    StartCoroutine(StartAttackDeleyed());
+                }
+
                 _moveDirection = Vector3.zero;
             }
 
@@ -107,7 +121,58 @@ namespace Game.Mecanics
                 return;
             }
 
-            // TODO
+            Animator.SetBool(AnimationSettings.IsWalkingParameter, !IsStoped);
+            Animator.SetBool(AnimationSettings.IsAttackingParameter, IsAttacking);
+            Animator.SetBool(AnimationSettings.IsDeathParameter, IsDeath);
+        }
+
+        private void SetWeaponAnimation()
+        {
+            if (!AnimationSettings)
+            {
+                return;
+            }
+
+            Animator.SetInteger(AnimationSettings.WeaponIdParameter, WeaponAnimID);
+        }
+
+        private void Attack()
+        {
+            if (IsAttacking || !IsTargetNearToAttack || !Target || Target.IsDeath)
+            {
+                return;
+            }
+
+            IsAttacking = true;
+            StartCoroutine(FinalizeAttackDeleyed());
+        }
+
+        private IEnumerator StartAttackDeleyed()
+        {
+            _attackDeleyedStarted = true;
+            yield return new WaitForSeconds(AttackInterval);
+
+            Attack();
+            _attackDeleyedStarted = false;
+        }
+
+        private IEnumerator FinalizeAttackDeleyed()
+        {
+            var _animLenght = SuperAttack ? AnimationSettings.SuperAttackLenght : AnimationSettings.NormalAttackLenght;
+            yield return new WaitForSeconds(_animLenght);
+
+            IsAttacking = false;
+        }
+
+        // called by character animator event
+        public void AttackAnimationEvent()
+        {
+            if (!IsAttacking || !IsTargetNearToAttack)
+            {
+                return;
+            }
+
+            Target.AddDamage(AttackDamage);
         }
     }
 }
