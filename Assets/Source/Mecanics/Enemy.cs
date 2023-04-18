@@ -38,7 +38,7 @@ namespace Game.Mecanics
 
         private void Start()
         {
-            Target = FindAnyObjectByType<PlayerCharacter>();
+            Target = FindObjectOfType<PlayerCharacter>();
             CurrentLife = MaxLife;
 
             if (Rb)
