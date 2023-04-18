@@ -52,7 +52,7 @@ namespace Game.Mecanics
 
         public bool SearchEnemies => IsStoped;
 
-        public Character NearEnemy { get; private set; }
+        public Enemy NearEnemy { get; private set; }
         public bool IsMovingToCenter { get; private set; }
 
         private Vector3 _ArenaCenter => ArenaManager.Instance ? ArenaManager.Instance.ArenaCaracteristics.ArenaCenter.position : Vector3.zero;
@@ -149,8 +149,7 @@ namespace Game.Mecanics
 
         private void FindNearEnemy()
         {
-            var _allCharacter = new List<Character>(FindObjectsOfType<Character>());
-            _allCharacter.Remove(this);  // remove self player of all characters list
+            var _allCharacter = new List<Enemy>(FindObjectsOfType<Enemy>());
 
             if (_allCharacter.Count == 0)
             {
@@ -181,7 +180,7 @@ namespace Game.Mecanics
             NearEnemy = _near;
         }
 
-        public override void Attack(Character target = null)
+        public override void Attack(Enemy target = null)
         {
             if (!NearEnemy || NearEnemy.IsDeath || !enabled)
             {

@@ -73,7 +73,7 @@ namespace Game.Mecanics
             DisableAttack();
         }
 
-        private Vector3 GetAttackForce(Character target)
+        private Vector3 GetAttackForce(Enemy target)
         {
             var _direction = target.transform.position - Owner.transform.position;
             _direction /= _direction.magnitude;
@@ -82,10 +82,10 @@ namespace Game.Mecanics
             return _direction;
         }
 
-        private List<Character> GetNearInViewEnemies()
+        private List<Enemy> GetNearInViewEnemies()
         {
-            var _nearInView = new List<Character>();
-            var _characters = FindObjectsOfType<Character>();
+            var _nearInView = new List<Enemy>();
+            var _characters = FindObjectsOfType<Enemy>();
 
             foreach (var c in _characters)
             {
@@ -104,7 +104,7 @@ namespace Game.Mecanics
             return _nearInView;
         }
 
-        public override void Attack(Character target = null)
+        public override void Attack(Enemy target = null)
         {
             var _nearInViewEnemies = GetNearInViewEnemies();
 
@@ -125,7 +125,7 @@ namespace Game.Mecanics
                 return;
             }
 
-            bool _isTargetNear(Character target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
+            bool _isTargetNear(Enemy target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
 
             // attack only the target
             if (WeaponTarget)

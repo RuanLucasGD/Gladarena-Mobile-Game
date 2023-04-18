@@ -227,8 +227,8 @@ MonoBehaviour:
   Animator: {fileID: 668775417953315041}
   MoveSpeed: 5
   StopDistance: 2
-  MaxLife: 100
-  AttackDamage: 50
+  MaxLife: 25
+  AttackDamage: 10
   AttackInterval: 1
   AttackDistance: 3
   WeaponAnimID: 0

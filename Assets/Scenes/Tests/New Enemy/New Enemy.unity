@@ -678,10 +678,6 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 53726550}
-    - target: {fileID: 668775417943923496, guid: 8fac1f628857957459204223f1b41a1c, type: 3}
-      propertyPath: AttackInterval
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 668775417943923497, guid: 8fac1f628857957459204223f1b41a1c, type: 3}
       propertyPath: m_Name
       value: Sword Soldier

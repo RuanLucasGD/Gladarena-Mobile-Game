@@ -75,30 +75,19 @@ namespace Game.Mecanics
             }
         }
 
-        private Character FindNearEnemy()
+        private Enemy FindNearEnemy()
         {
-            var _allCharacters = FindObjectsOfType<Character>();
-            var _characters = new List<Character>();
+            var _enemies = FindObjectsOfType<Enemy>();
 
-            foreach (var c in _allCharacters)
-            {
-                if (c == Owner)
-                {
-                    continue;
-                }
-
-                _characters.Add(c);
-            }
-
-            if (_characters.Count == 0)
+            if (_enemies.Length == 0)
             {
                 return null;
             }
 
-            var _near = _characters[0];
+            var _near = _enemies[0];
             var _distance = Vector3.Distance(Owner.transform.position, _near.transform.position);
 
-            foreach (var c in _characters)
+            foreach (var c in _enemies)
             {
                 var _characterDistance = Vector3.Distance(Owner.transform.position, c.transform.position);
 
@@ -145,7 +134,7 @@ namespace Game.Mecanics
             DisableWeaponCollider();
         }
 
-        public override void Attack(Character target = null)
+        public override void Attack(Enemy target = null)
         {
             if (IsAttacking || !Owner.IsStoped)
             {

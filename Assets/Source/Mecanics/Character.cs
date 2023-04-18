@@ -233,7 +233,7 @@ namespace Game.Mecanics
             _externalForce -= _externalForce * Mathf.Clamp(delta * Movimentation.ExternalForceDeceleration, 0, _externalForce.magnitude);
         }
 
-        private IEnumerator AttackDeleyed(Character target)
+        private IEnumerator AttackDeleyed(Enemy target)
         {
             yield return new WaitForSeconds(DelayToAttack);
             Weapon.WeaponObject.Attack(target);
@@ -382,7 +382,7 @@ namespace Game.Mecanics
             _externalForce += force;
         }
 
-        public virtual void Attack(Character target = null)
+        public virtual void Attack(Enemy target = null)
         {
             if (!Weapon.WeaponObject || Weapon.WeaponObject.IsAttacking || !enabled)
             {

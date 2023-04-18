@@ -44,15 +44,15 @@ namespace Game.Mecanics
 
         private void UpdateCharacterState()
         {
-            if (IsFollowingTarget)
-            {
-                FollowPlayer();
+            // if (IsFollowingTarget)
+            // {
+            //     FollowPlayer();
 
-            }
-            else
-            {
-                Attack(Player);
-            }
+            // }
+            // else
+            // {
+            //     Attack(Player);
+            // }
         }
 
         private void FollowPlayer()
@@ -76,17 +76,17 @@ namespace Game.Mecanics
             CharacterMoveDirection = _directionToPlayer;
         }
 
-        public override void Attack(Character target = null)
-        {
-            if (!enabled || !Player || Player.IsDeath)
-            {
-                return;
-            }
+        // public override void Attack(Character target = null)
+        // {
+        //     if (!enabled || !Player || Player.IsDeath)
+        //     {
+        //         return;
+        //     }
 
-            LookAtDirection = (Player.transform.position - transform.position).normalized;
-            CharacterMoveDirection = Vector3.zero;
-            base.Attack(target);
-        }
+        //     LookAtDirection = (Player.transform.position - transform.position).normalized;
+        //     CharacterMoveDirection = Vector3.zero;
+        //     base.Attack(target);
+        // }
     }
 }
 

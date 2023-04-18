@@ -123,6 +123,15 @@ namespace Game.Mecanics
 
             Animator.SetBool(AnimationSettings.IsWalkingParameter, !IsStoped);
             Animator.SetBool(AnimationSettings.IsAttackingParameter, IsAttacking);
+        }
+
+        private void SetDeathAnimation()
+        {
+            if (!AnimationSettings)
+            {
+                return;
+            }
+
             Animator.SetBool(AnimationSettings.IsDeathParameter, IsDeath);
         }
 
@@ -173,6 +182,29 @@ namespace Game.Mecanics
             }
 
             Target.AddDamage(AttackDamage);
+        }
+
+        public void AddDamage(float damage, Vector3 force)
+        {
+            CurrentLife -= damage;
+
+            if (CurrentLife <= 0)
+            {
+                Death();
+            }
+        }
+
+        public void Death()
+        {
+            CurrentLife = 0;
+            enabled = false;
+            SetDeathAnimation();
+            Destroy(gameObject, 10);
+
+            if (TryGetComponent<Collider>(out var collider))
+            {
+                collider.enabled = false;
+            }
         }
     }
 }
