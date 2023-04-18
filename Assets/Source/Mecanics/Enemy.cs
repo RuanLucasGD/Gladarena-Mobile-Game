@@ -67,7 +67,7 @@ namespace Game.Mecanics
 
         private void UpdateMovement(float delta)
         {
-            if (!Rb || !Target)
+            if (!Rb || !Target || Target.IsDeath)
             {
                 return;
             }
@@ -205,6 +205,8 @@ namespace Game.Mecanics
             {
                 collider.enabled = false;
             }
+
+            Rb.useGravity = false;
         }
     }
 }
