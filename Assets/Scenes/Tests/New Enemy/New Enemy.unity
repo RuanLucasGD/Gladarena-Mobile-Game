@@ -674,7 +674,33 @@ MonoBehaviour:
   Follow: {fileID: 1342480037}
   Spawn:
     SpawnRate: 1
-    SpawnPoints: []
+    SpawnPoints:
+    - {fileID: 1330779145}
+    - {fileID: 931857267}
+    - {fileID: 185483885}
+    - {fileID: 1781767288}
+    - {fileID: 1115763596}
+    - {fileID: 1482433210}
+    - {fileID: 1958781552}
+    - {fileID: 182842401}
+    - {fileID: 1942409999}
+    - {fileID: 1643333198}
+    - {fileID: 1840014751}
+    - {fileID: 947536973}
+    - {fileID: 90073246}
+    - {fileID: 101787087}
+    - {fileID: 872119451}
+    - {fileID: 1660668139}
+    - {fileID: 1025384262}
+    - {fileID: 2066590711}
+    - {fileID: 1433761226}
+    - {fileID: 1342157328}
+    - {fileID: 423173445}
+    - {fileID: 635138536}
+    - {fileID: 738283531}
+    - {fileID: 319549576}
+    - {fileID: 1101782045}
+    - {fileID: 1709955800}
     ObstaclesLayer:
       serializedVersion: 2
       m_Bits: 0
