@@ -281,6 +281,14 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 53726550}
+    - target: {fileID: 4052900598359910032, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
+      propertyPath: Offset.x
+      value: -17.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052900598359910032, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
+      propertyPath: Offset.z
+      value: -9.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4052900598359910034, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -328,6 +336,14 @@ PrefabInstance:
     - target: {fileID: 4052900598359910046, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052900598359910047, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052900598359910047, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
+      propertyPath: field of view
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
@@ -658,7 +674,7 @@ GameObject:
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &904689902
 MonoBehaviour:
   m_ObjectHideFlags: 0
