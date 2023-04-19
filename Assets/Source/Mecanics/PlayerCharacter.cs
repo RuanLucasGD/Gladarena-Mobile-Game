@@ -45,7 +45,6 @@ namespace Game.Mecanics
             [Min(0)] public float MoveSpeed;
             [Min(0)] public float Gravity;
             [Min(0)] public float TurnSpeed;
-            [Min(0)] public float ExternalForceDeceleration;
             [Min(0)] public float StopDistance;
 
             public Moviment()
@@ -53,7 +52,6 @@ namespace Game.Mecanics
                 MoveSpeed = 10;
                 Gravity = 10;
                 TurnSpeed = 10;
-                ExternalForceDeceleration = 2;
                 StopDistance = 1;
             }
         }
@@ -134,19 +132,20 @@ namespace Game.Mecanics
         public UnityEvent OnAttackAnimationEvent;
 
         private Vector3 _moveDirection;
-        private Vector3 _externalForce;
         private CharacterController _characterController;
         private List<PowerUp> _powerUps;
 
         public CharacterController CharacterController => _characterController;
 
         public float CurrentAttackRate => Weapon.AttackRate * Weapon.AttackRateMultiplier;
-        public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
+        public bool HasWeapon => Weapon.WeaponObject;
         public bool IsGrounded => CharacterController.isGrounded;
+        public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
         public bool IsInvencible { get; set; }
         public bool IsDeath { get; private set; }
+        public bool CanAttack { get; private set; }
         public bool IsAttacking { get; private set; }
-        public bool HasWeapon => Weapon.WeaponObject;
+
         public float CurrentLife { get; private set; }
 
         public InputAction VerticalAction { get; private set; }
@@ -212,6 +211,8 @@ namespace Game.Mecanics
                 return;
             }
 
+            CanAttack = true;
+
             VerticalAction = InputMaps.InputAsset.FindAction(InputMaps.VerticalAction, throwIfNotFound: true);
             HorizontalAction = InputMaps.InputAsset.FindAction(InputMaps.HorizontalAction, throwIfNotFound: true);
             MobileJoystickAction = InputMaps.InputAsset.FindAction(InputMaps.MobileJoystickAction, throwIfNotFound: true);
@@ -223,7 +224,6 @@ namespace Game.Mecanics
         {
             UpdateRotation(Time.deltaTime);
             UpdateMoviment(Time.deltaTime);
-            UpdateExternalForce(Time.deltaTime);
 
             UpdatePlayerControls();
         }
@@ -275,7 +275,6 @@ namespace Game.Mecanics
             CharacterVelocity = CharacterMoveDirection;
             CharacterVelocity *= Movimentation.MoveSpeed;
             CharacterVelocity = new Vector3(CharacterVelocity.x, -Movimentation.Gravity, CharacterVelocity.z);
-            CharacterVelocity += _externalForce;
             CharacterVelocity *= delta;
 
             CharacterController.Move(CharacterVelocity);
@@ -301,11 +300,6 @@ namespace Game.Mecanics
             transform.rotation = Quaternion.Lerp(_currentRot, _targetRot, _turnSpeed);
         }
 
-        private void UpdateExternalForce(float delta)
-        {
-            _externalForce -= _externalForce * Mathf.Clamp(delta * Movimentation.ExternalForceDeceleration, 0, _externalForce.magnitude);
-        }
-
         private void UpdateAnimations()
         {
             if (!Animation.Animator)
@@ -313,12 +307,8 @@ namespace Game.Mecanics
                 return;
             }
 
-            var _isAttacking = false;
-            if (HasWeapon && Weapon.WeaponObject.IsAttacking) _isAttacking = true;
-            if (IsDeath) _isAttacking = false;
-
             Animation.Animator.SetFloat(Animation.MovimentParam, CharacterMoveDirection.magnitude);
-            Animation.Animator.SetBool(Animation.IsAttacking, _isAttacking);
+            Animation.Animator.SetBool(Animation.IsAttacking, IsAttacking);
             Animation.Animator.SetBool(Animation.IsDeath, IsDeath);
 
             if (HasWeapon)
@@ -359,7 +349,7 @@ namespace Game.Mecanics
             OnSetWeapon.Invoke();
         }
 
-        public void AddDamage(float damage, Vector3 attackForce = default)
+        public void AddDamage(float damage)
         {
             if (IsDeath || !enabled)
             {
@@ -369,7 +359,6 @@ namespace Game.Mecanics
             if (!IsInvencible)
             {
                 CurrentLife -= damage;
-                AddExternalForce(attackForce);
             }
 
             OnDamaged.Invoke();
@@ -405,10 +394,12 @@ namespace Game.Mecanics
 
         private void Attack()
         {
-            if (IsAttacking || !enabled)
+            if (!CanAttack || !enabled)
             {
                 return;
             }
+
+            IsAttacking = true;
 
             Weapon.WeaponObject.Attack();
             Invoke(nameof(FinalizeAttack), Weapon.WeaponObject.CurrentAttackLength);
@@ -431,18 +422,9 @@ namespace Game.Mecanics
             }
         }
 
-        public void AddExternalForce(Vector3 force)
-        {
-            if (!enabled)
-            {
-                return;
-            }
-
-            _externalForce += force;
-        }
-
         private void FinalizeAttack()
         {
+            IsAttacking = false;
             Weapon.WeaponObject.IsAttacking = false;
             Invoke(nameof(Attack), CurrentAttackRate);
         }

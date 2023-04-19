@@ -114,11 +114,6 @@ namespace Game.Mecanics
         // Called by owener character animation event
         public void ApplyDamageOnEnemies()
         {
-            if (!IsAttacking)
-            {
-                return;
-            }
-
             bool _isTargetNear(Enemy target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
 
             foreach (var c in GetNearInViewEnemies())
