@@ -7,7 +7,7 @@ namespace Game.Mecanics
     public class CameraController : MonoBehaviour
     {
         public Vector3 Offset;
-        public Character Target;
+        public PlayerCharacter Target;
 
         [Space]
         public float MoveSpeed;

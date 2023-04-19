@@ -37,11 +37,11 @@ namespace Game.Mecanics
             SpawnRayEffect(_target.transform.position);
         }
 
-        private Character FindRandomTarget()
+        private Enemy FindRandomTarget()
         {
-            var _allCharacters = FindObjectsOfType<Character>();
+            var _allCharacters = FindObjectsOfType<Enemy>();
 
-            var _characters = new List<Character>();
+            var _characters = new List<Enemy>();
 
             foreach (var c in _allCharacters)
             {

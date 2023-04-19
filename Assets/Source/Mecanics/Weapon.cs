@@ -23,36 +23,9 @@ namespace Game.Mecanics
 
         private bool _isAttacking;
 
-        public virtual Character Owner { get; set; }
+        public virtual PlayerCharacter Owner { get; set; }
 
-        public bool IsAttacking
-        {
-            get
-            {
-                return _isAttacking;
-            }
-            set
-            {
-                if (_isAttacking == value)
-                {
-                    return;
-                }
-
-                _isAttacking = value;
-                if (_isAttacking) OnEnableAttack();
-                else OnDisableAttack();
-            }
-        }
-
-        /// <summary>
-        /// Pass custom actions to weapon when enable
-        /// </summary>
-        protected UnityAction OnEnableAttack;
-
-        /// <summary>
-        /// Pass custom actions to weapon when disable
-        /// </summary>
-        protected UnityAction OnDisableAttack;
+        public bool IsAttacking { get; set; }
 
         /// <summary>
         /// Taget to weapon Damage
@@ -81,8 +54,6 @@ namespace Game.Mecanics
             AttackDamageMultiplier = 1;
             AttackForceMultiplier = 1;
             AttackLengthMultiplier = 1;
-            OnEnableAttack = () => { };
-            OnDisableAttack = () => { };
         }
 
         protected virtual void Start() { }

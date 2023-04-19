@@ -9,7 +9,7 @@ namespace Game.Mecanics
     {
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Character>(out var c))
+            if (other.TryGetComponent<PlayerCharacter>(out var c))
             {
                 c.KillCharacter();
             }

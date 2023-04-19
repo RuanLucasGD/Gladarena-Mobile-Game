@@ -20,7 +20,7 @@ namespace Game.Mecanics
 
         public bool PowerUpEnabled { get; private set; }
 
-        public override Character Owner
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set
@@ -64,11 +64,11 @@ namespace Game.Mecanics
             {
                 return;
             }
-            if (other.TryGetComponent<Character>(out var c))
+            if (other.TryGetComponent<Enemy>(out var c))
             {
                 if (c != Owner)
                 {
-                    c.AddExternalForce((c.transform.position - transform.position).normalized * Force);
+                    //c.AddExternalForce((c.transform.position - transform.position).normalized * Force);
                 }
             }
         }

@@ -10,7 +10,7 @@ namespace Game.Mecanics
         public float AttackForceMultiplier;
         public float AttackDamageMultiplier;
 
-        public override Character Owner
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set

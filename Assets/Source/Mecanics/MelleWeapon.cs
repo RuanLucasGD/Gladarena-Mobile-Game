@@ -10,7 +10,7 @@ namespace Game.Mecanics
         [Range(0.1f, 1)]
         public float DotAttackAngle;
 
-        public override Character Owner
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set
@@ -40,16 +40,6 @@ namespace Game.Mecanics
 
             SetupWeapon();
             IsAttacking = false;
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            if (Owner && Owner.CharacterMoveDirection.magnitude > 0)
-            {
-                DisableAttack();
-            }
         }
 
         private void SetupWeapon()
@@ -106,12 +96,16 @@ namespace Game.Mecanics
 
         public override void Attack(Enemy target = null)
         {
+            if (IsAttacking)
+            {
+                return;
+            }
+
             var _nearInViewEnemies = GetNearInViewEnemies();
 
-            if (Owner.IsStoped && (_nearInViewEnemies.Count > 0 || target))
+            if (_nearInViewEnemies.Count > 0)
             {
                 base.Attack(target);
-                StartCoroutine(DisableAttackAfterTime());
             }
 
             _nearInViewEnemies = null;
@@ -127,20 +121,6 @@ namespace Game.Mecanics
 
             bool _isTargetNear(Enemy target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
 
-            // attack only the target
-            if (WeaponTarget)
-            {
-                if (_isTargetNear(WeaponTarget))
-                {
-                    var _attackForce = GetAttackForce(WeaponTarget);
-                    WeaponTarget.AddDamage(CurrentAttackDamage, _attackForce);
-                    if (DebugLog) Debug.Log($"Target damaged: {WeaponTarget.name}        damage: {CurrentAttackDamage}    force: {_attackForce}");
-                }
-
-                return;
-            }
-
-            // when does not have specific target, attack all near characters
             foreach (var c in GetNearInViewEnemies())
             {
                 if (_isTargetNear(c))

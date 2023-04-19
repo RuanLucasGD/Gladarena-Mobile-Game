@@ -38,8 +38,6 @@ namespace Game.UI
 
         private void ShowOnLevelCompleted(int level)
         {
-            GameManager.Instance.Player.OnGetCenter.AddListener(ShowScreen);
-            GameManager.Instance.Player.OnGetCenter.AddListener(CleanListeners);
         }
 
         private void HideOnStartLevel(int level)
@@ -49,8 +47,6 @@ namespace Game.UI
 
         private void CleanListeners()
         {
-            GameManager.Instance.Player.OnGetCenter.RemoveListener(CleanListeners);
-            GameManager.Instance.Player.OnGetCenter.RemoveListener(ShowScreen);
         }
 
         public void SelectPowerUp(PowerUp powerUp)
