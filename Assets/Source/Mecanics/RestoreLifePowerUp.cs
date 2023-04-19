@@ -4,7 +4,7 @@ namespace Game.Mecanics
 {
     public class RestoreLifePowerUp : PowerUp
     {
-        public override Character Owner
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set

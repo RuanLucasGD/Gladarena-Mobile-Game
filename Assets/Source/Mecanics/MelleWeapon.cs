@@ -10,7 +10,7 @@ namespace Game.Mecanics
         [Range(0.1f, 1)]
         public float DotAttackAngle;
 
-        public override Character Owner
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set
@@ -42,16 +42,6 @@ namespace Game.Mecanics
             IsAttacking = false;
         }
 
-        protected override void Update()
-        {
-            base.Update();
-
-            if (Owner && Owner.CharacterMoveDirection.magnitude > 0)
-            {
-                DisableAttack();
-            }
-        }
-
         private void SetupWeapon()
         {
             var _collider = GetComponent<Collider>();
@@ -71,15 +61,6 @@ namespace Game.Mecanics
         {
             yield return new WaitForSeconds(CurrentAttackLength);
             DisableAttack();
-        }
-
-        private Vector3 GetAttackForce(Enemy target)
-        {
-            var _direction = target.transform.position - Owner.transform.position;
-            _direction /= _direction.magnitude;
-            _direction *= CurrentAttackForce;
-
-            return _direction;
         }
 
         private List<Enemy> GetNearInViewEnemies()
@@ -106,12 +87,16 @@ namespace Game.Mecanics
 
         public override void Attack(Enemy target = null)
         {
+            if (IsAttacking)
+            {
+                return;
+            }
+
             var _nearInViewEnemies = GetNearInViewEnemies();
 
-            if (Owner.IsStoped && (_nearInViewEnemies.Count > 0 || target))
+            if (_nearInViewEnemies.Count > 0)
             {
                 base.Attack(target);
-                StartCoroutine(DisableAttackAfterTime());
             }
 
             _nearInViewEnemies = null;
@@ -120,34 +105,14 @@ namespace Game.Mecanics
         // Called by owener character animation event
         public void ApplyDamageOnEnemies()
         {
-            if (!IsAttacking)
-            {
-                return;
-            }
-
             bool _isTargetNear(Enemy target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
 
-            // attack only the target
-            if (WeaponTarget)
-            {
-                if (_isTargetNear(WeaponTarget))
-                {
-                    var _attackForce = GetAttackForce(WeaponTarget);
-                    WeaponTarget.AddDamage(CurrentAttackDamage, _attackForce);
-                    if (DebugLog) Debug.Log($"Target damaged: {WeaponTarget.name}        damage: {CurrentAttackDamage}    force: {_attackForce}");
-                }
-
-                return;
-            }
-
-            // when does not have specific target, attack all near characters
             foreach (var c in GetNearInViewEnemies())
             {
                 if (_isTargetNear(c))
                 {
-                    var _attackForce = GetAttackForce(c);
-                    c.AddDamage(CurrentAttackDamage, _attackForce);
-                    if (DebugLog) Debug.Log($"Target damaged: {c.name}        damage: {CurrentAttackDamage}    force: {_attackForce}");
+                    c.AddDamage(CurrentAttackDamage);
+                    if (DebugLog) Debug.Log($"Target damaged: {c.name}        damage: {CurrentAttackDamage}");
                 }
             }
         }

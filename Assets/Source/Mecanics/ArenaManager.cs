@@ -13,7 +13,7 @@ namespace Game.Mecanics
         {
             [SerializeField] private string Name;
 
-            public Character EnemyType;
+            public Enemy EnemyType;
             [Min(0)] public int MaxEnemiesInScene;
             [Min(0)] public int MaxEnemiesSpawned;
 
@@ -186,7 +186,7 @@ namespace Game.Mecanics
             var _player = GameManager.Instance.Player;
             var _spawnPosition = GenerateSpawnPoint();
             var _lookAtPlayer = Quaternion.LookRotation(_spawnPosition - _player.transform.position);
-            var _enemyCharacter = Instantiate(enemySpawn.EnemyType.gameObject, _spawnPosition, _lookAtPlayer).GetComponent<Character>();
+            var _enemyCharacter = Instantiate(enemySpawn.EnemyType.gameObject, _spawnPosition, _lookAtPlayer).GetComponent<PlayerCharacter>();
 
             enemySpawn.EnemiesOnScene++;
             enemySpawn.SpawnsAmount++;

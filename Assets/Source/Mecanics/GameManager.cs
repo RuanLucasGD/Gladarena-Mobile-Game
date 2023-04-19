@@ -37,7 +37,13 @@ namespace Game.Mecanics
                 if (value != _gamePaused)
                 {
                     // disable characters control when pause game
-                    foreach (var c in FindObjectsOfType<Character>(true))
+                    foreach (var c in FindObjectsOfType<PlayerCharacter>(true))
+                    {
+                        c.enabled = !value;
+                    }
+
+                    // disable characters control when pause game
+                    foreach (var c in FindObjectsOfType<Enemy>(true))
                     {
                         c.enabled = !value;
                     }
@@ -110,7 +116,6 @@ namespace Game.Mecanics
             if (ArenaManager.Instance)
             {
                 ArenaManager.Instance.OnStartLevel.AddListener(l => SetEnablePlayerControl(true));
-                ArenaManager.Instance.OnCompleteLevel.AddListener(l => Player.MovePlayerToCenter());
             }
         }
 

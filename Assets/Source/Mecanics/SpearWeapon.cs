@@ -12,7 +12,7 @@ namespace Game.Mecanics
         [Header("Components")]
         public Collider WeaponCollider;
 
-        public override Character Owner
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set
@@ -36,7 +36,6 @@ namespace Game.Mecanics
 
         public SpearWeapon()
         {
-            AttackForce = 15;
             MinDotAngleToAttack = 0.8f;
         }
 
@@ -63,7 +62,7 @@ namespace Game.Mecanics
             }
 
             // apply attack on detect character
-            if (other.gameObject.TryGetComponent<Character>(out var character))
+            if (other.gameObject.TryGetComponent<Enemy>(out var character))
             {
                 // when has a specific target, attack only this target, if not attack any character
                 if (WeaponTarget && WeaponTarget != character)
@@ -71,7 +70,7 @@ namespace Game.Mecanics
                     return;
                 }
 
-                character.AddDamage(CurrentAttackDamage, Owner.transform.forward * CurrentAttackForce);
+                character.AddDamage(CurrentAttackDamage);
             }
         }
 
@@ -106,9 +105,9 @@ namespace Game.Mecanics
             return _near;
         }
 
-        private Vector3 GetCharacterCenter(Character character)
+        private Vector3 GetCharacterCenter(Enemy character)
         {
-            return character.transform.position + character.CharacterController.center;
+            return character.transform.position + character.Rb.centerOfMass;
         }
 
         private void EnableWeaponCollider()

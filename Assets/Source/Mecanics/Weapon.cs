@@ -10,7 +10,6 @@ namespace Game.Mecanics
         [SerializeField]
         protected bool DebugLog;
 
-        public float AttackForce;
         public float AttackRange;
         public float AttackDamage;
         public float AttackLength;
@@ -23,36 +22,9 @@ namespace Game.Mecanics
 
         private bool _isAttacking;
 
-        public virtual Character Owner { get; set; }
+        public virtual PlayerCharacter Owner { get; set; }
 
-        public bool IsAttacking
-        {
-            get
-            {
-                return _isAttacking;
-            }
-            set
-            {
-                if (_isAttacking == value)
-                {
-                    return;
-                }
-
-                _isAttacking = value;
-                if (_isAttacking) OnEnableAttack();
-                else OnDisableAttack();
-            }
-        }
-
-        /// <summary>
-        /// Pass custom actions to weapon when enable
-        /// </summary>
-        protected UnityAction OnEnableAttack;
-
-        /// <summary>
-        /// Pass custom actions to weapon when disable
-        /// </summary>
-        protected UnityAction OnDisableAttack;
+        public bool IsAttacking { get; set; }
 
         /// <summary>
         /// Taget to weapon Damage
@@ -61,13 +33,9 @@ namespace Game.Mecanics
         protected Enemy WeaponTarget { get; set; }
 
         public bool IsSuperAttack { get; set; }
-        public float AttackForceMultiplier { get; set; }
-        public float AttackDamageMultiplier { get; set; }
-        public float AttackLengthMultiplier { get; set; }
 
-        public float CurrentAttackForce => AttackForce * AttackForceMultiplier;
-        public float CurrentAttackDamage => AttackDamage * AttackDamageMultiplier;
-        public float CurrentAttackLength => AttackLength * AttackLengthMultiplier;
+        public float CurrentAttackDamage => AttackDamage * Owner.Weapon.AttackDamageMultiplier;
+        public float CurrentAttackLength => AttackLength * Owner.Weapon.AttackLengthMultiplier;
 
         public Weapon()
         {
@@ -76,14 +44,7 @@ namespace Game.Mecanics
             AttackLength = 1;
         }
 
-        protected virtual void Awake()
-        {
-            AttackDamageMultiplier = 1;
-            AttackForceMultiplier = 1;
-            AttackLengthMultiplier = 1;
-            OnEnableAttack = () => { };
-            OnDisableAttack = () => { };
-        }
+        protected virtual void Awake() { }
 
         protected virtual void Start() { }
 

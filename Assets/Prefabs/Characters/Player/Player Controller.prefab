@@ -691,6 +691,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &5477160553361611913
 CharacterController:
   m_ObjectHideFlags: 0
@@ -721,17 +722,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c605ad8b7f78b70499366fc56595a190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputMaps:
+    InputAsset: {fileID: -944628639613478452, guid: 1d6fcabe57a241c46859b791e193fac6, type: 3}
+    VerticalAction: Vertical
+    HorizontalAction: Horizontal
+    MobileJoystickAction: Mobile Joystick
   Movimentation:
     MoveSpeed: 13
     Gravity: 5
     TurnSpeed: 10
-    ExternalForceDeceleration: 4
     StopDistance: 1
   Weapon:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 935705572}
-    DelayToAttack: 0.1
-    DelatyToAttackMultiplier: 1
+    AttackRate: 1
+    AttackLengthMultiplier: 1
+    AttackRateMultiplier: 1
+    AttackDamageMultiplier: 1
+    AttackDistanceMultiplier: 1
   Life:
     LifeAmount: 200
     AutoDestroyOnDeathDelay: 100000
@@ -745,6 +753,7 @@ MonoBehaviour:
     IsAttacking: Is Attacking
     IsSuperAttack: Is Super Attack
     AttackAnimationID: Attack Anim ID
+    AttackAnimSpeed: Attack Speed
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -754,14 +763,12 @@ MonoBehaviour:
   OnSetWeapon:
     m_PersistentCalls:
       m_Calls: []
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttackAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
-  InputMaps:
-    InputAsset: {fileID: -944628639613478452, guid: 1d6fcabe57a241c46859b791e193fac6, type: 3}
-    VerticalAction: Vertical
-    HorizontalAction: Horizontal
-    MobileJoystickAction: Mobile Joystick
 --- !u!1 &5316902540928486468
 GameObject:
   m_ObjectHideFlags: 0

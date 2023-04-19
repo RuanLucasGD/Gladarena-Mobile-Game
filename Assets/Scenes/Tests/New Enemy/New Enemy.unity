@@ -197,7 +197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53726550 stripped
 MonoBehaviour:
@@ -295,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4052900598359910046, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4052900598359910046, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
       propertyPath: m_LocalPosition.x
@@ -674,7 +674,7 @@ GameObject:
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &904689902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,6 +923,14 @@ PrefabInstance:
     - target: {fileID: 7139569095886719504, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
+      propertyPath: AttackRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
+      propertyPath: DotAttackAngle
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
@@ -1432,14 +1440,17 @@ PrefabInstance:
       propertyPath: Weapon.WeaponObject
       value: 
       objectReference: {fileID: 951971917}
+    - target: {fileID: 1448692789631899809, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
+      propertyPath: Weapon.AttackLengthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4664960912877185069, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
         by Humanoid clips.\n\tTransform 'Jaw'\n\tTransform 'Jaw'\n\tTransform 'Jaw'\n\tFrom
         animation clip 'Idle'\n\tFrom animation clip 'Run'\n\tFrom animation clip
-        'Die'\n\tFrom animation clip 'Idle'\n\tFrom animation clip 'Ax Attack 01'\n\tFrom
-        animation clip 'Ax Attack02'\n\tFrom animation clip 'Ax Attack 01'"
+        'Die'\n\tFrom animation clip 'Idle'"
       objectReference: {fileID: 0}
     - target: {fileID: 5104209847460090065, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: m_Name

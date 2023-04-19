@@ -9,7 +9,8 @@ namespace Game.Mecanics
     /// <summary>
     /// A character with player controls.
     /// </summary>
-    public sealed class PlayerCharacter : Character
+    [RequireComponent(typeof(CharacterController))]
+    public sealed class PlayerCharacter : MonoBehaviour
     {
         [System.Serializable]
         public class PlayerInputs
@@ -38,22 +39,144 @@ namespace Game.Mecanics
             }
         }
 
-        /// <summary>
-        /// Has all settings of player control. 
-        /// </summary>
+        [System.Serializable]
+        public class Moviment
+        {
+            [Min(0)] public float MoveSpeed;
+            [Min(0)] public float Gravity;
+            [Min(0)] public float TurnSpeed;
+            [Min(0)] public float StopDistance;
+
+            public Moviment()
+            {
+                MoveSpeed = 10;
+                Gravity = 10;
+                TurnSpeed = 10;
+                StopDistance = 1;
+            }
+        }
+
+        [System.Serializable]
+        public class WeaponSlot
+        {
+            public Weapon WeaponObject;
+            public Transform Hand;
+
+            public float AttackRate;
+            public float AttackLengthMultiplier;
+            public float AttackRateMultiplier;
+            public float AttackDamageMultiplier;
+            public float AttackDistanceMultiplier;
+
+            public WeaponSlot()
+            {
+                AttackRate = 0.2f;
+                AttackLengthMultiplier = 1;
+                AttackRateMultiplier = 1;
+                AttackDamageMultiplier = 1;
+                AttackDistanceMultiplier = 1;
+            }
+        }
+
+        [System.Serializable]
+        public class LifeStorage
+        {
+            [Min(1)] public float LifeAmount;
+            [Min(0.1f)] public float AutoDestroyOnDeathDelay;
+            public UnityEvent OnResetLife;
+
+            public LifeStorage()
+            {
+                LifeAmount = 100;
+            }
+        }
+
+        [System.Serializable]
+        public class AnimationControl
+        {
+            public Animator Animator;
+
+            [Tooltip("A interger value, from 0 to 1 representing if the player is moving")]
+            public string MovimentParam;
+
+            [Tooltip("Bool parameter, check if the character is death")]
+            public string IsDeath;
+
+            [Tooltip("Bool parameter")]
+            public string IsAttacking;
+
+            [Tooltip("Bool parameter, true if the character is using special attack animation")]
+            public string IsSuperAttack;
+
+            [Tooltip("Interger parameter, what weapon animation ID is using on AnimatorController?")]
+            public string AttackAnimationID;
+
+            [Tooltip("Float parameter, speed multiplier of the attack animation")]
+            public string AttackAnimSpeed;
+
+            public AnimationControl()
+            {
+                MovimentParam = "Vertical";
+                IsDeath = "Is Death";
+                IsAttacking = "Is Attacking";
+                IsSuperAttack = "Is Super Attack";
+                AttackAnimationID = "Attack Animation ID";
+                AttackAnimSpeed = "Attack Speed";
+            }
+        }
+
         public PlayerInputs InputMaps;
-        public UnityEvent OnGetCenter;
+        public Moviment Movimentation;
+        public WeaponSlot Weapon;
+        public LifeStorage Life;
+        public AnimationControl Animation;
+
+        [Space]
+
+        public UnityEvent OnDeath;
+        public UnityEvent OnDamaged;
+        public UnityEvent OnSetWeapon;
+        public UnityEvent OnRevive;
+
+        [Header("Animation Events")]
+        public UnityEvent OnAttackAnimationEvent;
+
+        private Vector3 _moveDirection;
+        private CharacterController _characterController;
+        private List<PowerUp> _powerUps;
+
+        public CharacterController CharacterController => _characterController;
+
+        public float CurrentAttackRate => Weapon.AttackRate * Weapon.AttackRateMultiplier;
+        public bool HasWeapon => Weapon.WeaponObject;
+        public bool IsGrounded => CharacterController.isGrounded;
+        public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
+        public bool IsInvencible { get; set; }
+        public bool IsDeath { get; private set; }
+        public bool CanAttack { get; private set; }
+        public bool IsAttacking { get; private set; }
+
+        public float CurrentLife { get; private set; }
 
         public InputAction VerticalAction { get; private set; }
         public InputAction HorizontalAction { get; private set; }
         public InputAction MobileJoystickAction { get; private set; }
 
+        public Vector3 LookAtDirection { get; set; }
         public Vector3 Forward { get; set; }
+        public bool CanMove { get; set; }
 
-        public bool SearchEnemies => IsStoped;
+        /// <summary>
+        /// Current player moviment velocity with gravity
+        /// </summary>
+        /// <value></value>
+        public Vector3 CharacterVelocity { get; private set; }
 
-        public Enemy NearEnemy { get; private set; }
-        public bool IsMovingToCenter { get; private set; }
+        /// <summary>
+        /// Set direction to character move. To stop set as Vector3(0, 0, 0)
+        /// </summary>
+        /// <returns></returns>
+        public Vector3 CharacterMoveDirection { get => _moveDirection; set => _moveDirection = new Vector3(value.x, 0, value.z).normalized; }
 
         private Vector3 _ArenaCenter => ArenaManager.Instance ? ArenaManager.Instance.ArenaCaracteristics.ArenaCenter.position : Vector3.zero;
 
@@ -67,15 +190,30 @@ namespace Game.Mecanics
             InputMaps.InputAsset.Disable();
         }
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
+            _characterController = GetComponent<CharacterController>();
+            _powerUps = new List<PowerUp>();
+
+            CanMove = true;
+            CurrentLife = Life.LifeAmount;
+            LookAtDirection = transform.forward;
+
+            if (!CharacterController)
+            {
+                Debug.LogError($"Character Controller not added on gameObject {CharacterController}");
+                return;
+            }
+
             Forward = Camera.main ? Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up) : transform.forward;
         }
 
-        protected override void Start()
+        private void Start()
         {
-            base.Start();
+            if (Weapon.WeaponObject)
+            {
+                SetWeapon(Weapon.WeaponObject);
+            }
 
             if (!InputMaps.InputAsset)
             {
@@ -83,29 +221,26 @@ namespace Game.Mecanics
                 return;
             }
 
+            CanAttack = true;
+
             VerticalAction = InputMaps.InputAsset.FindAction(InputMaps.VerticalAction, throwIfNotFound: true);
             HorizontalAction = InputMaps.InputAsset.FindAction(InputMaps.HorizontalAction, throwIfNotFound: true);
             MobileJoystickAction = InputMaps.InputAsset.FindAction(InputMaps.MobileJoystickAction, throwIfNotFound: true);
+
+            Attack();
         }
 
-        protected override void Update()
+        private void Update()
         {
-            base.Update();
+            UpdateRotation(Time.deltaTime);
+            UpdateMoviment(Time.deltaTime);
 
-            if (IsMovingToCenter)
-            {
-                UpdateMoveToCenter();
-            }
-            else
-            {
-                UpdatePlayerControls();
-            }
+            UpdatePlayerControls();
+        }
 
-            if (HasWeapon)
-            {
-                FindNearEnemy();
-                Attack();
-            }
+        private void LateUpdate()
+        {
+            UpdateAnimations();
         }
 
         private void UpdatePlayerControls()
@@ -135,67 +270,228 @@ namespace Game.Mecanics
             CharacterMoveDirection = _moveDirection;
         }
 
-        private void UpdateMoveToCenter()
+        private void UpdateMoviment(float delta)
         {
-            if (Vector3.Distance(transform.position, _ArenaCenter) < Movimentation.StopDistance)
+            if (!CharacterController)
             {
-                IsMovingToCenter = false;
-                OnGetCenter.Invoke();
                 return;
             }
 
-            CharacterMoveDirection = GetAiPathDirection(_ArenaCenter);
+            if (!CanMove)
+            {
+                CharacterMoveDirection = Vector3.zero;
+            }
+
+            CharacterVelocity = CharacterMoveDirection;
+            CharacterVelocity *= Movimentation.MoveSpeed;
+            CharacterVelocity = new Vector3(CharacterVelocity.x, -Movimentation.Gravity, CharacterVelocity.z);
+            CharacterVelocity *= delta;
+
+            CharacterController.Move(CharacterVelocity);
         }
 
-        private void FindNearEnemy()
+        private void UpdateRotation(float delta)
         {
-            var _allCharacter = new List<Enemy>(FindObjectsOfType<Enemy>());
-
-            if (_allCharacter.Count == 0)
+            if (!CanMove)
             {
-                NearEnemy = null;
                 return;
             }
 
-            var _near = _allCharacter[0];
-            var _distance = Vector3.Distance(transform.position, _near.transform.position);
+            var _turnSpeed = Mathf.Clamp01(delta * Movimentation.TurnSpeed);
+            var _currentRot = transform.rotation;
 
-            foreach (var c in _allCharacter)
+            if (!IsStoped)
             {
-                var _characterDistance = Vector3.Distance(transform.position, c.transform.position);
+                LookAtDirection = CharacterMoveDirection / CharacterMoveDirection.magnitude;
+            }
 
-                if (_characterDistance < _distance)
+            var _targetRot = Quaternion.LookRotation(LookAtDirection);
+
+            transform.rotation = Quaternion.Lerp(_currentRot, _targetRot, _turnSpeed);
+        }
+
+        private void UpdateAnimations()
+        {
+            if (!Animation.Animator)
+            {
+                return;
+            }
+
+            Animation.Animator.SetFloat(Animation.MovimentParam, CharacterMoveDirection.magnitude);
+            Animation.Animator.SetBool(Animation.IsAttacking, IsAttacking);
+            Animation.Animator.SetBool(Animation.IsDeath, IsDeath);
+
+            if (HasWeapon)
+            {
+                Animation.Animator.SetBool(Animation.IsSuperAttack, Weapon.WeaponObject.IsSuperAttack);
+                Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
+                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, Weapon.WeaponObject.CurrentAttackLength);
+            }
+        }
+
+        public void SetWeapon(Game.Mecanics.Weapon newWeapon)
+        {
+            if (!enabled)
+            {
+                return;
+            }
+
+            if (!Weapon.Hand)
+            {
+                Debug.LogError($"Character '{gameObject.name}' does not have '{nameof(Weapon.Hand)}' of '{nameof(Weapon)}' assigned. Is not possible set the weapon.");
+                return;
+            }
+
+            if (!newWeapon)
+            {
+                if (Weapon.WeaponObject)
                 {
-                    _distance = _characterDistance;
-                    _near = c;
+                    Destroy(Weapon.WeaponObject.gameObject);
+                    return;
                 }
             }
 
-            if (_distance > Weapon.WeaponObject.AttackRange)
+            newWeapon.transform.parent = Weapon.Hand;
+            newWeapon.transform.localPosition = Vector3.zero;
+            newWeapon.transform.localRotation = Quaternion.identity;
+            newWeapon.Owner = this;
+            Weapon.WeaponObject = newWeapon;
+
+            OnSetWeapon.Invoke();
+        }
+
+        public void AddDamage(float damage)
+        {
+            if (IsDeath || !enabled)
             {
-                NearEnemy = null;
                 return;
             }
 
-            NearEnemy = _near;
+            if (!IsInvencible)
+            {
+                CurrentLife -= damage;
+            }
+
+            OnDamaged.Invoke();
+
+            if (CurrentLife <= 0)
+            {
+                CurrentLife = 0;
+                IsDeath = true;
+                StartCoroutine(DisableCharacter());
+                StartCoroutine(DestroyCharacterDeleyed());
+
+                OnDeath.Invoke();
+
+                // wait to finalize all character logic to desactive
+                IEnumerator DisableCharacter()
+                {
+                    yield return new WaitForEndOfFrame();
+                    enabled = false;
+                }
+
+                IEnumerator DestroyCharacterDeleyed()
+                {
+                    yield return new WaitForSeconds(Life.AutoDestroyOnDeathDelay);
+
+                    if (IsDeath)
+                    {
+                        enabled = false;
+                        Destroy(gameObject);
+                    }
+                }
+            }
         }
 
-        public override void Attack(Enemy target = null)
+        private void Attack()
         {
-            if (!NearEnemy || NearEnemy.IsDeath || !enabled)
+            if (!CanAttack || !enabled)
             {
                 return;
             }
 
-            LookAtDirection = NearEnemy.transform.position - transform.position;
-            // attack any hear enemy 
-            base.Attack(null);
+            IsAttacking = true;
+
+            Weapon.WeaponObject.Attack();
+            Invoke(nameof(FinalizeAttack), Weapon.WeaponObject.CurrentAttackLength);
         }
 
-        public void MovePlayerToCenter()
+        public void KillCharacter()
         {
-            IsMovingToCenter = true;
+            AddDamage(Mathf.Infinity);
+        }
+
+        public void ResetLife()
+        {
+            CurrentLife = Life.LifeAmount;
+
+            if (IsDeath)
+            {
+                IsDeath = false;
+                enabled = true;
+                OnRevive.Invoke();
+            }
+        }
+
+        private void FinalizeAttack()
+        {
+            IsAttacking = false;
+            Weapon.WeaponObject.IsAttacking = false;
+            Invoke(nameof(Attack), CurrentAttackRate);
+        }
+
+        public void AddPowerUp(PowerUp powerUp)
+        {
+            if (!enabled && !powerUp)
+            {
+                return;
+            }
+
+            powerUp.gameObject.transform.parent = transform;
+            powerUp.gameObject.transform.localPosition = Vector3.zero;
+            powerUp.gameObject.transform.localRotation = Quaternion.identity;
+            powerUp.Owner = this;
+
+            _powerUps.Add(powerUp);
+        }
+
+        public PowerUp[] GetPowerUps() => _powerUps.ToArray();
+
+        public void UsePowerUps()
+        {
+            if (!enabled)
+            {
+                return;
+            }
+
+            foreach (var p in _powerUps)
+            {
+                p.UsePowerUp();
+            }
+        }
+
+        public void RemovePowerUp(PowerUp powerUp)
+        {
+            powerUp.OnRemove();
+            _powerUps.Remove(powerUp);
+            Destroy(powerUp.gameObject);
+        }
+
+        public void RemovePowerUps()
+        {
+            foreach (var p in _powerUps)
+            {
+                p.OnRemove();
+                Destroy(p.gameObject);
+            }
+
+            _powerUps.Clear();
+        }
+
+        // called by character animation event
+        public void AttackAnimationEvent()
+        {
+            OnAttackAnimationEvent.Invoke();
         }
     }
 }
-

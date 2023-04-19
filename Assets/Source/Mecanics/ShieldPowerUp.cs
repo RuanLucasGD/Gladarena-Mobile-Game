@@ -19,8 +19,8 @@ namespace Game.Mecanics
 
         public int CurrentHits { get; private set; }
 
-        private Character _detectedCharacter;
-        public override Character Owner
+        private Enemy _detectedCharacter;
+        public override PlayerCharacter Owner
         {
             get => base.Owner;
             set
@@ -43,7 +43,7 @@ namespace Game.Mecanics
                 return;
             }
 
-            if (other.TryGetComponent<Character>(out var c))
+            if (other.TryGetComponent<Enemy>(out var c))
             {
                 if (c != Owner)
                 {
@@ -61,7 +61,7 @@ namespace Game.Mecanics
                     DetectHit();
 
                     var _force = ((c.transform.position - transform.position).normalized * Force) + Owner.CharacterVelocity;
-                    c.AddDamage(Damage, _force);
+                    c.AddDamage(Damage);
                 }
             }
         }

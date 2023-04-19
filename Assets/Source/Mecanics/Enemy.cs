@@ -53,6 +53,11 @@ namespace Game.Mecanics
 
         private void Update()
         {
+            if (IsDeath)
+            {
+                return;
+            }
+            
             UpdateRotation();
             UpdateAnimations();
 
@@ -176,7 +181,7 @@ namespace Game.Mecanics
         // called by character animator event
         public void AttackAnimationEvent()
         {
-            if (!IsAttacking || !IsTargetNearToAttack)
+            if (!IsAttacking)
             {
                 return;
             }
@@ -184,7 +189,7 @@ namespace Game.Mecanics
             Target.AddDamage(AttackDamage);
         }
 
-        public void AddDamage(float damage, Vector3 force)
+        public void AddDamage(float damage)
         {
             CurrentLife -= damage;
 
@@ -197,7 +202,6 @@ namespace Game.Mecanics
         public void Death()
         {
             CurrentLife = 0;
-            enabled = false;
             SetDeathAnimation();
             Destroy(gameObject, 10);
 
@@ -207,6 +211,12 @@ namespace Game.Mecanics
             }
 
             Rb.useGravity = false;
+            Rb.constraints |= RigidbodyConstraints.FreezePositionX;
+            Rb.constraints |= RigidbodyConstraints.FreezePositionY;
+            Rb.constraints |= RigidbodyConstraints.FreezePositionZ;
+            Rb.constraints |= RigidbodyConstraints.FreezeRotationX;
+            Rb.constraints |= RigidbodyConstraints.FreezeRotationY;
+            Rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
         }
     }
 }
