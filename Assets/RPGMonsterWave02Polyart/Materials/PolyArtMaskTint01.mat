@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _PolyArtAlbedo:
-        m_Texture: {fileID: 2800000, guid: 536df1e0489ff89439efc8572dd56a61, type: 3}
+        m_Texture: {fileID: 2800000, guid: bac802af435fa734f9a84382ee5b3b49, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
@@ -49,3 +49,4 @@ Material:
     - _Color02: {r: 0.08962262, g: 0.28747946, b: 1, a: 0}
     - _Color03: {r: 0.11107157, g: 0.18627343, b: 0.6037736, a: 0}
     - _Color04: {r: 0.20901564, g: 0.21684799, b: 0.7264151, a: 0}
+  m_BuildTextureStacks: []
