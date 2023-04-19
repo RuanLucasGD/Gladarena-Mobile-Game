@@ -189,7 +189,7 @@ namespace Game.Mecanics
             Target.AddDamage(AttackDamage);
         }
 
-        public void AddDamage(float damage, Vector3 force = default(Vector3))
+        public void AddDamage(float damage)
         {
             CurrentLife -= damage;
 

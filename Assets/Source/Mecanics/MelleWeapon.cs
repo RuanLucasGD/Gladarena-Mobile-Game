@@ -63,15 +63,6 @@ namespace Game.Mecanics
             DisableAttack();
         }
 
-        private Vector3 GetAttackForce(Enemy target)
-        {
-            var _direction = target.transform.position - Owner.transform.position;
-            _direction /= _direction.magnitude;
-            _direction *= CurrentAttackForce;
-
-            return _direction;
-        }
-
         private List<Enemy> GetNearInViewEnemies()
         {
             var _nearInView = new List<Enemy>();
@@ -120,9 +111,8 @@ namespace Game.Mecanics
             {
                 if (_isTargetNear(c))
                 {
-                    var _attackForce = GetAttackForce(c);
-                    c.AddDamage(CurrentAttackDamage, _attackForce);
-                    if (DebugLog) Debug.Log($"Target damaged: {c.name}        damage: {CurrentAttackDamage}    force: {_attackForce}");
+                    c.AddDamage(CurrentAttackDamage);
+                    if (DebugLog) Debug.Log($"Target damaged: {c.name}        damage: {CurrentAttackDamage}");
                 }
             }
         }

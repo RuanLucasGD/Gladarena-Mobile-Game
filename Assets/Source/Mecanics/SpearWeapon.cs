@@ -36,7 +36,6 @@ namespace Game.Mecanics
 
         public SpearWeapon()
         {
-            AttackForce = 15;
             MinDotAngleToAttack = 0.8f;
         }
 
@@ -71,7 +70,7 @@ namespace Game.Mecanics
                     return;
                 }
 
-                character.AddDamage(CurrentAttackDamage, Owner.transform.forward * CurrentAttackForce);
+                character.AddDamage(CurrentAttackDamage);
             }
         }
 

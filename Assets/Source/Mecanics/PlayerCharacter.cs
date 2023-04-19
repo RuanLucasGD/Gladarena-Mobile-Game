@@ -61,13 +61,20 @@ namespace Game.Mecanics
         {
             public Weapon WeaponObject;
             public Transform Hand;
+
             public float AttackRate;
+            public float AttackLengthMultiplier;
             public float AttackRateMultiplier;
+            public float AttackDamageMultiplier;
+            public float AttackDistanceMultiplier;
 
             public WeaponSlot()
             {
                 AttackRate = 0.2f;
+                AttackLengthMultiplier = 1;
                 AttackRateMultiplier = 1;
+                AttackDamageMultiplier = 1;
+                AttackDistanceMultiplier = 1;
             }
         }
 
@@ -87,7 +94,6 @@ namespace Game.Mecanics
         [System.Serializable]
         public class AnimationControl
         {
-            [Space]
             public Animator Animator;
 
             [Tooltip("A interger value, from 0 to 1 representing if the player is moving")]
@@ -105,6 +111,9 @@ namespace Game.Mecanics
             [Tooltip("Interger parameter, what weapon animation ID is using on AnimatorController?")]
             public string AttackAnimationID;
 
+            [Tooltip("Float parameter, speed multiplier of the attack animation")]
+            public string AttackAnimSpeed;
+
             public AnimationControl()
             {
                 MovimentParam = "Vertical";
@@ -112,6 +121,7 @@ namespace Game.Mecanics
                 IsAttacking = "Is Attacking";
                 IsSuperAttack = "Is Super Attack";
                 AttackAnimationID = "Attack Animation ID";
+                AttackAnimSpeed = "Attack Speed";
             }
         }
 
@@ -315,6 +325,7 @@ namespace Game.Mecanics
             {
                 Animation.Animator.SetBool(Animation.IsSuperAttack, Weapon.WeaponObject.IsSuperAttack);
                 Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
+                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, Weapon.WeaponObject.CurrentAttackLength);
             }
         }
 

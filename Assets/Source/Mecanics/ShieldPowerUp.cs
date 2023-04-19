@@ -61,7 +61,7 @@ namespace Game.Mecanics
                     DetectHit();
 
                     var _force = ((c.transform.position - transform.position).normalized * Force) + Owner.CharacterVelocity;
-                    c.AddDamage(Damage, _force);
+                    c.AddDamage(Damage);
                 }
             }
         }

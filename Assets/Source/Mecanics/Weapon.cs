@@ -10,7 +10,6 @@ namespace Game.Mecanics
         [SerializeField]
         protected bool DebugLog;
 
-        public float AttackForce;
         public float AttackRange;
         public float AttackDamage;
         public float AttackLength;
@@ -34,13 +33,9 @@ namespace Game.Mecanics
         protected Enemy WeaponTarget { get; set; }
 
         public bool IsSuperAttack { get; set; }
-        public float AttackForceMultiplier { get; set; }
-        public float AttackDamageMultiplier { get; set; }
-        public float AttackLengthMultiplier { get; set; }
 
-        public float CurrentAttackForce => AttackForce * AttackForceMultiplier;
-        public float CurrentAttackDamage => AttackDamage * AttackDamageMultiplier;
-        public float CurrentAttackLength => AttackLength * AttackLengthMultiplier;
+        public float CurrentAttackDamage => AttackDamage * Owner.Weapon.AttackDamageMultiplier;
+        public float CurrentAttackLength => AttackLength * Owner.Weapon.AttackLengthMultiplier;
 
         public Weapon()
         {
@@ -49,12 +44,7 @@ namespace Game.Mecanics
             AttackLength = 1;
         }
 
-        protected virtual void Awake()
-        {
-            AttackDamageMultiplier = 1;
-            AttackForceMultiplier = 1;
-            AttackLengthMultiplier = 1;
-        }
+        protected virtual void Awake() { }
 
         protected virtual void Start() { }
 
