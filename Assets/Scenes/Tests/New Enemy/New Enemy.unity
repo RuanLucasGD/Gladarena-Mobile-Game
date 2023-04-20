@@ -1442,7 +1442,7 @@ PrefabInstance:
       objectReference: {fileID: 951971917}
     - target: {fileID: 1448692789631899809, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: Weapon.AttackLengthMultiplier
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4664960912877185069, guid: 5a99a5d2e8fc7a048aa6810d61503c90, type: 3}
       propertyPath: m_WarningMessage
