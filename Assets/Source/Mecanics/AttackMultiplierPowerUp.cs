@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Game.Mecanics
 {
-    public class SuperAttackPowerUp : PowerUp
+    public class AttackMultiplierPowerUp : PowerUp
     {
+        public float AttackRageMultiplier;
         public float AttackLengthMultiplier;
-        public float AttackForceMultiplier;
         public float AttackDamageMultiplier;
 
         public override PlayerCharacter Owner
@@ -16,14 +16,17 @@ namespace Game.Mecanics
             set
             {
                 base.Owner = value;
+                Owner.Weapon.AttackRate *= AttackRageMultiplier;
+                Owner.Weapon.AttackDamageMultiplier *= AttackDamageMultiplier;
+                Owner.Weapon.AttackLengthMultiplier *= AttackLengthMultiplier;
             }
         }
 
-        public SuperAttackPowerUp()
+        public AttackMultiplierPowerUp()
         {
-            AttackForceMultiplier = 2;
-            AttackDamageMultiplier = 2;
-            AttackLengthMultiplier = 2;
+            AttackDamageMultiplier = 1;
+            AttackLengthMultiplier = 1;
+            AttackRageMultiplier = 1;
         }
 
         public override void OnRemove()
