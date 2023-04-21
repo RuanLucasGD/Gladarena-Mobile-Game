@@ -54,8 +54,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973641761611290145}
-  - component: {fileID: 1973641761611290144}
   - component: {fileID: 1973641761611290147}
+  - component: {fileID: 4961816882858484576}
   m_Layer: 0
   m_Name: Spear Weapon
   m_TagString: Untagged
@@ -79,27 +79,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1973641761611290144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973641761611290174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b0fd500eac73947adfc8101c83f527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugLog: 0
-  AttackForce: 35
-  AttackRange: 7
-  AttackDamage: 30
-  AttackLength: 1
-  AnimationID: 1
-  AttackAudioSource: {fileID: 0}
-  MinDotAngleToAttack: 0.95
-  WeaponCollider: {fileID: 1973641760929820256}
 --- !u!54 &1973641761611290147
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116,6 +95,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4961816882858484576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973641761611290174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b9ad500b960814fb4cfd2f63c4974d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugLog: 0
+  AttackRange: 4
+  AttackDamage: 40
+  AttackLength: 1
+  AnimationID: 1
+  AttackAudioSource: {fileID: 0}
+  DotAttackAngle: 0.5
 --- !u!1 &8448438380913365348
 GameObject:
   m_ObjectHideFlags: 0

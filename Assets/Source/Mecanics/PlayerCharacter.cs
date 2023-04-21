@@ -325,7 +325,7 @@ namespace Game.Mecanics
             {
                 Animation.Animator.SetBool(Animation.IsSuperAttack, Weapon.WeaponObject.IsSuperAttack);
                 Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
-                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, Weapon.WeaponObject.CurrentAttackLength);
+                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, 1 / Weapon.WeaponObject.CurrentAttackLength);
             }
         }
 
@@ -416,6 +416,13 @@ namespace Game.Mecanics
             Invoke(nameof(FinalizeAttack), Weapon.WeaponObject.CurrentAttackLength);
         }
 
+        private void FinalizeAttack()
+        {
+            IsAttacking = false;
+            Weapon.WeaponObject.IsAttacking = false;
+            Invoke(nameof(Attack), CurrentAttackRate);
+        }
+
         public void KillCharacter()
         {
             AddDamage(Mathf.Infinity);
@@ -431,13 +438,6 @@ namespace Game.Mecanics
                 enabled = true;
                 OnRevive.Invoke();
             }
-        }
-
-        private void FinalizeAttack()
-        {
-            IsAttacking = false;
-            Weapon.WeaponObject.IsAttacking = false;
-            Invoke(nameof(Attack), CurrentAttackRate);
         }
 
         public void AddPowerUp(PowerUp powerUp)

@@ -30,7 +30,8 @@ namespace Game.Mecanics
             public float DamageUpgrade;
             public float VelocityUpgrade;
 
-            public bool Upgraded { get; set; }
+            [Space]
+            public bool Upgraded;
         }
 
         public Transform Follow;
@@ -59,6 +60,10 @@ namespace Game.Mecanics
         {
             var _randomPos = Spawn.SpawnPoints[Random.Range(0, Spawn.SpawnPoints.Length - 1)].position;
             var _newEnemy = Instantiate(level.EnemyPrefab, _randomPos, Quaternion.identity);
+
+            _newEnemy.MaxLife *= level.Upgraded ? level.LifeUpgrade : level.LifeBase;
+            _newEnemy.AttackDamage *= level.Upgraded ? level.DamageUpgrade : level.DamageBase;
+            _newEnemy.MoveSpeed *= level.Upgraded ? level.VelocityUpgrade : level.VelocityBase;
         }
     }
 }
