@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36920166c00352246b1b5dc2c5a52cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanSpawn: 1
   Follow: {fileID: 1342480037}
   Spawn:
     SpawnRate: 1
@@ -715,14 +716,30 @@ MonoBehaviour:
     ObstaclesLayer:
       serializedVersion: 2
       m_Bits: 0
-  Enemylevels:
-  - EnemyPrefab: {fileID: 668775417943923496, guid: 8fac1f628857957459204223f1b41a1c, type: 3}
+    MaxAsyncSpawns: 3
+  Enemies:
+  - Prefab: {fileID: 668775417943923496, guid: 8fac1f628857957459204223f1b41a1c, type: 3}
+    StartSpawnLevel: 0
+    EndSpawnLevel: 1
+  - Prefab: {fileID: 668775417943923496, guid: d2016c44cf991e9458d862a5e8f0db7d, type: 3}
+    StartSpawnLevel: 1
+    EndSpawnLevel: 10
+  FirstLevel:
     LifeBase: 1
     DamageBase: 1
     VelocityBase: 1
     LifeUpgrade: 2
     DamageUpgrade: 2
-    VelocityUpgrade: 1.2
+    VelocityUpgrade: 2
+  Progression:
+    LifeBase: 0.2
+    DamageBase: 0.2
+    VelocityBase: 0.2
+    LifeUpgrade: 1
+    DamageUpgrade: 1
+    VelocityUpgrade: 1
+  CurrentLevels: []
+  CurrentLevelIndex: 0
 --- !u!4 &904689903
 Transform:
   m_ObjectHideFlags: 0

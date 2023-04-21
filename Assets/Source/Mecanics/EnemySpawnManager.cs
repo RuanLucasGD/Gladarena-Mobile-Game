@@ -7,43 +7,73 @@ namespace Game.Mecanics
     public class EnemySpawnManager : MonoBehaviour
     {
         [System.Serializable]
-        public class SpawnSettings
+        public class LevelInfo
         {
-            public float SpawnRate;
-            public Transform[] SpawnPoints;
-            public LayerMask ObstaclesLayer;
+            public bool IsUpgraded;
+            public int LevelIndex;
+
+            public float LifeBase;
+            public float DamageBase;
+            public float VelocityBase;
+
+            public float LifeUpgrade;
+            public float DamageUpgrade;
+            public float VelocityUpgrade;
         }
 
         [System.Serializable]
-        public class EnemyLevel
+        public class LevelProgression
         {
-            public Enemy EnemyPrefab;
-
-            [Header("Level 1")]
+            [Header("Horder 1")]
             public float LifeBase;
             public float DamageBase;
             public float VelocityBase;
 
 
-            [Header("Level 2")]
+            [Header("Horder 2")]
             public float LifeUpgrade;
             public float DamageUpgrade;
             public float VelocityUpgrade;
-
-            [Space]
-            public bool Upgraded;
         }
 
+        [System.Serializable]
+        public class EnemyType
+        {
+            public Enemy Prefab;
+            public int StartSpawnLevel;
+            public int EndSpawnLevel;
+        }
+
+        [System.Serializable]
+        public class SpawnSettings
+        {
+            public float SpawnRate;
+            public Transform[] SpawnPoints;
+            public LayerMask ObstaclesLayer;
+
+            [Space]
+
+            public int MaxAsyncSpawns;
+        }
+
+        public bool CanSpawn;
         public Transform Follow;
-
         public SpawnSettings Spawn;
-        public EnemyLevel[] Enemylevels;
+        public EnemyType[] Enemies;
+        public LevelProgression FirstLevel;
+        public LevelProgression Progression;
 
-        public int CurrentLevel { get; set; }
+        public List<LevelInfo> CurrentLevels;
+
+        public int CurrentLevelIndex;
 
         void Start()
         {
             InvokeRepeating(nameof(SpawnEnemy), Spawn.SpawnRate, Spawn.SpawnRate);
+
+            SetLevel(0);
+            SetNextLevel();
+            SetNextLevel();
         }
 
         void Update()
@@ -53,17 +83,65 @@ namespace Game.Mecanics
 
         private void SpawnEnemy()
         {
-            SpawnEnemy(Enemylevels[CurrentLevel]);
+            if (!CanSpawn)
+            {
+                return;
+            }
+
+            foreach (var e in Enemies)
+            {
+                if (e.StartSpawnLevel <= CurrentLevelIndex && e.EndSpawnLevel <= CurrentLevelIndex)
+                {
+                    SpawnEnemy(e);
+                }
+            }
         }
 
-        public void SpawnEnemy(EnemyLevel level)
+        public void SpawnEnemy(EnemyType enemy)
         {
             var _randomPos = Spawn.SpawnPoints[Random.Range(0, Spawn.SpawnPoints.Length - 1)].position;
-            var _newEnemy = Instantiate(level.EnemyPrefab, _randomPos, Quaternion.identity);
+            var _newEnemy = Instantiate(enemy.Prefab, _randomPos, Quaternion.identity);
+        }
 
-            _newEnemy.MaxLife *= level.Upgraded ? level.LifeUpgrade : level.LifeBase;
-            _newEnemy.AttackDamage *= level.Upgraded ? level.DamageUpgrade : level.DamageBase;
-            _newEnemy.MoveSpeed *= level.Upgraded ? level.VelocityUpgrade : level.VelocityBase;
+        private void SetLevel(int level)
+        {
+            var _newLevel = new LevelInfo();
+
+            if (CurrentLevels.Count >= 1)
+            {
+                var _lastLevel = CurrentLevels[CurrentLevels.Count - 1];
+                _newLevel.DamageBase = _lastLevel.DamageBase + Progression.DamageBase;
+                _newLevel.LifeBase = _lastLevel.LifeBase + Progression.LifeBase;
+                _newLevel.VelocityBase = _lastLevel.DamageBase + Progression.VelocityBase;
+
+                _newLevel.DamageUpgrade = _lastLevel.DamageUpgrade + Progression.DamageUpgrade;
+                _newLevel.LifeUpgrade = _lastLevel.LifeUpgrade + Progression.LifeUpgrade;
+                _newLevel.VelocityUpgrade = _lastLevel.VelocityUpgrade + Progression.VelocityUpgrade;
+            }
+            else
+            {
+                _newLevel.DamageBase = FirstLevel.DamageBase;
+                _newLevel.LifeBase = FirstLevel.LifeBase;
+                _newLevel.VelocityBase = FirstLevel.VelocityBase;
+
+                _newLevel.DamageUpgrade = FirstLevel.DamageUpgrade;
+                _newLevel.LifeUpgrade = FirstLevel.LifeUpgrade;
+                _newLevel.VelocityUpgrade = FirstLevel.VelocityUpgrade;
+            }
+
+            CurrentLevels.Add(_newLevel);
+            CurrentLevelIndex = level;
+
+            while (CurrentLevels.Count > Spawn.MaxAsyncSpawns)
+            {
+                CurrentLevels.Remove(CurrentLevels[0]);
+            }
+        }
+
+        public void SetNextLevel()
+        {
+            SetLevel(CurrentLevelIndex);
+            CurrentLevelIndex++;
         }
     }
 }
