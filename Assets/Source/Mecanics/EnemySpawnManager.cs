@@ -101,6 +101,15 @@ namespace Game.Mecanics
         {
             var _randomPos = Spawn.SpawnPoints[Random.Range(0, Spawn.SpawnPoints.Length - 1)].position;
             var _newEnemy = Instantiate(enemy.Prefab, _randomPos, Quaternion.identity);
+
+            var _level = CurrentLevels[CurrentLevelIndex];
+            var _damage = _level.IsUpgraded ? _level.DamageUpgrade : _level.DamageBase;
+            var _velocity = _level.IsUpgraded ? _level.VelocityUpgrade : _level.VelocityBase;
+            var _life = _level.IsUpgraded ? _level.LifeUpgrade : _level.LifeBase;
+
+            _newEnemy.AttackDamage *= _damage;
+            _newEnemy.MaxLife *= _life;
+            _newEnemy.MoveSpeed *= _velocity;
         }
 
         private void SetLevel(int level)
