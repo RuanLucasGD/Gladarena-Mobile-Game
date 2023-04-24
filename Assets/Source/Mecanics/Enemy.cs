@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
@@ -24,6 +25,10 @@ namespace Game.Mecanics
         [Header("Animation")]
         public int WeaponAnimID;
         public EnemyAnimationParameterSettings AnimationSettings;
+
+        [Header("Events")]
+        public UnityEvent OnSpawned;
+        public UnityEvent OnKilled;
 
         public float CurrentLife { get; private set; }
         public bool IsOnScreen { get; private set; }
@@ -49,6 +54,8 @@ namespace Game.Mecanics
             }
 
             SetWeaponAnimation();
+
+            OnSpawned.Invoke();
         }
 
         private void Update()
@@ -217,6 +224,8 @@ namespace Game.Mecanics
             Rb.constraints |= RigidbodyConstraints.FreezeRotationX;
             Rb.constraints |= RigidbodyConstraints.FreezeRotationY;
             Rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
+
+            OnKilled.Invoke();
         }
     }
 }

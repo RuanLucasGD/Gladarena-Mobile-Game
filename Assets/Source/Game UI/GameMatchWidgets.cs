@@ -25,6 +25,7 @@ namespace Game.UI
             }
         }
 
+        public GameProgressionManager ProgressionManager;
         public Widget StartHorder;
         public Widget CompleteHorder;
         public Widget StartLevel;
@@ -36,16 +37,9 @@ namespace Game.UI
         {
             DisableAll();
 
-            if (ArenaManager.Instance)
+            if (ProgressionManager)
             {
-                ArenaManager.Instance.OnStartHorder.AddListener(ShowStartHorderWidget);
-                ArenaManager.Instance.OnCompleteHorder.AddListener(ShowCompletedHorderWidget);
-                ArenaManager.Instance.OnStartLevel.AddListener(ShowStartLevelWidget);
-                ArenaManager.Instance.OnCompleteLevel.AddListener(ShowCompletedLevelWidget);
-                ArenaManager.Instance.OnGameWin.AddListener(ShowGameWinWidget);
-
-                GameManager.Instance.Player.OnDeath.AddListener(ShowGameOverWidget);
-                GameManager.Instance.Player.OnRevive.AddListener(DisableAll);
+                ProgressionManager.OnChangeLevel.AddListener(ShowCompletedLevelWidget);
             }
         }
 
@@ -70,7 +64,7 @@ namespace Game.UI
             widget.Text.text = message;
 
             // disable widget after time
-            GameManager.Instance.Delay(widget.LifeTime, () => DisableWidget(widget));
+            Delay(widget.LifeTime, () => DisableWidget(widget));
         }
 
         private void DisableWidget(Widget widget)
@@ -119,6 +113,17 @@ namespace Game.UI
         private void ShowGameOverWidget()
         {
             ShowWidget(CompleteLevel, "GAME OVER!");
+        }
+
+        private void Delay(float delay, UnityAction onCompleted)
+        {
+            IEnumerator _Delay()
+            {
+                yield return new WaitForSeconds(delay);
+                onCompleted();
+            }
+
+            StartCoroutine(_Delay());
         }
     }
 }

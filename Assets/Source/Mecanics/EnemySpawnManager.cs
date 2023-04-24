@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
@@ -63,6 +64,10 @@ namespace Game.Mecanics
         public LevelProgression FirstLevel;
         public LevelProgression Progression;
 
+        [Space]
+        public UnityEvent<Enemy> OnEnemySpawned;
+        public UnityEvent<Enemy> OnEnemyKilled;
+
         public List<LevelInfo> CurrentLevels;
 
         public int CurrentLevelIndex;
@@ -110,6 +115,9 @@ namespace Game.Mecanics
             _newEnemy.AttackDamage *= _damage;
             _newEnemy.MaxLife *= _life;
             _newEnemy.MoveSpeed *= _velocity;
+
+            _newEnemy.OnSpawned.AddListener(() => OnEnemySpawned.Invoke(_newEnemy));
+            _newEnemy.OnKilled.AddListener(() => OnEnemyKilled.Invoke(_newEnemy));
         }
 
         private void SetLevel(int level)
