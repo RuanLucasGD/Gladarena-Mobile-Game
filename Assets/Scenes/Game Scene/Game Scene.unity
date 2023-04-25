@@ -43198,7 +43198,7 @@ MonoBehaviour:
   OnStartGame:
     m_PersistentCalls:
       m_Calls: []
-  OnHideMenu:
+  OnHideMainMenu:
     m_PersistentCalls:
       m_Calls: []
   OnShowMenu:
@@ -43211,9 +43211,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnShowStoreScreen:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideMainScreen:
     m_PersistentCalls:
       m_Calls: []
   OnHidePowerUpScreen:
@@ -50450,6 +50447,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1361351791}
     m_Modifications:
+    - target: {fileID: 7567083611664275203, guid: cdae272ccf3b9d848b2bdfa3959c282b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f614369d402efb4da59ca4ba570bb4e, type: 2}
     - target: {fileID: 7567083611664275213, guid: cdae272ccf3b9d848b2bdfa3959c282b, type: 3}
       propertyPath: m_RootOrder
       value: 0
