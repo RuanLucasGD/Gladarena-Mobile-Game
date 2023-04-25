@@ -569,7 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
-    SpawnsToChangeLevel: 5
+    KillsToChangeLevel: 0
   OnChangeLevel:
     m_PersistentCalls:
       m_Calls: []
@@ -640,7 +640,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb8cca994de114f4ab25dcf96b09e997, type: 2}
+  - {fileID: 2100000, guid: 2f614369d402efb4da59ca4ba570bb4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -806,6 +806,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnChangeLevel:
     m_PersistentCalls:
       m_Calls: []
   CurrentLevels: []

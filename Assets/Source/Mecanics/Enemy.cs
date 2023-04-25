@@ -1,27 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : EnemyBase
     {
-        [System.Serializable]
-        public enum EnemyType
-        {
-            Soldier,
-            MiniBoss,
-            Boss
-        }
-
         public EnemyType Type;
-        public PlayerCharacter Target;
-
-        [Header("Components")]
-        public Rigidbody Rb;
-        public Renderer ModelRenderer;
-        public Animator Animator;
 
         [Header("Basic")]
         public float MoveSpeed;
@@ -35,50 +20,33 @@ namespace Game.Mecanics
         public int WeaponAnimID;
         public EnemyAnimationParameterSettings AnimationSettings;
 
-        [Header("Events")]
-        public UnityEvent OnSpawned;
-        public UnityEvent OnKilled;
-
-        public float CurrentLife { get; private set; }
-        public bool IsOnScreen { get; private set; }
         public bool SuperAttack { get; set; }
 
-        public bool IsDeath { get; private set; }
         public bool IsStoped => Target && !Target.IsDeath ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : true;
         public bool IsTargetNearToAttack => Target ? Vector3.Distance(transform.position, Target.transform.position) < AttackDistance : false;
         public bool IsAttacking { get; private set; }
 
         private bool _attackDeleyedStarted;
 
-        private void Start()
+        protected override void Start()
         {
-            Target = FindObjectOfType<PlayerCharacter>();
+            base.Start();
+
             CurrentLife = MaxLife;
-
-            if (Rb)
-            {
-                Rb.constraints |= RigidbodyConstraints.FreezePositionY;
-                Rb.constraints |= RigidbodyConstraints.FreezeRotationX;
-                Rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
-            }
-
             SetWeaponAnimation();
-
-            OnSpawned.Invoke();
         }
 
-        private void Update()
+        protected override void Update()
         {
             if (IsDeath)
             {
                 return;
             }
 
+            base.Update();
+
             UpdateRotation();
             UpdateAnimations();
-
-            // don't use OnBecameVisible or OnBecameInvisible becase it's not called when object is created
-            UpdateVisibility();
         }
 
         private void FixedUpdate()
@@ -93,21 +61,17 @@ namespace Game.Mecanics
                 return;
             }
 
-            var _moveDirection = GetDirectionToTarget(Target.transform);
-            _moveDirection *= MoveSpeed;
-            _moveDirection *= delta;
-
             if (IsStoped)
             {
                 if (!_attackDeleyedStarted)
                 {
                     StartCoroutine(StartAttackDeleyed());
                 }
-
-                _moveDirection = Vector3.zero;
             }
-
-            Rb.MovePosition(Rb.position + _moveDirection);
+            else
+            {
+                MoveTo(Target.transform.position, MoveSpeed * delta);
+            }
         }
 
         private void UpdateRotation()
@@ -123,16 +87,6 @@ namespace Game.Mecanics
         private Vector3 GetDirectionToTarget(Transform target)
         {
             return Vector3.ProjectOnPlane(target.position - transform.position, Vector3.up).normalized;
-        }
-
-        private void UpdateVisibility()
-        {
-            if (!ModelRenderer)
-            {
-                return;
-            }
-
-            IsOnScreen = ModelRenderer.isVisible;
         }
 
         private void UpdateAnimations()
@@ -166,7 +120,7 @@ namespace Game.Mecanics
             Animator.SetInteger(AnimationSettings.WeaponIdParameter, WeaponAnimID);
         }
 
-        private void Attack()
+        protected override void Attack()
         {
             if (IsAttacking || !IsTargetNearToAttack || !Target || Target.IsDeath)
             {
@@ -195,14 +149,26 @@ namespace Game.Mecanics
         }
 
         // called by character animator event
-        public void AttackAnimationEvent()
+        public override void AttackAnimationEvent()
         {
             if (!IsAttacking)
             {
                 return;
             }
 
+            base.AttackAnimationEvent();
             Target.AddDamage(AttackDamage);
+        }
+
+        public override void Death()
+        {
+            if (IsDeath)
+            {
+                return;
+            }
+
+            base.Death();
+            SetDeathAnimation();
         }
 
         public void AddDamage(float damage)
@@ -211,36 +177,9 @@ namespace Game.Mecanics
 
             if (CurrentLife <= 0)
             {
+                CurrentLife = 0;
                 Death();
             }
-        }
-
-        public void Death()
-        {
-            if (IsDeath)
-            {
-                return;
-            }
-
-            CurrentLife = 0;
-            IsDeath = true;
-            SetDeathAnimation();
-            Destroy(gameObject, 10);
-
-            if (TryGetComponent<Collider>(out var collider))
-            {
-                collider.enabled = false;
-            }
-
-            Rb.useGravity = false;
-            Rb.constraints |= RigidbodyConstraints.FreezePositionX;
-            Rb.constraints |= RigidbodyConstraints.FreezePositionY;
-            Rb.constraints |= RigidbodyConstraints.FreezePositionZ;
-            Rb.constraints |= RigidbodyConstraints.FreezeRotationX;
-            Rb.constraints |= RigidbodyConstraints.FreezeRotationY;
-            Rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
-
-            OnKilled.Invoke();
         }
     }
 }
