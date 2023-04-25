@@ -325,7 +325,7 @@ namespace Game.Mecanics
             {
                 Animation.Animator.SetBool(Animation.IsSuperAttack, Weapon.WeaponObject.IsSuperAttack);
                 Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
-                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, 1 / Weapon.WeaponObject.CurrentAttackLength);
+                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, Weapon.WeaponObject.CurrentAttackLength);
             }
         }
 

@@ -55,30 +55,44 @@ namespace Game.Mecanics
             [Space]
 
             public int MaxAsyncSpawns;
+
+            [Space]
+
+            public int BossLevelInterval;
         }
 
         public bool CanSpawn;
         public Transform Follow;
         public SpawnSettings Spawn;
         public EnemyType[] Enemies;
+        public Enemy[] Boses;
         public LevelProgression FirstLevel;
         public LevelProgression Progression;
 
         [Space]
         public UnityEvent<Enemy> OnEnemySpawned;
         public UnityEvent<Enemy> OnEnemyKilled;
+        public UnityEvent<int> OnChangeLevel;
 
         public List<LevelInfo> CurrentLevels;
 
         public int CurrentLevelIndex;
+
+        public bool IsOnBossLevel { get; private set; }
+        public bool BossSpawned { get; private set; }
+
+        public bool HasEnemiesOnScene => _enemiesSpawnCount > 0;
+
+        private int _bossLevelInterval;
+        private int _currentBossIndex;
+
+        private int _enemiesSpawnCount;
 
         void Start()
         {
             InvokeRepeating(nameof(SpawnEnemy), Spawn.SpawnRate, Spawn.SpawnRate);
 
             SetLevel(0);
-            SetNextLevel();
-            SetNextLevel();
         }
 
         void Update()
@@ -93,21 +107,50 @@ namespace Game.Mecanics
                 return;
             }
 
-            foreach (var e in Enemies)
+            if (IsOnBossLevel)
             {
-                if (e.StartSpawnLevel <= CurrentLevelIndex && e.EndSpawnLevel <= CurrentLevelIndex)
+                // spawn only once enemy
+                // spawn boss onfy if doesn't have enemies on scene
+                if (BossSpawned || HasEnemiesOnScene)
                 {
-                    SpawnEnemy(e);
+                    return;
+                }
+
+                var _boss = SpawnEnemy(Boses[_currentBossIndex]);
+                BossSpawned = true;
+
+                _currentBossIndex++;
+                if (_currentBossIndex >= Boses.Length - 1)
+                {
+                    _currentBossIndex = 0;
+                }
+            }
+            else
+            {
+                foreach (var e in Enemies)
+                {
+                    if (CurrentLevelIndex >= e.StartSpawnLevel && CurrentLevelIndex <= e.EndSpawnLevel)
+                    {
+                        SpawnEnemyOnLevel(e);
+                    }
                 }
             }
         }
 
-        public void SpawnEnemy(EnemyType enemy)
+        private Enemy SpawnEnemy(Enemy enemy)
         {
             var _randomPos = Spawn.SpawnPoints[Random.Range(0, Spawn.SpawnPoints.Length - 1)].position;
-            var _newEnemy = Instantiate(enemy.Prefab, _randomPos, Quaternion.identity);
+            var _newEnemy = Instantiate(enemy, _randomPos, Quaternion.identity);
+            _newEnemy.OnSpawned.AddListener(() => OnEnemySpawned.Invoke(_newEnemy));
+            _newEnemy.OnKilled.AddListener(() => OnEnemyKilled.Invoke(_newEnemy));
+            return _newEnemy;
+        }
 
-            var _level = CurrentLevels[CurrentLevelIndex];
+        private void SpawnEnemyOnLevel(EnemyType enemy)
+        {
+            var _newEnemy = SpawnEnemy(enemy.Prefab);
+
+            var _level = CurrentLevels[CurrentLevels.Count - 1];
             var _damage = _level.IsUpgraded ? _level.DamageUpgrade : _level.DamageBase;
             var _velocity = _level.IsUpgraded ? _level.VelocityUpgrade : _level.VelocityBase;
             var _life = _level.IsUpgraded ? _level.LifeUpgrade : _level.LifeBase;
@@ -116,8 +159,8 @@ namespace Game.Mecanics
             _newEnemy.MaxLife *= _life;
             _newEnemy.MoveSpeed *= _velocity;
 
-            _newEnemy.OnSpawned.AddListener(() => OnEnemySpawned.Invoke(_newEnemy));
-            _newEnemy.OnKilled.AddListener(() => OnEnemyKilled.Invoke(_newEnemy));
+            _newEnemy.OnSpawned.AddListener(() => _enemiesSpawnCount++);
+            _newEnemy.OnKilled.AddListener(() => _enemiesSpawnCount--);
         }
 
         private void SetLevel(int level)
@@ -146,6 +189,8 @@ namespace Game.Mecanics
                 _newLevel.VelocityUpgrade = FirstLevel.VelocityUpgrade;
             }
 
+            _bossLevelInterval = level;
+
             CurrentLevels.Add(_newLevel);
             CurrentLevelIndex = level;
 
@@ -157,8 +202,22 @@ namespace Game.Mecanics
 
         public void SetNextLevel()
         {
-            SetLevel(CurrentLevelIndex);
+            BossSpawned = false;
             CurrentLevelIndex++;
+            _bossLevelInterval++;
+
+            SetLevel(CurrentLevelIndex);
+            OnChangeLevel.Invoke(CurrentLevelIndex);
+
+            if (IsOnBossLevel)
+            {
+                IsOnBossLevel = false;
+                _bossLevelInterval = 0;
+            }
+            else if (_bossLevelInterval >= Spawn.BossLevelInterval)
+            {
+                IsOnBossLevel = true;
+            }
         }
     }
 }

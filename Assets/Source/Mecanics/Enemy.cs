@@ -7,6 +7,15 @@ namespace Game.Mecanics
 {
     public class Enemy : MonoBehaviour
     {
+        [System.Serializable]
+        public enum EnemyType
+        {
+            Soldier,
+            MiniBoss,
+            Boss
+        }
+
+        public EnemyType Type;
         public PlayerCharacter Target;
 
         [Header("Components")]
@@ -34,7 +43,7 @@ namespace Game.Mecanics
         public bool IsOnScreen { get; private set; }
         public bool SuperAttack { get; set; }
 
-        public bool IsDeath => CurrentLife <= 0;
+        public bool IsDeath { get; private set; }
         public bool IsStoped => Target && !Target.IsDeath ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : true;
         public bool IsTargetNearToAttack => Target ? Vector3.Distance(transform.position, Target.transform.position) < AttackDistance : false;
         public bool IsAttacking { get; private set; }
@@ -64,7 +73,7 @@ namespace Game.Mecanics
             {
                 return;
             }
-            
+
             UpdateRotation();
             UpdateAnimations();
 
@@ -208,7 +217,13 @@ namespace Game.Mecanics
 
         public void Death()
         {
+            if (IsDeath)
+            {
+                return;
+            }
+
             CurrentLife = 0;
+            IsDeath = true;
             SetDeathAnimation();
             Destroy(gameObject, 10);
 
