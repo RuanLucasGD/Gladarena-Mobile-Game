@@ -1173,6 +1173,10 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  m_PreviousLayer: 0
+  m_PreviousPriority: 0
+  m_InternalProfile: {fileID: 0}
+  m_TempColliders: []
 --- !u!4 &653260038
 Transform:
   m_ObjectHideFlags: 0
@@ -1338,7 +1342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f2b0fe2871bba47a9f1bc5af8ab85d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.29037
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f2b0fe2871bba47a9f1bc5af8ab85d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1346,7 +1350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f2b0fe2871bba47a9f1bc5af8ab85d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.88
+      value: -15.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f2b0fe2871bba47a9f1bc5af8ab85d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3962,9 +3966,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1361351791}
     m_Modifications:
+    - target: {fileID: 7567083611664275203, guid: cdae272ccf3b9d848b2bdfa3959c282b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d271fa09b5c5f6140adb23050ad961e2, type: 2}
     - target: {fileID: 7567083611664275213, guid: cdae272ccf3b9d848b2bdfa3959c282b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7567083611664275213, guid: cdae272ccf3b9d848b2bdfa3959c282b, type: 3}
       propertyPath: m_LocalScale.x
