@@ -49,8 +49,9 @@ namespace Game.Mecanics
             UpdateAnimations();
         }
 
-        private void FixedUpdate()
+        protected override void FixedUpdate()
         {
+            base.FixedUpdate();
             UpdateMovement(Time.fixedDeltaTime);
         }
 
@@ -67,10 +68,12 @@ namespace Game.Mecanics
                 {
                     StartCoroutine(StartAttackDeleyed());
                 }
+
+                MoveDirectionVelocity = Vector3.zero;
             }
             else
             {
-                MoveTo(Target.transform.position, MoveSpeed * delta);
+                MoveDirectionVelocity = (Target.transform.position - transform.position).normalized * MoveSpeed;
             }
         }
 

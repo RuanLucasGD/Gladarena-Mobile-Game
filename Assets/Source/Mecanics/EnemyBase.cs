@@ -31,6 +31,8 @@ namespace Game.Mecanics
         public bool IsDeath { get; private set; }
         public bool IsOnScreen { get; private set; }
 
+        public Vector3 MoveDirectionVelocity { get; protected set; }
+
         protected virtual void Start()
         {
 
@@ -51,6 +53,10 @@ namespace Game.Mecanics
             // don't use OnBecameVisible or OnBecameInvisible becase it's not called when object is created
             UpdateVisibility();
         }
+        protected virtual void FixedUpdate()
+        {
+            Rb.MovePosition(Rb.position + (MoveDirectionVelocity * Time.fixedDeltaTime));
+        }
 
         private void UpdateVisibility()
         {
@@ -65,11 +71,6 @@ namespace Game.Mecanics
         protected virtual void Attack()
         {
             OnAttack.Invoke();
-        }
-
-        protected void MoveTo(Vector3 position, float moveSpeed)
-        {
-            Rb.MovePosition(Rb.position + ((position - Rb.position).normalized * moveSpeed));
         }
 
         // called by character animator event
@@ -98,7 +99,7 @@ namespace Game.Mecanics
             OnKilled.Invoke();
         }
 
-        
+
     }
 }
 
