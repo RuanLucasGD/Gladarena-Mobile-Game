@@ -197,7 +197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53726550 stripped
 MonoBehaviour:
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
-    KillsToChangeLevel: 0
+    KillsToChangeLevel: 10
   OnChangeLevel:
     m_PersistentCalls:
       m_Calls: []
@@ -782,10 +782,10 @@ MonoBehaviour:
   Enemies:
   - Prefab: {fileID: 668775417943923496, guid: 8fac1f628857957459204223f1b41a1c, type: 3}
     StartSpawnLevel: 0
-    EndSpawnLevel: 1
+    EndSpawnLevel: 10
   - Prefab: {fileID: 668775417943923496, guid: d2016c44cf991e9458d862a5e8f0db7d, type: 3}
-    StartSpawnLevel: 1
-    EndSpawnLevel: 2
+    StartSpawnLevel: 5
+    EndSpawnLevel: 50
   Boses:
   - {fileID: 1124241386663835118, guid: a4923e23e130e4843a54bf42780abb77, type: 3}
   FirstLevel:
@@ -1331,7 +1331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5259513094357311856, guid: 57358107b806b034eadd06ef16877a21, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5259513094357311856, guid: 57358107b806b034eadd06ef16877a21, type: 3}
       propertyPath: m_AnchorMax.x

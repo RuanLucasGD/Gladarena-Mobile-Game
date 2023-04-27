@@ -46,6 +46,7 @@ namespace Game.Mecanics
             [Min(0)] public float Gravity;
             [Min(0)] public float TurnSpeed;
             [Min(0)] public float StopDistance;
+            [Min(0)] public float ExternalForceDeceleration;
 
             public Moviment()
             {
@@ -162,6 +163,7 @@ namespace Game.Mecanics
         public InputAction HorizontalAction { get; private set; }
         public InputAction MobileJoystickAction { get; private set; }
 
+        public Vector3 ExternalForces { get; private set; }
         public Vector3 LookAtDirection { get; set; }
         public Vector3 Forward { get; set; }
         public bool CanMove { get; set; }
@@ -234,6 +236,7 @@ namespace Game.Mecanics
         {
             UpdateRotation(Time.deltaTime);
             UpdateMoviment(Time.deltaTime);
+            UpdateExternalForces(Time.deltaTime);
 
             UpdatePlayerControls();
         }
@@ -285,9 +288,21 @@ namespace Game.Mecanics
             CharacterVelocity = CharacterMoveDirection;
             CharacterVelocity *= Movimentation.MoveSpeed;
             CharacterVelocity = new Vector3(CharacterVelocity.x, -Movimentation.Gravity, CharacterVelocity.z);
+            CharacterVelocity += ExternalForces;
             CharacterVelocity *= delta;
 
             CharacterController.Move(CharacterVelocity);
+        }
+
+        private void UpdateExternalForces(float delta)
+        {
+            if (ExternalForces.magnitude <= 0.1f)
+            {
+                ExternalForces = Vector3.zero;
+                return;
+            }
+
+            ExternalForces -= (ExternalForces / ExternalForces.magnitude) * Movimentation.ExternalForceDeceleration * delta;
         }
 
         private void UpdateRotation(float delta)
@@ -486,6 +501,11 @@ namespace Game.Mecanics
             }
 
             _powerUps.Clear();
+        }
+
+        public void AddExternalForces(Vector3 force)
+        {
+            ExternalForces += force;
         }
 
         // called by character animation event
