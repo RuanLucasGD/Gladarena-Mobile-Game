@@ -669,9 +669,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6073423314377049926}
   - component: {fileID: 5866666021909216657}
+  - component: {fileID: 791881013}
+  - component: {fileID: 791881012}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,7 +696,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5866666021909216657
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -702,15 +704,95 @@ Animator:
   m_GameObject: {fileID: 7447223153943184438}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ca0cd8c07633a974c9481519f9a8a226, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4ac5e29af3189f4449a3f37ec54b74f8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 94c741dc4018f7f448a074abe6208d93, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!143 &791881013
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7447223153943184438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &791881012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7447223153943184438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c605ad8b7f78b70499366fc56595a190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputMaps:
+    InputAsset: {fileID: -944628639613478452, guid: 1d6fcabe57a241c46859b791e193fac6, type: 3}
+    VerticalAction: Vertical
+    HorizontalAction: Horizontal
+    MobileJoystickAction: Mobile Joystick
+  Movimentation:
+    MoveSpeed: 13
+    Gravity: 5
+    TurnSpeed: 10
+    StopDistance: 1
+    ExternalForceDeceleration: 0
+  Weapon:
+    WeaponObject: {fileID: 0}
+    Hand: {fileID: 8529615603601920862}
+    AttackRate: 1
+    AttackLengthMultiplier: 1
+    AttackRateMultiplier: 1
+    AttackDamageMultiplier: 1
+    AttackDistanceMultiplier: 1
+  Life:
+    LifeAmount: 650
+    AutoDestroyOnDeathDelay: 100000
+    OnResetLife:
+      m_PersistentCalls:
+        m_Calls: []
+  Animation:
+    Animator: {fileID: 0}
+    MovimentParam: Vertical Input
+    IsDeath: Is Death
+    IsAttacking: Is Attacking
+    IsSuperAttack: Is Super Attack
+    AttackAnimationID: Attack Anim ID
+    AttackAnimSpeed: Attack Speed
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSetWeapon:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackAnimationEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8312328750931998567
 GameObject:
   m_ObjectHideFlags: 0
