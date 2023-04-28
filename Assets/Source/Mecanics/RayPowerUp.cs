@@ -47,7 +47,7 @@ namespace Game.Mecanics
             {
                 if (c != Owner)
                 {
-                    if (CameraUtils.IsSpawnPointOnView(c.transform.position, Camera.main))
+                    if (CameraUtils.IsPointOnView(c.transform.position, Camera.main))
                     {
                         _characters.Add(c);
                     }

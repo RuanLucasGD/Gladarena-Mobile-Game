@@ -63,10 +63,10 @@ namespace Game.Mecanics
             DisableAttack();
         }
 
-        private List<Enemy> GetNearInViewEnemies()
+        private List<EnemyBase> GetNearInViewEnemies()
         {
-            var _nearInView = new List<Enemy>();
-            var _characters = FindObjectsOfType<Enemy>();
+            var _nearInView = new List<EnemyBase>();
+            var _characters = FindObjectsOfType<EnemyBase>();
 
             foreach (var c in _characters)
             {
@@ -85,7 +85,7 @@ namespace Game.Mecanics
             return _nearInView;
         }
 
-        public override void Attack(Enemy target = null)
+        public override void Attack(EnemyBase target = null)
         {
             if (IsAttacking)
             {
@@ -105,7 +105,7 @@ namespace Game.Mecanics
         // Called by owener character animation event
         public void ApplyDamageOnEnemies()
         {
-            bool _isTargetNear(Enemy target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
+            bool _isTargetNear(EnemyBase target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
 
             foreach (var c in GetNearInViewEnemies())
             {

@@ -1,136 +1,386 @@
 fileFormatVersion: 2
 guid: 215ca23b649a9b64f988f36ddc2c1fa6
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Axe
-    100004: AxeMesh
-    100006: BlackKnightMesh
-    100008: Body
-    100010: ChinCTRL_L
-    100012: ChinCTRL_R
-    100014: EyeCTRL_L
-    100016: EyeCTRL_R
-    100018: Foot_L
-    100020: Foot_R
-    100022: FootBall_L
-    100024: FootBall_R
-    100026: FrontArmorCTRL
-    100028: Hand_L
-    100030: Hand_R
-    100032: HandTip_L
-    100034: Head
-    100036: HornCTRL_L
-    100038: HornCTRL_R
-    100040: Index01_R
-    100042: Index02_R
-    100044: Index03_R
-    100046: LeftArmorCTRL
-    100048: LowerArm_L
-    100050: LowerArm_R
-    100052: LowerLeg_L
-    100054: LowerLeg_R
-    100056: Middle01_R
-    100058: Middle02_R
-    100060: Middle03_R
-    100062: Neck
-    100064: Pinky01_R
-    100066: Pinky02_R
-    100068: Pinky03_R
-    100070: RearArmorCTRL
-    100072: RightArmorCTRL
-    100074: Shield
-    100076: ShieldMesh
-    100078: Shoulder_L
-    100080: Shoulder_R
-    100082: ShoulderPadCTRL01_L
-    100084: ShoulderPadCTRL01_R
-    100086: ShoulderPadCTRL02_R
-    100088: Spine01
-    100090: Spine02
-    100092: Spine03
-    100094: Thumb01
-    100096: Thumb02
-    100098: Thumb03
-    100100: Toe_L
-    100102: Toe_R
-    100104: UpperArm_L
-    100106: UpperArm_R
-    100108: UpperBack
-    100110: UpperLeg_L
-    100112: UpperLeg_R
-    400000: //RootNode
-    400002: Axe
-    400004: AxeMesh
-    400006: BlackKnightMesh
-    400008: Body
-    400010: ChinCTRL_L
-    400012: ChinCTRL_R
-    400014: EyeCTRL_L
-    400016: EyeCTRL_R
-    400018: Foot_L
-    400020: Foot_R
-    400022: FootBall_L
-    400024: FootBall_R
-    400026: FrontArmorCTRL
-    400028: Hand_L
-    400030: Hand_R
-    400032: HandTip_L
-    400034: Head
-    400036: HornCTRL_L
-    400038: HornCTRL_R
-    400040: Index01_R
-    400042: Index02_R
-    400044: Index03_R
-    400046: LeftArmorCTRL
-    400048: LowerArm_L
-    400050: LowerArm_R
-    400052: LowerLeg_L
-    400054: LowerLeg_R
-    400056: Middle01_R
-    400058: Middle02_R
-    400060: Middle03_R
-    400062: Neck
-    400064: Pinky01_R
-    400066: Pinky02_R
-    400068: Pinky03_R
-    400070: RearArmorCTRL
-    400072: RightArmorCTRL
-    400074: Shield
-    400076: ShieldMesh
-    400078: Shoulder_L
-    400080: Shoulder_R
-    400082: ShoulderPadCTRL01_L
-    400084: ShoulderPadCTRL01_R
-    400086: ShoulderPadCTRL02_R
-    400088: Spine01
-    400090: Spine02
-    400092: Spine03
-    400094: Thumb01
-    400096: Thumb02
-    400098: Thumb03
-    400100: Toe_L
-    400102: Toe_R
-    400104: UpperArm_L
-    400106: UpperArm_R
-    400108: UpperBack
-    400110: UpperLeg_L
-    400112: UpperLeg_R
-    2100000: lambert1
-    2300000: AxeMesh
-    2300002: ShieldMesh
-    3300000: AxeMesh
-    3300002: ShieldMesh
-    4300000: BlackKnightMesh
-    4300002: ShieldMesh
-    4300004: AxeMesh
-    7400000: Attack03
-    9500000: //RootNode
-    13700000: BlackKnightMesh
+  serializedVersion: 20300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Axe
+  - first:
+      1: 100004
+    second: AxeMesh
+  - first:
+      1: 100006
+    second: BlackKnightMesh
+  - first:
+      1: 100008
+    second: Body
+  - first:
+      1: 100010
+    second: ChinCTRL_L
+  - first:
+      1: 100012
+    second: ChinCTRL_R
+  - first:
+      1: 100014
+    second: EyeCTRL_L
+  - first:
+      1: 100016
+    second: EyeCTRL_R
+  - first:
+      1: 100018
+    second: Foot_L
+  - first:
+      1: 100020
+    second: Foot_R
+  - first:
+      1: 100022
+    second: FootBall_L
+  - first:
+      1: 100024
+    second: FootBall_R
+  - first:
+      1: 100026
+    second: FrontArmorCTRL
+  - first:
+      1: 100028
+    second: Hand_L
+  - first:
+      1: 100030
+    second: Hand_R
+  - first:
+      1: 100032
+    second: HandTip_L
+  - first:
+      1: 100034
+    second: Head
+  - first:
+      1: 100036
+    second: HornCTRL_L
+  - first:
+      1: 100038
+    second: HornCTRL_R
+  - first:
+      1: 100040
+    second: Index01_R
+  - first:
+      1: 100042
+    second: Index02_R
+  - first:
+      1: 100044
+    second: Index03_R
+  - first:
+      1: 100046
+    second: LeftArmorCTRL
+  - first:
+      1: 100048
+    second: LowerArm_L
+  - first:
+      1: 100050
+    second: LowerArm_R
+  - first:
+      1: 100052
+    second: LowerLeg_L
+  - first:
+      1: 100054
+    second: LowerLeg_R
+  - first:
+      1: 100056
+    second: Middle01_R
+  - first:
+      1: 100058
+    second: Middle02_R
+  - first:
+      1: 100060
+    second: Middle03_R
+  - first:
+      1: 100062
+    second: Neck
+  - first:
+      1: 100064
+    second: Pinky01_R
+  - first:
+      1: 100066
+    second: Pinky02_R
+  - first:
+      1: 100068
+    second: Pinky03_R
+  - first:
+      1: 100070
+    second: RearArmorCTRL
+  - first:
+      1: 100072
+    second: RightArmorCTRL
+  - first:
+      1: 100074
+    second: Shield
+  - first:
+      1: 100076
+    second: ShieldMesh
+  - first:
+      1: 100078
+    second: Shoulder_L
+  - first:
+      1: 100080
+    second: Shoulder_R
+  - first:
+      1: 100082
+    second: ShoulderPadCTRL01_L
+  - first:
+      1: 100084
+    second: ShoulderPadCTRL01_R
+  - first:
+      1: 100086
+    second: ShoulderPadCTRL02_R
+  - first:
+      1: 100088
+    second: Spine01
+  - first:
+      1: 100090
+    second: Spine02
+  - first:
+      1: 100092
+    second: Spine03
+  - first:
+      1: 100094
+    second: Thumb01
+  - first:
+      1: 100096
+    second: Thumb02
+  - first:
+      1: 100098
+    second: Thumb03
+  - first:
+      1: 100100
+    second: Toe_L
+  - first:
+      1: 100102
+    second: Toe_R
+  - first:
+      1: 100104
+    second: UpperArm_L
+  - first:
+      1: 100106
+    second: UpperArm_R
+  - first:
+      1: 100108
+    second: UpperBack
+  - first:
+      1: 100110
+    second: UpperLeg_L
+  - first:
+      1: 100112
+    second: UpperLeg_R
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Axe
+  - first:
+      4: 400004
+    second: AxeMesh
+  - first:
+      4: 400006
+    second: BlackKnightMesh
+  - first:
+      4: 400008
+    second: Body
+  - first:
+      4: 400010
+    second: ChinCTRL_L
+  - first:
+      4: 400012
+    second: ChinCTRL_R
+  - first:
+      4: 400014
+    second: EyeCTRL_L
+  - first:
+      4: 400016
+    second: EyeCTRL_R
+  - first:
+      4: 400018
+    second: Foot_L
+  - first:
+      4: 400020
+    second: Foot_R
+  - first:
+      4: 400022
+    second: FootBall_L
+  - first:
+      4: 400024
+    second: FootBall_R
+  - first:
+      4: 400026
+    second: FrontArmorCTRL
+  - first:
+      4: 400028
+    second: Hand_L
+  - first:
+      4: 400030
+    second: Hand_R
+  - first:
+      4: 400032
+    second: HandTip_L
+  - first:
+      4: 400034
+    second: Head
+  - first:
+      4: 400036
+    second: HornCTRL_L
+  - first:
+      4: 400038
+    second: HornCTRL_R
+  - first:
+      4: 400040
+    second: Index01_R
+  - first:
+      4: 400042
+    second: Index02_R
+  - first:
+      4: 400044
+    second: Index03_R
+  - first:
+      4: 400046
+    second: LeftArmorCTRL
+  - first:
+      4: 400048
+    second: LowerArm_L
+  - first:
+      4: 400050
+    second: LowerArm_R
+  - first:
+      4: 400052
+    second: LowerLeg_L
+  - first:
+      4: 400054
+    second: LowerLeg_R
+  - first:
+      4: 400056
+    second: Middle01_R
+  - first:
+      4: 400058
+    second: Middle02_R
+  - first:
+      4: 400060
+    second: Middle03_R
+  - first:
+      4: 400062
+    second: Neck
+  - first:
+      4: 400064
+    second: Pinky01_R
+  - first:
+      4: 400066
+    second: Pinky02_R
+  - first:
+      4: 400068
+    second: Pinky03_R
+  - first:
+      4: 400070
+    second: RearArmorCTRL
+  - first:
+      4: 400072
+    second: RightArmorCTRL
+  - first:
+      4: 400074
+    second: Shield
+  - first:
+      4: 400076
+    second: ShieldMesh
+  - first:
+      4: 400078
+    second: Shoulder_L
+  - first:
+      4: 400080
+    second: Shoulder_R
+  - first:
+      4: 400082
+    second: ShoulderPadCTRL01_L
+  - first:
+      4: 400084
+    second: ShoulderPadCTRL01_R
+  - first:
+      4: 400086
+    second: ShoulderPadCTRL02_R
+  - first:
+      4: 400088
+    second: Spine01
+  - first:
+      4: 400090
+    second: Spine02
+  - first:
+      4: 400092
+    second: Spine03
+  - first:
+      4: 400094
+    second: Thumb01
+  - first:
+      4: 400096
+    second: Thumb02
+  - first:
+      4: 400098
+    second: Thumb03
+  - first:
+      4: 400100
+    second: Toe_L
+  - first:
+      4: 400102
+    second: Toe_R
+  - first:
+      4: 400104
+    second: UpperArm_L
+  - first:
+      4: 400106
+    second: UpperArm_R
+  - first:
+      4: 400108
+    second: UpperBack
+  - first:
+      4: 400110
+    second: UpperLeg_L
+  - first:
+      4: 400112
+    second: UpperLeg_R
+  - first:
+      21: 2100000
+    second: lambert1
+  - first:
+      23: 2300000
+    second: AxeMesh
+  - first:
+      23: 2300002
+    second: ShieldMesh
+  - first:
+      33: 3300000
+    second: AxeMesh
+  - first:
+      33: 3300002
+    second: ShieldMesh
+  - first:
+      43: 4300000
+    second: BlackKnightMesh
+  - first:
+      43: 4300002
+    second: ShieldMesh
+  - first:
+      43: 4300004
+    second: AxeMesh
+  - first:
+      74: 7400000
+    second: Attack03
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: BlackKnightMesh
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -159,8 +409,9 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack03
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -171,7 +422,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -305,25 +556,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -332,10 +590,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Body
       humanName: Hips
@@ -894,14 +1152,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3f2f858992969dc42839040fa1c0e538,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3f2f858992969dc42839040fa1c0e538, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

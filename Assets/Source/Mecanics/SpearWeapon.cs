@@ -133,7 +133,7 @@ namespace Game.Mecanics
             DisableWeaponCollider();
         }
 
-        public override void Attack(Enemy target = null)
+        public override void Attack(EnemyBase target = null)
         {
             if (IsAttacking || !Owner.IsStoped)
             {
