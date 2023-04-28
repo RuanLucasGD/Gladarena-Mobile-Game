@@ -187,6 +187,7 @@ namespace Game.Mecanics
                 }
                 else
                 {
+                    _currentAttacksAmount = 0;
                     _stateAction = WalkRantomState;
                 }
             }
