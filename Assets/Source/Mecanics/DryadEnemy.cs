@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Game.Utils;
 
 namespace Game.Mecanics
 {
@@ -130,7 +131,7 @@ namespace Game.Mecanics
             if (IsAttacking && !IsNearMoveTo)
             {
                 MoveDirectionVelocity = (MovePosition - transform.position).normalized * AttackSpeed;
-                LookTo(MovePosition - transform.position);
+                LookTo(MovePosition - transform.position, TurnSpeed);
             }
         }
 
@@ -140,7 +141,7 @@ namespace Game.Mecanics
             SetAnimParam(AttackAnimParam, false);
 
             var _isStartPosition = MovePosition == Vector3.zero;
-            var _isTargetOnScreen = IsPointOnScreen(MovePosition);
+            var _isTargetOnScreen = CameraUtils.IsPointOnView(MovePosition, Camera.main);
 
             if (_isStartPosition || IsNearMoveTo || !_isTargetOnScreen)
             {
@@ -154,7 +155,7 @@ namespace Game.Mecanics
             if (!IsNearMoveTo && !_isStartPosition)
             {
                 MoveDirectionVelocity = (MovePosition - transform.position).normalized * WalkSpeed;
-                LookTo(MovePosition - transform.position);
+                LookTo(MovePosition - transform.position, TurnSpeed);
             }
         }
 
@@ -164,7 +165,7 @@ namespace Game.Mecanics
             SetAnimParam(AttackAnimParam, false);
 
             MoveDirectionVelocity = (MovePosition - transform.position).normalized * WalkSpeed;
-            LookTo(Target.transform.position - Rb.position);
+            LookTo(Target.transform.position - Rb.position, TurnSpeed);
         }
 
         private void SetAnimParam(string name, object value)
@@ -173,16 +174,6 @@ namespace Game.Mecanics
             if (value is bool) Animator.SetBool(name, (bool)value);
             if (value is int) Animator.SetInteger(name, (int)value);
             if (value is float) Animator.SetFloat(name, (float)value);
-        }
-
-        private void LookTo(Vector3 direction)
-        {
-            direction = Vector3.ProjectOnPlane(direction, Vector3.up);
-            direction.y = 0;
-            direction.Normalize();
-            var _turnSpeed = Mathf.Clamp01(TurnSpeed * Time.deltaTime);
-
-            Rb.rotation = Quaternion.Lerp(Rb.rotation, Quaternion.LookRotation(direction), _turnSpeed);
         }
 
         private void SetIdleState()
@@ -207,14 +198,6 @@ namespace Game.Mecanics
         {
             CurrentState = State.Attack;
             _updateState = AttackState;
-        }
-
-        private bool IsPointOnScreen(Vector3 point)
-        {
-            var _screenPos = Camera.main.WorldToScreenPoint(point);
-
-            return (_screenPos.x >= 0 && _screenPos.x <= Screen.width) &&
-                   (_screenPos.y >= 0 && _screenPos.y <= Screen.height);
         }
     }
 }

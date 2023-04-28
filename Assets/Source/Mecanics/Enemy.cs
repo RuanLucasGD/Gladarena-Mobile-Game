@@ -22,7 +22,7 @@ namespace Game.Mecanics
 
         public bool SuperAttack { get; set; }
 
-        public bool IsStoped => Target && !Target.IsDeath ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : true;
+        public new bool IsStoped => Target && !Target.IsDeath ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : true;
         public bool IsTargetNearToAttack => Target ? Vector3.Distance(transform.position, Target.transform.position) < AttackDistance : false;
         public bool IsAttacking { get; private set; }
 
@@ -47,6 +47,11 @@ namespace Game.Mecanics
 
             UpdateRotation();
             UpdateAnimations();
+
+            if (CurrentLife <= 0)
+            {
+                Death();
+            }
         }
 
         protected override void FixedUpdate()
@@ -172,17 +177,6 @@ namespace Game.Mecanics
 
             base.Death();
             SetDeathAnimation();
-        }
-
-        public void AddDamage(float damage)
-        {
-            CurrentLife -= damage;
-
-            if (CurrentLife <= 0)
-            {
-                CurrentLife = 0;
-                Death();
-            }
         }
     }
 }

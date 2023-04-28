@@ -30,7 +30,7 @@ namespace Game.Mecanics
         /// Taget to weapon Damage
         /// </summary>
         /// <value></value>
-        protected Enemy WeaponTarget { get; set; }
+        protected EnemyBase WeaponTarget { get; set; }
 
         public bool IsSuperAttack { get; set; }
 
@@ -54,7 +54,7 @@ namespace Game.Mecanics
         {
         }
 
-        public virtual void Attack(Enemy target = null)
+        public virtual void Attack(EnemyBase target = null)
         {
             if (IsAttacking)
             {

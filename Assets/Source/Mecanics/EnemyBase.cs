@@ -27,6 +27,8 @@ namespace Game.Mecanics
         public UnityEvent OnKilled;
         public UnityEvent OnAttack;
 
+        public bool IsStoped => MoveDirectionVelocity.magnitude == 0;
+
         public float CurrentLife { get; protected set; }
         public bool IsDeath { get; private set; }
         public bool IsOnScreen { get; private set; }
@@ -73,13 +75,26 @@ namespace Game.Mecanics
             OnAttack.Invoke();
         }
 
-        // called by character animator event
-        public virtual void AttackAnimationEvent()
+        protected void LookTo(Vector3 direction, float turnSpeed)
         {
+            direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+            direction.y = 0;
+            direction.Normalize();
+            var _turnSpeed = Mathf.Clamp01(turnSpeed * Time.deltaTime);
+
+            Rb.rotation = Quaternion.Lerp(Rb.rotation, Quaternion.LookRotation(direction), _turnSpeed);
         }
+
+        // called by character animator event
+        public virtual void AttackAnimationEvent() { }
 
         public virtual void Death()
         {
+            if (IsDeath)
+            {
+                return;
+            }
+            
             IsDeath = true;
             Rb.useGravity = false;
 
@@ -99,7 +114,10 @@ namespace Game.Mecanics
             OnKilled.Invoke();
         }
 
-
+        public virtual void AddDamage(float damage)
+        {
+            CurrentLife -= damage;
+        }
     }
 }
 

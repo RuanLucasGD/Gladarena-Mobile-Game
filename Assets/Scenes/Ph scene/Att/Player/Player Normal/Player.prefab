@@ -366,7 +366,8 @@ Transform:
   m_LocalRotation: {x: -0.000000025450488, y: -0.00089768856, z: -2.284662e-11, w: 0.9999996}
   m_LocalPosition: {x: -0.263458, y: 2.1530866e-10, z: 2.1316282e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 728712327388624748}
   m_Father: {fileID: 2217810210651312763}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -401,6 +402,36 @@ Transform:
   m_Father: {fileID: -2831192565201726780}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4379746453400725275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728712327388624748}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &728712327388624748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379746453400725275}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8529615603601920862}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4432053913994296310
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +789,7 @@ MonoBehaviour:
     ExternalForceDeceleration: 0
   Weapon:
     WeaponObject: {fileID: 0}
-    Hand: {fileID: 8529615603601920862}
+    Hand: {fileID: 728712327388624748}
     AttackRate: 1
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
@@ -771,7 +802,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   Animation:
-    Animator: {fileID: 0}
+    Animator: {fileID: 5866666021909216657}
     MovimentParam: Vertical Input
     IsDeath: Is Death
     IsAttacking: Is Attacking

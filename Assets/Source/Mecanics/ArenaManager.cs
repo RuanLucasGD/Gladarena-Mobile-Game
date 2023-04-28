@@ -173,7 +173,7 @@ namespace Game.Mecanics
             var _randomPoint = _points[Random.Range(0, _points.Length - 1)].transform.position;
 
             // check if is out player view
-            while (CameraUtils.IsSpawnPointOnView(_randomPoint, Camera.main))
+            while (CameraUtils.IsPointOnView(_randomPoint, Camera.main))
             {
                 _randomPoint = _points[Random.Range(0, _points.Length)].transform.position;
             }
