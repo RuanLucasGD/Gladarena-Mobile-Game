@@ -6,13 +6,7 @@ namespace Game.Mecanics
 {
     public class Enemy : EnemyBase
     {
-        public EnemyType Type;
-
         [Header("Basic")]
-        public float MoveSpeed;
-        public float StopDistance;
-        public float MaxLife;
-        public float AttackDamage;
         public float AttackInterval;
         public float AttackDistance;
 

@@ -27,12 +27,10 @@ namespace Game.Mecanics
         [Header("Movimentation")]
         public float WalkSpeed;
         public float TurnSpeed;
-        public float StopDistance;
         public float MoveRandomDistance;
 
         [Header("Attack")]
         public float AttackSpeed;
-        public float AttackDamage;
         public float AttackForce;
 
         private UnityAction _updateState;

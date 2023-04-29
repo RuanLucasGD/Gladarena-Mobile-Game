@@ -15,7 +15,13 @@ namespace Game.Mecanics
             Boss
         }
 
-        public PlayerCharacter Target;
+        public EnemyType Type;
+
+        [Header("Basic")]
+        public float MoveSpeed;
+        public float StopDistance;
+        public float MaxLife;
+        public float AttackDamage;
 
         [Header("Components")]
         public Rigidbody Rb;
@@ -29,17 +35,21 @@ namespace Game.Mecanics
 
         public bool IsStoped => MoveDirectionVelocity.magnitude == 0;
 
+        public PlayerCharacter Target { get; set; }
+
         public float CurrentLife { get; protected set; }
         public bool IsDeath { get; private set; }
         public bool IsOnScreen { get; private set; }
 
         public Vector3 MoveDirectionVelocity { get; protected set; }
 
+        protected virtual void Awake()
+        {
+            Target = FindObjectOfType<PlayerCharacter>();
+        }
+
         protected virtual void Start()
         {
-
-            Target = FindObjectOfType<PlayerCharacter>();
-
             if (Rb)
             {
                 Rb.constraints |= RigidbodyConstraints.FreezePositionY;
@@ -94,7 +104,7 @@ namespace Game.Mecanics
             {
                 return;
             }
-            
+
             IsDeath = true;
             Rb.useGravity = false;
 

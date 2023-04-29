@@ -40,7 +40,7 @@ namespace Game.Mecanics
         [System.Serializable]
         public class EnemyType
         {
-            public Enemy Prefab;
+            public EnemyBase Prefab;
             public int StartSpawnLevel;
             public int EndSpawnLevel;
         }
@@ -62,16 +62,15 @@ namespace Game.Mecanics
         }
 
         public bool CanSpawn;
-        public Transform Follow;
         public SpawnSettings Spawn;
         public EnemyType[] Enemies;
-        public Enemy[] Boses;
+        public EnemyBase[] Boses;
         public LevelProgression FirstLevel;
         public LevelProgression Progression;
 
         [Space]
-        public UnityEvent<Enemy> OnEnemySpawned;
-        public UnityEvent<Enemy> OnEnemyKilled;
+        public UnityEvent<EnemyBase> OnEnemySpawned;
+        public UnityEvent<EnemyBase> OnEnemyKilled;
         public UnityEvent<int> OnChangeLevel;
 
         public List<LevelInfo> CurrentLevels;
@@ -97,7 +96,6 @@ namespace Game.Mecanics
 
         void Update()
         {
-            transform.position = Follow.position;
         }
 
         private void SpawnEnemy()
@@ -137,7 +135,7 @@ namespace Game.Mecanics
             }
         }
 
-        private Enemy SpawnEnemy(Enemy enemy)
+        private EnemyBase SpawnEnemy(EnemyBase enemy)
         {
             var _randomPos = Spawn.SpawnPoints[Random.Range(0, Spawn.SpawnPoints.Length - 1)].position;
             var _newEnemy = Instantiate(enemy, _randomPos, Quaternion.identity);

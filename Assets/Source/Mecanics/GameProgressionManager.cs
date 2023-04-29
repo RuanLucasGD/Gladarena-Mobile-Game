@@ -29,7 +29,7 @@ namespace Game.Mecanics
         }
 
 
-        private void OnEnemyDeath(Enemy e)
+        private void OnEnemyDeath(EnemyBase e)
         {
             if (e.Type == Enemy.EnemyType.Boss)
             {
