@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtAlbedo:
-        m_Texture: {fileID: 2800000, guid: 59470b093599c3c4eb3696a4393ffc2b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2f06be5cc89f84f48bfe39a1f88242c4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask02:
-        m_Texture: {fileID: 2800000, guid: a6c1bdc470be0b4439d2c77a4c1d6a8c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 48075e1022e1c624aa9e8f4fb55c361e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -99,7 +99,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color01: {r: 1, g: 1, b: 1, a: 0}
     - _Color02: {r: 1, g: 1, b: 1, a: 0}
-    - _Color03: {r: 1, g: 1, b: 1, a: 0}
-    - _Color04: {r: 1, g: 1, b: 1, a: 0}
+    - _Color03: {r: 0.5376749, g: 0, b: 1, a: 0}
+    - _Color04: {r: 0.5372549, g: 0, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
