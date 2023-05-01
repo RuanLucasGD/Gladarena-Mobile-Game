@@ -59,12 +59,17 @@ namespace Game.Mecanics
             [Space]
 
             public int BossLevelInterval;
+
+            [Space]
+
+            public float MiniBossTimeInterval;
         }
 
         public bool CanSpawn;
         public SpawnSettings Spawn;
         public EnemyType[] Enemies;
         public EnemyBase[] Boses;
+        public EnemyBase[] MiniBoses;
         public LevelProgression FirstLevel;
         public LevelProgression Progression;
 
@@ -84,21 +89,19 @@ namespace Game.Mecanics
 
         private int _bossLevelInterval;
         private int _currentBossIndex;
+        private int _currentMiniBossIndex;
 
         private int _enemiesSpawnCount;
 
         void Start()
         {
-            InvokeRepeating(nameof(SpawnEnemy), Spawn.SpawnRate, Spawn.SpawnRate);
+            InvokeRepeating(nameof(SpawnEnemyAfterTime), Spawn.SpawnRate, Spawn.SpawnRate);
+            InvokeRepeating(nameof(SpawnMinBossAfterTime), Spawn.MiniBossTimeInterval, Spawn.MiniBossTimeInterval);
 
             SetLevel(0);
         }
 
-        void Update()
-        {
-        }
-
-        private void SpawnEnemy()
+        private void SpawnEnemyAfterTime()
         {
             if (!CanSpawn)
             {
@@ -159,6 +162,18 @@ namespace Game.Mecanics
 
             _newEnemy.OnSpawned.AddListener(() => _enemiesSpawnCount++);
             _newEnemy.OnKilled.AddListener(() => _enemiesSpawnCount--);
+        }
+
+        private void SpawnMinBossAfterTime()
+        {
+            _currentBossIndex++;
+
+            if (_currentBossIndex >= MiniBoses.Length - 1)
+            {
+                _currentBossIndex = 0;
+            }
+
+            SpawnEnemy(MiniBoses[_currentMiniBossIndex]);
         }
 
         private void SetLevel(int level)
