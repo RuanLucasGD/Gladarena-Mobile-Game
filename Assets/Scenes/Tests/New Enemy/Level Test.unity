@@ -851,6 +851,7 @@ MonoBehaviour:
       m_Bits: 0
     MaxAsyncSpawns: 3
     BossLevelInterval: 2
+    MiniBossTimeInterval: 10
   Enemies:
   - Prefab: {fileID: 668775417943923496, guid: 8fac1f628857957459204223f1b41a1c, type: 3}
     StartSpawnLevel: 0
@@ -860,6 +861,8 @@ MonoBehaviour:
     EndSpawnLevel: 50
   Boses:
   - {fileID: 1124241386663835118, guid: a4923e23e130e4843a54bf42780abb77, type: 3}
+  MiniBoses:
+  - {fileID: 1124241386663835118, guid: 29751bff6e75ef0468bd9affe1c94e89, type: 3}
   FirstLevel:
     LifeBase: 1
     DamageBase: 1
