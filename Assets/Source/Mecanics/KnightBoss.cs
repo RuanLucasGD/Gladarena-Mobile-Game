@@ -146,8 +146,10 @@ namespace Game.Mecanics
                 _currentAttackProgression = 0f;
                 _currentStateTime = 0f;
                 IsAttacking = false;
+                return;
             }
 
+            // start attack
             if (!IsAttacking)
             {
                 IsAttacking = true;
@@ -171,6 +173,7 @@ namespace Game.Mecanics
             _currentAttackProgression = Mathf.Min(_currentAttackProgression, 1);
             Rb.MovePosition(Vector3.Lerp(_startAttackPos, _moveTo, _currentAttackProgression));
 
+            // finish current attack
             if (_currentStateTime >= AttackTime)
             {
                 IsAttacking = false;
@@ -180,10 +183,12 @@ namespace Game.Mecanics
 
                 _currentAttacksAmount++;
 
+                // remake attack
                 if (_currentAttacksAmount < AttacksAmount)
                 {
                     _stateAction = PrepareAttackState;
                 }
+                // start walk
                 else
                 {
                     _currentAttacksAmount = 0;
