@@ -37,16 +37,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Color01Power: 1.5
-    - _Color03Power: 1.5
+    - _Color03Power: 4
     - _Color04Power: 1.69
     - _Color2Power: 1.5
-    - _Metallic: 0.3
+    - _Metallic: 0
     - _OverallBrightness: 2
     - _Smoothness: 0
     - __dirty: 1
     m_Colors:
-    - _Color01: {r: 0.764151, g: 0.4235637, b: 0.039649345, a: 0}
-    - _Color02: {r: 0.08293682, g: 0.2831731, b: 0.86764705, a: 0}
-    - _Color03: {r: 0.5294118, g: 0.062283736, b: 0.062283736, a: 0}
+    - _Color01: {r: 0.6320754, g: 0.36146912, b: 0.056648254, a: 0}
+    - _Color02: {r: 0.43137258, g: 0.227451, b: 0.12941177, a: 1}
+    - _Color03: {r: 0.2264151, g: 0, b: 0, a: 0}
     - _Color04: {r: 0.23959793, g: 0.3490566, b: 0.021404423, a: 0}
   m_BuildTextureStacks: []
