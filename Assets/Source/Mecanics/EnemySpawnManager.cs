@@ -40,7 +40,7 @@ namespace Game.Mecanics
         [System.Serializable]
         public class EnemyType
         {
-            public Enemy Prefab;
+            public EnemyBase Prefab;
             public int StartSpawnLevel;
             public int EndSpawnLevel;
         }
@@ -59,19 +59,23 @@ namespace Game.Mecanics
             [Space]
 
             public int BossLevelInterval;
+
+            [Space]
+
+            public float MiniBossTimeInterval;
         }
 
         public bool CanSpawn;
-        public Transform Follow;
         public SpawnSettings Spawn;
         public EnemyType[] Enemies;
-        public Enemy[] Boses;
+        public EnemyBase[] Boses;
+        public EnemyBase[] MiniBoses;
         public LevelProgression FirstLevel;
         public LevelProgression Progression;
 
         [Space]
-        public UnityEvent<Enemy> OnEnemySpawned;
-        public UnityEvent<Enemy> OnEnemyKilled;
+        public UnityEvent<EnemyBase> OnEnemySpawned;
+        public UnityEvent<EnemyBase> OnEnemyKilled;
         public UnityEvent<int> OnChangeLevel;
 
         public List<LevelInfo> CurrentLevels;
@@ -85,22 +89,19 @@ namespace Game.Mecanics
 
         private int _bossLevelInterval;
         private int _currentBossIndex;
+        private int _currentMiniBossIndex;
 
         private int _enemiesSpawnCount;
 
         void Start()
         {
-            InvokeRepeating(nameof(SpawnEnemy), Spawn.SpawnRate, Spawn.SpawnRate);
+            InvokeRepeating(nameof(SpawnEnemyAfterTime), Spawn.SpawnRate, Spawn.SpawnRate);
+            InvokeRepeating(nameof(SpawnMinBossAfterTime), Spawn.MiniBossTimeInterval, Spawn.MiniBossTimeInterval);
 
             SetLevel(0);
         }
 
-        void Update()
-        {
-            transform.position = Follow.position;
-        }
-
-        private void SpawnEnemy()
+        private void SpawnEnemyAfterTime()
         {
             if (!CanSpawn)
             {
@@ -137,7 +138,7 @@ namespace Game.Mecanics
             }
         }
 
-        private Enemy SpawnEnemy(Enemy enemy)
+        private EnemyBase SpawnEnemy(EnemyBase enemy)
         {
             var _randomPos = Spawn.SpawnPoints[Random.Range(0, Spawn.SpawnPoints.Length - 1)].position;
             var _newEnemy = Instantiate(enemy, _randomPos, Quaternion.identity);
@@ -161,6 +162,18 @@ namespace Game.Mecanics
 
             _newEnemy.OnSpawned.AddListener(() => _enemiesSpawnCount++);
             _newEnemy.OnKilled.AddListener(() => _enemiesSpawnCount--);
+        }
+
+        private void SpawnMinBossAfterTime()
+        {
+            _currentBossIndex++;
+
+            if (_currentBossIndex >= MiniBoses.Length - 1)
+            {
+                _currentBossIndex = 0;
+            }
+
+            SpawnEnemy(MiniBoses[_currentMiniBossIndex]);
         }
 
         private void SetLevel(int level)

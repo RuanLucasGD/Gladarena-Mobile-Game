@@ -8,18 +8,12 @@ namespace Game.Mecanics
 {
     public class KnightBoss : EnemyBase
     {
-        [Header("Basic")]
-        public float MaxLife;
-        public float WalkSpeed;
-
         [Header("Attack")]
         public int AttacksAmount;
         public float AttackForce;
-        public float AttackDamage;
         public float AttackStopDistance;
 
         [Header("Walk Random")]
-        public float StopDistance;
         public float MoveRandomDistance;
         public float TurnSpeed;
         public LayerMask ObstaclesLayer;
@@ -28,6 +22,7 @@ namespace Game.Mecanics
         public float WalkTime;
         public float PrepareAttackTime;
         public float AttackTime;
+
 
         [Header("Animation")]
         public string IsDeathAnimParam;
@@ -106,7 +101,7 @@ namespace Game.Mecanics
                 _moveTo = Target.transform.position;
             }
 
-            MoveDirectionVelocity = (_moveTo - Rb.position).normalized * WalkSpeed;
+            MoveDirectionVelocity = (_moveTo - Rb.position).normalized * MoveSpeed;
 
             if (_currentStateTime >= WalkTime && IsOnScreen)
             {
@@ -145,13 +140,18 @@ namespace Game.Mecanics
 
         private void AttackState()
         {
+            if (!IsOnScreen)
+            {
+                _stateAction = WalkRantomState;
+                _currentAttackProgression = 0f;
+                _currentStateTime = 0f;
+                IsAttacking = false;
+                return;
+            }
+
+            // start attack
             if (!IsAttacking)
             {
-                if (!IsOnScreen)
-                {
-                    _stateAction = WalkRantomState;
-                }
-
                 IsAttacking = true;
                 var _directionToTarget = (Target.transform.position - Rb.position).normalized;
                 var _stopOffset = _directionToTarget * AttackStopDistance;
@@ -173,6 +173,7 @@ namespace Game.Mecanics
             _currentAttackProgression = Mathf.Min(_currentAttackProgression, 1);
             Rb.MovePosition(Vector3.Lerp(_startAttackPos, _moveTo, _currentAttackProgression));
 
+            // finish current attack
             if (_currentStateTime >= AttackTime)
             {
                 IsAttacking = false;
@@ -180,11 +181,14 @@ namespace Game.Mecanics
 
                 ResetStateTime();
 
+                _currentAttacksAmount++;
+
+                // remake attack
                 if (_currentAttacksAmount < AttacksAmount)
                 {
-                    _currentAttacksAmount++;
                     _stateAction = PrepareAttackState;
                 }
+                // start walk
                 else
                 {
                     _currentAttacksAmount = 0;
