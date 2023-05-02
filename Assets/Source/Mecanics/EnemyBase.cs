@@ -40,6 +40,7 @@ namespace Game.Mecanics
         public float CurrentLife { get; protected set; }
         public bool IsDeath { get; private set; }
         public bool IsOnScreen { get; private set; }
+        public bool IsAttacking { get; protected set; }
 
         public Vector3 MoveDirectionVelocity { get; protected set; }
 
@@ -92,7 +93,7 @@ namespace Game.Mecanics
             direction.Normalize();
             var _turnSpeed = Mathf.Clamp01(turnSpeed * Time.deltaTime);
 
-            Rb.rotation = Quaternion.Lerp(Rb.rotation, Quaternion.LookRotation(direction), _turnSpeed);
+            transform.rotation = Quaternion.Lerp(Rb.rotation, Quaternion.LookRotation(direction), _turnSpeed);
         }
 
         // called by character animator event

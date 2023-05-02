@@ -18,7 +18,6 @@ namespace Game.Mecanics
 
         public new bool IsStoped => Target && !Target.IsDeath ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : true;
         public bool IsTargetNearToAttack => Target ? Vector3.Distance(transform.position, Target.transform.position) < AttackDistance : false;
-        public bool IsAttacking { get; private set; }
 
         private bool _attackDeleyedStarted;
 

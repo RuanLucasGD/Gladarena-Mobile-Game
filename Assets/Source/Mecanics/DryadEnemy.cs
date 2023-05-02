@@ -35,7 +35,6 @@ namespace Game.Mecanics
 
         private UnityAction _updateState;
 
-        public bool IsAttacking { get; private set; }
         public Vector3 MovePosition { get; private set; }
 
         public float DistanceToMovePosition => Vector3.Distance(MovePosition, Rb.position);

@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Centaur
+  m_Mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: DryadMesh
+    m_Weight: 1
+  - m_Path: Root
+    m_Weight: 1
+  - m_Path: Root/horse_Tail01
+    m_Weight: 0
+  - m_Path: Root/horse_Tail01/horse_Tail02
+    m_Weight: 1
+  - m_Path: Root/horse_upperLeg_L
+    m_Weight: 0
+  - m_Path: Root/horse_upperLeg_L/horse_lowerLeg_L
+    m_Weight: 1
+  - m_Path: Root/horse_upperLeg_L/horse_lowerLeg_L/horse_feet_L
+    m_Weight: 1
+  - m_Path: Root/horse_upperLeg_L/horse_lowerLeg_L/horse_feet_L/horse_feetTip_L
+    m_Weight: 1
+  - m_Path: Root/horse_upperLeg_R
+    m_Weight: 0
+  - m_Path: Root/horse_upperLeg_R/horse_lowerLeg_R
+    m_Weight: 1
+  - m_Path: Root/horse_upperLeg_R/horse_lowerLeg_R/horse_feet_R
+    m_Weight: 1
+  - m_Path: Root/horse_upperLeg_R/horse_lowerLeg_R/horse_feet_R/horse_feetTip_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_L
+    m_Weight: 0
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_L/horse_lowerArm_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_L/horse_lowerArm_L/horse_hand_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_L/horse_lowerArm_L/horse_hand_L/horse_handTip_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_R
+    m_Weight: 0
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_R/horse_lowerArm_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_R/horse_lowerArm_R/horse_hand_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/horse_upperArm_R/horse_lowerArm_R/horse_hand_R/horse_handTip_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head/ear01_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head/ear01_L/ear02_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head/ear01_L/ear02_L/ear03_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head/ear01_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head/ear01_R/ear02_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_neck/man_head/ear01_R/ear02_R/ear03_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_L/man_armor_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_L/man_upperArm_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_L/man_upperArm_L/man_lowerArm_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_L/man_upperArm_L/man_lowerArm_L/man_wrist_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_L/man_upperArm_L/man_lowerArm_L/man_wrist_L/man_hand_L
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_R/man_armor_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_R/man_upperArm_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_R/man_upperArm_R/man_lowerArm_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_R/man_upperArm_R/man_lowerArm_R/man_wrist_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/man_spine/man_shoulder_R/man_upperArm_R/man_lowerArm_R/man_wrist_R/man_hand_R
+    m_Weight: 1
+  - m_Path: Root/horseSpine/horseChest/Spear1
+    m_Weight: 1

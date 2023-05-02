@@ -1,105 +1,293 @@
 fileFormatVersion: 2
 guid: 99c7568ed024c054cb683e8dedbcc377
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: DryadMesh
-    100004: ear01_L
-    100006: ear01_R
-    100008: ear02_L
-    100010: ear02_R
-    100012: ear03_L
-    100014: ear03_R
-    100016: horse_feet_L
-    100018: horse_feet_R
-    100020: horse_feetTip_L
-    100022: horse_feetTip_R
-    100024: horse_hand_L
-    100026: horse_hand_R
-    100028: horse_handTip_L
-    100030: horse_handTip_R
-    100032: horse_lowerArm_L
-    100034: horse_lowerArm_R
-    100036: horse_lowerLeg_L
-    100038: horse_lowerLeg_R
-    100040: horse_Tail01
-    100042: horse_Tail02
-    100044: horse_upperArm_L
-    100046: horse_upperArm_R
-    100048: horse_upperLeg_L
-    100050: horse_upperLeg_R
-    100052: horseChest
-    100054: horseSpine
-    100056: man_armor_L
-    100058: man_armor_R
-    100060: man_hand_L
-    100062: man_hand_R
-    100064: man_head
-    100066: man_lowerArm_L
-    100068: man_lowerArm_R
-    100070: man_neck
-    100072: man_shoulder_L
-    100074: man_shoulder_R
-    100076: man_spine
-    100078: man_upperArm_L
-    100080: man_upperArm_R
-    100082: man_wrist_L
-    100084: man_wrist_R
-    100086: Root
-    100088: Spear1
-    400000: //RootNode
-    400002: DryadMesh
-    400004: ear01_L
-    400006: ear01_R
-    400008: ear02_L
-    400010: ear02_R
-    400012: ear03_L
-    400014: ear03_R
-    400016: horse_feet_L
-    400018: horse_feet_R
-    400020: horse_feetTip_L
-    400022: horse_feetTip_R
-    400024: horse_hand_L
-    400026: horse_hand_R
-    400028: horse_handTip_L
-    400030: horse_handTip_R
-    400032: horse_lowerArm_L
-    400034: horse_lowerArm_R
-    400036: horse_lowerLeg_L
-    400038: horse_lowerLeg_R
-    400040: horse_Tail01
-    400042: horse_Tail02
-    400044: horse_upperArm_L
-    400046: horse_upperArm_R
-    400048: horse_upperLeg_L
-    400050: horse_upperLeg_R
-    400052: horseChest
-    400054: horseSpine
-    400056: man_armor_L
-    400058: man_armor_R
-    400060: man_hand_L
-    400062: man_hand_R
-    400064: man_head
-    400066: man_lowerArm_L
-    400068: man_lowerArm_R
-    400070: man_neck
-    400072: man_shoulder_L
-    400074: man_shoulder_R
-    400076: man_spine
-    400078: man_upperArm_L
-    400080: man_upperArm_R
-    400082: man_wrist_L
-    400084: man_wrist_R
-    400086: Root
-    400088: Spear1
-    4300000: DryadMesh
-    7400000: Attack02
-    9500000: //RootNode
-    13700000: DryadMesh
+  serializedVersion: 20300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: DryadMesh
+  - first:
+      1: 100004
+    second: ear01_L
+  - first:
+      1: 100006
+    second: ear01_R
+  - first:
+      1: 100008
+    second: ear02_L
+  - first:
+      1: 100010
+    second: ear02_R
+  - first:
+      1: 100012
+    second: ear03_L
+  - first:
+      1: 100014
+    second: ear03_R
+  - first:
+      1: 100016
+    second: horse_feet_L
+  - first:
+      1: 100018
+    second: horse_feet_R
+  - first:
+      1: 100020
+    second: horse_feetTip_L
+  - first:
+      1: 100022
+    second: horse_feetTip_R
+  - first:
+      1: 100024
+    second: horse_hand_L
+  - first:
+      1: 100026
+    second: horse_hand_R
+  - first:
+      1: 100028
+    second: horse_handTip_L
+  - first:
+      1: 100030
+    second: horse_handTip_R
+  - first:
+      1: 100032
+    second: horse_lowerArm_L
+  - first:
+      1: 100034
+    second: horse_lowerArm_R
+  - first:
+      1: 100036
+    second: horse_lowerLeg_L
+  - first:
+      1: 100038
+    second: horse_lowerLeg_R
+  - first:
+      1: 100040
+    second: horse_Tail01
+  - first:
+      1: 100042
+    second: horse_Tail02
+  - first:
+      1: 100044
+    second: horse_upperArm_L
+  - first:
+      1: 100046
+    second: horse_upperArm_R
+  - first:
+      1: 100048
+    second: horse_upperLeg_L
+  - first:
+      1: 100050
+    second: horse_upperLeg_R
+  - first:
+      1: 100052
+    second: horseChest
+  - first:
+      1: 100054
+    second: horseSpine
+  - first:
+      1: 100056
+    second: man_armor_L
+  - first:
+      1: 100058
+    second: man_armor_R
+  - first:
+      1: 100060
+    second: man_hand_L
+  - first:
+      1: 100062
+    second: man_hand_R
+  - first:
+      1: 100064
+    second: man_head
+  - first:
+      1: 100066
+    second: man_lowerArm_L
+  - first:
+      1: 100068
+    second: man_lowerArm_R
+  - first:
+      1: 100070
+    second: man_neck
+  - first:
+      1: 100072
+    second: man_shoulder_L
+  - first:
+      1: 100074
+    second: man_shoulder_R
+  - first:
+      1: 100076
+    second: man_spine
+  - first:
+      1: 100078
+    second: man_upperArm_L
+  - first:
+      1: 100080
+    second: man_upperArm_R
+  - first:
+      1: 100082
+    second: man_wrist_L
+  - first:
+      1: 100084
+    second: man_wrist_R
+  - first:
+      1: 100086
+    second: Root
+  - first:
+      1: 100088
+    second: Spear1
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: DryadMesh
+  - first:
+      4: 400004
+    second: ear01_L
+  - first:
+      4: 400006
+    second: ear01_R
+  - first:
+      4: 400008
+    second: ear02_L
+  - first:
+      4: 400010
+    second: ear02_R
+  - first:
+      4: 400012
+    second: ear03_L
+  - first:
+      4: 400014
+    second: ear03_R
+  - first:
+      4: 400016
+    second: horse_feet_L
+  - first:
+      4: 400018
+    second: horse_feet_R
+  - first:
+      4: 400020
+    second: horse_feetTip_L
+  - first:
+      4: 400022
+    second: horse_feetTip_R
+  - first:
+      4: 400024
+    second: horse_hand_L
+  - first:
+      4: 400026
+    second: horse_hand_R
+  - first:
+      4: 400028
+    second: horse_handTip_L
+  - first:
+      4: 400030
+    second: horse_handTip_R
+  - first:
+      4: 400032
+    second: horse_lowerArm_L
+  - first:
+      4: 400034
+    second: horse_lowerArm_R
+  - first:
+      4: 400036
+    second: horse_lowerLeg_L
+  - first:
+      4: 400038
+    second: horse_lowerLeg_R
+  - first:
+      4: 400040
+    second: horse_Tail01
+  - first:
+      4: 400042
+    second: horse_Tail02
+  - first:
+      4: 400044
+    second: horse_upperArm_L
+  - first:
+      4: 400046
+    second: horse_upperArm_R
+  - first:
+      4: 400048
+    second: horse_upperLeg_L
+  - first:
+      4: 400050
+    second: horse_upperLeg_R
+  - first:
+      4: 400052
+    second: horseChest
+  - first:
+      4: 400054
+    second: horseSpine
+  - first:
+      4: 400056
+    second: man_armor_L
+  - first:
+      4: 400058
+    second: man_armor_R
+  - first:
+      4: 400060
+    second: man_hand_L
+  - first:
+      4: 400062
+    second: man_hand_R
+  - first:
+      4: 400064
+    second: man_head
+  - first:
+      4: 400066
+    second: man_lowerArm_L
+  - first:
+      4: 400068
+    second: man_lowerArm_R
+  - first:
+      4: 400070
+    second: man_neck
+  - first:
+      4: 400072
+    second: man_shoulder_L
+  - first:
+      4: 400074
+    second: man_shoulder_R
+  - first:
+      4: 400076
+    second: man_spine
+  - first:
+      4: 400078
+    second: man_upperArm_L
+  - first:
+      4: 400080
+    second: man_upperArm_R
+  - first:
+      4: 400082
+    second: man_wrist_L
+  - first:
+      4: 400084
+    second: man_wrist_R
+  - first:
+      4: 400086
+    second: Root
+  - first:
+      4: 400088
+    second: Spear1
+  - first:
+      43: 4300000
+    second: DryadMesh
+  - first:
+      74: 7400000
+    second: Attack02
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: DryadMesh
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -128,6 +316,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack02
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 40
       wrapMode: 0
@@ -148,7 +337,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.63010204
+        functionName: AttackAnimationEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -250,25 +446,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -277,10 +480,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -290,13 +493,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

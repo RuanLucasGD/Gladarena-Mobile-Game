@@ -39,7 +39,6 @@ namespace Game.Mecanics
         private Vector3 _moveTo;
         private Vector3 _startAttackPos;
 
-        public bool IsAttacking { get; private set; }
         public bool IsPreparingAttack { get; private set; }
 
         protected override void Start()
