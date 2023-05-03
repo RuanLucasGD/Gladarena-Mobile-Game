@@ -18,6 +18,7 @@ namespace Game.Mecanics
         [Header("Animation Parameters")]
         public string IsStopedAnimParam;
         public string IsAttackingAnimParam;
+        public string IsDeathAnimParam;
 
         public Vector3 MoveTo { get; private set; }
 
@@ -35,6 +36,13 @@ namespace Game.Mecanics
         {
             base.Update();
             UpdateAnimations();
+
+            if (CurrentLife <= 0)
+            {
+                Death();
+                return;
+            }
+
             CurrentState();
             _currentStateTime += Time.deltaTime;
         }
@@ -104,6 +112,7 @@ namespace Game.Mecanics
         {
             Animator.SetBool(IsStopedAnimParam, IsStoped);
             Animator.SetBool(IsAttackingAnimParam, IsAttacking);
+            Animator.SetBool(IsDeathAnimParam, IsDeath);
         }
 
         public override void AttackAnimationEvent()

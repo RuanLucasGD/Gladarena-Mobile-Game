@@ -47,6 +47,7 @@ namespace Game.Mecanics
         protected virtual void Awake()
         {
             Target = FindObjectOfType<PlayerCharacter>();
+            CurrentLife = MaxLife;
         }
 
         protected virtual void Start()

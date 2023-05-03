@@ -24,8 +24,6 @@ namespace Game.Mecanics
         protected override void Start()
         {
             base.Start();
-
-            CurrentLife = MaxLife;
             SetWeaponAnimation();
         }
 

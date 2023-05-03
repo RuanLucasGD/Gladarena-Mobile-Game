@@ -1087,6 +1087,7 @@ MonoBehaviour:
   AttackTime: 2
   IsStopedAnimParam: Is Stoped
   IsAttackingAnimParam: Is Attacking
+  IsDeathAnimParam: Is Death
 --- !u!1 &3001059154587530599
 GameObject:
   m_ObjectHideFlags: 0
