@@ -1065,10 +1065,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  MoveSpeed: 10
+  MoveSpeed: 7
   StopDistance: 4
   MaxLife: 100
-  AttackDamage: 50
+  AttackDamage: 0
   Rb: {fileID: 2999886366547437198}
   ModelRenderer: {fileID: 2903090195740096645}
   Animator: {fileID: 2949860116753678235}
@@ -1082,12 +1082,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   TurnSpeed: 40
-  AttackDistance: 5
+  StartAttackDistance: 15
   LookToTargetTime: 2
-  AttackTime: 2
+  AttackStopedTime: 2
+  PrepareAttackTime: 1
+  MaxDistance: 20
+  ObstaclesLayer:
+    serializedVersion: 2
+    m_Bits: 64
   IsStopedAnimParam: Is Stoped
   IsAttackingAnimParam: Is Attacking
+  IsPreparingAttackAnimParam: Is Preparing Attack
   IsDeathAnimParam: Is Death
+  UseSpecialAttackAnimParam: Use Special Attack
 --- !u!1 &3001059154587530599
 GameObject:
   m_ObjectHideFlags: 0

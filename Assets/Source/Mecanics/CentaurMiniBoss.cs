@@ -9,12 +9,16 @@ namespace Game.Mecanics
     {
         [Header("Centaur")]
         public float TurnSpeed;
-        public float AttackDistance;
+        public float StartAttackDistance;
 
         [Header("States")]
         public float LookToTargetTime;
-        public float AttackTime;
+        public float AttackStopedTime;
         public float PrepareAttackTime;
+
+        [Header("Move Random Direction State")]
+        public float MaxDistance;
+        public LayerMask ObstaclesLayer;
 
         [Header("Animation Parameters")]
         public string IsStopedAnimParam;
@@ -26,14 +30,18 @@ namespace Game.Mecanics
         public Vector3 MoveTo { get; private set; }
         private UnityAction CurrentState { get => _currentState; set { _currentState = value; ResetStateTime(); } }
 
-        private bool _isPreparingAttack;
         private bool _useSpecialAttack;
+
         private float _currentStateTime;
 
         private UnityAction _currentState;
 
         // attack state
-        private bool _isTargetNear;
+        private float _attackStopedTimer;
+
+        // move random direction state
+        private bool _onRandomMoviment;
+        private bool _findedRandomPosition;
 
         protected override void Start()
         {
@@ -56,46 +64,45 @@ namespace Game.Mecanics
             _currentStateTime += Time.deltaTime;
         }
 
-        private void PrepareAttackState()
-        {
-            MoveTo = Target.transform.position;
-            var _direction = (MoveTo - transform.position).normalized;
-
-            LookTo(_direction, TurnSpeed);
-            MoveDirectionVelocity = -_direction * MoveSpeed;
-
-            _useSpecialAttack = true;
-            _isPreparingAttack = true;
-            if (_currentStateTime > PrepareAttackTime)
-            {
-                _useSpecialAttack = false;
-                _isPreparingAttack = false;
-
-                CurrentState = RunToDestinationState;
-            }
-        }
-
         private void AttackState()
         {
-            LookTo(Target.transform.position - transform.position, TurnSpeed);
-            MoveDirectionVelocity = Vector3.zero;
+            var _directionToTarget = (MoveTo - transform.position).normalized;
             IsAttacking = true;
 
-            var _isNear = Vector3.Distance(Target.transform.position, transform.position) < AttackDistance;
-
-            // change to prepare attack state only if the Centaur is closed to target and target move to distant
-            if (_isTargetNear && !_isNear)
+            if (_onRandomMoviment)
             {
-                CurrentState = PrepareAttackState;
-                IsAttacking = false;
-            }
-            else if (!_isTargetNear && !_isNear)
-            {
-                CurrentState = PrepareToRunState;
-                IsAttacking = false;
+                IsAttacking = true;
+                MoveDirectionVelocity = Vector3.zero;
+                LookTo(Target.transform.position - transform.position, TurnSpeed);
+
+                if (Vector3.Distance(Target.transform.position, transform.position) > StopDistance)
+                {
+                    IsAttacking = false;
+                    CurrentState = MoveRandomDirectionState;
+                }
+
+                return;
             }
 
-            _isTargetNear = _isNear;
+            // stop only if the target is very near
+            // the enemy can play attack animation in moviment
+            if (Vector3.Distance(MoveTo, transform.position) < StopDistance)
+            {
+                MoveDirectionVelocity = Vector3.zero;
+                _attackStopedTimer += Time.deltaTime;
+
+                if (_attackStopedTimer > AttackStopedTime)
+                {
+                    _attackStopedTimer = 0f;
+                    CurrentState = MoveRandomDirectionState;
+                    IsAttacking = false;
+                }
+            }
+            else
+            {
+                LookTo(_directionToTarget, TurnSpeed);
+                MoveDirectionVelocity = _directionToTarget * MoveSpeed;
+            }
         }
 
         private void PrepareToRunState()
@@ -117,13 +124,41 @@ namespace Game.Mecanics
             LookTo(MoveTo - transform.position, TurnSpeed);
         }
 
+        private void MoveRandomDirectionState()
+        {
+            if (!_findedRandomPosition)
+            {
+                _findedRandomPosition = true;
+                MoveTo = GetRandomPosition();
+            }
+
+            _onRandomMoviment = true;
+            _useSpecialAttack = true;
+
+            var _moveDirection = (MoveTo - transform.position).normalized;
+            MoveDirectionVelocity = _moveDirection * MoveSpeed;
+            LookTo(_moveDirection, TurnSpeed);
+
+            if (Vector3.Distance(transform.position, Target.transform.position) < StopDistance)
+            {
+                CurrentState = AttackState;
+                return;
+            }
+
+            if (Vector3.Distance(transform.position, MoveTo) < StopDistance)
+            {
+                _findedRandomPosition = false;
+                _onRandomMoviment = false;
+                _useSpecialAttack = false;
+                CurrentState = PrepareToRunState;
+            }
+        }
+
         private void RunToDestinationState()
         {
             MoveDirectionVelocity = (MoveTo - transform.position).normalized * MoveSpeed;
 
-            var _isFinalTargetNear = Vector3.Distance(transform.position, MoveTo) < StopDistance;
-            var _isTargetNear = Vector3.Distance(transform.position, Target.transform.position) < StopDistance;
-            if (_isFinalTargetNear || _isTargetNear)
+            if (Vector3.Distance(transform.position, MoveTo) < StartAttackDistance)
             {
                 _currentState = AttackState;
             }
@@ -152,8 +187,25 @@ namespace Game.Mecanics
             Animator.SetBool(IsStopedAnimParam, IsStoped);
             Animator.SetBool(IsAttackingAnimParam, IsAttacking);
             Animator.SetBool(IsDeathAnimParam, IsDeath);
-            Animator.SetBool(IsPreparingAttackAnimParam, _isPreparingAttack);
             Animator.SetBool(UseSpecialAttackAnimParam, _useSpecialAttack);
+        }
+
+        private Vector3 GetRandomPosition()
+        {
+            var _randomOffset = new Vector3(1, 0, 1);
+
+            _randomOffset /= _randomOffset.magnitude;
+            _randomOffset *= MaxDistance;
+
+            var _worldPos = transform.position + _randomOffset;
+
+            if (Physics.Linecast(transform.position, _worldPos, out var hit, ObstaclesLayer))
+            {
+                var _directionToTarget = hit.point - transform.position;
+                _worldPos -= _directionToTarget.normalized * StopDistance;
+            }
+
+            return _worldPos;
         }
 
         public override void AttackAnimationEvent()

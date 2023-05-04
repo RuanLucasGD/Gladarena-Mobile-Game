@@ -1086,12 +1086,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: MoveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
       propertyPath: AttackDamage
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: AttackStopedTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
       propertyPath: PrepareAttackTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: StartAttackDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: ObstaclesLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
       propertyPath: UseSpecialAttackAnimParam
