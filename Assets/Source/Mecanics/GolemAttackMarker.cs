@@ -14,7 +14,7 @@ namespace Game.Mecanics
 
         void Start()
         {
-            Player = FindAnyObjectByType<PlayerCharacter>();
+            Player = GameObject.FindObjectOfType<PlayerCharacter>();
             Golem.OnThrowBall.AddListener(SpawnMarker);
         }
         private void SpawnMarker()
