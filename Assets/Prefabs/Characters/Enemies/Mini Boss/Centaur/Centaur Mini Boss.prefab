@@ -1084,7 +1084,7 @@ MonoBehaviour:
   TurnSpeed: 40
   StartAttackDistance: 15
   LookToTargetTime: 2
-  AttackStopedTime: 2
+  AttackStopedTime: 1.1
   PrepareAttackTime: 1
   MaxDistance: 20
   ObstaclesLayer:

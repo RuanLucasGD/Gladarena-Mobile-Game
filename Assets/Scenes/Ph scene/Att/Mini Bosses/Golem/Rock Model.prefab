@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 4467778607349242}
   - component: {fileID: 33079656497285372}
   - component: {fileID: 23036596724468392}
-  - component: {fileID: 95840588884770278}
   m_Layer: 0
-  m_Name: Rock_Polyart_Standard
+  m_Name: Rock Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,22 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95840588884770278
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098901420115352}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c1b118c6aba911c4b9edbfeca5785ca8, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

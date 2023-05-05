@@ -9,6 +9,7 @@ namespace Game.Mecanics
         [Header("Basic")]
         public float AttackInterval;
         public float AttackDistance;
+        public float StopDistance;
 
         [Header("Animation")]
         public int WeaponAnimID;

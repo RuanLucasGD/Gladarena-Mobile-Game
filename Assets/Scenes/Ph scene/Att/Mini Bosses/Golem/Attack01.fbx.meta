@@ -1,59 +1,155 @@
 fileFormatVersion: 2
 guid: 3913d460989e9c643b53dbfb41379a1f
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Foot_L
-    100004: Foot_R
-    100006: Hand_L
-    100008: Hand_R
-    100010: Head
-    100012: Hips
-    100014: Index_Proximal_L
-    100016: Index_Proximal_R
-    100018: joint1
-    100020: Lower_Arm_L
-    100022: Lower_Arm_R
-    100024: Lower_Leg_L
-    100026: Lower_Reg_R
-    100028: RockGolemMesh
-    100030: Spine
-    100032: Toes_L
-    100034: Toes_R
-    100036: Upper_Arm_L
-    100038: Upper_Arm_R
-    100040: Upper_Leg_L
-    100042: Upper_Reg_R
-    400000: //RootNode
-    400002: Foot_L
-    400004: Foot_R
-    400006: Hand_L
-    400008: Hand_R
-    400010: Head
-    400012: Hips
-    400014: Index_Proximal_L
-    400016: Index_Proximal_R
-    400018: joint1
-    400020: Lower_Arm_L
-    400022: Lower_Arm_R
-    400024: Lower_Leg_L
-    400026: Lower_Reg_R
-    400028: RockGolemMesh
-    400030: Spine
-    400032: Toes_L
-    400034: Toes_R
-    400036: Upper_Arm_L
-    400038: Upper_Arm_R
-    400040: Upper_Leg_L
-    400042: Upper_Reg_R
-    4300000: RockGolemMesh
-    7400000: Attack01
-    9500000: //RootNode
-    13700000: RockGolemMesh
+  serializedVersion: 20300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Foot_L
+  - first:
+      1: 100004
+    second: Foot_R
+  - first:
+      1: 100006
+    second: Hand_L
+  - first:
+      1: 100008
+    second: Hand_R
+  - first:
+      1: 100010
+    second: Head
+  - first:
+      1: 100012
+    second: Hips
+  - first:
+      1: 100014
+    second: Index_Proximal_L
+  - first:
+      1: 100016
+    second: Index_Proximal_R
+  - first:
+      1: 100018
+    second: joint1
+  - first:
+      1: 100020
+    second: Lower_Arm_L
+  - first:
+      1: 100022
+    second: Lower_Arm_R
+  - first:
+      1: 100024
+    second: Lower_Leg_L
+  - first:
+      1: 100026
+    second: Lower_Reg_R
+  - first:
+      1: 100028
+    second: RockGolemMesh
+  - first:
+      1: 100030
+    second: Spine
+  - first:
+      1: 100032
+    second: Toes_L
+  - first:
+      1: 100034
+    second: Toes_R
+  - first:
+      1: 100036
+    second: Upper_Arm_L
+  - first:
+      1: 100038
+    second: Upper_Arm_R
+  - first:
+      1: 100040
+    second: Upper_Leg_L
+  - first:
+      1: 100042
+    second: Upper_Reg_R
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Foot_L
+  - first:
+      4: 400004
+    second: Foot_R
+  - first:
+      4: 400006
+    second: Hand_L
+  - first:
+      4: 400008
+    second: Hand_R
+  - first:
+      4: 400010
+    second: Head
+  - first:
+      4: 400012
+    second: Hips
+  - first:
+      4: 400014
+    second: Index_Proximal_L
+  - first:
+      4: 400016
+    second: Index_Proximal_R
+  - first:
+      4: 400018
+    second: joint1
+  - first:
+      4: 400020
+    second: Lower_Arm_L
+  - first:
+      4: 400022
+    second: Lower_Arm_R
+  - first:
+      4: 400024
+    second: Lower_Leg_L
+  - first:
+      4: 400026
+    second: Lower_Reg_R
+  - first:
+      4: 400028
+    second: RockGolemMesh
+  - first:
+      4: 400030
+    second: Spine
+  - first:
+      4: 400032
+    second: Toes_L
+  - first:
+      4: 400034
+    second: Toes_R
+  - first:
+      4: 400036
+    second: Upper_Arm_L
+  - first:
+      4: 400038
+    second: Upper_Arm_R
+  - first:
+      4: 400040
+    second: Upper_Leg_L
+  - first:
+      4: 400042
+    second: Upper_Reg_R
+  - first:
+      43: 4300000
+    second: RockGolemMesh
+  - first:
+      74: 7400000
+    second: Attack01
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: RockGolemMesh
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -82,6 +178,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack01
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -102,7 +199,28 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.32069933
+        functionName: GetRockAnimEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.58583105
+        functionName: AttackAnimationEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5940054
+        functionName: DropRockAnimEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -158,25 +276,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -185,10 +310,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Hips
       humanName: Hips
@@ -444,13 +569,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

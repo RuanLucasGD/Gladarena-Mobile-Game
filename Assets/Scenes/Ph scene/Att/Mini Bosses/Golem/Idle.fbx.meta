@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f19746fd4a907ac4d9673b076bdc9999
+guid: 757488c4ea9c0b14d8c015f71c24a587
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable:
@@ -140,7 +140,7 @@ ModelImporter:
     second: RockGolemMesh
   - first:
       74: 7400000
-    second: Attack02
+    second: Idle
   - first:
       95: 9500000
     second: //RootNode
@@ -176,18 +176,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack02
+      name: Idle
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -199,14 +199,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.5313352
-        functionName: AttackAnimationEvent
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
@@ -438,7 +431,7 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Attack02(Clone)
+    - name: Attack01(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}

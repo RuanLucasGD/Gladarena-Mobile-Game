@@ -8,6 +8,9 @@ namespace Game.Mecanics
 {
     public class KnightBoss : EnemyBase
     {
+        [Header("Basic")]
+        public float StopDistance;
+
         [Header("Attack")]
         public int AttacksAmount;
         public float AttackForce;
@@ -23,7 +26,6 @@ namespace Game.Mecanics
         public float PrepareAttackTime;
         public float AttackTime;
 
-
         [Header("Animation")]
         public string IsDeathAnimParam;
         public string IsWalkingAnimParam;
@@ -33,9 +35,6 @@ namespace Game.Mecanics
         private int _currentAttacksAmount;
         private float _currentAttackProgression;
 
-        private float _currentStateTime;
-        private UnityAction _stateAction;
-
         private Vector3 _moveTo;
         private Vector3 _startAttackPos;
 
@@ -44,7 +43,7 @@ namespace Game.Mecanics
         protected override void Start()
         {
             base.Start();
-            _stateAction = WalkRantomState;
+            CurrentState = WalkRantomState;
             _moveTo = GetRandomPosition();
         }
 
@@ -52,12 +51,6 @@ namespace Game.Mecanics
         {
             base.Update();
             UpdateAnimations();
-
-            if (!IsDeath)
-            {
-                _currentStateTime += Time.deltaTime;
-                _stateAction();
-            }
 
             if (CurrentLife <= 0)
             {
@@ -101,14 +94,12 @@ namespace Game.Mecanics
 
             MoveDirectionVelocity = (_moveTo - Rb.position).normalized * MoveSpeed;
 
-            if (_currentStateTime >= WalkTime && IsOnScreen)
+            if (StateExecutionTime >= WalkTime && IsOnScreen)
             {
                 if (!Target.IsDeath)
                 {
-                    _stateAction = PrepareAttackState;
+                    CurrentState = PrepareAttackState;
                 }
-
-                ResetStateTime();
             }
 
             LookTo(MoveDirectionVelocity, TurnSpeed);
@@ -118,18 +109,17 @@ namespace Game.Mecanics
         {
             if (Target.IsDeath)
             {
-                _stateAction = WalkRantomState;
+                CurrentState = WalkRantomState;
                 return;
             }
 
             IsPreparingAttack = true;
             MoveDirectionVelocity = Vector3.zero;
 
-            if (_currentStateTime >= PrepareAttackTime)
+            if (StateExecutionTime >= PrepareAttackTime)
             {
                 IsPreparingAttack = false;
-                _stateAction = AttackState;
-                ResetStateTime();
+                CurrentState = AttackState;
             }
 
             _moveTo = Target.transform.position;
@@ -140,9 +130,8 @@ namespace Game.Mecanics
         {
             if (!IsOnScreen)
             {
-                _stateAction = WalkRantomState;
+                CurrentState = WalkRantomState;
                 _currentAttackProgression = 0f;
-                _currentStateTime = 0f;
                 IsAttacking = false;
                 return;
             }
@@ -172,25 +161,23 @@ namespace Game.Mecanics
             Rb.MovePosition(Vector3.Lerp(_startAttackPos, _moveTo, _currentAttackProgression));
 
             // finish current attack
-            if (_currentStateTime >= AttackTime)
+            if (StateExecutionTime >= AttackTime)
             {
                 IsAttacking = false;
                 _currentAttackProgression = 0f;
-
-                ResetStateTime();
 
                 _currentAttacksAmount++;
 
                 // remake attack
                 if (_currentAttacksAmount < AttacksAmount)
                 {
-                    _stateAction = PrepareAttackState;
+                    CurrentState = PrepareAttackState;
                 }
                 // start walk
                 else
                 {
                     _currentAttacksAmount = 0;
-                    _stateAction = WalkRantomState;
+                    CurrentState = WalkRantomState;
                 }
             }
         }
@@ -202,11 +189,6 @@ namespace Game.Mecanics
                                             Random.Range(-MoveRandomDistance, MoveRandomDistance));
 
             return Rb.position + _randomOffset;
-        }
-
-        private void ResetStateTime()
-        {
-            _currentStateTime = 0;
         }
 
         private void UpdateAnimations()

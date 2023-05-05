@@ -19,7 +19,6 @@ namespace Game.Mecanics
 
         [Header("Basic")]
         public float MoveSpeed;
-        public float StopDistance;
         public float MaxLife;
         public float AttackDamage;
 
@@ -42,12 +41,20 @@ namespace Game.Mecanics
         public bool IsOnScreen { get; private set; }
         public bool IsAttacking { get; protected set; }
 
+        public float StateExecutionTime => _currentStateTime;
+
+        protected UnityAction CurrentState { get => _currentState; set { _currentState = value; _currentStateTime = 0f; } }
+
         public Vector3 MoveDirectionVelocity { get; protected set; }
+
+        private float _currentStateTime;
+        private UnityAction _currentState;
 
         protected virtual void Awake()
         {
             Target = FindObjectOfType<PlayerCharacter>();
             CurrentLife = MaxLife;
+            CurrentState = () => { };
         }
 
         protected virtual void Start()
@@ -64,8 +71,15 @@ namespace Game.Mecanics
 
         protected virtual void Update()
         {
+            _currentStateTime += Time.deltaTime;
+
             // don't use OnBecameVisible or OnBecameInvisible becase it's not called when object is created
             UpdateVisibility();
+
+            if (!IsDeath)
+            {
+                CurrentState();
+            }
         }
         protected virtual void FixedUpdate()
         {

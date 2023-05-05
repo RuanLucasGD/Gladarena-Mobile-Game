@@ -10,6 +10,7 @@ namespace Game.Mecanics
         [Header("Centaur")]
         public float TurnSpeed;
         public float StartAttackDistance;
+        public float StopDistance;
 
         [Header("States")]
         public float LookToTargetTime;
@@ -28,13 +29,10 @@ namespace Game.Mecanics
         public string UseSpecialAttackAnimParam;
 
         public Vector3 MoveTo { get; private set; }
-        private UnityAction CurrentState { get => _currentState; set { _currentState = value; ResetStateTime(); } }
+
 
         private bool _useSpecialAttack;
 
-        private float _currentStateTime;
-
-        private UnityAction _currentState;
 
         // attack state
         private float _attackStopedTimer;
@@ -59,9 +57,6 @@ namespace Game.Mecanics
                 Death();
                 return;
             }
-
-            CurrentState();
-            _currentStateTime += Time.deltaTime;
         }
 
         private void AttackState()
@@ -113,7 +108,7 @@ namespace Game.Mecanics
                 return;
             }
 
-            if (_currentStateTime > LookToTargetTime)
+            if (StateExecutionTime > LookToTargetTime)
             {
                 CurrentState = RunToDestinationState;
                 return;
@@ -160,7 +155,7 @@ namespace Game.Mecanics
 
             if (Vector3.Distance(transform.position, MoveTo) < StartAttackDistance)
             {
-                _currentState = AttackState;
+                CurrentState = AttackState;
             }
         }
 
@@ -175,11 +170,6 @@ namespace Game.Mecanics
                 CurrentState = PrepareToRunState;
                 return;
             }
-        }
-
-        private void ResetStateTime()
-        {
-            _currentStateTime = 0f;
         }
 
         private void UpdateAnimations()
