@@ -1065,8 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  MoveSpeed: 7
-  StopDistance: 4
+  MoveSpeed: 400
   MaxLife: 100
   AttackDamage: 0
   Rb: {fileID: 2999886366547437198}
@@ -1083,6 +1082,7 @@ MonoBehaviour:
       m_Calls: []
   TurnSpeed: 40
   StartAttackDistance: 15
+  StopDistance: 4
   LookToTargetTime: 2
   AttackStopedTime: 1.1
   PrepareAttackTime: 1

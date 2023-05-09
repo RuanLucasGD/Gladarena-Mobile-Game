@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  MoveSpeed: 5
+  MoveSpeed: 100
   MaxLife: 50
   AttackDamage: 50
   Rb: {fileID: 7410771597584302969}

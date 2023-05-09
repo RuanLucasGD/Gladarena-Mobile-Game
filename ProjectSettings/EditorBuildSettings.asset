@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Tests/ADS/ADS.unity
     guid: 54784038c30c77c41a0750317f836b21
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests/ECS/ECS.unity
     guid: df269cdd97be54e41a9abb993e759ecc
+  - enabled: 1
+    path: Assets/Scenes/Tests/New Enemy/Level Test.unity
+    guid: a78d4c1c5a18dda45be8a2a9851512f7
   m_configObjects: {}

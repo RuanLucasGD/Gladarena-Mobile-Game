@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  MoveSpeed: 5
+  MoveSpeed: 200
   MaxLife: 25
   AttackDamage: 10
   Rb: {fileID: 668775417943923502}

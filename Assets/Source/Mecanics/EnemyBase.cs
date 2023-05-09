@@ -83,7 +83,7 @@ namespace Game.Mecanics
         }
         protected virtual void FixedUpdate()
         {
-            Rb.MovePosition(Rb.position + (MoveDirectionVelocity * Time.fixedDeltaTime));
+            Rb.velocity = (MoveDirectionVelocity * Time.fixedDeltaTime);
         }
 
         private void UpdateVisibility()
