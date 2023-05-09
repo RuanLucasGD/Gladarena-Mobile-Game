@@ -913,7 +913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   MoveSpeed: 10
-  StopDistance: 5
   MaxLife: 100
   AttackDamage: 50
   Rb: {fileID: 4170732870702380618}
@@ -928,11 +927,12 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
+  StopDistance: 5
   AttacksAmount: 3
   AttackForce: 100
   AttackStopDistance: 10
   MoveRandomDistance: 25
-  TurnSpeed: 10
+  TurnSpeed: 50
   ObstaclesLayer:
     serializedVersion: 2
     m_Bits: 64

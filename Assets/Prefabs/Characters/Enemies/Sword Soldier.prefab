@@ -221,18 +221,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe4a56a229429944a51c841fb91ee5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Type: 0
+  MoveSpeed: 5
+  MaxLife: 25
+  AttackDamage: 10
   Rb: {fileID: 668775417943923502}
   ModelRenderer: {fileID: 668775417957520929}
   Animator: {fileID: 668775417953315041}
-  MoveSpeed: 5
-  StopDistance: 2
-  MaxLife: 25
-  AttackDamage: 10
+  OnSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
   AttackInterval: 1
   AttackDistance: 3
-  WeaponAnimID: 0
-  AnimationSettings: {fileID: 11400000, guid: 4fe95e00d7050c74eb21d994bbf1b2e2, type: 2}
+  StopDistance: 2
+  SuperAttack: 0
+  IsWalkingParameter: Is Walking
+  IsAttackingParameter: Is Attacking
+  IsSuperAttack: Use Supper Attack
+  IsDeathParameter: Is Death
+  WeaponIdParameter: Weapon ID
+  WeaponID: 0
+  NormalAttackLenght: 1.1
+  SuperAttackLenght: 1.1
 --- !u!1 &668775417943923499
 GameObject:
   m_ObjectHideFlags: 0

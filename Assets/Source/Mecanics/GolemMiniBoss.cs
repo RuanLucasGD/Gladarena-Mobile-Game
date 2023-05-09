@@ -101,6 +101,12 @@ namespace Game.Mecanics
 
         private void AttackState()
         {
+            if (Target.IsDeath)
+            {
+                CurrentState = IdleState;
+                IsAttacking = false;
+            }
+
             MoveDirectionVelocity = Vector3.zero;
             IsAttacking = true;
             LookTo(Target.transform.position - transform.position, TurnSpeed);

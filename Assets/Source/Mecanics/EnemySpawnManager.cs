@@ -166,14 +166,14 @@ namespace Game.Mecanics
 
         private void SpawnMinBossAfterTime()
         {
-            _currentBossIndex++;
-
-            if (_currentBossIndex >= MiniBoses.Length - 1)
-            {
-                _currentBossIndex = 0;
-            }
-
             SpawnEnemy(MiniBoses[_currentMiniBossIndex]);
+
+            _currentMiniBossIndex++;
+
+            if (_currentMiniBossIndex > MiniBoses.Length - 1)
+            {
+                _currentMiniBossIndex = 0;
+            }
         }
 
         private void SetLevel(int level)

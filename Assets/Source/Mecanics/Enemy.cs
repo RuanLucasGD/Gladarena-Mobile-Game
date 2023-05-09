@@ -10,12 +10,18 @@ namespace Game.Mecanics
         public float AttackInterval;
         public float AttackDistance;
         public float StopDistance;
+        public bool SuperAttack;
+        [Header("Animator Parameters")]
+        public string IsWalkingParameter;
+        public string IsAttackingParameter;
+        public string IsSuperAttack;
+        public string IsDeathParameter;
+        public string WeaponIdParameter;
 
-        [Header("Animation")]
-        public int WeaponAnimID;
-        public EnemyAnimationParameterSettings AnimationSettings;
-
-        public bool SuperAttack { get; set; }
+        [Header("Anim Settings")]
+        public int WeaponID;
+        public float NormalAttackLenght;
+        public float SuperAttackLenght;
 
         public new bool IsStoped => Target && !Target.IsDeath ? Vector3.Distance(transform.position, Target.transform.position) < StopDistance : true;
         public bool IsTargetNearToAttack => Target ? Vector3.Distance(transform.position, Target.transform.position) < AttackDistance : false;
@@ -39,6 +45,11 @@ namespace Game.Mecanics
 
             UpdateRotation();
             UpdateAnimations();
+
+            if (!IsStoped && IsAttacking)
+            {
+                FinalizeAttack();
+            }
 
             if (CurrentLife <= 0)
             {
@@ -91,33 +102,19 @@ namespace Game.Mecanics
 
         private void UpdateAnimations()
         {
-            if (!AnimationSettings)
-            {
-                return;
-            }
-
-            Animator.SetBool(AnimationSettings.IsWalkingParameter, !IsStoped);
-            Animator.SetBool(AnimationSettings.IsAttackingParameter, IsAttacking);
+            Animator.SetBool(IsWalkingParameter, !IsStoped);
+            Animator.SetBool(IsAttackingParameter, IsAttacking);
+            Animator.SetBool(IsSuperAttack, SuperAttack);
         }
 
         private void SetDeathAnimation()
         {
-            if (!AnimationSettings)
-            {
-                return;
-            }
-
-            Animator.SetBool(AnimationSettings.IsDeathParameter, IsDeath);
+            Animator.SetBool(IsDeathParameter, IsDeath);
         }
 
         private void SetWeaponAnimation()
         {
-            if (!AnimationSettings)
-            {
-                return;
-            }
-
-            Animator.SetInteger(AnimationSettings.WeaponIdParameter, WeaponAnimID);
+            Animator.SetInteger(WeaponIdParameter, WeaponID);
         }
 
         protected override void Attack()
@@ -140,12 +137,20 @@ namespace Game.Mecanics
             _attackDeleyedStarted = false;
         }
 
+        private void FinalizeAttack()
+        {
+            IsAttacking = false;
+        }
+
         private IEnumerator FinalizeAttackDeleyed()
         {
-            var _animLenght = SuperAttack ? AnimationSettings.SuperAttackLenght : AnimationSettings.NormalAttackLenght;
+            var _animLenght = SuperAttack ? SuperAttackLenght : NormalAttackLenght;
             yield return new WaitForSeconds(_animLenght);
 
-            IsAttacking = false;
+            if (IsAttacking)
+            {
+                FinalizeAttack();
+            }
         }
 
         // called by character animator event

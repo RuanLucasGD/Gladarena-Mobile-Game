@@ -786,7 +786,7 @@ MonoBehaviour:
     Gravity: 5
     TurnSpeed: 10
     StopDistance: 1
-    ExternalForceDeceleration: 0
+    ExternalForceDeceleration: 200
   Weapon:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 728712327388624748}
@@ -808,7 +808,7 @@ MonoBehaviour:
     IsAttacking: Is Attacking
     IsSuperAttack: Is Super Attack
     AttackAnimationID: Attack Anim ID
-    AttackAnimSpeed: Attack Speed
+    AttackAnimSpeed: Attack Speed Multiplier
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

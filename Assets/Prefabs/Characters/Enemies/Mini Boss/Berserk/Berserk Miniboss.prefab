@@ -741,7 +741,7 @@ MonoBehaviour:
   Type: 1
   MoveSpeed: 7
   MaxLife: 50
-  AttackDamage: 30
+  AttackDamage: 50
   Rb: {fileID: 2788916103115569932}
   ModelRenderer: {fileID: 2833740407850082084}
   Animator: {fileID: 2875102301715782022}
@@ -755,10 +755,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   AttackInterval: 1
-  AttackDistance: 4
-  StopDistance: 2.5
-  WeaponAnimID: 0
-  AnimationSettings: {fileID: 11400000, guid: 4fe95e00d7050c74eb21d994bbf1b2e2, type: 2}
+  AttackDistance: 5
+  StopDistance: 3
+  SuperAttack: 1
+  IsWalkingParameter: Is Walking
+  IsAttackingParameter: Is Attacking
+  IsSuperAttack: Use Supper Attack
+  IsDeathParameter: Is Death
+  WeaponIdParameter: Weapon ID
+  WeaponID: 0
+  NormalAttackLenght: 1.2
+  SuperAttackLenght: 2.4
 --- !u!1 &2788394675272214278
 GameObject:
   m_ObjectHideFlags: 0
