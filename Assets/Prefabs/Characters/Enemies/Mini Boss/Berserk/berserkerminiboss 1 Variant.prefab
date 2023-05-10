@@ -57,11 +57,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 293debc17f3f4c240a045d3297e8607d, type: 3}
+--- !u!1 &2634891851023598400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824695601163454, guid: 293debc17f3f4c240a045d3297e8607d, type: 3}
+  m_PrefabInstance: {fileID: 2636716434921893886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2632012293033201000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4985859598230166, guid: 293debc17f3f4c240a045d3297e8607d, type: 3}
   m_PrefabInstance: {fileID: 2636716434921893886}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &5209746197378336705
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634891851023598400}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &-7707060167522997613
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634891851023598400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6101428485615448685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634891851023598400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe4a56a229429944a51c841fb91ee5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
+  MoveSpeed: 100
+  MaxLife: 100
+  AttackDamage: 50
+  Rb: {fileID: 5209746197378336705}
+  ModelRenderer: {fileID: 0}
+  Animator: {fileID: 0}
+  OnSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackInterval: 0
+  AttackDistance: 0
+  StopDistance: 0
+  SuperAttack: 0
+  IsWalkingParameter: 
+  IsAttackingParameter: 
+  IsSuperAttack: 
+  IsDeathParameter: 
+  WeaponIdParameter: 
+  WeaponID: 0
+  NormalAttackLenght: 0
+  SuperAttackLenght: 0
 --- !u!1001 &4245206802125030149
 PrefabInstance:
   m_ObjectHideFlags: 0
