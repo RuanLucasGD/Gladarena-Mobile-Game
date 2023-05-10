@@ -1084,8 +1084,7 @@ MonoBehaviour:
   StartAttackDistance: 15
   StopDistance: 4
   LookToTargetTime: 2
-  AttackStopedTime: 1.1
-  PrepareAttackTime: 1
+  AttackLength: 1.1
   MaxDistance: 20
   ObstaclesLayer:
     serializedVersion: 2

@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4052900598359910046, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4052900598359910046, guid: 5399ee51a52718e409aef7cccc9b6149, type: 3}
       propertyPath: m_LocalPosition.x
@@ -480,7 +480,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5670727181611026883, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5670727181611026883, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -892,7 +892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5259513094357311856, guid: 57358107b806b034eadd06ef16877a21, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5259513094357311856, guid: 57358107b806b034eadd06ef16877a21, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1085,6 +1085,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: AttackLength
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: AttackInterval
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: AttackStopedTime
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
+      propertyPath: ObstaclesLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3001037553905419049, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
       propertyPath: m_Name
       value: Centaur Mini Boss
@@ -1156,7 +1172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6073423314377049926, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6073423314377049926, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: m_LocalPosition.x
