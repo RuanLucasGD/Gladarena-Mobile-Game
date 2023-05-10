@@ -1085,22 +1085,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
-      propertyPath: AttackLength
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
-      propertyPath: AttackInterval
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
-      propertyPath: AttackStopedTime
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999886366547437184, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
-      propertyPath: ObstaclesLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 3001037553905419049, guid: 4ba9de37392ab904fa4cc11087ffe7a6, type: 3}
       propertyPath: m_Name
       value: Centaur Mini Boss
