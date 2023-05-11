@@ -1212,11 +1212,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   TurnSpeed: 40
-  StopDistance: 4
+  StopDistance: 3
   LookToTargetTime: 2
   AttackLength: 1.2
+  AttackDistance: 7
   AttackInterval: 2
   StartAttackDistance: 4
+  DelayToStartAttack: 2
   MaxDistance: 20
   ObstaclesLayer:
     serializedVersion: 2

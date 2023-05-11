@@ -16,12 +16,14 @@ namespace Game.Mecanics
 
         [Header("Attack")]
         public float AttackLength;
+        public float AttackDistance;
 
         [Header("Idle Attack State")]
         public float AttackInterval;
 
         [Header("Running Attack State")]
         public float StartAttackDistance;
+        public float DelayToStartAttack;
 
         [Header("Move Random Direction State")]
         public float MaxDistance;
@@ -43,7 +45,8 @@ namespace Game.Mecanics
 
         // idle attack state
         private bool _idleAttackCooldownUpdated;
-        private float _attackExecutionTime;
+
+        private bool _delayAttackStarted;
 
         protected override void Start()
         {
@@ -68,8 +71,20 @@ namespace Game.Mecanics
             // start attack animation even if's movement
             // this is just to make it look the character is scrolling :)
 
-            IsAttacking = true;
             _useSpecialAttack = false;
+
+            IEnumerator DeleyedAttack()
+            {
+                yield return new WaitForSeconds(DelayToStartAttack);
+                IsAttacking = true;
+            }
+
+            // wait sometime to start attack
+            if (!_delayAttackStarted)
+            {
+                _delayAttackStarted = true;
+                StartCoroutine(DeleyedAttack());
+            }
 
             // run and look to target
             var _directionToTarget = (MoveTo - transform.position).normalized;
@@ -83,8 +98,9 @@ namespace Game.Mecanics
             }
 
             // finally attack animation and go to a random position to attack again
-            if (StateExecutionTime > AttackLength)
+            if (StateExecutionTime > AttackLength + DelayToStartAttack)
             {
+                _delayAttackStarted = false;
                 IsAttacking = false;
                 CurrentState = MoveRandomDirectionState;
                 return;
@@ -226,7 +242,10 @@ namespace Game.Mecanics
         {
             base.AttackAnimationEvent();
 
-            if (!IsAttacking)
+            var _isTargetNear = Vector3.Distance(transform.position, Target.transform.position) < AttackDistance;
+            var _isTargetOnFront = Vector3.Dot(transform.forward, (Target.transform.position - transform.position).normalized) > 0.5f;
+
+            if (!IsAttacking || !_isTargetNear || !_isTargetOnFront)
             {
                 return;
             }
