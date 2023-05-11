@@ -98,7 +98,9 @@ namespace Game.Mecanics
             }
 
             // finally attack animation and go to a random position to attack again
-            if (StateExecutionTime > AttackLength + DelayToStartAttack)
+            var _attackCompleted = StateExecutionTime > AttackLength + DelayToStartAttack;
+            var _isTargetNear = Vector3.Distance(Target.transform.position, transform.position) < AttackDistance;
+            if (_attackCompleted && !_isTargetNear)
             {
                 _delayAttackStarted = false;
                 IsAttacking = false;
