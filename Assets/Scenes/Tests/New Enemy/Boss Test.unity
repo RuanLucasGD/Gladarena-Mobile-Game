@@ -1267,13 +1267,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horseman
       objectReference: {fileID: 0}
-    - target: {fileID: 1700939730225277385, guid: 2c68f7a158ac15344b4fb5b7777c43c6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8157558022683090608, guid: 2c68f7a158ac15344b4fb5b7777c43c6, type: 3}
-      propertyPath: DelayToStartAttack
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c68f7a158ac15344b4fb5b7777c43c6, type: 3}
