@@ -1217,8 +1217,8 @@ MonoBehaviour:
   AttackLength: 1.2
   AttackDistance: 7
   AttackInterval: 2
-  StartAttackDistance: 4
-  DelayToStartAttack: 2
+  StartAttackDistance: 7
+  DelayToStartAttack: 0
   MaxDistance: 20
   ObstaclesLayer:
     serializedVersion: 2
