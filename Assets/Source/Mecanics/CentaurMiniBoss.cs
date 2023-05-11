@@ -16,12 +16,14 @@ namespace Game.Mecanics
 
         [Header("Attack")]
         public float AttackLength;
+        public float AttackDistance;
 
         [Header("Idle Attack State")]
         public float AttackInterval;
 
         [Header("Running Attack State")]
         public float StartAttackDistance;
+        public float DelayToStartAttack;
 
         [Header("Move Random Direction State")]
         public float MaxDistance;
@@ -43,7 +45,8 @@ namespace Game.Mecanics
 
         // idle attack state
         private bool _idleAttackCooldownUpdated;
-        private float _attackExecutionTime;
+
+        private bool _delayAttackStarted;
 
         protected override void Start()
         {
@@ -65,20 +68,39 @@ namespace Game.Mecanics
 
         private void RunningAttackState()
         {
-            IsAttacking = true;
+            // start attack animation even if's movement
+            // this is just to make it look the character is scrolling :)
+
             _useSpecialAttack = false;
 
+            IEnumerator DeleyedAttack()
+            {
+                yield return new WaitForSeconds(DelayToStartAttack);
+                IsAttacking = true;
+            }
+
+            // wait sometime to start attack
+            if (!_delayAttackStarted)
+            {
+                _delayAttackStarted = true;
+                StartCoroutine(DeleyedAttack());
+            }
+
+            // run and look to target
             var _directionToTarget = (MoveTo - transform.position).normalized;
             MoveDirectionVelocity = _directionToTarget * MoveSpeed;
             LookTo(_directionToTarget, TurnSpeed);
 
+            // when is near, stop
             if (Vector3.Distance(MoveTo, transform.position) < StopDistance)
             {
                 MoveDirectionVelocity = Vector3.zero;
             }
 
-            if (StateExecutionTime > AttackLength)
+            // finally attack animation and go to a random position to attack again
+            if (StateExecutionTime > AttackLength + DelayToStartAttack)
             {
+                _delayAttackStarted = false;
                 IsAttacking = false;
                 CurrentState = MoveRandomDirectionState;
                 return;
@@ -87,6 +109,9 @@ namespace Game.Mecanics
 
         private void IdleAttackState()
         {
+            // stay stoped while target is near and attack each X seconds
+
+            // each sometime, attack the target, end on finish animation wait the time to attack again
             IEnumerator IdleAttackCooldown()
             {
                 _idleAttackCooldownUpdated = true;
@@ -95,6 +120,7 @@ namespace Game.Mecanics
                 IsAttacking = !IsAttacking;
             }
 
+            // use another attack animation on this attack state. Why? idk....
             _useSpecialAttack = true;
 
             MoveDirectionVelocity = Vector3.zero;
@@ -116,9 +142,12 @@ namespace Game.Mecanics
 
         private void PrepareToRunState()
         {
+            // stay stoped sometime and look to player,
+            // on finish, run to designed target position
+
             if (!IsOnScreen)
             {
-                CurrentState = WalkToPlayerArea;
+                CurrentState = WalkToPlayerState;
                 return;
             }
 
@@ -169,7 +198,7 @@ namespace Game.Mecanics
             }
         }
 
-        private void WalkToPlayerArea()
+        private void WalkToPlayerState()
         {
             var _directionToTarget = (Target.transform.position - transform.position).normalized;
 
@@ -190,6 +219,7 @@ namespace Game.Mecanics
             Animator.SetBool(UseSpecialAttackAnimParam, _useSpecialAttack);
         }
 
+        // generate a random position around of this gameObject
         private Vector3 GetRandomPosition()
         {
             var _randomOffset = new Vector3(1, 0, 1);
@@ -199,10 +229,10 @@ namespace Game.Mecanics
 
             var _worldPos = transform.position + _randomOffset;
 
+            // check if has any obstacle on target position. If so, change target position to front of the obstacle
             if (Physics.Linecast(transform.position, _worldPos, out var hit, ObstaclesLayer))
             {
                 _worldPos = hit.point - ((hit.point - transform.position).normalized * StopDistance);
-                Debug.DrawLine(transform.position, _worldPos, Color.yellow, 10);
             }
 
             return _worldPos;
@@ -212,7 +242,10 @@ namespace Game.Mecanics
         {
             base.AttackAnimationEvent();
 
-            if (!IsAttacking)
+            var _isTargetNear = Vector3.Distance(transform.position, Target.transform.position) < AttackDistance;
+            var _isTargetOnFront = Vector3.Dot(transform.forward, (Target.transform.position - transform.position).normalized) > 0.5f;
+
+            if (!IsAttacking || !_isTargetNear || !_isTargetOnFront)
             {
                 return;
             }
