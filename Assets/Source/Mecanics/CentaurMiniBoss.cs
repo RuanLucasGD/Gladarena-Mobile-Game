@@ -65,18 +65,24 @@ namespace Game.Mecanics
 
         private void RunningAttackState()
         {
+            // start attack animation even if's movement
+            // this is just to make it look the character is scrolling :)
+
             IsAttacking = true;
             _useSpecialAttack = false;
 
+            // run and look to target
             var _directionToTarget = (MoveTo - transform.position).normalized;
             MoveDirectionVelocity = _directionToTarget * MoveSpeed;
             LookTo(_directionToTarget, TurnSpeed);
 
+            // when is near, stop
             if (Vector3.Distance(MoveTo, transform.position) < StopDistance)
             {
                 MoveDirectionVelocity = Vector3.zero;
             }
 
+            // finally attack animation and go to a random position to attack again
             if (StateExecutionTime > AttackLength)
             {
                 IsAttacking = false;
@@ -87,6 +93,9 @@ namespace Game.Mecanics
 
         private void IdleAttackState()
         {
+            // stay stoped while target is near and attack each X seconds
+
+            // each sometime, attack the target, end on finish animation wait the time to attack again
             IEnumerator IdleAttackCooldown()
             {
                 _idleAttackCooldownUpdated = true;
@@ -95,6 +104,7 @@ namespace Game.Mecanics
                 IsAttacking = !IsAttacking;
             }
 
+            // use another attack animation on this attack state. Why? idk....
             _useSpecialAttack = true;
 
             MoveDirectionVelocity = Vector3.zero;
@@ -116,9 +126,12 @@ namespace Game.Mecanics
 
         private void PrepareToRunState()
         {
+            // stay stoped sometime and look to player,
+            // on finish, run to designed target position
+
             if (!IsOnScreen)
             {
-                CurrentState = WalkToPlayerArea;
+                CurrentState = WalkToPlayerState;
                 return;
             }
 
@@ -169,7 +182,7 @@ namespace Game.Mecanics
             }
         }
 
-        private void WalkToPlayerArea()
+        private void WalkToPlayerState()
         {
             var _directionToTarget = (Target.transform.position - transform.position).normalized;
 
@@ -190,6 +203,7 @@ namespace Game.Mecanics
             Animator.SetBool(UseSpecialAttackAnimParam, _useSpecialAttack);
         }
 
+        // generate a random position around of this gameObject
         private Vector3 GetRandomPosition()
         {
             var _randomOffset = new Vector3(1, 0, 1);
@@ -199,10 +213,10 @@ namespace Game.Mecanics
 
             var _worldPos = transform.position + _randomOffset;
 
+            // check if has any obstacle on target position. If so, change target position to front of the obstacle
             if (Physics.Linecast(transform.position, _worldPos, out var hit, ObstaclesLayer))
             {
                 _worldPos = hit.point - ((hit.point - transform.position).normalized * StopDistance);
-                Debug.DrawLine(transform.position, _worldPos, Color.yellow, 10);
             }
 
             return _worldPos;

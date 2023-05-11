@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Horse Animator Controller
+  m_Controller: {fileID: 9100000, guid: af055e5ecf8c57d4689e973130144b9f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e5bf90353fc6e45439e92c127b2edbf1, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 6091d4ba84e63594d91d401222b05ff1, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 99c7568ed024c054cb683e8dedbcc377, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 1b668680e8e63004aace0a820b692c8a, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: e74e217c0cb38814ea9af63d5fd085e4, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 24637073bdb47064d93f564e073c7746, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 2e1e5232476cf15458ccc54b3994c643, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: bbbf480d5db6df34caee5feea7125853, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 45dee96f1fce8374d9e13d96fbbf75aa, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: ea7285abde511b74d976ca8f03f57e6b, type: 3}
