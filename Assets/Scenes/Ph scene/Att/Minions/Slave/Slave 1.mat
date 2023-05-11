@@ -100,6 +100,6 @@ Material:
     - _Color01: {r: 1, g: 1, b: 1, a: 0}
     - _Color02: {r: 1, g: 1, b: 1, a: 0}
     - _Color03: {r: 1, g: 1, b: 1, a: 0}
-    - _Color04: {r: 1, g: 0, b: 0, a: 0}
+    - _Color04: {r: 1, g: 0, b: 0.05809641, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
