@@ -302,8 +302,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4765924005512320}
   - component: {fileID: 95191911308386786}
+  - component: {fileID: 6797307869421823286}
+  - component: {fileID: 3228776442224944366}
+  - component: {fileID: 9120323068140694366}
   m_Layer: 0
-  m_Name: DeathKnight_Polyart_MaskTint
+  m_Name: P_DeathKnight 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +330,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95191911308386786
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -335,15 +338,87 @@ Animator:
   m_GameObject: {fileID: 1239630903022308}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7f4b2afc64510ac439f11c2cf222e0da, type: 3}
-  m_Controller: {fileID: 9100000, guid: 89136a9895a03604fab4e6274b2dc2bd, type: 2}
+  m_Controller: {fileID: 22100000, guid: e004ad75659c23d43be910e2c38c4803, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &6797307869421823286
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239630903022308}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &3228776442224944366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239630903022308}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &9120323068140694366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239630903022308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe4a56a229429944a51c841fb91ee5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  MoveSpeed: 200
+  MaxLife: 25
+  AttackDamage: 10
+  Rb: {fileID: 6797307869421823286}
+  ModelRenderer: {fileID: 137370808101826090}
+  Animator: {fileID: 95191911308386786}
+  OnSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackInterval: 1
+  AttackDistance: 3
+  StopDistance: 2
+  SuperAttack: 0
+  IsWalkingParameter: Is Walking
+  IsAttackingParameter: Is Attacking
+  IsSuperAttack: Use Supper Attack
+  IsDeathParameter: Is Death
+  WeaponIdParameter: Weapon ID
+  WeaponID: 0
+  NormalAttackLenght: 1.1
+  SuperAttackLenght: 1.1
 --- !u!1 &1262640837986772
 GameObject:
   m_ObjectHideFlags: 0

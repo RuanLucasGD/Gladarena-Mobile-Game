@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeathKnight 1
+  m_Name: M_DeathKnight 3
   m_Shader: {fileID: 4800000, guid: a532351308ce0734e9adaf184c7e649e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -56,8 +56,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtAlbedo:
-        m_Texture: {fileID: 2800000, guid: 2f06be5cc89f84f48bfe39a1f88242c4, type: 3}
-        m_Scale: {x: 1.21, y: 1}
+        m_Texture: {fileID: 2800000, guid: 0a287144553b8e9409d70a8a9c1d4ebf, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
         m_Texture: {fileID: 2800000, guid: dea1ff9608588c14ab9d2dd4887ac6db, type: 3}
@@ -86,7 +86,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OverallBrightness: 1.83
+    - _OverallBrightness: 0.52
     - _Parallax: 0.02
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
