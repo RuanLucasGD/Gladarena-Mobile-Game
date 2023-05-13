@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Demon 3
+  m_Name: M_Demon 3
   m_Shader: {fileID: 4800000, guid: a532351308ce0734e9adaf184c7e649e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
