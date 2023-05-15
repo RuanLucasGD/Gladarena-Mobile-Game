@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3992305313933614005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3992305313933614004}
+  m_Layer: 0
+  m_Name: Resize
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3992305313933614004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992305313933614005}
+  m_LocalRotation: {x: -0.00000004470348, y: -0.0000000745058, z: 0.00000008940696,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0.018999934, z: 0}
+  m_LocalScale: {x: 0.969, y: 0.9447751, z: 0.969}
+  m_Children:
+  - {fileID: 4680721523393176871}
+  m_Father: {fileID: 3992305313974507574}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3992305313974507575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3992305313974507574}
+  m_Layer: 0
+  m_Name: Helmet 10 F Blue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3992305313974507574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992305313974507575}
+  m_LocalRotation: {x: -0.000000029802322, y: -0.000000074505806, z: 0.00000013411045,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3992305313933614004}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3992305313974172287
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3992305313933614004}
+    m_Modifications:
+    - target: {fileID: 2196230225023573684, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51c096c29d819dc418b4a93798bba3dd, type: 2}
+    - target: {fileID: 7483270874224288823, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51c096c29d819dc418b4a93798bba3dd, type: 2}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996247322187122146, guid: 9ac03df405c77b141ac32c051ceb6473,
+        type: 3}
+      propertyPath: m_Name
+      value: Helmet 10 M Black
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ac03df405c77b141ac32c051ceb6473, type: 3}
+--- !u!4 &4680721523393176871 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8616168848778174296, guid: 9ac03df405c77b141ac32c051ceb6473,
+    type: 3}
+  m_PrefabInstance: {fileID: 3992305313974172287}
+  m_PrefabAsset: {fileID: 0}
