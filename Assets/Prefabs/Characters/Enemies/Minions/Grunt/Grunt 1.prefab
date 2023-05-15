@@ -675,8 +675,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4036346798686858}
   - component: {fileID: 95042886964662926}
+  - component: {fileID: 2550067341159056817}
+  - component: {fileID: 1223421249705535945}
+  - component: {fileID: 2323440259048732699}
   m_Layer: 0
-  m_Name: Grunt_Polyart_MaskTint
+  m_Name: Grunt 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,7 +703,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95042886964662926
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -708,15 +711,87 @@ Animator:
   m_GameObject: {fileID: 1737891518562006}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0ee768bfc7c24b5469d019dc7fa28d97, type: 3}
-  m_Controller: {fileID: 9100000, guid: c2c713ae746e18f48889624ac4366001, type: 2}
+  m_Controller: {fileID: 22100000, guid: 4ab1cd684cc3f664fac5f68b7d9f71f7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &2550067341159056817
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737891518562006}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &1223421249705535945
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737891518562006}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2323440259048732699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737891518562006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe4a56a229429944a51c841fb91ee5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  MoveSpeed: 200
+  MaxLife: 25
+  AttackDamage: 10
+  Rb: {fileID: 1223421249705535945}
+  ModelRenderer: {fileID: 137656928753164166}
+  Animator: {fileID: 95042886964662926}
+  OnSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackInterval: 1
+  AttackDistance: 3
+  StopDistance: 2
+  SuperAttack: 0
+  IsWalkingParameter: Is Walking
+  IsAttackingParameter: Is Attacking
+  IsSuperAttack: Use Supper Attack
+  IsDeathParameter: Is Death
+  WeaponIdParameter: Weapon ID
+  WeaponID: 0
+  NormalAttackLenght: 1.1
+  SuperAttackLenght: 1.1
 --- !u!1 &1815148648454892
 GameObject:
   m_ObjectHideFlags: 0
