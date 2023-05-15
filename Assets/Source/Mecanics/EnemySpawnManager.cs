@@ -38,11 +38,14 @@ namespace Game.Mecanics
         }
 
         [System.Serializable]
-        public class EnemyType
+        public class EnemyGroup
         {
-            public EnemyBase Prefab;
+            public string Name;
+            public EnemyBase[] Prefabs;
             public int StartSpawnLevel;
             public int EndSpawnLevel;
+
+            public int CurrentEnemySpawnedIndex { get; set; }
         }
 
         [System.Serializable]
@@ -67,7 +70,7 @@ namespace Game.Mecanics
 
         public bool CanSpawn;
         public SpawnSettings Spawn;
-        public EnemyType[] Enemies;
+        public EnemyGroup[] Enemies;
         public EnemyBase[] Boses;
         public EnemyBase[] MiniBoses;
         public LevelProgression FirstLevel;
@@ -147,9 +150,16 @@ namespace Game.Mecanics
             return _newEnemy;
         }
 
-        private void SpawnEnemyOnLevel(EnemyType enemy)
+        private void SpawnEnemyOnLevel(EnemyGroup enemy)
         {
-            var _newEnemy = SpawnEnemy(enemy.Prefab);
+            if (enemy.CurrentEnemySpawnedIndex >= enemy.Prefabs.Length - 1)
+            {
+                enemy.CurrentEnemySpawnedIndex = 0;
+            }
+
+            var _newEnemy = SpawnEnemy(enemy.Prefabs[enemy.CurrentEnemySpawnedIndex]);
+            enemy.CurrentEnemySpawnedIndex++;
+            
 
             var _level = CurrentLevels[CurrentLevels.Count - 1];
             var _damage = _level.IsUpgraded ? _level.DamageUpgrade : _level.DamageBase;
