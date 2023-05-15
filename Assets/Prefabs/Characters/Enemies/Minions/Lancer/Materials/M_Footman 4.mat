@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Footman 2
+  m_Name: M_Footman 4
   m_Shader: {fileID: 4800000, guid: a532351308ce0734e9adaf184c7e649e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtAlbedo:
-        m_Texture: {fileID: 2800000, guid: 2f06be5cc89f84f48bfe39a1f88242c4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59470b093599c3c4eb3696a4393ffc2b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
@@ -74,8 +74,8 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Color01Power: 0.25
-    - _Color02Power: 4
-    - _Color03Power: 0.82
+    - _Color02Power: 1.07
+    - _Color03Power: 1.02
     - _Color04Power: 1.73
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -86,7 +86,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OverallBrightness: 4
+    - _OverallBrightness: 1.6
     - _Parallax: 0.02
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
@@ -98,8 +98,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color01: {r: 1, g: 1, b: 1, a: 0}
-    - _Color02: {r: 0.45899296, g: 0, b: 1, a: 0}
-    - _Color03: {r: 0.52189827, g: 0, b: 1, a: 0}
-    - _Color04: {r: 0.39173698, g: 0, b: 1, a: 0}
+    - _Color02: {r: 0, g: 0.03812504, b: 1, a: 0}
+    - _Color03: {r: 0, g: 0.5778775, b: 1, a: 0}
+    - _Color04: {r: 0, g: 0.116252184, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
