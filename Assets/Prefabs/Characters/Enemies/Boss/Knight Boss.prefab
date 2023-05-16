@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
-  MoveSpeed: 10
+  MoveSpeed: 200
   MaxLife: 100
   AttackDamage: 50
   Rb: {fileID: 4170732870702380618}
@@ -932,7 +932,7 @@ MonoBehaviour:
   AttackForce: 100
   AttackStopDistance: 10
   MoveRandomDistance: 25
-  TurnSpeed: 50
+  TurnSpeed: 100
   ObstaclesLayer:
     serializedVersion: 2
     m_Bits: 64

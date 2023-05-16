@@ -107,9 +107,10 @@ namespace Game.Mecanics
 
         private void PrepareAttackState()
         {
-            if (Target.IsDeath)
+            if (Target.IsDeath || !IsOnScreen)
             {
                 CurrentState = WalkRantomState;
+                IsPreparingAttack = false;
                 return;
             }
 
