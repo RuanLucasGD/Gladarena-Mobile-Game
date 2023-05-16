@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1856147735999292053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856147735999292054}
+  m_Layer: 0
+  m_Name: Helmet 09 F Red
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856147735999292054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856147735999292053}
+  m_LocalRotation: {x: -0.000000029802322, y: -0.000000074505806, z: 0.00000013411045,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1856147737652314982}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1856147737652314981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856147737652314982}
+  m_Layer: 0
+  m_Name: Resize
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856147737652314982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856147737652314981}
+  m_LocalRotation: {x: -0.00000004470348, y: -0.0000000745058, z: 0.00000008940696,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0.018999934, z: 0}
+  m_LocalScale: {x: 0.969, y: 0.9447751, z: 0.969}
+  m_Children:
+  - {fileID: 3514490177720924914}
+  m_Father: {fileID: 1856147735999292054}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1856147736143910384
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1856147737652314982}
+    m_Modifications:
+    - target: {fileID: 2471480135410726328, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_Name
+      value: Helmet 09 M Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4128827131267945581, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 778352a637820c3478f4d50706b77e67, type: 2}
+    - target: {fileID: 8917598788135880214, guid: cd5fb86979c42f74292de45bec633fc2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 778352a637820c3478f4d50706b77e67, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cd5fb86979c42f74292de45bec633fc2, type: 3}
+--- !u!4 &3514490177720924914 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2956514998960484098, guid: cd5fb86979c42f74292de45bec633fc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1856147736143910384}
+  m_PrefabAsset: {fileID: 0}
