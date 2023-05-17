@@ -63,6 +63,7 @@ namespace Game.Mecanics
             public Weapon WeaponObject;
             public Transform Hand;
 
+            public int SequencialAttacks;
             public float AttackRate;
             public float AttackLengthMultiplier;
             public float AttackRateMultiplier;
@@ -428,7 +429,9 @@ namespace Game.Mecanics
             IsAttacking = true;
 
             Weapon.WeaponObject.Attack();
-            Invoke(nameof(FinalizeAttack), Weapon.WeaponObject.CurrentAttackLength);
+
+            var _attackLength = Weapon.WeaponObject.CurrentAttackLength * Weapon.SequencialAttacks;
+            Invoke(nameof(FinalizeAttack), _attackLength);
         }
 
         private void FinalizeAttack()
