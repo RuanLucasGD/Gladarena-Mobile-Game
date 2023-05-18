@@ -8,7 +8,7 @@ namespace Game.UI
 {
     public class PowerUpsUI : MonoBehaviour
     {
-        public PowerUpManager powerUpManager;
+        public PowerUpManager PowerUpManager;
         public GameObject PowerUpsScreen;
         [Space]
         public PowerUpButtonWidget[] PowerUpsButtons;
@@ -43,7 +43,7 @@ namespace Game.UI
 
         private void SetupButtons()
         {
-            var _powerUps = powerUpManager.GeneratePowerUpsOptionsList(PowerUpsButtons.Length);
+            var _powerUps = PowerUpManager.GeneratePowerUpsOptionsList(PowerUpsButtons.Length);
 
             for (int i = 0; i < _powerUps.Length; i++)
             {
@@ -53,7 +53,7 @@ namespace Game.UI
                 if (_p != null && _b != null)
                 {
                    
-                    _b.Setup(_p);
+                    _b.Setup(_p, PowerUpManager);
                     _b.Button.interactable = !_p.IsFullUpgrade();
                 }
             }

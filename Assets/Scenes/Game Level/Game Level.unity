@@ -1758,9 +1758,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
-    KillsToChangeLevel: 1
+    KillsToChangeLevel: 5
   PowerUpsLevelProgression:
-    PowerUpManager: {fileID: 0}
+    PowerUpManager: {fileID: 1854284730}
     KillsToChangeLevel: 0
   OnChangeLevel:
     m_PersistentCalls:
@@ -1849,7 +1849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: AttackDamage
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: AttackLength
@@ -4111,7 +4111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421767abd550e1f46b6e9f136a179aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpManager: {fileID: 1854284730}
+  PowerUpManager: {fileID: 1854284730}
   PowerUpsScreen: {fileID: 523584104}
   PowerUpsButtons:
   - {fileID: 985866738}

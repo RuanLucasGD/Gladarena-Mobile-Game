@@ -27,26 +27,26 @@ namespace Game.Mecanics
 
         public void AddNewPowerUp(PowerUp powerUp)
         {
-            var hasPowerUp = ((Func<bool>)(() =>
+            if (HasPowerUp(powerUp))
             {
-                foreach (var p in CurrentPowerUps)
-                {
-                    if (powerUp == p)
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
-            }))();
-
-            if (!hasPowerUp)
-            {
-                CurrentPowerUps.Add(powerUp);
                 powerUp.Upgrade();
             }
 
             powerUp.Use();
+            CurrentPowerUps.Add(powerUp);
+        }
+
+        public bool HasPowerUp(PowerUp powerUp)
+        {
+            foreach (var p in CurrentPowerUps)
+            {
+                if (powerUp == p)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

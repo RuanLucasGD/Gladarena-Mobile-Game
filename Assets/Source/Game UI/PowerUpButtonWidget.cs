@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PowerUpButtonWidget : MonoBehaviour
 {
@@ -13,14 +14,13 @@ public class PowerUpButtonWidget : MonoBehaviour
     public Button Button;
     public Text UpgradeInfo;
 
-    private void OnEnable()
-    {
-        Setup(PowerUp);
+    private PowerUpManager _powerUpManager;
 
-        Button.onClick.AddListener(UsePowerUp);
+    private void OnDisable()
+    {
     }
 
-    public void Setup(PowerUp powerUp)
+    public void Setup(PowerUp powerUp, PowerUpManager manager)
     {
         if (!powerUp)
         {
@@ -30,15 +30,14 @@ public class PowerUpButtonWidget : MonoBehaviour
         PowerUp = powerUp;
         Name.text = powerUp.PowerUpName;
         UpgradeInfo.text = powerUp.UpgradeInfo();
+        _powerUpManager = manager;
+
+        Button.onClick.AddListener(ButtonSetPowerUpAction);
     }
 
-    private void UsePowerUp()
+    private void ButtonSetPowerUpAction()
     {
-        if (PowerUp == null)
-        {
-            return;
-        }
-
-        PowerUp.Use();
+        _powerUpManager.AddNewPowerUp(PowerUp);
+        Button.onClick.RemoveListener(ButtonSetPowerUpAction);
     }
 }
