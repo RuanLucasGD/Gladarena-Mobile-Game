@@ -145,11 +145,11 @@ namespace Game.Mecanics
 
         private Vector3 _moveDirection;
         private CharacterController _characterController;
-        private List<PowerUp> _powerUps;
 
         public CharacterController CharacterController => _characterController;
 
         public float CurrentAttackRate => Weapon.AttackRate * Weapon.AttackRateMultiplier;
+        public float CurrentAttackDistance => Weapon.WeaponObject.AttackRange * Weapon.AttackDistanceMultiplier;
         public bool HasWeapon => Weapon.WeaponObject;
         public bool IsGrounded => CharacterController.isGrounded;
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
@@ -196,7 +196,6 @@ namespace Game.Mecanics
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            _powerUps = new List<PowerUp>();
 
             CanMove = true;
             CurrentLife = Life.LifeAmount;
@@ -456,54 +455,6 @@ namespace Game.Mecanics
                 enabled = true;
                 OnRevive.Invoke();
             }
-        }
-
-        public void AddPowerUp(PowerUp powerUp)
-        {
-            if (!enabled && !powerUp)
-            {
-                return;
-            }
-
-            powerUp.gameObject.transform.parent = transform;
-            powerUp.gameObject.transform.localPosition = Vector3.zero;
-            powerUp.gameObject.transform.localRotation = Quaternion.identity;
-            powerUp.Owner = this;
-
-            _powerUps.Add(powerUp);
-        }
-
-        public PowerUp[] GetPowerUps() => _powerUps.ToArray();
-
-        public void UsePowerUps()
-        {
-            if (!enabled)
-            {
-                return;
-            }
-
-            foreach (var p in _powerUps)
-            {
-                p.UsePowerUp();
-            }
-        }
-
-        public void RemovePowerUp(PowerUp powerUp)
-        {
-            powerUp.OnRemove();
-            _powerUps.Remove(powerUp);
-            Destroy(powerUp.gameObject);
-        }
-
-        public void RemovePowerUps()
-        {
-            foreach (var p in _powerUps)
-            {
-                p.OnRemove();
-                Destroy(p.gameObject);
-            }
-
-            _powerUps.Clear();
         }
 
         public void AddExternalForces(Vector3 force)

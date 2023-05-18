@@ -13,14 +13,6 @@ namespace Game.Mecanics
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        public Camera GameplayCamera;
-
-        [Space]
-
-        public float RestartGameDelay;
-
-        [Space]
-
         public bool DisablePlayerOnStart;
 
         [Space]
@@ -32,7 +24,8 @@ namespace Game.Mecanics
 
         public bool GamePaused
         {
-            get => _gamePaused; set
+            get => _gamePaused;
+            set
             {
                 if (value != _gamePaused)
                 {
@@ -62,11 +55,6 @@ namespace Game.Mecanics
                 if (!_player)
                 {
                     _player = FindObjectOfType<PlayerCharacter>();
-                    if (_player)
-                    {
-                        SetPlayerForwardDirection();
-                    }
-
                 }
 
                 return _player;
@@ -93,7 +81,6 @@ namespace Game.Mecanics
 
         public GameManager()
         {
-            RestartGameDelay = 2;
             DisablePlayerOnStart = false;
         }
 
@@ -121,46 +108,12 @@ namespace Game.Mecanics
 
         void Start()
         {
-            if (!GameplayCamera)
-            {
-                GameplayCamera = Camera.main;
-            }
-
             SetEnablePlayerControl(!DisablePlayerOnStart);
-
-            SetPlayerForwardDirection();
-        }
-
-        private void SetPlayerForwardDirection()
-        {
-            if (!Player)
-            {
-                return;
-            }
-
-            if (!GameplayCamera)
-            {
-                Debug.LogError("Camera not assigned on Game Manager!");
-                return;
-            }
-
-            // set player forward direction to move to camera forward
-            Player.Forward = Vector3.ProjectOnPlane(GameplayCamera.transform.forward, Vector3.up);
         }
 
         public void SetEnablePlayerControl(bool enabled)
         {
             Player.CanMove = enabled;
-        }
-
-        public void RestartGameImmediatly()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        public void RestartGameDeleyed()
-        {
-            Delay(RestartGameDelay, RestartGameImmediatly);
         }
 
         public void ResetPlayerLife()

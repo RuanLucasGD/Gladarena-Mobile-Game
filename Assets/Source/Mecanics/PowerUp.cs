@@ -1,14 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Mecanics
 {
-    public class PowerUp : MonoBehaviour
+    public abstract class PowerUp : ScriptableObject
     {
-        public virtual PlayerCharacter Owner { get; set; }
+        [Header("General")]
+        public string PowerUpName;
 
-        public virtual void UsePowerUp() { }
-        public virtual void OnRemove() { }
+        [Header("General Events")]
+        public UnityEvent OnSetupPowerUp;
+        public UnityEvent OnUpgrated;
+        public UnityEvent OnFullUpgrated;
+
+        public int CurrentLevelIndex { get; protected set; }
+
+        public virtual void Upgrade()
+        {
+            CurrentLevelIndex++;
+        }
+
+        public abstract void Use();
+
+        public abstract bool IsFullUpgrade();
+
+        public abstract string UpgradeInfo();
     }
 }

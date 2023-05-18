@@ -74,7 +74,7 @@ namespace Game.Mecanics
                 if (c == Owner) continue;
 
                 // only near characters
-                if (Vector3.Distance(c.transform.position, Owner.transform.position) > AttackRange) continue;
+                if (Vector3.Distance(c.transform.position, Owner.transform.position) > Owner.CurrentAttackDistance) continue;
 
                 // only in view characters
                 if (Vector3.Dot(Owner.transform.forward, (c.transform.position - Owner.transform.position).normalized) < DotAttackAngle) continue;
@@ -105,15 +105,10 @@ namespace Game.Mecanics
         // Called by owener character animation event
         public void ApplyDamageOnEnemies()
         {
-            bool _isTargetNear(EnemyBase target) => Vector3.Distance(Owner.transform.position, target.transform.position) < AttackRange;
-
             foreach (var c in GetNearInViewEnemies())
             {
-                if (_isTargetNear(c))
-                {
-                    c.AddDamage(CurrentAttackDamage);
-                    if (DebugLog) Debug.Log($"Target damaged: {c.name}        damage: {CurrentAttackDamage}");
-                }
+                c.AddDamage(CurrentAttackDamage);
+                if (DebugLog) Debug.Log($"Target damaged: {c.name}        damage: {CurrentAttackDamage}");
             }
         }
     }

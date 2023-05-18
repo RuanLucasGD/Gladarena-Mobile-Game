@@ -19,8 +19,6 @@ namespace Game.UI
         {
             GameManager.Instance.Player.OnDeath.AddListener(EnableScreen);
 
-            RestartButton.onClick.AddListener(ReloadFromScrath);
-
 
             if (MonetizationManager.Instance)
             {
@@ -43,12 +41,6 @@ namespace Game.UI
         {
             MonetizationManager.Instance.ShowRewardedAds(onShow: OnUserViewAds);
 
-            DisableScreen();
-        }
-
-        private void ReloadFromScrath()
-        {
-            GameManager.Instance.RestartGameDeleyed();
             DisableScreen();
         }
 

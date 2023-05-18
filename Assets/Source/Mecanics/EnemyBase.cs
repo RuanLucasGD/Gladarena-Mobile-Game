@@ -116,7 +116,7 @@ namespace Game.Mecanics
 
         public virtual void Death()
         {
-            if (IsDeath)
+            if (IsDeath || !enabled)
             {
                 return;
             }
@@ -142,6 +142,7 @@ namespace Game.Mecanics
 
         public virtual void AddDamage(float damage)
         {
+            if (!enabled) return;
             CurrentLife -= damage;
         }
     }
