@@ -66,14 +66,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _PolyArtAlbedo:
         m_Texture: {fileID: 2800000, guid: 536df1e0489ff89439efc8572dd56a61, type: 3}
-        m_Scale: {x: 2.92, y: 1}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
         m_Texture: {fileID: 2800000, guid: bac802af435fa734f9a84382ee5b3b49, type: 3}
-        m_Scale: {x: 3.33, y: 2.39}
-        m_Offset: {x: 0.18, y: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 1, y: 0}
     - _PolyArtMask02:
         m_Texture: {fileID: 2800000, guid: 48075e1022e1c624aa9e8f4fb55c361e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolyartMask02:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -89,6 +93,7 @@ Material:
     - _Color02Power: 1
     - _Color03Power: 1
     - _Color04Power: 1
+    - _Color2Power: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -112,7 +117,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 1.64
+    - _OutlineWidth: 1.9
     - _OverallBrightness: 1
     - _Parallax: 0.02
     - _RimEnabled: 1
@@ -135,11 +140,11 @@ Material:
     - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 0, g: 0, b: 0, a: 0}
-    - _Color02: {r: 0, g: 0, b: 0, a: 0}
+    - _Color01: {r: 1, g: 1, b: 1, a: 0}
+    - _Color02: {r: 1, g: 1, b: 1, a: 0}
     - _Color03: {r: 1, g: 1, b: 1, a: 0}
-    - _Color04: {r: 1, g: 0, b: 0, a: 0}
-    - _ColorDim: {r: 0, g: 0, b: 0, a: 1}
+    - _Color04: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0}
+    - _ColorDim: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 0.5699537, g: 0.44143826, b: 0.6037736, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
