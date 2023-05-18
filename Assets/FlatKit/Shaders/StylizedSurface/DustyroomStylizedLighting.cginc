@@ -26,6 +26,24 @@ UNITY_DEFINE_INSTANCED_PROP(float, _FlatRimLightAlign)
 
 UNITY_INSTANCING_BUFFER_END(Props)
 
+uniform sampler2D _PolyArtAlbedo;
+uniform float4 _PolyArtAlbedo_ST;
+uniform sampler2D _PolyArtMask01;
+uniform float4 _PolyArtMask01_ST;
+uniform float4 _Color01;
+uniform float _Color01Power;
+uniform float4 _Color02;
+uniform float _Color2Power;
+uniform float4 _Color03;
+uniform float _Color03Power;
+uniform sampler2D _PolyartMask02;
+uniform float4 _PolyartMask02_ST;
+uniform float4 _Color04;
+uniform float _Color04Power;
+uniform float _OverallBrightness;
+uniform float _Metallic;
+uniform float _Smoothness;
+
 half _SelfShadingSize;
 half _ShadowEdgeSize;
 half _LightContribution;
@@ -212,13 +230,27 @@ inline half4 SurfaceCore(half3 worldNormal, half3 worldPos, half3 lightDir, half
     
 void surfObject(InputObject IN, inout SurfaceOutputDustyroom o) {
     half4 c = SurfaceCore(IN.worldNormal, IN.worldPos, IN.lightDir, IN.viewDir);
+    float2 uv_PolyArtAlbedo = IN.uv_MainTex * _PolyArtAlbedo_ST.xy + _PolyArtAlbedo_ST.zw;
+    float4 tex2DNode16 = tex2D(_PolyArtAlbedo, uv_PolyArtAlbedo);
+    float2 uv_PolyArtMask01 = IN.uv_MainTex * _PolyArtMask01_ST.xy + _PolyArtMask01_ST.zw;
+    float4 tex2DNode13 = tex2D(_PolyArtMask01, uv_PolyArtMask01);
+    float4 temp_cast_0 = (tex2DNode13.r).xxxx;
+    float4 temp_cast_1 = (tex2DNode13.g).xxxx;
+    float4 temp_cast_2 = (tex2DNode13.b).xxxx;
+    float2 uv_PolyartMask02 = IN.uv_MainTex * _PolyartMask02_ST.xy + _PolyartMask02_ST.zw;
+    float4 tex2DNode41 = tex2D(_PolyartMask02, uv_PolyartMask02);
+    float4 temp_cast_3 = (tex2DNode41.r).xxxx;
+    float4 blendOpSrc22 = tex2DNode16;
+    float4 blendOpDest22 = ((min(temp_cast_0, _Color01) * _Color01Power) + (min(temp_cast_1, _Color02) * _Color2Power) + (min(temp_cast_2, _Color03) * _Color03Power) + (min(temp_cast_3, _Color04) * _Color04Power));
+    float4 lerpResult4 = lerp(tex2DNode16, ((saturate((blendOpSrc22 * blendOpDest22))) * _OverallBrightness), (tex2DNode13.r + tex2DNode13.g + tex2DNode13.b + tex2DNode41.r));
+    
 
     {
         #if defined(_TEXTUREBLENDINGMODE_ADD)
-            c += lerp(half4(0.0, 0.0, 0.0, 0.0), tex2D(_MainTex, IN.uv_MainTex), _TextureImpact);
+            c += lerp(half4(0.0, 0.0, 0.0, 0.0), half4(lerpResult4), _TextureImpact);
         #else  // _TEXTUREBLENDINGMODE_MULTIPLY
             // This is the default blending mode for compatibility with the v.1 of the asset.
-            c *= lerp(half4(1.0, 1.0, 1.0, 1.0), tex2D(_MainTex, IN.uv_MainTex), _TextureImpact);
+            c *= lerp(half4(1.0, 1.0, 1.0, 1.0), half4(lerpResult4), _TextureImpact);
         #endif
     }
 

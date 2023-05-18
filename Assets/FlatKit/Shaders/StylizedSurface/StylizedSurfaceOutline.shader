@@ -2,6 +2,23 @@
 {
     Properties
     {
+                _Smoothness("Smoothness", Range(0 , 1)) = 0
+        _Metallic("Metallic", Range(0 , 1)) = 0
+        _Color01("Color01", Color) = (0.7205882,0.08477508,0.08477508,0)
+        _Color02("Color02", Color) = (0.02649222,0.3602941,0.09785674,0)
+        _Color03("Color03", Color) = (0.07628676,0.2567445,0.6102941,0)
+        _Color04("Color04", Color) = (0.6207737,0.1119702,0.8014706,0)
+        _PolyArtAlbedo("PolyArtAlbedo", 2D) = "white" {}
+        _PolyArtMask01("PolyArtMask01", 2D) = "white" {}
+        _PolyartMask02("PolyartMask02", 2D) = "white" {}
+        _OverallBrightness("OverallBrightness", Range(0 , 4)) = 1
+        _Color01Power("Color01Power", Range(0 , 4)) = 1
+        _Color2Power("Color2Power", Range(0 , 4)) = 1
+        _Color03Power("Color03Power", Range(0 , 4)) = 1
+        _Color04Power("Color04Power", Range(0 , 4)) = 1
+        [HideInInspector] _texcoord("", 2D) = "white" {}
+        [HideInInspector] __dirty("", Int) = 1
+
         _Color ("Color", Color) = (1,1,1,1)
         
         /*--->*/
@@ -125,8 +142,8 @@
                 return clipPosition;
             }
 
-            half4 FragmentProgram() : SV_TARGET {
-                return _OutlineColor;
+                half4 FragmentProgram() : SV_TARGET{
+                    return _OutlineColor;
             }
 
             ENDCG
