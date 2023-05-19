@@ -92,7 +92,7 @@ Material:
     - _Color02Power: 4
     - _Color03Power: 1.25
     - _Color04Power: 1.95
-    - _Color2Power: 1
+    - _Color2Power: 4
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
