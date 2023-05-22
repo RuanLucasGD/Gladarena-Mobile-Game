@@ -27,12 +27,8 @@ namespace Game.Mecanics
 
         public void AddNewPowerUp(PowerUp powerUp)
         {
-            if (HasPowerUp(powerUp))
-            {
-                powerUp.Upgrade();
-            }
-
             powerUp.Use();
+            powerUp.Upgrade();
             CurrentPowerUps.Add(powerUp);
         }
 

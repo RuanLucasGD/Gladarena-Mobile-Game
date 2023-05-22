@@ -40,6 +40,9 @@ namespace Game.UI
             if (ProgressionManager)
             {
                 ProgressionManager.OnChangeLevel.AddListener(ShowCompletedLevelWidget);
+
+                ShowStartLevelWidget(1);
+
             }
         }
 
@@ -82,26 +85,14 @@ namespace Game.UI
             DisableWidget(GameOver);
         }
 
-        private void ShowStartHorderWidget(int newHorder)
-        {
-            ShowWidget(StartHorder, $"HORDER {++newHorder} STARTED!");
-        }
-
-        private void ShowCompletedHorderWidget(int completedHorder)
-        {
-            ShowWidget(CompleteHorder, $"HORDER {++completedHorder} COMPLETED!");
-            DisableWidget(StartHorder);
-        }
-
         private void ShowStartLevelWidget(int newLevel)
         {
-            ShowWidget(StartLevel, $"LEVEL {++newLevel} STARTED!");
-            DisableWidget(StartLevel);
+            ShowWidget(StartLevel, $"LEVEL {newLevel} STARTED!");
         }
 
         private void ShowCompletedLevelWidget(int completedLevel)
         {
-            ShowWidget(CompleteLevel, $"LEVEL {++completedLevel} COMPLETED!");
+            ShowWidget(CompleteLevel, $"LEVEL {completedLevel} COMPLETED!");
             DisableWidget(CompleteHorder);
         }
 

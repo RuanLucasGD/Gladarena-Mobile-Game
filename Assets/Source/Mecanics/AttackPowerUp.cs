@@ -61,10 +61,10 @@ namespace Game.Mecanics
             var _level = Levels[CurrentLevelIndex];
             var _formatedInfo = "";
 
-            if (_level.AddAttacks > 0) _formatedInfo += $"+ {_level.AddAttacks} pinto \n";
-            if (_level.RangeMultiplier > 0) _formatedInfo += $"+{_level.RangeMultiplier * 100}% attack range\n";
-            if (_level.DamageMultiplier > 0) _formatedInfo += $"+{_level.DamageMultiplier * 100}% damage\n";
-            if (_level.CooldownMultiplier > 0) _formatedInfo += $"-{_level.CooldownMultiplier * 100}% cooldown\n";
+            if (_level.AddAttacks > 0) _formatedInfo += $"+ {_level.AddAttacks} attack \n";
+            if (_level.RangeMultiplier > 0) _formatedInfo += $"+{_level.RangeMultiplier}% attack area\n";
+            if (_level.DamageMultiplier > 0) _formatedInfo += $"+{_level.DamageMultiplier}% damage\n";
+            if (_level.CooldownMultiplier > 0) _formatedInfo += $"-{_level.CooldownMultiplier}% cooldown\n";
 
             return _formatedInfo;
         }

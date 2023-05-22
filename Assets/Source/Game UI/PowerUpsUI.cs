@@ -11,7 +11,7 @@ namespace Game.UI
         public PowerUpManager PowerUpManager;
         public GameObject PowerUpsScreen;
         [Space]
-        public PowerUpButtonWidget[] PowerUpsButtons;
+        public PowerUpUiWidget[] PowerUpsButtons;
 
         void Start()
         {
@@ -20,6 +20,24 @@ namespace Game.UI
             foreach (var p in PowerUpsButtons)
             {
                 p.Button.onClick.AddListener(HidePowerUpsUI);
+            }
+        }
+
+        public void ShowPowerUpsUiIfHasUpgrades()
+        {
+            if (PowerUpManager.CurrentPowerUps.Count == 0)
+            {
+                ShowPowerUpsUI();
+                return;
+            }
+
+            foreach (var p in PowerUpManager.CurrentPowerUps)
+            {
+                if (!p.IsFullUpgrade())
+                {
+                    ShowPowerUpsUI();
+                    return;
+                }
             }
         }
 

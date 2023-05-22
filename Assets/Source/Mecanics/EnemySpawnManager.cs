@@ -79,7 +79,7 @@ namespace Game.Mecanics
         [Space]
         public UnityEvent<EnemyBase> OnEnemySpawned;
         public UnityEvent<EnemyBase> OnEnemyKilled;
-        public UnityEvent<int> OnChangeLevel;
+        public UnityEvent<int> OnStartLevel;
 
         public List<LevelInfo> CurrentLevels;
 
@@ -235,7 +235,7 @@ namespace Game.Mecanics
             _bossLevelInterval++;
 
             SetLevel(CurrentLevelIndex);
-            OnChangeLevel.Invoke(CurrentLevelIndex);
+            OnStartLevel.Invoke(CurrentLevelIndex);
 
             if (IsOnBossLevel)
             {
