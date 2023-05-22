@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: M_Knight Boss Full Black
   m_Shader: {fileID: 4800000, guid: f7e38193b7f064d7380403618fd8b69e, type: 3}
   m_ShaderKeywords: DR_RIM_ON DR_SPECULAR_ON _CELPRIMARYMODE_SINGLE _EMISSION _GLOSSYREFLECTIONS_OFF
     _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
@@ -82,19 +82,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtAlbedo:
-        m_Texture: {fileID: 2800000, guid: 5ba1908b03a4a734eb63f87d3b5d11fc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
-        m_Texture: {fileID: 2800000, guid: 5ba1908b03a4a734eb63f87d3b5d11fc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask02:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _PolyartMask02:
-        m_Texture: {fileID: 2800000, guid: 2fa559bdcd20a6a4b9831b77af908c48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -130,19 +126,18 @@ Material:
     - _Color02Power: 1
     - _Color03Power: 1
     - _Color04Power: 1
-    - _Color2Power: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FlatRimEdgeSmoothness: 0.5
-    - _FlatRimLightAlign: 0
-    - _FlatRimSize: 0.5
-    - _FlatSpecularEdgeSmoothness: 0
-    - _FlatSpecularSize: 0.87
-    - _Flatness: 1
+    - _FlatRimEdgeSmoothness: 0.284
+    - _FlatRimLightAlign: 0.174
+    - _FlatRimSize: 0.554
+    - _FlatSpecularEdgeSmoothness: 1
+    - _FlatSpecularSize: 0.842
+    - _Flatness: 0.863
     - _FlatnessExtra: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -157,17 +152,17 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 1.85
-    - _OverallBrightness: 1.46
+    - _OutlineWidth: 1.74
+    - _OverallBrightness: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 1
-    - _SelfShadingSize: 0.5
-    - _SelfShadingSizeExtra: 0.6
-    - _ShadowEdgeSize: 0.05
-    - _ShadowEdgeSizeExtra: 0.05
-    - _Smoothness: 0
+    - _SelfShadingSize: 0.496
+    - _SelfShadingSizeExtra: 0.506
+    - _ShadowEdgeSize: 0.017
+    - _ShadowEdgeSizeExtra: 0.367
+    - _Smoothness: 0.237
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 1
     - _SpecularHighlights: 1
@@ -186,18 +181,18 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 1, g: 1, b: 1, a: 0}
+    - _Color01: {r: 0, g: 0, b: 0, a: 0}
     - _Color02: {r: 0, g: 0, b: 0, a: 0}
-    - _Color03: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
+    - _Color03: {r: 0, g: 0, b: 0, a: 0}
     - _Color04: {r: 0, g: 0, b: 0, a: 0}
-    - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDim: {r: 1, g: 0, b: 0, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
-    - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _ColorDimExtra: {r: 0, g: 0, b: 0, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _EmissionColor: {r: 128.00003, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
-    - _FlatSpecularColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+    - _EmissionColor: {r: 32, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FlatSpecularColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
     - _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
