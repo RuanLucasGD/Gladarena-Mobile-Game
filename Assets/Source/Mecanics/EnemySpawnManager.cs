@@ -88,13 +88,13 @@ namespace Game.Mecanics
         public bool IsOnBossLevel { get; private set; }
         public bool BossSpawned { get; private set; }
 
-        public bool HasEnemiesOnScene => _enemiesSpawnCount > 0;
+        public bool HasEnemiesOnScene => FindObjectsOfType<EnemyBase>().Length > 0;
 
         private int _bossLevelInterval;
         private int _currentBossIndex;
         private int _currentMiniBossIndex;
 
-        private int _enemiesSpawnCount;
+        private int _enemiesOnScene;
 
         void Start()
         {
@@ -120,7 +120,7 @@ namespace Game.Mecanics
                     return;
                 }
 
-                var _boss = SpawnEnemy(Boses[_currentBossIndex]);
+                SpawnEnemy(Boses[_currentBossIndex]);
                 BossSpawned = true;
 
                 _currentBossIndex++;
@@ -135,7 +135,7 @@ namespace Game.Mecanics
                 {
                     if (CurrentLevelIndex >= e.StartSpawnLevel && CurrentLevelIndex <= e.EndSpawnLevel)
                     {
-                        SpawnEnemyOnLevel(e);
+                        SpawnEnemyOnCurrentLevel(e);
                     }
                 }
             }
@@ -150,7 +150,7 @@ namespace Game.Mecanics
             return _newEnemy;
         }
 
-        private void SpawnEnemyOnLevel(EnemyGroup enemy)
+        private void SpawnEnemyOnCurrentLevel(EnemyGroup enemy)
         {
             if (enemy.CurrentEnemySpawnedIndex >= enemy.Prefabs.Length - 1)
             {
@@ -170,12 +170,17 @@ namespace Game.Mecanics
             _newEnemy.MaxLife *= _life;
             _newEnemy.MoveSpeed *= _velocity;
 
-            _newEnemy.OnSpawned.AddListener(() => _enemiesSpawnCount++);
-            _newEnemy.OnKilled.AddListener(() => _enemiesSpawnCount--);
+            _newEnemy.OnSpawned.AddListener(() => _enemiesOnScene++);
+            _newEnemy.OnKilled.AddListener(() => _enemiesOnScene--);
         }
 
         private void SpawnMinBossAfterTime()
         {
+            if (IsOnBossLevel && HasEnemiesOnScene)
+            {
+                return;
+            }
+
             SpawnEnemy(MiniBoses[_currentMiniBossIndex]);
 
             _currentMiniBossIndex++;
