@@ -1777,6 +1777,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnStartLevel:
+    m_PersistentCalls:
+      m_Calls: []
   CurrentLevelIndex: 0
 --- !u!4 &754073161
 Transform:
@@ -2221,7 +2224,7 @@ MonoBehaviour:
   OnEnemyKilled:
     m_PersistentCalls:
       m_Calls: []
-  OnChangeLevel:
+  OnStartLevel:
     m_PersistentCalls:
       m_Calls: []
   CurrentLevels: []
@@ -4147,7 +4150,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1854284729
 RectTransform:

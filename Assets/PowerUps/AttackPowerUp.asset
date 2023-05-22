@@ -28,14 +28,14 @@ MonoBehaviour:
     DamageMultiplier: 0
     CooldownMultiplier: 0
   - AddAttacks: 0
-    RangeMultiplier: 90.27
+    RangeMultiplier: 0
     DamageMultiplier: 0
     CooldownMultiplier: 0
   - AddAttacks: 0
     RangeMultiplier: 0
-    DamageMultiplier: 10
+    DamageMultiplier: 0
     CooldownMultiplier: 0
   - AddAttacks: 0
     RangeMultiplier: 0
     DamageMultiplier: 0
-    CooldownMultiplier: 40
+    CooldownMultiplier: 0
