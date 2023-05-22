@@ -16,6 +16,8 @@ namespace Game.Mecanics
 
             [Range(0, 100)]
             public float CooldownMultiplier;
+
+            public GameObject WeaponModel;
         }
 
         public Level[] Levels;
@@ -28,7 +30,7 @@ namespace Game.Mecanics
 
         public override bool IsFullUpgrade()
         {
-            return CurrentLevelIndex >= Levels.Length - 1;
+            return CurrentLevelIndex > Levels.Length - 1;
         }
 
         public override void Upgrade()
@@ -45,10 +47,19 @@ namespace Game.Mecanics
         public override void Use()
         {
             var _player = GameManager.Instance.Player;
+            var _playerWeapon = _player.Weapon.WeaponObject;
+
             _player.Weapon.SequencialAttacks += CurrentLevel.AddAttacks;
             _player.Weapon.AttackDamageMultiplier *= 1 + (CurrentLevel.DamageMultiplier / 100f);
             _player.Weapon.AttackDistanceMultiplier *= 1 + (CurrentLevel.RangeMultiplier / 100f);
             _player.Weapon.AttackRate *= Mathf.Max(1 - (CurrentLevel.CooldownMultiplier / 100f), 0);
+           
+            if (_playerWeapon && CurrentLevel.WeaponModel)
+            {
+                var _oldWeaponModel = _playerWeapon.Mesh.gameObject;
+                var _newWeaponModel = Instantiate(CurrentLevel.WeaponModel, _oldWeaponModel.transform.parent);
+                Destroy(_oldWeaponModel);
+            }
         }
 
         public override string UpgradeInfo()

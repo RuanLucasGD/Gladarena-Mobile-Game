@@ -14,6 +14,9 @@ namespace Game.Mecanics
         public float AttackDamage;
         public float AttackLength;
 
+        [Header("Mesh")]
+        public GameObject Mesh;
+
         [Header("Animation")]
         public int AnimationID;
 
