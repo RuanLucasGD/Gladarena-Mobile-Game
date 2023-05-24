@@ -112,7 +112,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
     - _OutlineWidth: 1.79
-    - _OverallBrightness: 1
+    - _OverallBrightness: 2.93
     - _Parallax: 0.02
     - _RimEnabled: 1
     - _SelfShadingSize: 0.5
