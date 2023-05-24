@@ -23,11 +23,6 @@ namespace Game.Mecanics
         public Level[] Levels;
         public Level CurrentLevel => Levels[CurrentLevelIndex];
 
-        private void OnEnable()
-        {
-            CurrentLevelIndex = 0;
-        }
-
         public override bool IsFullUpgrade()
         {
             return CurrentLevelIndex > Levels.Length - 1;

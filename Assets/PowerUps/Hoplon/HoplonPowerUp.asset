@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ef49b2a40c83543b41b07689d13608, type: 3}
+  m_Name: HoplonPowerUp
+  m_EditorClassIdentifier: 
+  PowerUpName: Hoplon
+  OnSetupPowerUp:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUpgrated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFullUpgrated:
+    m_PersistentCalls:
+      m_Calls: []
+  Levels:
+  - Model: {fileID: 2792543881234283109, guid: 2bb7bd9aa96495b4090d6242dc0bea3d, type: 3}
+    CustomUpgradeMessages:
+    - Cooldown 6s
+  - Model: {fileID: 4229251973442235406, guid: 3591ba413d12c3e48b5e7fc54216e4ae, type: 3}
+    CustomUpgradeMessages:
+    - +10% shield size
+  - Model: {fileID: 2345548072405436672, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
+    CustomUpgradeMessages:
+    - +1 shield
+  - Model: {fileID: 8757319675536609880, guid: 376c738674bd269408049e9acdcea9d1, type: 3}
+    CustomUpgradeMessages:
+    - +20% shield size
+  - Model: {fileID: 1536377863780754064, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+    CustomUpgradeMessages:
+    - +1 shield
+  - Model: {fileID: 480852129527757682, guid: c250793362289114e9c54104070c36ed, type: 3}
+    CustomUpgradeMessages:
+    - + 50% Turn Speed
+  - Model: {fileID: 7712310299549602757, guid: 462dbd1865522634b8ed136774a03f23, type: 3}
+    CustomUpgradeMessages:
+    - +30% Shield Size
+  - Model: {fileID: 9116132321926155390, guid: 862ee18d82bfff341893cb1cd7cf9fa0, type: 3}
+    CustomUpgradeMessages:
+    - Super shield

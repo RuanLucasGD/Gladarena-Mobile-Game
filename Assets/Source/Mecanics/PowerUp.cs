@@ -18,6 +18,11 @@ namespace Game.Mecanics
 
         public int CurrentLevelIndex { get; protected set; }
 
+        protected virtual void OnEnable()
+        {
+            CurrentLevelIndex = 0;
+        }
+
         public virtual void Upgrade()
         {
             CurrentLevelIndex++;

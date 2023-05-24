@@ -4185,7 +4185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllPowerUps:
-  - {fileID: 11400000, guid: 8f1ca807f22a3be458501e52b1bbc332, type: 2}
+  - {fileID: 11400000, guid: 3687f11968c31b04e899d7731023d77e, type: 2}
   CurrentPowerUps: []
 --- !u!114 &1854284731
 MonoBehaviour:
