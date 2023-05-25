@@ -677,7 +677,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2875102301715782022
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -690,10 +690,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &2788916103115569932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -740,6 +742,7 @@ MonoBehaviour:
   MoveSpeed: 100
   MaxLife: 100
   AttackDamage: 50
+  ExternalForceDeceleration: 1200
   Rb: {fileID: 2788916103115569932}
   ModelRenderer: {fileID: 2833740407850082084}
   Animator: {fileID: 2875102301715782022}
@@ -752,6 +755,7 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
+  ExternalForce: {x: 0, y: 0, z: 0}
   AttackInterval: 1
   AttackDistance: 5
   StopDistance: 3

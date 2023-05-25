@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 130
-  Damage: 10
+  Force: 1000
   Cooldown: 6
 --- !u!54 &2792543881234283130
 Rigidbody:

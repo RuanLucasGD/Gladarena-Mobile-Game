@@ -21,6 +21,7 @@ namespace Game.Mecanics
         public float MoveSpeed;
         public float MaxLife;
         public float AttackDamage;
+        public float ExternalForceDeceleration;
 
         [Header("Components")]
         public Rigidbody Rb;
@@ -46,6 +47,7 @@ namespace Game.Mecanics
         protected UnityAction CurrentState { get => _currentState; set { _currentState = value; _currentStateTime = 0f; } }
 
         public Vector3 MoveDirectionVelocity { get; protected set; }
+        public Vector3 ExternalForce;
 
         private float _currentStateTime;
         private UnityAction _currentState;
@@ -73,6 +75,11 @@ namespace Game.Mecanics
         {
             _currentStateTime += Time.deltaTime;
 
+            if (ExternalForce.magnitude > 0)
+            {
+                ExternalForce -= (ExternalForce / ExternalForce.magnitude) * ExternalForceDeceleration * Time.deltaTime;
+            }
+
             // don't use OnBecameVisible or OnBecameInvisible becase it's not called when object is created
             UpdateVisibility();
 
@@ -83,7 +90,7 @@ namespace Game.Mecanics
         }
         protected virtual void FixedUpdate()
         {
-            Rb.velocity = (MoveDirectionVelocity * Time.fixedDeltaTime);
+            Rb.velocity = (MoveDirectionVelocity + ExternalForce) * Time.fixedDeltaTime;
         }
 
         private void UpdateVisibility()
@@ -144,6 +151,11 @@ namespace Game.Mecanics
         {
             if (!enabled) return;
             CurrentLife -= damage;
+        }
+
+        public virtual void AddExternalForce(Vector3 force)
+        {
+            ExternalForce += force;
         }
     }
 }

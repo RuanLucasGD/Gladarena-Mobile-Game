@@ -1068,6 +1068,7 @@ MonoBehaviour:
   MoveSpeed: 400
   MaxLife: 100
   AttackDamage: 50
+  ExternalForceDeceleration: 1200
   Rb: {fileID: 2999886366547437198}
   ModelRenderer: {fileID: 2903090195740096645}
   Animator: {fileID: 2949860116753678235}
@@ -1080,6 +1081,7 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
+  ExternalForce: {x: 0, y: 0, z: 0}
   TurnSpeed: 40
   StopDistance: 2
   LookToTargetTime: 2

@@ -7,7 +7,7 @@ namespace Assets.Source.Mecanics
     public class HoplonPowerUpShield : MonoBehaviour
     {
         public float TurnSpeed;
-        public float Damage;
+        public float Force;
         public float Cooldown;
 
         private EnemyBase _enemy;
@@ -38,7 +38,9 @@ namespace Assets.Source.Mecanics
 
             if (enemy)
             {
-                enemy.AddDamage(Damage);
+                var _directionToEnemy = other.transform.position - transform.position;
+                var _force = _directionToEnemy.normalized * Force;
+                enemy.AddExternalForce(_force);
             }
         }
 
