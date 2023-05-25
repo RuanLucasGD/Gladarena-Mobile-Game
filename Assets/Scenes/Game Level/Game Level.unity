@@ -1748,7 +1748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710429455898167815, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
       propertyPath: AttackLength
-      value: 0.9
+      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f0635dafac3ac47bd84dafcdb567e7, type: 3}
@@ -4047,7 +4047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllPowerUps:
-  - {fileID: 11400000, guid: 3687f11968c31b04e899d7731023d77e, type: 2}
+  - {fileID: 11400000, guid: 8f1ca807f22a3be458501e52b1bbc332, type: 2}
   CurrentPowerUps: []
 --- !u!114 &1854284731
 MonoBehaviour:
