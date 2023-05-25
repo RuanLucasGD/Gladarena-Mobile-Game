@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: New Material 2
   m_Shader: {fileID: 4800000, guid: f7e38193b7f064d7380403618fd8b69e, type: 3}
   m_ShaderKeywords: DR_RIM_ON DR_SPECULAR_ON _CELPRIMARYMODE_SINGLE _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d07ff440166c0ad4fbde0a17a712f950, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -65,14 +65,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _PolyArtAlbedo:
         m_Texture: {fileID: 2800000, guid: 536df1e0489ff89439efc8572dd56a61, type: 3}
-        m_Scale: {x: -0.09, y: 1.03}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyArtMask01:
-        m_Texture: {fileID: 2800000, guid: bac802af435fa734f9a84382ee5b3b49, type: 3}
+        m_Texture: {fileID: 2800000, guid: dea1ff9608588c14ab9d2dd4887ac6db, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PolyartMask02:
-        m_Texture: {fileID: 2800000, guid: 48075e1022e1c624aa9e8f4fb55c361e, type: 3}
+        m_Texture: {fileID: 2800000, guid: a6c1bdc470be0b4439d2c77a4c1d6a8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -92,10 +92,10 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FlatRimEdgeSmoothness: 0.5
-    - _FlatRimLightAlign: 0.581
-    - _FlatRimSize: 0.5
+    - _FlatRimLightAlign: 0.064
+    - _FlatRimSize: 0.311
     - _FlatSpecularEdgeSmoothness: 0
-    - _FlatSpecularSize: 0.714
+    - _FlatSpecularSize: 0.81
     - _Flatness: 1
     - _FlatnessExtra: 1
     - _GlossMapScale: 1
@@ -111,8 +111,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 1.79
-    - _OverallBrightness: 1.05
+    - _OutlineWidth: 1.86
+    - _OverallBrightness: 1.06
     - _Parallax: 0.02
     - _RimEnabled: 1
     - _SelfShadingSize: 0.5
@@ -133,19 +133,19 @@ Material:
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 1, g: 0.9622539, b: 0, a: 0}
-    - _Color02: {r: 1, g: 0.04892737, b: 0, a: 0}
-    - _Color03: {r: 1, g: 1, b: 0, a: 1}
-    - _Color04: {r: 1, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+    - _Color01: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0}
+    - _Color02: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0}
+    - _Color03: {r: 0, g: 0, b: 0, a: 0}
+    - _Color04: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0}
     - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FlatSpecularColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
-    - _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0, g: 1, b: 0.980212, a: 1}
+    - _FlatSpecularColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+    - _OutlineColor: {r: 0, g: 0.8809149, b: 1, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
   m_BuildTextureStacks: []

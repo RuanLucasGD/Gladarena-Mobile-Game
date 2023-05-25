@@ -111,7 +111,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 1.65
+    - _OutlineWidth: 1.96
     - _OverallBrightness: 4
     - _Parallax: 0.02
     - _RimEnabled: 1
@@ -146,6 +146,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlatSpecularColor: {r: 1, g: 0.2711607, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 0.5153495, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0, b: 0.017440319, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
   m_BuildTextureStacks: []
