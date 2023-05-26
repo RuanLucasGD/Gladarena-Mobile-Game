@@ -57,7 +57,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1536377863780754066, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
       propertyPath: m_Name
-      value: Hoplon 5
+      value: P_Hoplon 5 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518962764804789759, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518962764804789759, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518962764804789759, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.99827
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350101973361269440, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350101973361269440, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350101973361269440, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350101973361269440, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000034605
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553637324996809908, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553637324996809908, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553637324996809908, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.9989
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36f446a1f91f73640984d31e93e9ace0, type: 3}
