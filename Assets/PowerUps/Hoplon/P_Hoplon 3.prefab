@@ -9,15 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 685086728336470352, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 685086728336470352, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 685086728336470352, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.396
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 685086728336470352, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 685086728336470352, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2345548072405436673, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_RootOrder
@@ -65,23 +73,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2345548072405436674, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_Name
-      value: Hoplon 3
+      value: P_Hoplon 3
       objectReference: {fileID: 0}
     - target: {fileID: 8010903598778416932, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8010903598778416932, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8010903598778416932, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8010903598778416932, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010903598778416932, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010903598778416932, guid: 6141acfd65aa2ac47a6e761491055192, type: 3}
       propertyPath: m_LocalPosition.z

@@ -45,15 +45,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8435294505935344203, guid: eb25430581846554ba347dbfe8518c71, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8435294505935344203, guid: eb25430581846554ba347dbfe8518c71, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8435294505935344203, guid: eb25430581846554ba347dbfe8518c71, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.396
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8435294505935344203, guid: eb25430581846554ba347dbfe8518c71, type: 3}
       propertyPath: m_LocalPosition.x
@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757319675536609882, guid: 376c738674bd269408049e9acdcea9d1, type: 3}
       propertyPath: m_Name
-      value: Hoplon 4
+      value: P_Hoplon 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376c738674bd269408049e9acdcea9d1, type: 3}
