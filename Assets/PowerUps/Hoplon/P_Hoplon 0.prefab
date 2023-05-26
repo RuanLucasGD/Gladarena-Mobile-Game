@@ -48,6 +48,7 @@ MonoBehaviour:
   TurnSpeed: 130
   Force: 1000
   Cooldown: 6
+  LifeTime: 6
 --- !u!54 &2792543881234283130
 Rigidbody:
   m_ObjectHideFlags: 0

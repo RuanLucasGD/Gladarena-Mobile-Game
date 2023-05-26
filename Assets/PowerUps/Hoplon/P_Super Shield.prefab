@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 0
-  Damage: 50
+  Force: 0
   Cooldown: 2
+  LifeTime: 0
   Collider: {fileID: 7780900315730925865}
   Life: 1000
 --- !u!54 &5576546585719534348

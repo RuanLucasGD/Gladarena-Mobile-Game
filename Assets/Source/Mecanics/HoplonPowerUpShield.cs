@@ -9,21 +9,32 @@ namespace Assets.Source.Mecanics
         public float TurnSpeed;
         public float Force;
         public float Cooldown;
+        public float LifeTime;
 
         private EnemyBase _enemy;
         private bool _collisionChecked;
 
-        private float currentRotation;
+        private float _currentRotation;
 
-        void Update()
+        private float _cooldownTime;
+        private bool _shieldEnabled;
+
+        private void Start()
         {
-            currentRotation += TurnSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, currentRotation, 0);
+            _shieldEnabled = true;
+        }
 
-            if (currentRotation > 360)
+        private void Update()
+        {
+            _currentRotation += TurnSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, _currentRotation, 0);
+
+            if (_currentRotation > 360)
             {
-                currentRotation -= 360;
+                _currentRotation -= 360;
             }
+
+            UpdateVisibleTime();
         }
 
         private void LateUpdate()
@@ -57,6 +68,27 @@ namespace Assets.Source.Mecanics
             enemy = _enemy;
 
             return enemy;
+        }
+
+        protected virtual void UpdateVisibleTime()
+        {
+            if (LifeTime == 0 || LifeTime == Mathf.Infinity)
+            {
+                return;
+            }
+
+            _cooldownTime += Time.deltaTime;
+
+            var _time = _shieldEnabled ? LifeTime : Cooldown;
+
+            if (_cooldownTime > _time)
+            {
+                _cooldownTime = 0;
+                _shieldEnabled = !_shieldEnabled;
+            }
+
+            var _targetScale = _shieldEnabled ? Vector3.one : Vector3.zero;
+            transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * 5f);
         }
     }
 }
