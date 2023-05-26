@@ -7,17 +7,52 @@ namespace Game.Mecanics
 {
     public class HoplonPowerUpSuperShield : HoplonPowerUpShield
     {
-        [Header("Power Up Collision")]
-        public Collider Collider;
+        [Header("Super Shield")]
+
+        [Range(0.02f, 1f)]
+        public float ExpelRefreshRate;
+        public float ShieldSize;
+        public GameObject ShieldModel;
 
         [Header("Super Power Up")]
         public float Life;
 
-        public float CurrentLife { get;private set; }   
+        public float CurrentLife { get; private set; }
+
+        private float _expelRefreshTimer;
 
         private void Start()
         {
             CurrentLife = Life;
+        }
+
+        private void FixedUpdate()
+        {
+            if (CurrentLife <= 0)
+            {
+                return;
+            }
+
+            _expelRefreshTimer += Time.deltaTime;
+            if (_expelRefreshTimer > ExpelRefreshRate)
+            {
+                ExpelAllNearEnemies();
+                _expelRefreshTimer = 0;
+            }
+        }
+
+        private void ExpelAllNearEnemies()
+        {
+            var _colliders = Physics.OverlapSphere(transform.position, ShieldSize, -1);
+
+            for (int i = 0; i < _colliders.Length; i++)
+            {
+                if (_colliders[i].TryGetComponent<Enemy>(out var enemy))
+                {
+                    var _additionalForce = Force - enemy.ExternalForce.magnitude;
+                    ExpelEnemy(enemy, _additionalForce);
+                }
+            }
         }
 
         protected override void OnTriggerEnter(Collider other)
@@ -41,14 +76,14 @@ namespace Game.Mecanics
 
         private void EnablePowerUp()
         {
-            Collider.gameObject.SetActive(true);
             CurrentLife = Life;
+            ShieldModel.SetActive(true);
         }
 
         private void DisablePowerUp()
         {
-            Collider.gameObject.SetActive(false);
             CurrentLife = 0;
+            ShieldModel.SetActive(false);
         }
     }
 }

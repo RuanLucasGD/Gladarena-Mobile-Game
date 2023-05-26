@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2788365774971952786, guid: 9b8098cdefd2b23468970c0d5e340ceb, type: 3}
       propertyPath: m_Name
-      value: P_Berserk Miniboss
+      value: P_Berserk Miniboss 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b8098cdefd2b23468970c0d5e340ceb, type: 3}

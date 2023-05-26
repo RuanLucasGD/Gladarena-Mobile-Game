@@ -388,7 +388,7 @@ MonoBehaviour:
   MoveSpeed: 100
   MaxLife: 50
   AttackDamage: 50
-  ExternalForceDeceleration: 1200
+  ExternalForceDeceleration: 1600
   Rb: {fileID: 7410771597584302969}
   ModelRenderer: {fileID: 7435853902540092222}
   Animator: {fileID: 7460744865382277442}

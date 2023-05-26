@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 2788916103115569934}
   - component: {fileID: 2788916103115569933}
   m_Layer: 0
-  m_Name: P_Berserk Miniboss
+  m_Name: P_Berserk Miniboss 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

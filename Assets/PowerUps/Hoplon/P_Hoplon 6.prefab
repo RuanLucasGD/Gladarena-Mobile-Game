@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Hoplon 6
       objectReference: {fileID: 0}
+    - target: {fileID: 480852129527757682, guid: c250793362289114e9c54104070c36ed, type: 3}
+      propertyPath: TurnSpeed
+      value: 334.62
+      objectReference: {fileID: 0}
     - target: {fileID: 480852129527757683, guid: c250793362289114e9c54104070c36ed, type: 3}
       propertyPath: m_RootOrder
       value: 0

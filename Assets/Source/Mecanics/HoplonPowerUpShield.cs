@@ -24,7 +24,7 @@ namespace Assets.Source.Mecanics
             _shieldEnabled = true;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             _currentRotation += TurnSpeed * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, _currentRotation, 0);
@@ -49,10 +49,25 @@ namespace Assets.Source.Mecanics
 
             if (enemy)
             {
-                var _directionToEnemy = other.transform.position - transform.position;
-                var _force = _directionToEnemy.normalized * Force;
-                enemy.AddExternalForce(_force);
+                ExpelEnemy(enemy, Force);
             }
+        }
+
+        protected virtual void OnTriggerStay(Collider other)
+        {
+
+        }
+
+        protected virtual void OnTriggerExit(Collider other)
+        {
+
+        }
+
+        protected void ExpelEnemy(EnemyBase enemy, float force)
+        {
+            var _directionToEnemy = enemy.transform.position - transform.position;
+            var _force = _directionToEnemy.normalized * force;
+            enemy.AddExternalForce(_force);
         }
 
         protected bool IsEnemy(Collider collider, out EnemyBase enemy)

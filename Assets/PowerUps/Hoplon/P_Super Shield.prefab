@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2917433234184224090}
   - component: {fileID: 9116132321926155390}
-  - component: {fileID: 5576546585719534348}
+  - component: {fileID: 2753349648735122383}
   m_Layer: 0
   m_Name: P_Super Shield
   m_TagString: Untagged
@@ -46,12 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 0
-  Force: 0
+  Force: 1000
   Cooldown: 2
   LifeTime: 0
-  Collider: {fileID: 7780900315730925865}
+  ExpelRefreshRate: 0.2
+  ShieldSize: 3
+  ShieldModel: {fileID: 8392799857248751223}
   Life: 1000
---- !u!54 &5576546585719534348
+--- !u!54 &2753349648735122383
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +80,7 @@ GameObject:
   - component: {fileID: 7986949775721144114}
   - component: {fileID: 2432623925729376683}
   - component: {fileID: 3562477996170229967}
-  - component: {fileID: 7780900315730925865}
+  - component: {fileID: 9038968676199866981}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -149,7 +151,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7780900315730925865
+--- !u!135 &9038968676199866981
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
