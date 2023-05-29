@@ -51,8 +51,12 @@ namespace Game.Mecanics
 
         public void AddNewPowerUp(PowerUp powerUp)
         {
+            if (CurrentPowerUps.Contains(powerUp))
+            {
+                powerUp.Upgrade();
+            }
+
             powerUp.Use();
-            powerUp.Upgrade();
 
             // don't add existent powerup
             for (int i = 0; i < CurrentPowerUps.Count; i++)

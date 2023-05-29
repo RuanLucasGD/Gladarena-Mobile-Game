@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
-    KillsToChangeLevel: 2
+    KillsToChangeLevel: 5
   OnChangeLevel:
     m_PersistentCalls:
       m_Calls:
@@ -1581,7 +1581,6 @@ MonoBehaviour:
   OnStartLevel:
     m_PersistentCalls:
       m_Calls: []
-  CurrentLevelIndex: 0
 --- !u!4 &754073161
 Transform:
   m_ObjectHideFlags: 0
@@ -1928,7 +1927,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
     MaxAsyncSpawns: 3
-    BossLevelInterval: 100
+    BossLevelInterval: 5
     MiniBossTimeInterval: 20
   Enemies:
   - Name: Death Knight

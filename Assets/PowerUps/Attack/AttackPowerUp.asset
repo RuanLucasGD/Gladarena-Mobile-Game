@@ -38,28 +38,3 @@ MonoBehaviour:
     DamageMultiplier: 0
     CooldownMultiplier: 0
     WeaponModel: {fileID: 0}
-  - AddAttacks: 1
-    RangeMultiplier: 0
-    DamageMultiplier: 0
-    CooldownMultiplier: 0
-    WeaponModel: {fileID: 0}
-  - AddAttacks: 0
-    RangeMultiplier: 25
-    DamageMultiplier: 0
-    CooldownMultiplier: 0
-    WeaponModel: {fileID: 0}
-  - AddAttacks: 0
-    RangeMultiplier: 0
-    DamageMultiplier: 300
-    CooldownMultiplier: 0
-    WeaponModel: {fileID: 0}
-  - AddAttacks: 1
-    RangeMultiplier: 0
-    DamageMultiplier: 200
-    CooldownMultiplier: 0
-    WeaponModel: {fileID: 0}
-  - AddAttacks: 0
-    RangeMultiplier: 25
-    DamageMultiplier: 0
-    CooldownMultiplier: 100
-    WeaponModel: {fileID: 7891368769612593219, guid: 8c081cfb9eae164478223d39851d5b0c, type: 3}
