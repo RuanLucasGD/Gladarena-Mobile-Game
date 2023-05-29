@@ -14,21 +14,13 @@ namespace Game.Mecanics
             public int KillsToChangeLevel;
         }
 
-        [System.Serializable]
-        public class PowerUpsProgression
-        {
-            public PowerUpManager PowerUpManager;
-            public int KillsToChangeLevel;
-        }
-
         public EnemiesProgression EnemyLevelProgression;
-        public PowerUpsProgression PowerUpsLevelProgression;
         public UnityEvent<int> OnChangeLevel;
         public UnityEvent<int> OnStartLevel;
 
         private int _enemyKilledAmount;
 
-        public int CurrentLevelIndex;
+        public int CurrentLevelIndex { get; private set; }
 
         private void Start()
         {

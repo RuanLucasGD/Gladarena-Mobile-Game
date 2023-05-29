@@ -30,7 +30,7 @@ namespace Game.Mecanics
                 if (value != _gamePaused)
                 {
                     // lag after pause/continue game... disable this. why? idk
-                    //Player.enabled = !value;
+                    Player.enabled = !value;
 
                     // disable characters control when pause game
                     foreach (var c in FindObjectsOfType<Enemy>(true))

@@ -10,17 +10,20 @@ namespace Game.UI
     {
         public PowerUpManager PowerUpManager;
         public GameObject PowerUpsScreen;
+
         [Space]
-        public PowerUpUiWidget[] PowerUpsButtons;
+        public Transform PowerUpsUiWidgetParent;
+        public PowerUpUiWidget PowerUpUiWidgetPrefab;
+
+        [Space]
+        public int PowerUpsToSelect;
+
+        private List<PowerUpUiWidget> _powerUpsButtons;
 
         void Start()
         {
+            _powerUpsButtons = new List<PowerUpUiWidget>();
             HidePowerUpsUI();
-
-            foreach (var p in PowerUpsButtons)
-            {
-                p.Button.onClick.AddListener(HidePowerUpsUI);
-            }
         }
 
         public void ShowPowerUpsUiIfHasUpgrades()
@@ -31,7 +34,7 @@ namespace Game.UI
                 return;
             }
 
-            foreach (var p in PowerUpManager.CurrentPowerUps)
+            foreach (var p in PowerUpManager.AllPowerUps)
             {
                 if (!p.IsFullUpgrade())
                 {
@@ -45,6 +48,12 @@ namespace Game.UI
         {
             SetupButtons();
 
+            if (_powerUpsButtons.Count == 0)
+            {
+                HidePowerUpsUI();
+                return;
+            }
+
             PowerUpsScreen?.SetActive(true);
             GameManager.Instance.GamePaused = true;
         }
@@ -57,16 +66,32 @@ namespace Game.UI
             {
                 GameManager.Instance.GamePaused = false;
             }
+
+            for (int i = 0; i < _powerUpsButtons.Count; i++)
+            {
+                Destroy(_powerUpsButtons[i].gameObject);
+            }
+
+            _powerUpsButtons.Clear();
         }
 
         private void SetupButtons()
         {
-            var _powerUps = PowerUpManager.GeneratePowerUpsOptionsList(PowerUpsButtons.Length);
+            // get random powerups to show on ui
+            var _powerUps = PowerUpManager.GenerateRandomPowerUpsList(PowerUpsToSelect);
+
+            // generate powerups buttons to select on ui
+            for (int i = 0; i < _powerUps.Length; i++)
+            {
+                var button = Instantiate(PowerUpUiWidgetPrefab, PowerUpsUiWidgetParent);
+                button.Button.onClick.AddListener(HidePowerUpsUI);
+                _powerUpsButtons.Add(button);
+            }
 
             for (int i = 0; i < _powerUps.Length; i++)
             {
                 var _p = _powerUps[i];
-                var _b = PowerUpsButtons[i];
+                var _b = _powerUpsButtons[i];
 
                 if (_p != null && _b != null)
                 {
