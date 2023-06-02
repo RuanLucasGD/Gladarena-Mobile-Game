@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790b04fe03d42df43bb687a4043c131e, type: 3}
+  m_Name: AresArmy
+  m_EditorClassIdentifier: 
+  PowerUpName: Ares Army
+  OnSetupPowerUp:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUpgrated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFullUpgrated:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerTag: Player
+  CloneBehaviour:
+    AttackDistance: 2
+    FindEnemiesDistance: 10
+  Levels:
+  - ClonesAmount: 1
+    CustomPlayer: {fileID: 0}
+  - ClonesAmount: 3
+    CustomPlayer: {fileID: 0}
+  - ClonesAmount: 3
+    CustomPlayer: {fileID: 0}

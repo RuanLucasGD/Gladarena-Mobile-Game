@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
-    KillsToChangeLevel: 5
+    KillsToChangeLevel: 3
   OnChangeLevel:
     m_PersistentCalls:
       m_Calls:
@@ -3242,7 +3242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Life.LifeAmount
-      value: 9566.1
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Weapon.WeaponObject
@@ -3734,7 +3734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllPowerUps:
-  - {fileID: 11400000, guid: 8f1ca807f22a3be458501e52b1bbc332, type: 2}
+  - {fileID: 11400000, guid: 0385a31ad2e013d45b182393bbc7a336, type: 2}
   - {fileID: 11400000, guid: 3687f11968c31b04e899d7731023d77e, type: 2}
   CurrentPowerUps: []
 --- !u!114 &1854284731

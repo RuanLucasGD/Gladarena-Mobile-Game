@@ -13,6 +13,7 @@ namespace Game.Mecanics
 
         [Header("General Events")]
         public UnityEvent OnSetupPowerUp;
+        public UnityEvent OnUsePowerUp;
         public UnityEvent OnUpgrated;
         public UnityEvent OnFullUpgrated;
 

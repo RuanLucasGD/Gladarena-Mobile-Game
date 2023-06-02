@@ -168,6 +168,7 @@ namespace Game.Mecanics
         public Vector3 LookAtDirection { get; set; }
         public Vector3 Forward { get; set; }
         public bool CanMove { get; set; }
+        public bool EnablePlayerControl { get; set; }
 
         /// <summary>
         /// Current player moviment velocity with gravity
@@ -196,8 +197,9 @@ namespace Game.Mecanics
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-
+            
             CanMove = true;
+            EnablePlayerControl = true;
             CurrentLife = Life.LifeAmount;
             LookAtDirection = transform.forward;
 
@@ -248,7 +250,7 @@ namespace Game.Mecanics
 
         private void UpdatePlayerControls()
         {
-            if (!InputMaps.InputAsset)
+            if (!InputMaps.InputAsset || !EnablePlayerControl)
             {
                 return;
             }

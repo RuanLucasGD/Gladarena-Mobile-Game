@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Source.Mecanics
 {
-    public class HoplonPowerUpShield : MonoBehaviour
+    public class HoplonPowerUpShield : PowerUpItem
     {
         public float TurnSpeed;
         public float Force;

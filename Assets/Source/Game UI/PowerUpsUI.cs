@@ -46,8 +46,7 @@ namespace Game.UI
 
         public void ShowPowerUpsUI()
         {
-            SetupButtons();
-
+            SetupButtons(); 
             if (_powerUpsButtons.Count == 0)
             {
                 HidePowerUpsUI();

@@ -18,6 +18,16 @@ namespace Game.Mecanics
         public UnityEvent<int> OnChangeLevel;
         public UnityEvent<int> OnStartLevel;
 
+        private static GameProgressionManager instance;
+
+        public static GameProgressionManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         private int _enemyKilledAmount;
 
         public int CurrentLevelIndex { get; private set; }

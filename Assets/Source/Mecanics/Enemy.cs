@@ -67,6 +67,7 @@ namespace Game.Mecanics
         {
             if (!Rb || !Target || Target.IsDeath)
             {
+                MoveDirectionVelocity = Vector3.zero;
                 return;
             }
 
