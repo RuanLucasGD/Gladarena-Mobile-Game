@@ -3248,6 +3248,10 @@ PrefabInstance:
       propertyPath: Weapon.WeaponObject
       value: 
       objectReference: {fileID: 139812624}
+    - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+      propertyPath: <Test>k__BackingField
+      value: 5.41
+      objectReference: {fileID: 0}
     - target: {fileID: 6073423314377049926, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: m_RootOrder
       value: 1

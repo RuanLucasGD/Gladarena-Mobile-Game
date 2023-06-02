@@ -94,6 +94,12 @@ namespace Game.Mecanics
             _playerClone.Weapon.AttackDamageMultiplier = 1;
             _playerClone.Weapon.AttackDistanceMultiplier = 1;
             _playerClone.Weapon.SequencialAttacks = 1;
+
+            _playerClone.OnDamaged.RemoveAllListeners();
+            _playerClone.OnDeath.RemoveAllListeners();
+            _playerClone.OnRevive.RemoveAllListeners();
+            _playerClone.OnSetWeapon.RemoveAllListeners();
+
             _playerClone.ResetLife();
 
             var _playerClonesPowerUp = _playerClone.GetComponentsInChildren<PowerUpItem>();

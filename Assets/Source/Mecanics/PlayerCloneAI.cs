@@ -40,6 +40,7 @@ namespace Game.Mecanics
             if (!Target)
             {
                 Clone.CharacterMoveDirection = Vector3.zero;
+                return;
             }
 
             var _targetPosition = Target.transform.position;

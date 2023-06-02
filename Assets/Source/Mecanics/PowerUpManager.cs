@@ -53,7 +53,7 @@ namespace Game.Mecanics
 
         public void AddNewPowerUp(PowerUp powerUp)
         {
-            if (CurrentPowerUps.Contains(powerUp))
+            if (HasPowerUp(powerUp))
             {
                 powerUp.Upgrade();
              
@@ -88,15 +88,7 @@ namespace Game.Mecanics
 
         public bool HasPowerUp(PowerUp powerUp)
         {
-            foreach (var p in CurrentPowerUps)
-            {
-                if (powerUp == p)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return CurrentPowerUps.Contains(powerUp);
         }
     }
 }
