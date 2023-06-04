@@ -182,8 +182,6 @@ namespace Game.Mecanics
         /// <returns></returns>
         public Vector3 CharacterMoveDirection { get => _moveDirection; set => _moveDirection = new Vector3(value.x, 0, value.z).normalized; }
 
-        private Vector3 _ArenaCenter => ArenaManager.Instance ? ArenaManager.Instance.ArenaCaracteristics.ArenaCenter.position : Vector3.zero;
-
         private void OnEnable()
         {
             InputMaps.InputAsset.Enable();

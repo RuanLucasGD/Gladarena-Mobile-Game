@@ -12,7 +12,6 @@ namespace Game.Mecanics
         [System.Serializable]
         public class PlayerCloneBehaviour
         {
-            public float AttackDistance;
             public float FindEnemiesDistance;
         }
 

@@ -18,6 +18,9 @@ namespace Game.Mecanics
         [Space]
         public UnityEvent<bool> OnSetPausedGame;
 
+        [Space]
+        public string PlayerTag;
+
         private bool _gamePaused;
         private PlayerCharacter _player;
         private static GameManager _gameManager;
@@ -51,7 +54,7 @@ namespace Game.Mecanics
             {
                 if (!_player)
                 {
-                    _player = FindObjectOfType<PlayerCharacter>();
+                    _player = GameObject.FindWithTag(PlayerTag).GetComponent<PlayerCharacter>();
                 }
 
                 return _player;
@@ -95,11 +98,6 @@ namespace Game.Mecanics
             {
                 Debug.LogError("Player not finded on scene");
                 return;
-            }
-
-            if (ArenaManager.Instance)
-            {
-                ArenaManager.Instance.OnStartLevel.AddListener(l => SetEnablePlayerControl(true));
             }
         }
 

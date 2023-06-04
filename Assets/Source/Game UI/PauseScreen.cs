@@ -32,20 +32,7 @@ namespace Game.UI
             GameManager.Instance.Player.OnDeath.AddListener(FinishGame);
             GameManager.Instance.Player.OnDeath.AddListener(ContinueGame);
 
-            if (ArenaManager.Instance)
-            {
-                if (GameplayScreen) GameplayScreen.SetActive(false);
-
-                ArenaManager.Instance.OnStartGame.AddListener(StartGame);
-                ArenaManager.Instance.OnCompleteLevel.AddListener(CompleteLevel);
-                ArenaManager.Instance.OnStartLevel.AddListener(StartLevel);
-                ArenaManager.Instance.OnGameWin.AddListener(FinishGame);
-            }
-            else
-            {
-                if (GameplayScreen) GameplayScreen.SetActive(true);
-            }
-
+            if (GameplayScreen) GameplayScreen.SetActive(true);
             if (PausedGameScreen) PausedGameScreen.SetActive(false);
         }
 

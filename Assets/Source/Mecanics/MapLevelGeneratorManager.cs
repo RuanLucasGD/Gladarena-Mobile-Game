@@ -65,11 +65,6 @@ namespace Game.Mecanics
         private void Start()
         {
             SetLevel(0);
-
-            if (ArenaManager.Instance)
-            {
-                ArenaManager.Instance.OnStartLevel.AddListener(SetNextLevel);
-            }
         }
 
         private void OnDrawGizmosSelected()

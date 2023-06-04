@@ -11,13 +11,6 @@ namespace Game.UI
     {
         private void Awake()
         {
-            if (ArenaManager.Instance)
-            {
-                ArenaManager.Instance.OnStartLevel.AddListener(l => EnableControl());
-                ArenaManager.Instance.OnCompleteLevel.AddListener(l => DisableControl());
-
-                DisableControl();
-            }
         }
 
         public void DisableControl()

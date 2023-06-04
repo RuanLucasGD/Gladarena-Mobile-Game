@@ -2275,6 +2275,7 @@ MonoBehaviour:
   OnSetPausedGame:
     m_PersistentCalls:
       m_Calls: []
+  PlayerTag: Player
 --- !u!4 &1037795119
 Transform:
   m_ObjectHideFlags: 0

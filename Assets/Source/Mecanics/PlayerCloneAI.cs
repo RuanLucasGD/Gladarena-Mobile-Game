@@ -9,9 +9,12 @@ namespace Game.Mecanics
 
         public EnemyBase Target { get; private set; }
 
+        public bool IsStoped { get; private set; }
+
         private void Start()
         {
             Clone.EnablePlayerControl = false;
+            IsStoped = false;
         }
 
         private void Update()
@@ -46,9 +49,13 @@ namespace Game.Mecanics
             var _targetPosition = Target.transform.position;
             var _directionToTarget = (_targetPosition - transform.position).normalized;
             var _distanceToTarget = Vector3.Distance(transform.position, _targetPosition);
-            var _attackDistance = PowerUpController.CloneBehaviour.AttackDistance;
+            var _attackDistance = Clone.CurrentAttackDistance;
+            var _stopDistance = Clone.Movimentation.StopDistance;
+            
+            if (IsStoped && _distanceToTarget >_attackDistance) IsStoped = false;
+            if (!IsStoped && _distanceToTarget <= _stopDistance) IsStoped = true;
 
-            if (_distanceToTarget < _attackDistance)
+            if (IsStoped)
             {
                 Clone.CharacterMoveDirection = Vector3.zero;
                 Clone.LookAtDirection = _directionToTarget;
