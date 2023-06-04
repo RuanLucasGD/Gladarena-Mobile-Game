@@ -39,7 +39,7 @@ namespace Game.UI
 
             if (ProgressionManager)
             {
-                ProgressionManager.OnChangeLevel.AddListener(ShowCompletedLevelWidget);
+                ProgressionManager.OnStartLevel.AddListener(ShowCompletedLevelWidget);
 
                 ShowStartLevelWidget(1);
 

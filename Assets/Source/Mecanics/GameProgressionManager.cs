@@ -15,7 +15,6 @@ namespace Game.Mecanics
         }
 
         public EnemiesProgression EnemyLevelProgression;
-        public UnityEvent<int> OnChangeLevel;
         public UnityEvent<int> OnStartLevel;
 
         private static GameProgressionManager instance;
@@ -36,7 +35,7 @@ namespace Game.Mecanics
         {
             EnemyLevelProgression.EnemySpawnManager.OnEnemyKilled.AddListener(OnEnemyDeath);
             EnemyLevelProgression.EnemySpawnManager.OnEnemyKilled.AddListener(e => CheckEnemiesLevel());
-            EnemyLevelProgression.EnemySpawnManager.OnStartLevel.AddListener((l)  => OnChangeLevel.Invoke(l));
+            EnemyLevelProgression.EnemySpawnManager.OnStartLevel.AddListener((l)  => OnStartLevel.Invoke(l));
         }
 
         private void OnEnemyDeath(EnemyBase e)

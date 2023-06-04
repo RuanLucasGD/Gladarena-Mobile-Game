@@ -1563,12 +1563,12 @@ MonoBehaviour:
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
     KillsToChangeLevel: 3
-  OnChangeLevel:
+  OnStartLevel:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1854284731}
         m_TargetAssemblyTypeName: Game.UI.PowerUpsUI, Game.UI
-        m_MethodName: ShowPowerUpsUiIfHasUpgrades
+        m_MethodName: ShowPowerUpsUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1578,9 +1578,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnStartLevel:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &754073161
 Transform:
   m_ObjectHideFlags: 0
