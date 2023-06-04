@@ -57,6 +57,16 @@ namespace Game.Mecanics
         {
             base.Update();
 
+            if (Target && Target.IsDeath)
+            {
+                FindPlayer();
+            }
+
+            if (!Target)
+            {
+                if (CurrentState != IdleState) CurrentState = IdleState;
+            }
+
             UpdateAnimations();
 
             if (CurrentState != AttackState && !UseMelleAttackAnim)

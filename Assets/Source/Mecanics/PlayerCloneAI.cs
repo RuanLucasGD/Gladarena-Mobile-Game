@@ -19,7 +19,7 @@ namespace Game.Mecanics
 
         private void Update()
         {
-            if (Target == null)
+            if (Target == null || Target.IsDeath)
             {
 
                 Target = FindEnemy();
@@ -28,11 +28,6 @@ namespace Game.Mecanics
                 {
                     return;
                 }
-            }
-
-            if (Target.IsDeath)
-            {
-                Target = null;
             }
 
             ControlPlayerClone();

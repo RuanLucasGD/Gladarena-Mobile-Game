@@ -73,6 +73,11 @@ namespace Game.Mecanics
 
         protected virtual void Update()
         {
+            if (Target && Target.IsDeath)
+            {
+                FindPlayer();
+            }
+
             _currentStateTime += Time.deltaTime;
 
             if (ExternalForce.magnitude > 0)
@@ -116,6 +121,21 @@ namespace Game.Mecanics
             var _turnSpeed = Mathf.Clamp01(turnSpeed * Time.deltaTime);
 
             transform.rotation = Quaternion.Lerp(Rb.rotation, Quaternion.LookRotation(direction), _turnSpeed);
+        }
+
+        protected void FindPlayer()
+        {
+            // can have multiple player (clones of the default player)
+            var _playersOnScene = FindObjectsOfType<PlayerCharacter>();
+
+            for (int i = 0; i < _playersOnScene.Length; i++)
+            {
+                if (!_playersOnScene[i].IsDeath)
+                {
+                    Target = _playersOnScene[i];
+                    break;
+                }
+            }
         }
 
         // called by character animator event
