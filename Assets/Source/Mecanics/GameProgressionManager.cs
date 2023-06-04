@@ -23,6 +23,11 @@ namespace Game.Mecanics
         {
             get
             {
+                if (!instance)
+                {
+                    instance = FindObjectOfType<GameProgressionManager>();
+                }
+
                 return instance;
             }
         }

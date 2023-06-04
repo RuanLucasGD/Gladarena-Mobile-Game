@@ -30,21 +30,18 @@ namespace Game.Mecanics
             get => _gamePaused;
             set
             {
-                if (value != _gamePaused)
+                // lag after pause/continue game... disable this. why? idk
+                Player.enabled = !value;
+
+                // disable characters control when pause game
+                foreach (var c in FindObjectsOfType<Enemy>(true))
                 {
-                    // lag after pause/continue game... disable this. why? idk
-                    Player.enabled = !value;
-
-                    // disable characters control when pause game
-                    foreach (var c in FindObjectsOfType<Enemy>(true))
-                    {
-                        c.enabled = !value;
-                    }
-
-                    Time.timeScale = value ? 0 : 1;
-                    _gamePaused = value;
-                    OnSetPausedGame.Invoke(value);
+                    c.enabled = !value;
                 }
+
+                Time.timeScale = value ? 0 : 1;
+                _gamePaused = value;
+                OnSetPausedGame.Invoke(value);
             }
         }
 

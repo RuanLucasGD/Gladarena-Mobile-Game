@@ -78,31 +78,34 @@ namespace Game.Mecanics
 
         private void CreateClone()
         {
-            var _player = GameObject.FindWithTag(PlayerTag).GetComponent<PlayerCharacter>();
+            var _player = GameManager.Instance.Player;
 
-            var _randomSpawnDirection = new Vector3(Random.Range(-1, 1),0, (Random.Range(-1, 1)));
+            // spawn clone
+            var _randomSpawnDirection = new Vector3(Random.Range(-1f, 1f),0, (Random.Range(-1f, 1f)));
             _randomSpawnDirection /= _randomSpawnDirection.magnitude;
             _randomSpawnDirection *= 3;
 
             var _randomSpawnPos = _player.transform.position + _randomSpawnDirection;
             var _playerClone = Instantiate(_player, _randomSpawnPos, Quaternion.identity);
 
+            // reset clone
             _playerClone.tag = "Untagged";
             _playerClone.Weapon.AttackLengthMultiplier = 1;
             _playerClone.Weapon.AttackRateMultiplier = 1;
             _playerClone.Weapon.AttackDamageMultiplier = 1;
             _playerClone.Weapon.AttackDistanceMultiplier = 1;
             _playerClone.Weapon.SequencialAttacks = 1;
+            _playerClone.ResetLife();
 
             _playerClone.OnDamaged.RemoveAllListeners();
             _playerClone.OnDeath.RemoveAllListeners();
             _playerClone.OnRevive.RemoveAllListeners();
             _playerClone.OnSetWeapon.RemoveAllListeners();
-
-            _playerClone.ResetLife();
+            _playerClone.OnDeath.AddListener(() => _currentPlayerClones.Remove(_playerClone));
 
             var _playerClonesPowerUp = _playerClone.GetComponentsInChildren<PowerUpItem>();
 
+            // removing all powerups
             if (_playerClonesPowerUp.Length > 0)
             {
                 for (int i = 0; i < _playerClonesPowerUp.Length; i++)
@@ -111,23 +114,27 @@ namespace Game.Mecanics
                 }
             }
 
+            // adding AI to clone
             var _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
-
             _playerCloneAi.Clone = _playerClone;
             _playerCloneAi.PowerUpController = this;
-            _playerClone.OnDeath.AddListener(() => _currentPlayerClones.Remove(_playerClone));
 
+            // finally
             _currentPlayerClones.Add(_playerClone);
         }
 
         public void RecreateAllClones()
         {
+            for (int i = 0; i < _currentPlayerClones.Count; i++)
+            {
+                _currentPlayerClones[i].ResetLife();
+            }
+
             while (_currentPlayerClones.Count < Levels[CurrentLevelIndex].ClonesAmount)
             {
                 CreateClone();
             }
         }
-
     }
 }
 

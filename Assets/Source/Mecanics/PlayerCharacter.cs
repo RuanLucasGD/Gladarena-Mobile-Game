@@ -144,9 +144,8 @@ namespace Game.Mecanics
         public UnityEvent OnAttackAnimationEvent;
 
         private Vector3 _moveDirection;
-        private CharacterController _characterController;
 
-        public CharacterController CharacterController => _characterController;
+        public CharacterController CharacterController { get; set; }
 
         public float CurrentAttackRate => Weapon.AttackRate * Weapon.AttackRateMultiplier;
         public float CurrentAttackDistance => Weapon.WeaponObject.AttackRange * Weapon.AttackDistanceMultiplier;
@@ -182,19 +181,10 @@ namespace Game.Mecanics
         /// <returns></returns>
         public Vector3 CharacterMoveDirection { get => _moveDirection; set => _moveDirection = new Vector3(value.x, 0, value.z).normalized; }
 
-        private void OnEnable()
-        {
-            InputMaps.InputAsset.Enable();
-        }
-
-        private void OnDisable()
-        {
-            InputMaps.InputAsset.Disable();
-        }
-
         private void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
+            InputMaps.InputAsset.Enable();
+            CharacterController = GetComponent<CharacterController>();
             
             CanMove = true;
             EnablePlayerControl = true;

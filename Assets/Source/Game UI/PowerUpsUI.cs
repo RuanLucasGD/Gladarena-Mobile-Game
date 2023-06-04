@@ -60,11 +60,7 @@ namespace Game.UI
         public void HidePowerUpsUI()
         {
             PowerUpsScreen?.SetActive(false);
-
-            if (GameManager.Instance.GamePaused)
-            {
-                GameManager.Instance.GamePaused = false;
-            }
+            GameManager.Instance.GamePaused = false;
 
             for (int i = 0; i < _powerUpsButtons.Count; i++)
             {
