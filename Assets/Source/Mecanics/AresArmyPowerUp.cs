@@ -24,7 +24,7 @@ namespace Game.Mecanics
             [Header("Attack")]
             public float AttackDamageMultiplier;
             public float AttackDistanceMultiplier;
-            public float AttackSpeedMultiplier;
+            public float AttackLengthMultiplier;
             public float AttackRateMultiplier;
             public int SequencialAttacks;
 
@@ -71,7 +71,45 @@ namespace Game.Mecanics
 
         public override string UpgradeInfo()
         {
-            return "";
+            var _isFirstLevel = !PowerUpManager.Instance.HasPowerUp(this);
+
+            if (_isFirstLevel)
+            {
+                return $"{Levels[CurrentLevelIndex].ClonesAmount} player clone";
+            }
+
+            //var _isLastedLevel = CurrentLevelIndex >= Levels.Length - 2;
+
+            //if (_isLastedLevel)
+            //{
+            //    return "Super clones";
+            //}
+
+            var _lastLevel = Levels[CurrentLevelIndex];
+            var _upgradedLevel = Levels[Mathf.Min(CurrentLevelIndex + 1, Levels.Length -1)];
+
+            var _message = "";
+
+            var _clonesAmountUpgrade = _upgradedLevel.ClonesAmount - _lastLevel.ClonesAmount;
+            var _attackDistanceUpgrade = _upgradedLevel.AttackDistanceMultiplier - _lastLevel.AttackDistanceMultiplier;
+            var _attackDamageUpgrade = _upgradedLevel.AttackDamageMultiplier - _lastLevel.AttackDamageMultiplier;
+            var _attackRateUpgrade = _upgradedLevel.AttackRateMultiplier - _lastLevel.AttackRateMultiplier;
+            var _attackLengthUpgrade = _upgradedLevel.AttackLengthMultiplier - _lastLevel.AttackLengthMultiplier;
+            var _sequencialAttacksUpgrade = _upgradedLevel.SequencialAttacks - _lastLevel.SequencialAttacks;
+            var _moveSpeedUpgrade = _upgradedLevel.MoveSpeedMultiplier - _lastLevel.MoveSpeedMultiplier;
+            var _lifeUpgrade = _upgradedLevel.LifeMultiplier - _lastLevel.LifeMultiplier;
+
+            if (_clonesAmountUpgrade != 0) _message += $"{(_clonesAmountUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_clonesAmountUpgrade)} clone\n";
+            if (_sequencialAttacksUpgrade != 0) _message += $"{(_sequencialAttacksUpgrade > 0 ? "+" : "-")}{Mathf.Abs(_sequencialAttacksUpgrade)} sequencial attacks\n";
+            if (_attackDistanceUpgrade != 0) _message += $"{(_attackDistanceUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_attackDistanceUpgrade * 100)} attack distance\n";
+            if (_attackDamageUpgrade != 0) _message += $"{(_attackDamageUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_attackDamageUpgrade * 100)} attack damage\n";
+            if (_attackRateUpgrade != 0) _message += $"{(_attackRateUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_attackRateUpgrade * 100)} attack rate\n";
+            if (_attackLengthUpgrade != 0) _message += $"{(_attackLengthUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_attackLengthUpgrade * 100)} attack length\n";
+
+            if (_moveSpeedUpgrade != 0) _message += $"{(_moveSpeedUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_moveSpeedUpgrade * 100)} move speed\n";
+            if (_lifeUpgrade != 0) _message += $"{(_lifeUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_lifeUpgrade * 100)} max life\n";
+
+            return _message;
         }
 
         public override void Use()
@@ -135,7 +173,7 @@ namespace Game.Mecanics
             var _playerClone = cloneAi.Clone;
             var _currentLevel = Levels[CurrentLevelIndex];
             
-            _playerClone.Weapon.AttackLengthMultiplier = _currentLevel.AttackSpeedMultiplier;
+            _playerClone.Weapon.AttackLengthMultiplier = _currentLevel.AttackLengthMultiplier;
             _playerClone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
             _playerClone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;
             _playerClone.Weapon.AttackDistanceMultiplier = _currentLevel.AttackDistanceMultiplier;

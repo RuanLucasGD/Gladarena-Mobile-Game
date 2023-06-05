@@ -5,6 +5,20 @@ namespace Game.Mecanics
 {
     public class PowerUpManager : MonoBehaviour
     {
+        private static PowerUpManager _instance;
+        public static PowerUpManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<PowerUpManager>();
+                }
+
+                return _instance;
+            }
+        }
+
         public List<PowerUp> AllPowerUps;
         public List<PowerUp> CurrentPowerUps;
 
