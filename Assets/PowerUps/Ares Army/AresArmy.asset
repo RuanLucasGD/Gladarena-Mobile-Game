@@ -16,6 +16,9 @@ MonoBehaviour:
   OnSetupPowerUp:
     m_PersistentCalls:
       m_Calls: []
+  OnUsePowerUp:
+    m_PersistentCalls:
+      m_Calls: []
   OnUpgrated:
     m_PersistentCalls:
       m_Calls: []
@@ -24,12 +27,19 @@ MonoBehaviour:
       m_Calls: []
   PlayerTag: Player
   CloneBehaviour:
-    AttackDistance: 2
     FindEnemiesDistance: 10
   Levels:
   - ClonesAmount: 1
     CustomPlayer: {fileID: 0}
-  - ClonesAmount: 3
+    AttackDamageMultiplier: 1
+    AttackDistanceMultiplier: 1
+    AttackSpeedMultiplier: 1
+    AttackRateMultiplier: 1
+    SequencialAttacks: 1
+  - ClonesAmount: 1
     CustomPlayer: {fileID: 0}
-  - ClonesAmount: 3
-    CustomPlayer: {fileID: 0}
+    AttackDamageMultiplier: 4
+    AttackDistanceMultiplier: 5
+    AttackSpeedMultiplier: 5
+    AttackRateMultiplier: 0
+    SequencialAttacks: 5

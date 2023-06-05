@@ -20,13 +20,20 @@ namespace Game.Mecanics
         {
             public int ClonesAmount;
             public PlayerCharacter CustomPlayer;
+
+            [Header("Attack")]
+            public float AttackDamageMultiplier;
+            public float AttackDistanceMultiplier;
+            public float AttackSpeedMultiplier;
+            public float AttackRateMultiplier;
+            public int SequencialAttacks;
         }
 
         public string PlayerTag;
         public PlayerCloneBehaviour CloneBehaviour;
         public Level[] Levels;
 
-        private List<PlayerCharacter> _currentPlayerClones;
+        private List<PlayerCloneAI> _currentPlayerClones;
 
         protected override void OnEnable()
         {
@@ -44,7 +51,7 @@ namespace Game.Mecanics
             }
 
             OnSetupPowerUp.AddListener(SetupPowerUp);
-            _currentPlayerClones = new List<PlayerCharacter>();
+            _currentPlayerClones = new List<PlayerCloneAI>();
         }
 
         public override bool IsFullUpgrade()
@@ -81,31 +88,25 @@ namespace Game.Mecanics
             var _player = GameManager.Instance.Player;
 
             // spawn clone
-            var _randomSpawnDirection = new Vector3(Random.Range(-1f, 1f),0, (Random.Range(-1f, 1f)));
+            var _randomSpawnDirection = new Vector3(Random.Range(-1f, 1f), 0, (Random.Range(-1f, 1f)));
             _randomSpawnDirection /= _randomSpawnDirection.magnitude;
             _randomSpawnDirection *= 3;
 
             var _randomSpawnPos = _player.transform.position + _randomSpawnDirection;
             var _playerClone = Instantiate(_player, _randomSpawnPos, Quaternion.identity);
 
-            // reset clone
+            // setting default behaviour;
             _playerClone.tag = "Untagged";
-            _playerClone.Weapon.AttackLengthMultiplier = 1;
-            _playerClone.Weapon.AttackRateMultiplier = 1;
-            _playerClone.Weapon.AttackDamageMultiplier = 1;
-            _playerClone.Weapon.AttackDistanceMultiplier = 1;
-            _playerClone.Weapon.SequencialAttacks = 1;
-            _playerClone.ResetLife();
+            ResetClone(_playerClone);
 
             _playerClone.OnDamaged.RemoveAllListeners();
             _playerClone.OnDeath.RemoveAllListeners();
             _playerClone.OnRevive.RemoveAllListeners();
             _playerClone.OnSetWeapon.RemoveAllListeners();
-            _playerClone.OnDeath.AddListener(() => _currentPlayerClones.Remove(_playerClone));
 
+            // removing all powerups from clone
             var _playerClonesPowerUp = _playerClone.GetComponentsInChildren<PowerUpItem>();
 
-            // removing all powerups
             if (_playerClonesPowerUp.Length > 0)
             {
                 for (int i = 0; i < _playerClonesPowerUp.Length; i++)
@@ -118,21 +119,33 @@ namespace Game.Mecanics
             var _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
             _playerCloneAi.Clone = _playerClone;
             _playerCloneAi.PowerUpController = this;
+            _playerClone.OnDeath.AddListener(() => _currentPlayerClones.Remove(_playerCloneAi));
 
             // finally
-            _currentPlayerClones.Add(_playerClone);
+            _currentPlayerClones.Add(_playerCloneAi);
+        }
+
+        private void ResetClone(PlayerCharacter clone)
+        {
+            var _currentLevel = Levels[CurrentLevelIndex];
+            clone.Weapon.AttackLengthMultiplier = _currentLevel.AttackSpeedMultiplier;
+            clone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
+            clone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;
+            clone.Weapon.AttackDistanceMultiplier = _currentLevel.AttackDistanceMultiplier;
+            clone.Weapon.AttackRate = _currentLevel.AttackRateMultiplier;
+            clone.ResetLife();
         }
 
         public void RecreateAllClones()
         {
-            for (int i = 0; i < _currentPlayerClones.Count; i++)
-            {
-                _currentPlayerClones[i].ResetLife();
-            }
-
             while (_currentPlayerClones.Count < Levels[CurrentLevelIndex].ClonesAmount)
             {
                 CreateClone();
+            }
+
+            for (int i = 0; i < _currentPlayerClones.Count; i++)
+            {
+                ResetClone(_currentPlayerClones[i]);
             }
         }
     }
