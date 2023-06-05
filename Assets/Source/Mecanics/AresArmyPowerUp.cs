@@ -27,6 +27,10 @@ namespace Game.Mecanics
             public float AttackSpeedMultiplier;
             public float AttackRateMultiplier;
             public int SequencialAttacks;
+
+            [Header("Clone")]
+            public float LifeMultiplier;
+            public float MoveSpeedMultiplier;
         }
 
         public string PlayerTag;
@@ -97,8 +101,7 @@ namespace Game.Mecanics
 
             // setting default behaviour;
             _playerClone.tag = "Untagged";
-            ResetClone(_playerClone);
-
+            
             _playerClone.OnDamaged.RemoveAllListeners();
             _playerClone.OnDeath.RemoveAllListeners();
             _playerClone.OnRevive.RemoveAllListeners();
@@ -121,19 +124,27 @@ namespace Game.Mecanics
             _playerCloneAi.PowerUpController = this;
             _playerClone.OnDeath.AddListener(() => _currentPlayerClones.Remove(_playerCloneAi));
 
+            ResetClone(_playerCloneAi);
+
             // finally
             _currentPlayerClones.Add(_playerCloneAi);
         }
 
-        private void ResetClone(PlayerCharacter clone)
+        private void ResetClone(PlayerCloneAI cloneAi)
         {
+            var _playerClone = cloneAi.Clone;
             var _currentLevel = Levels[CurrentLevelIndex];
-            clone.Weapon.AttackLengthMultiplier = _currentLevel.AttackSpeedMultiplier;
-            clone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
-            clone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;
-            clone.Weapon.AttackDistanceMultiplier = _currentLevel.AttackDistanceMultiplier;
-            clone.Weapon.AttackRate = _currentLevel.AttackRateMultiplier;
-            clone.ResetLife();
+            
+            _playerClone.Weapon.AttackLengthMultiplier = _currentLevel.AttackSpeedMultiplier;
+            _playerClone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
+            _playerClone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;
+            _playerClone.Weapon.AttackDistanceMultiplier = _currentLevel.AttackDistanceMultiplier;
+            _playerClone.Weapon.AttackRate = _currentLevel.AttackRateMultiplier;
+
+            _playerClone.Life.LifeMultiplier = _currentLevel.LifeMultiplier;
+            _playerClone.Movimentation.MoveSpeedMultiplier = _currentLevel.MoveSpeedMultiplier;
+
+            _playerClone.ResetLife();
         }
 
         public void RecreateAllClones()

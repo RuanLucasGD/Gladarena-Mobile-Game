@@ -48,6 +48,9 @@ namespace Game.Mecanics
             [Min(0)] public float StopDistance;
             [Min(0)] public float ExternalForceDeceleration;
 
+            [Space]
+            public float MoveSpeedMultiplier;
+
             public Moviment()
             {
                 MoveSpeed = 10;
@@ -83,13 +86,17 @@ namespace Game.Mecanics
         [System.Serializable]
         public class LifeStorage
         {
-            [Min(1)] public float LifeAmount;
+            [Min(1)] public float InicialLife;
             [Min(0.1f)] public float AutoDestroyOnDeathDelay;
+
+            [Space]
+            public float LifeMultiplier;
+
             public UnityEvent OnResetLife;
 
             public LifeStorage()
             {
-                LifeAmount = 100;
+                InicialLife = 100;
             }
         }
 
@@ -147,8 +154,10 @@ namespace Game.Mecanics
 
         public CharacterController CharacterController { get; set; }
 
+        public float MaxLife => Life.InicialLife * Life.LifeMultiplier;
         public float CurrentAttackRate => Weapon.AttackRate * Weapon.AttackRateMultiplier;
         public float CurrentAttackDistance => Weapon.WeaponObject.AttackRange * Weapon.AttackDistanceMultiplier;
+        public float CurrentMoveSpeed => Movimentation.MoveSpeed * Movimentation.MoveSpeedMultiplier;
         public bool HasWeapon => Weapon.WeaponObject;
         public bool IsGrounded => CharacterController.isGrounded;
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
@@ -188,7 +197,7 @@ namespace Game.Mecanics
             
             CanMove = true;
             EnablePlayerControl = true;
-            CurrentLife = Life.LifeAmount;
+            CurrentLife = MaxLife;
             LookAtDirection = transform.forward;
 
             if (!CharacterController)
@@ -276,7 +285,7 @@ namespace Game.Mecanics
             }
 
             CharacterVelocity = CharacterMoveDirection;
-            CharacterVelocity *= Movimentation.MoveSpeed;
+            CharacterVelocity *= CurrentMoveSpeed;
             CharacterVelocity = new Vector3(CharacterVelocity.x, -Movimentation.Gravity, CharacterVelocity.z);
             CharacterVelocity += ExternalForces;
             CharacterVelocity *= delta;
@@ -437,7 +446,8 @@ namespace Game.Mecanics
 
         public void ResetLife()
         {
-            CurrentLife = Life.LifeAmount;
+            CurrentLife = MaxLife;
+            Life.OnResetLife.Invoke();
 
             if (IsDeath)
             {

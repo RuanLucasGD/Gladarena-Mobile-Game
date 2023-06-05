@@ -36,10 +36,14 @@ MonoBehaviour:
     AttackSpeedMultiplier: 1
     AttackRateMultiplier: 1
     SequencialAttacks: 1
-  - ClonesAmount: 1
+    LifeMultiplier: 1
+    MoveSpeedMultiplier: 0.3
+  - ClonesAmount: 3
     CustomPlayer: {fileID: 0}
     AttackDamageMultiplier: 4
     AttackDistanceMultiplier: 5
     AttackSpeedMultiplier: 5
     AttackRateMultiplier: 0
     SequencialAttacks: 5
+    LifeMultiplier: 10
+    MoveSpeedMultiplier: 1
