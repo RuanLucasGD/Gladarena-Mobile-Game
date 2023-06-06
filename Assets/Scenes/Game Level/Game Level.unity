@@ -1568,7 +1568,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1854284731}
         m_TargetAssemblyTypeName: Game.UI.PowerUpsUI, Game.UI
-        m_MethodName: ShowPowerUpsUI
+        m_MethodName: ShowPowerUpsUiIfHasUpgrades
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3243,6 +3243,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+      propertyPath: Life.InicialLife
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Weapon.WeaponObject
       value: 
       objectReference: {fileID: 139812624}
@@ -3737,7 +3741,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllPowerUps:
   - {fileID: 11400000, guid: 0385a31ad2e013d45b182393bbc7a336, type: 2}
-  - {fileID: 11400000, guid: 3687f11968c31b04e899d7731023d77e, type: 2}
   CurrentPowerUps: []
 --- !u!114 &1854284731
 MonoBehaviour:

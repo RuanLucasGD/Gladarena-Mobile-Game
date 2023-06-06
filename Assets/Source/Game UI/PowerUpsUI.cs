@@ -30,7 +30,11 @@ namespace Game.UI
         {
             if (PowerUpManager.CurrentPowerUps.Count == 0)
             {
-                ShowPowerUpsUI();
+                if (PowerUpManager.AllPowerUps.Count > 0)
+                {
+                    ShowPowerUpsUI();
+                }
+               
                 return;
             }
 
