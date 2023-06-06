@@ -160,7 +160,9 @@ namespace Game.Mecanics
 
             var _randomSpawnPos = _player.transform.position + _randomSpawnDirection;
             var _playerClone = Instantiate(_player, _randomSpawnPos, Quaternion.identity);
+
             _playerClone.tag = "Untagged";
+            _playerClone.Life.AutoDestroyOnDeathDelay = 10f;
 
             // removing all powerups from clone
             var _playerClonesPowerUp = _playerClone.GetComponentsInChildren<PowerUpItem>();
@@ -189,7 +191,8 @@ namespace Game.Mecanics
         {
             var _playerClone = cloneAi.Clone;
             var _currentLevel = Levels[CurrentLevelIndex];
-            
+
+            _playerClone.enabled = true;
             _playerClone.Weapon.AttackLengthMultiplier = _currentLevel.AttackLengthMultiplier;
             _playerClone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
             _playerClone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;

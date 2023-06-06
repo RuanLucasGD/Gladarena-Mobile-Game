@@ -411,6 +411,7 @@ namespace Game.Mecanics
                     if (IsDeath)
                     {
                         enabled = false;
+                        CharacterController.enabled = false;
                         Destroy(gameObject);
                     }
                 }
@@ -453,6 +454,7 @@ namespace Game.Mecanics
             {
                 IsDeath = false;
                 enabled = true;
+                CharacterController.enabled = true;
                 OnRevive.Invoke();
             }
         }
