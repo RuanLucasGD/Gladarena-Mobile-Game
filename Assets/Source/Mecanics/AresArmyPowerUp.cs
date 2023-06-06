@@ -31,6 +31,12 @@ namespace Game.Mecanics
             [Header("Clone")]
             public float LifeMultiplier;
             public float MoveSpeedMultiplier;
+
+            [Header("Explosion on Destroy")]
+            public float ExplosionRange;
+            public float ExplosionDamage;
+            public GameObject ExplosionPrefab;
+            public float ExplosionPrefabLifeTime;
         }
 
         public string PlayerTag;
@@ -96,18 +102,36 @@ namespace Game.Mecanics
             var _attackRateUpgrade = _upgradedLevel.AttackRateMultiplier - _lastLevel.AttackRateMultiplier;
             var _attackLengthUpgrade = _upgradedLevel.AttackLengthMultiplier - _lastLevel.AttackLengthMultiplier;
             var _sequencialAttacksUpgrade = _upgradedLevel.SequencialAttacks - _lastLevel.SequencialAttacks;
+
             var _moveSpeedUpgrade = _upgradedLevel.MoveSpeedMultiplier - _lastLevel.MoveSpeedMultiplier;
             var _lifeUpgrade = _upgradedLevel.LifeMultiplier - _lastLevel.LifeMultiplier;
 
+            var _addedExplosion = (_lastLevel.ExplosionRange == 0 && _lastLevel.ExplosionDamage == 0) &&
+                                  (_upgradedLevel.ExplosionRange > 0 && _upgradedLevel.ExplosionDamage > 0);
+
+            var _explosionDistance = (_upgradedLevel.ExplosionRange - _lastLevel.ExplosionRange) / _lastLevel.ExplosionRange;
+            var _explosionDamage = (_upgradedLevel.ExplosionDamage - _lastLevel.ExplosionDamage) / _lastLevel.ExplosionDamage;
+
             if (_clonesAmountUpgrade != 0) _message += $"{(_clonesAmountUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_clonesAmountUpgrade)} clone\n";
             if (_sequencialAttacksUpgrade != 0) _message += $"{(_sequencialAttacksUpgrade > 0 ? "+" : "-")}{Mathf.Abs(_sequencialAttacksUpgrade)} sequencial attacks\n";
-            if (_attackDistanceUpgrade != 0) _message += $"{(_attackDistanceUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_attackDistanceUpgrade * 100)} attack distance\n";
-            if (_attackDamageUpgrade != 0) _message += $"{(_attackDamageUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_attackDamageUpgrade * 100)} attack damage\n";
-            if (_attackRateUpgrade != 0) _message += $"{(_attackRateUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_attackRateUpgrade * 100)} attack rate\n";
-            if (_attackLengthUpgrade != 0) _message += $"{(_attackLengthUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_attackLengthUpgrade * 100)} attack length\n";
+            if (_attackDistanceUpgrade != 0) _message += $"{(_attackDistanceUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_attackDistanceUpgrade * 100)}% attack distance\n";
+            if (_attackDamageUpgrade != 0) _message += $"{(_attackDamageUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_attackDamageUpgrade * 100)}% attack damage\n";
+            if (_attackRateUpgrade != 0) _message += $"{(_attackRateUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_attackRateUpgrade * 100)}% attack rate\n";
+            if (_attackLengthUpgrade != 0) _message += $"{(_attackLengthUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_attackLengthUpgrade * 100)}% attack length\n";
 
-            if (_moveSpeedUpgrade != 0) _message += $"{(_moveSpeedUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_moveSpeedUpgrade * 100)} move speed\n";
-            if (_lifeUpgrade != 0) _message += $"{(_lifeUpgrade > 0f ? "+" : "-")}%{Mathf.Abs(_lifeUpgrade * 100)} max life\n";
+            if (_addedExplosion)
+            {
+                _message += "explode on clone death";
+            }
+            else
+            {
+                if (_explosionDistance != 0) _message += $"{(_explosionDistance > 0f ? "+" : "-")}{Mathf.Abs(_explosionDistance * 100)}% explosion distance\n";
+                if (_explosionDamage != 0) _message += $"{(_explosionDamage > 0f ? "+" : "-")}{Mathf.Abs(_explosionDamage * 100)}% explosion damage\n";
+            }
+
+            if (_moveSpeedUpgrade != 0) _message += $"{(_moveSpeedUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_moveSpeedUpgrade * 100)}% move speed\n";
+            if (_lifeUpgrade != 0) _message += $"{(_lifeUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_lifeUpgrade * 100)}% max life\n";
+
 
             return _message;
         }
@@ -136,14 +160,7 @@ namespace Game.Mecanics
 
             var _randomSpawnPos = _player.transform.position + _randomSpawnDirection;
             var _playerClone = Instantiate(_player, _randomSpawnPos, Quaternion.identity);
-
-            // setting default behaviour;
             _playerClone.tag = "Untagged";
-            
-            _playerClone.OnDamaged.RemoveAllListeners();
-            _playerClone.OnDeath.RemoveAllListeners();
-            _playerClone.OnRevive.RemoveAllListeners();
-            _playerClone.OnSetWeapon.RemoveAllListeners();
 
             // removing all powerups from clone
             var _playerClonesPowerUp = _playerClone.GetComponentsInChildren<PowerUpItem>();
@@ -160,9 +177,9 @@ namespace Game.Mecanics
             var _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
             _playerCloneAi.Clone = _playerClone;
             _playerCloneAi.PowerUpController = this;
-            _playerClone.OnDeath.AddListener(() => _currentPlayerClones.Remove(_playerCloneAi));
 
             ResetClone(_playerCloneAi);
+            SetupCloneEvents(_playerCloneAi);
 
             // finally
             _currentPlayerClones.Add(_playerCloneAi);
@@ -183,6 +200,41 @@ namespace Game.Mecanics
             _playerClone.Movimentation.MoveSpeedMultiplier = _currentLevel.MoveSpeedMultiplier;
 
             _playerClone.ResetLife();
+        }
+
+        private void SetupCloneEvents(PlayerCloneAI playerCloneAI)
+        {
+            playerCloneAI.Clone.OnDamaged.RemoveAllListeners();
+            playerCloneAI.Clone.OnDeath.RemoveAllListeners();
+            playerCloneAI.Clone.OnRevive.RemoveAllListeners();
+            playerCloneAI.Clone.OnSetWeapon.RemoveAllListeners();
+
+            playerCloneAI.Clone.OnDeath.AddListener(() => _currentPlayerClones.Remove(playerCloneAI));
+            playerCloneAI.Clone.OnDeath.AddListener(() => AddExplosion(playerCloneAI.transform.position));
+        }
+
+        private void AddExplosion(Vector3 position)
+        {
+            var _level = Levels[CurrentLevelIndex];
+            var _explosionEffect = Instantiate(Levels[CurrentLevelIndex].ExplosionPrefab, position, Quaternion.identity);
+
+            var _colliders = Physics.OverlapSphere(position, _level.ExplosionRange);
+            var _enemies = new List<EnemyBase>();
+
+            for (int i = 0; i < _colliders.Length; i++)
+            {
+                if (_colliders[i].TryGetComponent<EnemyBase>(out var _enemy))
+                {
+                    _enemies.Add(_enemy);
+                }
+            }
+
+            for (int i = 0; i < _enemies.Count; i++)
+            {
+                _enemies[i].AddDamage(_level.ExplosionDamage);
+            }
+
+            Destroy(_explosionEffect, _level.ExplosionPrefabLifeTime);
         }
 
         public void RecreateAllClones()
