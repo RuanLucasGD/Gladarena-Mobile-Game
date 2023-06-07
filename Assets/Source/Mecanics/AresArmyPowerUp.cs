@@ -13,6 +13,7 @@ namespace Game.Mecanics
         public class PlayerCloneBehaviour
         {
             public float FindEnemiesDistance;
+            public LayerMask ObstaclesLayer;
         }
 
         [System.Serializable]
@@ -20,6 +21,9 @@ namespace Game.Mecanics
         {
             public int ClonesAmount;
             public PlayerCharacter CustomPlayer;
+
+            [Space]
+            public bool FollowPlayer;
 
             [Header("Attack")]
             public float AttackDamageMultiplier;
@@ -247,9 +251,32 @@ namespace Game.Mecanics
                 CreateClone();
             }
 
-            for (int i = 0; i < _currentPlayerClones.Count; i++)
+            var _clonesAmount = _currentPlayerClones.Count;
+            for (int i = 0; i < _clonesAmount; i++)
             {
                 ResetClone(_currentPlayerClones[i]);
+            }
+
+            if (Levels[CurrentLevelIndex].FollowPlayer)
+            {
+                // set all clones around the player
+
+                var _positionAngle = 0f;
+                for (int i = 0; i < _clonesAmount; i++)
+                {
+                    var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 4;
+                    _currentPlayerClones[i].FollowPlayer = true;
+                    _currentPlayerClones[i].FollowPlayerOffset = _direction;
+                    
+                    _positionAngle += (360 / _clonesAmount);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _clonesAmount; i++)
+                {
+                    _currentPlayerClones[i].FollowPlayer = false;
+                }
             }
         }
     }

@@ -1,20 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Runtime.Serialization.Json;
+using UnityEngine;
 
 namespace Game.Mecanics
 {
     public class PlayerCloneAI : MonoBehaviour
     {
+        public bool FollowPlayer;
+        public Vector3 FollowPlayerOffset;
+
         public AresArmyPowerUp PowerUpController { get; set; }
         public PlayerCharacter Clone { get; set; }
 
         public EnemyBase Target { get; private set; }
-
         public bool IsStoped { get; private set; }
+
+        private PlayerCharacter _originalPlayer;
 
         private void Start()
         {
             Clone.EnablePlayerControl = false;
             IsStoped = false;
+            _originalPlayer = GameManager.Instance.Player;
         }
 
         private void Update()
@@ -30,10 +36,11 @@ namespace Game.Mecanics
                 }
             }
 
-            ControlPlayerClone();
+            if (FollowPlayer) FollowPlayerPosition();
+            else WalkToRandomEnemy();
         }
 
-        private void ControlPlayerClone()
+        private void WalkToRandomEnemy()
         {
             if (!Target)
             {
@@ -58,6 +65,22 @@ namespace Game.Mecanics
             }
 
             Clone.CharacterMoveDirection = _directionToTarget;
+        }
+
+        private void FollowPlayerPosition()
+        {
+            var _targetPosition =_originalPlayer.transform.position + FollowPlayerOffset;
+
+            var _direction = (_targetPosition - transform.position).normalized;
+            var _distance = Vector3.Distance(transform.position, _targetPosition);
+
+            if (_distance < 1)
+            {
+                _direction = Vector3.zero;
+                _originalPlayer.LookAtDirection = transform.position - transform.position;
+            }
+
+            Clone.CharacterMoveDirection = _direction;
         }
 
         private EnemyBase FindEnemy()
