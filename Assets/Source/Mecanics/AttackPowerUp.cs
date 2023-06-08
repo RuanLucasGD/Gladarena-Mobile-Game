@@ -25,7 +25,7 @@ namespace Game.Mecanics
 
         public override bool IsFullUpgrade()
         {
-            return CurrentLevelIndex >= Levels.Length - 1;
+            return CurrentLevelIndex >= Levels.Length - 1 && PowerUpManager.Instance.HasPowerUp(this);
         }
 
         public override void Upgrade()

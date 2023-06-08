@@ -151,6 +151,7 @@ namespace Game.Mecanics
         public UnityEvent OnAttackAnimationEvent;
 
         private Vector3 _moveDirection;
+        private Vector3 _lookDirection;
 
         public CharacterController CharacterController { get; set; }
 
@@ -171,9 +172,8 @@ namespace Game.Mecanics
         public InputAction VerticalAction { get; private set; }
         public InputAction HorizontalAction { get; private set; }
         public InputAction MobileJoystickAction { get; private set; }
-
         public Vector3 ExternalForces { get; private set; }
-        public Vector3 LookAtDirection { get; set; }
+       
         public Vector3 Forward { get; set; }
         public bool CanMove { get; set; }
         public bool EnablePlayerControl { get; set; }
@@ -189,6 +189,7 @@ namespace Game.Mecanics
         /// </summary>
         /// <returns></returns>
         public Vector3 CharacterMoveDirection { get => _moveDirection; set => _moveDirection = new Vector3(value.x, 0, value.z).normalized; }
+        public Vector3 LookAtDirection { get => _lookDirection; set => _lookDirection = Vector3.ProjectOnPlane(value, Vector3.up); }
 
         private void Awake()
         {
@@ -269,6 +270,11 @@ namespace Game.Mecanics
             var _right = -Vector3.Cross(_forward, Vector3.up);
             var _moveDirection = ((_forward * _vertical) + (_right * _horizontal)).normalized;
 
+            if (!IsStoped)
+            {
+                LookAtDirection = CharacterMoveDirection / CharacterMoveDirection.magnitude;
+            }
+
             CharacterMoveDirection = _moveDirection;
         }
 
@@ -314,10 +320,7 @@ namespace Game.Mecanics
             var _turnSpeed = Mathf.Clamp01(delta * Movimentation.TurnSpeed);
             var _currentRot = transform.rotation;
 
-            if (!IsStoped)
-            {
-                LookAtDirection = CharacterMoveDirection / CharacterMoveDirection.magnitude;
-            }
+
 
             var _targetRot = Quaternion.LookRotation(LookAtDirection);
 

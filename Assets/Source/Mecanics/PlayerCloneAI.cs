@@ -8,10 +8,10 @@ namespace Game.Mecanics
         public bool FollowPlayer;
         public Vector3 FollowPlayerOffset;
 
+        public EnemyBase Target { get; private set; }
         public AresArmyPowerUp PowerUpController { get; set; }
         public PlayerCharacter Clone { get; set; }
 
-        public EnemyBase Target { get; private set; }
         public bool IsStoped { get; private set; }
 
         private PlayerCharacter _originalPlayer;
@@ -53,8 +53,8 @@ namespace Game.Mecanics
             var _distanceToTarget = Vector3.Distance(transform.position, _targetPosition);
             var _attackDistance = Clone.CurrentAttackDistance;
             var _stopDistance = Clone.Movimentation.StopDistance;
-            
-            if (IsStoped && _distanceToTarget >_attackDistance) IsStoped = false;
+
+            if (IsStoped && _distanceToTarget > _attackDistance) IsStoped = false;
             if (!IsStoped && _distanceToTarget <= _stopDistance) IsStoped = true;
 
             if (IsStoped)
@@ -69,17 +69,11 @@ namespace Game.Mecanics
 
         private void FollowPlayerPosition()
         {
-            var _targetPosition =_originalPlayer.transform.position + FollowPlayerOffset;
+            var _playerPosition = _originalPlayer.transform.position;
+            var _movePosition = _playerPosition + FollowPlayerOffset;
+            var _direction = (_movePosition - transform.position).normalized;
 
-            var _direction = (_targetPosition - transform.position).normalized;
-            var _distance = Vector3.Distance(transform.position, _targetPosition);
-
-            if (_distance < 1)
-            {
-                _direction = Vector3.zero;
-                _originalPlayer.LookAtDirection = transform.position - transform.position;
-            }
-
+            Clone.LookAtDirection = transform.position - _playerPosition;
             Clone.CharacterMoveDirection = _direction;
         }
 

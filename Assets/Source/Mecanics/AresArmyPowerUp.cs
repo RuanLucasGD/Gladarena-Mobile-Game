@@ -70,7 +70,7 @@ namespace Game.Mecanics
 
         public override bool IsFullUpgrade()
         {
-            return CurrentLevelIndex >= Levels.Length - 1;
+            return CurrentLevelIndex >= Levels.Length - 1 && PowerUpManager.Instance.HasPowerUp(this);
         }
 
         public override void Upgrade()
@@ -155,15 +155,17 @@ namespace Game.Mecanics
 
         private void CreateClone()
         {
-            var _player = GameManager.Instance.Player;
+            var _originalPlayer = GameManager.Instance.Player;
+            var _hasCustomPlayerModel = Levels[CurrentLevelIndex].CustomPlayer != null;
+            var _playerModel = _hasCustomPlayerModel ? Levels[CurrentLevelIndex].CustomPlayer : _originalPlayer;
 
             // spawn clone
             var _randomSpawnDirection = new Vector3(Random.Range(-1f, 1f), 0, (Random.Range(-1f, 1f)));
             _randomSpawnDirection /= _randomSpawnDirection.magnitude;
             _randomSpawnDirection *= 3;
 
-            var _randomSpawnPos = _player.transform.position + _randomSpawnDirection;
-            var _playerClone = Instantiate(_player, _randomSpawnPos, Quaternion.identity);
+            var _randomSpawnPos = _originalPlayer.transform.position + _randomSpawnDirection;
+            var _playerClone = Instantiate(_playerModel, _randomSpawnPos, Quaternion.identity);
 
             _playerClone.tag = "Untagged";
             _playerClone.Life.AutoDestroyOnDeathDelay = 10f;
@@ -223,6 +225,12 @@ namespace Game.Mecanics
         private void AddExplosion(Vector3 position)
         {
             var _level = Levels[CurrentLevelIndex];
+
+            if (!_level.ExplosionPrefab)
+            {
+                return;
+            }
+
             var _explosionEffect = Instantiate(Levels[CurrentLevelIndex].ExplosionPrefab, position, Quaternion.identity);
 
             var _colliders = Physics.OverlapSphere(position, _level.ExplosionRange);
@@ -264,7 +272,7 @@ namespace Game.Mecanics
                 var _positionAngle = 0f;
                 for (int i = 0; i < _clonesAmount; i++)
                 {
-                    var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 4;
+                    var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 2;
                     _currentPlayerClones[i].FollowPlayer = true;
                     _currentPlayerClones[i].FollowPlayerOffset = _direction;
                     
