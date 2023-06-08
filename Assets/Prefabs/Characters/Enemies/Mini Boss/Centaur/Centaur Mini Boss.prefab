@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003904425153092293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_handTip_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003537248244934873}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003359006619898593}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_shoulder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004194472258608361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_feetTip_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003966808084405581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004064380285963885}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ear01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004269435520760269}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004290285174613963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_armor_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003638867486371245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_Tail01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003647248842416553}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_wrist_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004156764389728781}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horseSpine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003374112009615491}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_lowerLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003425148879528971}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_upperLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004297454768953957}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_lowerArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004173965849554165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_upperArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003588579068194029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_wrist_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004265500067893989}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_lowerArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003759868201966451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ear03_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3004443130291872013}
   - component: {fileID: 2903090195740096645}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DryadMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003730886683805141}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003745927140162005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_shoulder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003593519206855405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004037944212018125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ear02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004193227309885555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_upperArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,7 +851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003415787352732159}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_upperArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003747599258164153}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_upperLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004074340349513147}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_feet_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004375471355395713}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 2999886366547437198}
   - component: {fileID: 2999886366547437199}
   - component: {fileID: 2999886366547437184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Centaur Mini Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1108,7 +1108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004094320036217685}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_lowerArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1139,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003501973490379569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_lowerLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,7 +1170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003564614922701199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horseChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004067808305250715}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ear02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003381291103972123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_handTip_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004333659479070679}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_feet_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1296,7 +1296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003867749811932305}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1326,7 +1326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003916482436239573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_armor_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1356,7 +1356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004140403901753523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ear03_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1386,7 +1386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003341725953967443}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_lowerArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1417,7 +1417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004393953842937643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1449,7 +1449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004308609836575063}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_upperArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003370540750656695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_Tail02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,7 +1510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004241250687365665}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: man_hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,7 +1540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004415597848593585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ear01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1571,7 +1571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003885407113854411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: horse_feetTip_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

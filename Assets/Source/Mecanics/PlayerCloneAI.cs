@@ -73,6 +73,11 @@ namespace Game.Mecanics
             var _movePosition = _playerPosition + FollowPlayerOffset;
             var _direction = (_movePosition - transform.position).normalized;
 
+            if (Vector3.Distance(_movePosition, transform.position) < 0.3f)
+            {
+                _direction = Vector3.zero;
+            }
+
             Clone.LookAtDirection = transform.position - _playerPosition;
             Clone.CharacterMoveDirection = _direction;
         }

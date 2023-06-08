@@ -32,7 +32,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
   Levels:
-  - ClonesAmount: 5
+  - ClonesAmount: 8
     CustomPlayer: {fileID: 1102756951653237674, guid: d63dc4c28ff5535478489982fb8053e8, type: 3}
     FollowPlayer: 1
     AttackDamageMultiplier: 5
@@ -45,4 +45,4 @@ MonoBehaviour:
     ExplosionRange: 2
     ExplosionDamage: 100
     ExplosionPrefab: {fileID: 4860105925515003198, guid: 420e015e4c6a74f489341d98355b05f7, type: 3}
-    ExplosionPrefabLifeTime: 0
+    ExplosionPrefabLifeTime: 0.15
