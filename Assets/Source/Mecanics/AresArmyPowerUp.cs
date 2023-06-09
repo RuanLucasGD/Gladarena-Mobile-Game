@@ -28,6 +28,9 @@ namespace Game.Mecanics
             [Space]
             public bool FollowPlayer;
 
+            [Header("Regenerate Clones")]
+            public float GenerateInterval;
+
             [Header("Attack")]
             public float AttackDamageMultiplier;
             public float AttackDistanceMultiplier;
@@ -39,14 +42,15 @@ namespace Game.Mecanics
             public float LifeMultiplier;
             public float MoveSpeedMultiplier;
 
-            [Header("Explosion on Destroy")]
+            [Header("Explosion")]
+            public bool ExplodeOnDeath;
             public float ExplosionRange;
             public float ExplosionDamage;
             public GameObject ExplosionPrefab;
             public float ExplosionPrefabLifeTime;
 
             [Header("Dash Mode")]
-            public bool UseDashMode;
+            public bool UseDashModeOnDeath;
         }
 
         public string PlayerTag;
@@ -54,6 +58,7 @@ namespace Game.Mecanics
         public Level[] Levels;
 
         private List<PlayerCloneAI> _currentPlayerClones;
+        private AresArmyItem _powerUpItem;
 
         protected override void OnEnable()
         {
@@ -148,6 +153,12 @@ namespace Game.Mecanics
 
         public override void Use()
         {
+            if (!_powerUpItem)
+            {
+                _powerUpItem = new GameObject(name + " Item").AddComponent<AresArmyItem>();
+                _powerUpItem.powerUp = this;
+            }
+
             RecreateAllClones();
         }
 
@@ -188,7 +199,13 @@ namespace Game.Mecanics
             }
 
             // adding AI to clone
-            var _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
+            var _playerCloneAi = _playerClone.GetComponent<PlayerCloneAI>();
+
+            if (!_playerCloneAi)
+            {
+                _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
+            }
+           
             _playerCloneAi.Clone = _playerClone;
             _playerCloneAi.PowerUpController = this;
 
@@ -204,8 +221,11 @@ namespace Game.Mecanics
             var _playerClone = cloneAi.Clone;
             var _currentLevel = Levels[CurrentLevelIndex];
 
+            cloneAi.ExplodeOnDeath = _currentLevel.ExplodeOnDeath;
+
             _playerClone.enabled = true;
             _playerClone.gameObject.layer = LayerMask.NameToLayer(CloneBehaviour.ClonesLayer);
+
             _playerClone.Weapon.AttackLengthMultiplier = _currentLevel.AttackLengthMultiplier;
             _playerClone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
             _playerClone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;
@@ -229,7 +249,7 @@ namespace Game.Mecanics
             playerCloneAI.Clone.OnDeath.AddListener(() => AddExplosion(playerCloneAI.transform.position));
         }
 
-        private void AddExplosion(Vector3 position)
+        public void AddExplosion(Vector3 position)
         {
             var _level = Levels[CurrentLevelIndex];
 
@@ -294,11 +314,11 @@ namespace Game.Mecanics
                 }
             }
 
-            if (Levels[CurrentLevelIndex].UseDashMode)
+            if (Levels[CurrentLevelIndex].UseDashModeOnDeath)
             {
                 for (int i = 0; i < _clonesAmount; i++)
                 {
-                    _currentPlayerClones[i].UseDashMode = true;
+                    _currentPlayerClones[i].UseDashModeOnDeath = true;
                 }
             }
         }

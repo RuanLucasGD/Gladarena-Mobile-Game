@@ -449,6 +449,11 @@ namespace Game.Mecanics
 
         public void KillCharacter()
         {
+            if (IsDeath)
+            {
+                return;
+            }
+
             AddDamage(Mathf.Infinity);
         }
 

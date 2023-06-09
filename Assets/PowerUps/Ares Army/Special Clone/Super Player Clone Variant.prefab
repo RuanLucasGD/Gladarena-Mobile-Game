@@ -450,6 +450,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+--- !u!1 &7499651829593563816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7447223153943184438, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+  m_PrefabInstance: {fileID: 1102756952172226206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6859886692960557515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5800338356336770901, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
@@ -465,3 +470,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1618254818, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
   m_PrefabInstance: {fileID: 1102756952172226206}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4642205541525171553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499651829593563816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7363e80098ca88c43b78486a2a3385c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartDashDelay: 4
+  DashCooldown: 1
+  DashTime: 0.5
+  ExplodeOnFinishDash: 1
+  MaxDashs: 2

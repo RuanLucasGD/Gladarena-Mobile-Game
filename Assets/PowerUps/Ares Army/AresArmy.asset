@@ -34,6 +34,7 @@ MonoBehaviour:
   - ClonesAmount: 3
     CustomPlayer: {fileID: 1102756951653237674, guid: d63dc4c28ff5535478489982fb8053e8, type: 3}
     FollowPlayer: 1
+    GenerateInterval: 4
     AttackDamageMultiplier: 1
     AttackDistanceMultiplier: 1
     AttackLengthMultiplier: 1
@@ -45,4 +46,4 @@ MonoBehaviour:
     ExplosionDamage: 10
     ExplosionPrefab: {fileID: 4860105925515003198, guid: 420e015e4c6a74f489341d98355b05f7, type: 3}
     ExplosionPrefabLifeTime: 0.15
-    UseDashMode: 1
+    UseDashModeOnDeath: 0

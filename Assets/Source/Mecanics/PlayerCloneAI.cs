@@ -1,34 +1,35 @@
-﻿using System.Runtime.Serialization.Json;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Mecanics
 {
     public class PlayerCloneAI : MonoBehaviour
     {
-        public bool FollowPlayer;
-        public Vector3 FollowPlayerOffset;
+        public bool ExplodeOnDeath { get; set; }
+        public bool FollowPlayer { get; set; }
+        public Vector3 FollowPlayerOffset { get; set; }
 
         public EnemyBase Target { get; private set; }
         public AresArmyPowerUp PowerUpController { get; set; }
         public PlayerCharacter Clone { get; set; }
 
-        public bool UseDashMode { get; set; }
+        public bool UseDashModeOnDeath { get; set; }
 
         public bool IsStoped { get; private set; }
         public bool DashModeEnabled { get; private set; }
 
         private PlayerCharacter _originalPlayer;
 
-        private void Start()
+        protected virtual void Start()
         {
             Clone.EnablePlayerControl = false;
             IsStoped = false;
             _originalPlayer = GameManager.Instance.Player;
 
-            Clone.OnDeath.AddListener(EnableDashMode);
+            if (UseDashModeOnDeath) Clone.OnDeath.AddListener(StartDashWithDeath);
+            if (ExplodeOnDeath) Clone.OnDeath.AddListener(AddExplosionOnDeah);
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (Target == null || Target.IsDeath)
             {
@@ -88,7 +89,7 @@ namespace Game.Mecanics
             Clone.CharacterMoveDirection = _direction;
         }
 
-        private EnemyBase FindEnemy()
+        protected EnemyBase FindEnemy()
         {
             var _enemies = FindObjectsOfType<EnemyBase>();
 
@@ -114,9 +115,9 @@ namespace Game.Mecanics
             return FindObjectOfType<EnemyBase>();
         } 
 
-        private void EnableDashMode()
+        protected void EnableDashMode()
         {
-            if (DashModeEnabled || !UseDashMode)
+            if (DashModeEnabled)
             {
                 return;
             }
@@ -124,21 +125,41 @@ namespace Game.Mecanics
             DashModeEnabled = true;
             Clone.IsInvencible = true;
             Clone.ResetLife();
-
-            Invoke(nameof(FinalizeDashMode), PowerUpController.CloneBehaviour.DashTime);
         }
 
-        private void FinalizeDashMode()
+        protected void DisableDashMode()
         {
-            Clone.IsInvencible = false;
-            Clone.KillCharacter();
+            DashModeEnabled = false;
+            Clone.IsInvencible = false; 
         }
 
-        private void DashMode()
+        protected void DashMode()
         {
             var _direction = Clone.transform.forward;
             Clone.CharacterMoveDirection = _direction;
             Clone.LookAtDirection = _direction;
+        }
+
+        protected void IdleMode()
+        {
+            Clone.CharacterMoveDirection = Vector3.zero;
+        }
+
+        private void StartDashWithDeath()
+        {
+            EnableDashMode();
+            Invoke(nameof(FinalizeDashWithDeath), PowerUpController.CloneBehaviour.DashTime);
+        }
+
+        private void FinalizeDashWithDeath()
+        {
+            DisableDashMode();
+            Clone.KillCharacter();
+        }
+
+        private void AddExplosionOnDeah()
+        {
+            PowerUpController.AddExplosion(transform.position);
         }
     }
 }
