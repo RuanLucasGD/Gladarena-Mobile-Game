@@ -404,7 +404,11 @@ namespace Game.Mecanics
                 IEnumerator DisableCharacter()
                 {
                     yield return new WaitForEndOfFrame();
-                    enabled = false;
+
+                    if (IsDeath) // the player can be revived after is death (in same frame)
+                    {
+                        enabled = false;
+                    }
                 }
 
                 IEnumerator DestroyCharacterDeleyed()

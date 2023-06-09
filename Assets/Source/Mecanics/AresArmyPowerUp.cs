@@ -13,7 +13,10 @@ namespace Game.Mecanics
         public class PlayerCloneBehaviour
         {
             public float FindEnemiesDistance;
-            public LayerMask ObstaclesLayer;
+            public string ClonesLayer;
+
+            [Header("Dash Mode")]
+            public float DashTime;
         }
 
         [System.Serializable]
@@ -41,6 +44,9 @@ namespace Game.Mecanics
             public float ExplosionDamage;
             public GameObject ExplosionPrefab;
             public float ExplosionPrefabLifeTime;
+
+            [Header("Dash Mode")]
+            public bool UseDashMode;
         }
 
         public string PlayerTag;
@@ -199,6 +205,7 @@ namespace Game.Mecanics
             var _currentLevel = Levels[CurrentLevelIndex];
 
             _playerClone.enabled = true;
+            _playerClone.gameObject.layer = LayerMask.NameToLayer(CloneBehaviour.ClonesLayer);
             _playerClone.Weapon.AttackLengthMultiplier = _currentLevel.AttackLengthMultiplier;
             _playerClone.Weapon.SequencialAttacks = _currentLevel.SequencialAttacks;
             _playerClone.Weapon.AttackDamageMultiplier = _currentLevel.AttackDamageMultiplier;
@@ -284,6 +291,14 @@ namespace Game.Mecanics
                 for (int i = 0; i < _clonesAmount; i++)
                 {
                     _currentPlayerClones[i].FollowPlayer = false;
+                }
+            }
+
+            if (Levels[CurrentLevelIndex].UseDashMode)
+            {
+                for (int i = 0; i < _clonesAmount; i++)
+                {
+                    _currentPlayerClones[i].UseDashMode = true;
                 }
             }
         }

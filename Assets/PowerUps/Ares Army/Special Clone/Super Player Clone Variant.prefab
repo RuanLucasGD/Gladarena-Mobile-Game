@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugLog: 0
   AttackRange: 3
-  AttackDamage: 40
+  AttackDamage: 1
   AttackLength: 1.3
   Mesh: {fileID: 7658203116269316211}
   AnimationID: 1
@@ -311,6 +311,10 @@ PrefabInstance:
     - target: {fileID: -417878991522404143, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+      propertyPath: Life.InicialLife
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Weapon.WeaponObject

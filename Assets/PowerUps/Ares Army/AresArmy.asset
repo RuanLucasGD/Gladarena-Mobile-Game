@@ -28,21 +28,21 @@ MonoBehaviour:
   PlayerTag: Player
   CloneBehaviour:
     FindEnemiesDistance: 10
-    ObstaclesLayer:
-      serializedVersion: 2
-      m_Bits: 64
+    ClonesLayer: Player Clones
+    DashTime: 2
   Levels:
-  - ClonesAmount: 8
+  - ClonesAmount: 3
     CustomPlayer: {fileID: 1102756951653237674, guid: d63dc4c28ff5535478489982fb8053e8, type: 3}
     FollowPlayer: 1
-    AttackDamageMultiplier: 5
-    AttackDistanceMultiplier: 5
+    AttackDamageMultiplier: 1
+    AttackDistanceMultiplier: 1
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 0
     SequencialAttacks: 1
     LifeMultiplier: 1
     MoveSpeedMultiplier: 1
     ExplosionRange: 2
-    ExplosionDamage: 100
+    ExplosionDamage: 10
     ExplosionPrefab: {fileID: 4860105925515003198, guid: 420e015e4c6a74f489341d98355b05f7, type: 3}
     ExplosionPrefabLifeTime: 0.15
+    UseDashMode: 1

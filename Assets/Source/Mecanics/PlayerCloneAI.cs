@@ -12,7 +12,10 @@ namespace Game.Mecanics
         public AresArmyPowerUp PowerUpController { get; set; }
         public PlayerCharacter Clone { get; set; }
 
+        public bool UseDashMode { get; set; }
+
         public bool IsStoped { get; private set; }
+        public bool DashModeEnabled { get; private set; }
 
         private PlayerCharacter _originalPlayer;
 
@@ -21,6 +24,8 @@ namespace Game.Mecanics
             Clone.EnablePlayerControl = false;
             IsStoped = false;
             _originalPlayer = GameManager.Instance.Player;
+
+            Clone.OnDeath.AddListener(EnableDashMode);
         }
 
         private void Update()
@@ -36,7 +41,8 @@ namespace Game.Mecanics
                 }
             }
 
-            if (FollowPlayer) FollowPlayerPosition();
+            if (FollowPlayer && !DashModeEnabled) FollowPlayerPosition();
+            else if (DashModeEnabled) DashMode();
             else WalkToRandomEnemy();
         }
 
@@ -106,6 +112,33 @@ namespace Game.Mecanics
 
             //if not have any near enemy follow any enemy (if exist...)
             return FindObjectOfType<EnemyBase>();
+        } 
+
+        private void EnableDashMode()
+        {
+            if (DashModeEnabled || !UseDashMode)
+            {
+                return;
+            }
+
+            DashModeEnabled = true;
+            Clone.IsInvencible = true;
+            Clone.ResetLife();
+
+            Invoke(nameof(FinalizeDashMode), PowerUpController.CloneBehaviour.DashTime);
+        }
+
+        private void FinalizeDashMode()
+        {
+            Clone.IsInvencible = false;
+            Clone.KillCharacter();
+        }
+
+        private void DashMode()
+        {
+            var _direction = Clone.transform.forward;
+            Clone.CharacterMoveDirection = _direction;
+            Clone.LookAtDirection = _direction;
         }
     }
 }
