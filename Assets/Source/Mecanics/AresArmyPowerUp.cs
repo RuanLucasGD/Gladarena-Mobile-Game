@@ -301,11 +301,12 @@ namespace Game.Mecanics
                 return;
             }
 
+            // getting all near colliders and spawn explosion particle
             var _explosionEffect = Instantiate(Levels[CurrentLevelIndex].ExplosionPrefab, position, Quaternion.identity);
-
             var _colliders = Physics.OverlapSphere(position, _level.ExplosionRange);
             var _enemies = new List<EnemyBase>();
 
+            // getting enemies
             for (int i = 0; i < _colliders.Length; i++)
             {
                 if (_colliders[i].TryGetComponent<EnemyBase>(out var _enemy))
@@ -314,6 +315,7 @@ namespace Game.Mecanics
                 }
             }
 
+            // apply damage on enemies
             for (int i = 0; i < _enemies.Count; i++)
             {
                 _enemies[i].AddDamage(_level.ExplosionDamage);
@@ -350,10 +352,11 @@ namespace Game.Mecanics
                     continue;
                 }
 
+                // spawn clone around the player
                 var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 2;
+                var _position = GameManager.Instance.Player.transform.position + _direction;
                 _positionAngle += (360 / _maxClonesAmount);
 
-                var _position = GameManager.Instance.Player.transform.position + _direction;
                 _newClone = CreateClone(_position);
 
                 _newClone.FollowPlayerOffset = _direction;
