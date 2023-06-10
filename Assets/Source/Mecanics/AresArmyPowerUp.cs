@@ -249,6 +249,9 @@ namespace Game.Mecanics
 
             playerCloneAI.Clone.OnDeath.AddListener(() =>
             {
+                // wait finish all clone logic
+                // because the clone can be revived
+                // when is killed.
                 IEnumerator _WaitFinishAllCloneLogic()
                 {
                     yield return new WaitForEndOfFrame();

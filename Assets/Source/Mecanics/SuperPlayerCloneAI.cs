@@ -37,6 +37,7 @@ namespace Game.Mecanics
             {
                 Clone.IsInvencible = false;
                 Clone.KillCharacter();
+                enabled = false;
                 return;
             }
 
@@ -46,8 +47,8 @@ namespace Game.Mecanics
                 if (_dashIntervalTimer > DashCooldown)
                 {
                     _dashIntervalTimer = 0;
-                    EnableDashMode();
                     _currentDashsAmount++;
+                    EnableDashMode();
                 }
             }
 
