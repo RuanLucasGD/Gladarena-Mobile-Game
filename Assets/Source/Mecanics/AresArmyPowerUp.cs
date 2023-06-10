@@ -249,7 +249,6 @@ namespace Game.Mecanics
             playerCloneAI.Clone.OnSetWeapon.RemoveAllListeners();
 
             playerCloneAI.Clone.OnDeath.AddListener(() => _currentPlayerClones.Remove(playerCloneAI));
-            playerCloneAI.Clone.OnDeath.AddListener(() => AddExplosion(playerCloneAI.transform.position));
         }
 
         public void AddExplosion(Vector3 position)

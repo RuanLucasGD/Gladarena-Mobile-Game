@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4860105925515003196}
   - component: {fileID: 4860105925515003199}
   m_Layer: 0
-  m_Name: Player Clone Explosion
+  m_Name: P_Explosion 5M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

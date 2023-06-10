@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Game.Mecanics
 {
@@ -27,7 +28,7 @@ namespace Game.Mecanics
             _originalPlayer = GameManager.Instance.Player;
 
             if (UseDashModeOnDeath) Clone.OnDeath.AddListener(StartDashWithDeath);
-            if (ExplodeOnDeath) Clone.OnDeath.AddListener(AddExplosionOnDeah);
+            if (ExplodeOnDeath) Clone.OnDeath.AddListener(AddExplosionOnDeath);
         }
 
         protected virtual void Update()
@@ -72,6 +73,7 @@ namespace Game.Mecanics
                 return;
             }
 
+            Clone.LookAtDirection = _directionToTarget;
             Clone.CharacterMoveDirection = _directionToTarget;
         }
 
@@ -176,12 +178,16 @@ namespace Game.Mecanics
         private void FinalizeDashWithDeath()
         {
             DisableDashMode();
+            Clone.OnDeath.RemoveListener(StartDashWithDeath);
             Clone.KillCharacter();
         }
 
-        private void AddExplosionOnDeah()
+        private void AddExplosionOnDeath()
         {
-            PowerUpController.AddExplosion(transform.position);
+            if (!DashModeEnabled)
+            {
+                PowerUpController.AddExplosion(transform.position);
+            }
         }
     }
 }
