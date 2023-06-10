@@ -156,7 +156,7 @@ namespace Game.Mecanics
             }
 
             if (_moveSpeedUpgrade != 0) _message += $"{(_moveSpeedUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_moveSpeedUpgrade * 100)}% move speed\n";
-            if (_lifeUpgrade != 0) _message += $"{(_lifeUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_lifeUpgrade * 100)}% max life\n";
+            if (_lifeUpgrade != 0) _message += $"{(_lifeUpgrade > 0f ? "+" : "-")}{Mathf.Abs(Mathf.RoundToInt(_lifeUpgrade * 100))}% max life\n";
 
             return _message;
         }
