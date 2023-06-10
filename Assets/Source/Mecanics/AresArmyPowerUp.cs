@@ -25,6 +25,9 @@ namespace Game.Mecanics
             [Space]
             public bool FollowPlayer;
 
+            [Header("On Start Level")]
+            public bool DeleteAllClones;
+
             [Header("On Update")]
             public float GenerateInterval;
 
@@ -58,6 +61,8 @@ namespace Game.Mecanics
         private List<PlayerCloneAI> _currentPlayerClones;
         private AresArmyItem _powerUpItem;
 
+        private bool _destroyClonesOnStartLevel;
+
         public int CurrentClonesAmount => _currentPlayerClones.Count;
 
         protected override void OnEnable()
@@ -87,6 +92,7 @@ namespace Game.Mecanics
         public override void Upgrade()
         {
             base.Upgrade();
+            _destroyClonesOnStartLevel = true;
             CurrentLevelIndex = Mathf.Clamp(CurrentLevelIndex, 0, Levels.Length - 1);
         }
 
@@ -163,7 +169,15 @@ namespace Game.Mecanics
                 _powerUpItem.powerUp = this;
             }
 
-            RecreateAllClones();
+            if (_destroyClonesOnStartLevel)
+            {
+                _destroyClonesOnStartLevel = false;
+                DestroyAndCreateClones();
+            }
+            else
+            {
+                RecreateAllClones();
+            }   
         }
 
         private void SetupPowerUp()
@@ -174,19 +188,26 @@ namespace Game.Mecanics
             }
         }
 
-        private void CreateClone()
+        private PlayerCloneAI CreateClone()
+        {
+            var _originalPlayer = GameManager.Instance.Player;
+
+            var _randomSpawnDirection = new Vector3(Random.Range(-1f, 1f), 0, (Random.Range(-1f, 1f)));
+            _randomSpawnDirection /= _randomSpawnDirection.magnitude;
+            _randomSpawnDirection *= 3;
+
+            var _randomSpawnPos = _originalPlayer.transform.position + _randomSpawnDirection;
+            return CreateClone(_randomSpawnPos);
+        }
+
+        private PlayerCloneAI CreateClone(Vector3 position)
         {
             var _originalPlayer = GameManager.Instance.Player;
             var _hasCustomPlayerModel = Levels[CurrentLevelIndex].CustomPlayer != null;
             var _playerModel = _hasCustomPlayerModel ? Levels[CurrentLevelIndex].CustomPlayer : _originalPlayer;
 
             // spawn clone
-            var _randomSpawnDirection = new Vector3(Random.Range(-1f, 1f), 0, (Random.Range(-1f, 1f)));
-            _randomSpawnDirection /= _randomSpawnDirection.magnitude;
-            _randomSpawnDirection *= 3;
-
-            var _randomSpawnPos = _originalPlayer.transform.position + _randomSpawnDirection;
-            var _playerClone = Instantiate(_playerModel, _randomSpawnPos, Quaternion.identity);
+            var _playerClone = Instantiate(_playerModel, position, Quaternion.identity);
 
             _playerClone.tag = "Untagged";
             _playerClone.Life.AutoDestroyOnDeathDelay = 10f;
@@ -218,6 +239,7 @@ namespace Game.Mecanics
 
             // finally
             _currentPlayerClones.Add(_playerCloneAi);
+            return _playerCloneAi;
         }
 
         private void ResetClone(PlayerCloneAI cloneAi)
@@ -300,48 +322,48 @@ namespace Game.Mecanics
             Destroy(_explosionEffect, _level.ExplosionPrefabLifeTime);
         }
 
+        public void DestroyAndCreateClones()
+        {
+            for (int i = 0; i < _currentPlayerClones.Count; i++)
+            {
+                Destroy(_currentPlayerClones[i].gameObject);
+            }
+
+            _currentPlayerClones.Clear();
+
+            RecreateAllClones();
+        }
+
         public void RecreateAllClones()
         {
-            if (Levels[CurrentLevelIndex].CustomPlayer)
-            {
-                // kill all current clones to create new custom clones
-                for (int i = 0; i < _currentPlayerClones.Count; i++)
-                {
-                    Destroy(_currentPlayerClones[i].gameObject);
-                }
-
-                _currentPlayerClones.Clear();
-            }
-
-            while (_currentPlayerClones.Count < Levels[CurrentLevelIndex].ClonesAmount)
-            {
-                CreateClone();
-            }
-
-            var _clonesAmount = _currentPlayerClones.Count;
-            for (int i = 0; i < _clonesAmount; i++)
-            {
-                ResetClone(_currentPlayerClones[i]);
-            }
-
-            // set all clones around the player
             var _positionAngle = 0f;
-            for (int i = 0; i < _clonesAmount; i++)
+            var _currentClonesAmount = _currentPlayerClones.Count;
+            var _maxClonesAmount = Levels[CurrentLevelIndex].ClonesAmount;
+
+            for (int i = _currentClonesAmount; i < _maxClonesAmount; i++)
             {
-                _currentPlayerClones[i].FollowPlayer = Levels[CurrentLevelIndex].FollowPlayer;
+                PlayerCloneAI _newClone = null;
 
                 if (!Levels[CurrentLevelIndex].FollowPlayer)
                 {
+                    _newClone = CreateClone();
                     continue;
                 }
 
                 var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 2;
-                _currentPlayerClones[i].FollowPlayerOffset = _direction;
+                _positionAngle += (360 / _maxClonesAmount);
 
-                _positionAngle += (360 / _clonesAmount);
+                var _position = GameManager.Instance.Player.transform.position + _direction;
+                _newClone = CreateClone(_position);
+
+                _newClone.FollowPlayerOffset = _direction;
+                _newClone.FollowPlayer = Levels[CurrentLevelIndex].FollowPlayer;
+            }
+
+            for (int i = 0; i < _maxClonesAmount; i++)
+            {
+                ResetClone(_currentPlayerClones[i]);
             }
         }
     }
 }
-
-
