@@ -13,6 +13,8 @@ namespace Game.Mecanics
         public float AttackRange;
         public float AttackDamage;
         public float AttackLength;
+        [Range(0.1f, 1)]
+        public float DotAttackAngle;
 
         [Header("Mesh")]
         public GameObject Mesh;

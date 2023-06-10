@@ -222,6 +222,7 @@ namespace Game.Mecanics
             var _currentLevel = Levels[CurrentLevelIndex];
 
             cloneAi.ExplodeOnDeath = _currentLevel.ExplodeOnDeath;
+            cloneAi.UseDashModeOnDeath = Levels[CurrentLevelIndex].UseDashModeOnDeath;
 
             _playerClone.enabled = true;
             _playerClone.gameObject.layer = LayerMask.NameToLayer(CloneBehaviour.ClonesLayer);
@@ -292,34 +293,21 @@ namespace Game.Mecanics
                 ResetClone(_currentPlayerClones[i]);
             }
 
-            if (Levels[CurrentLevelIndex].FollowPlayer)
+            // set all clones around the player
+            var _positionAngle = 0f;
+            for (int i = 0; i < _clonesAmount; i++)
             {
-                // set all clones around the player
+                _currentPlayerClones[i].FollowPlayer = Levels[CurrentLevelIndex].FollowPlayer;
 
-                var _positionAngle = 0f;
-                for (int i = 0; i < _clonesAmount; i++)
+                if (!Levels[CurrentLevelIndex].FollowPlayer)
                 {
-                    var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 2;
-                    _currentPlayerClones[i].FollowPlayer = true;
-                    _currentPlayerClones[i].FollowPlayerOffset = _direction;
-                    
-                    _positionAngle += (360 / _clonesAmount);
+                    continue;
                 }
-            }
-            else
-            {
-                for (int i = 0; i < _clonesAmount; i++)
-                {
-                    _currentPlayerClones[i].FollowPlayer = false;
-                }
-            }
 
-            if (Levels[CurrentLevelIndex].UseDashModeOnDeath)
-            {
-                for (int i = 0; i < _clonesAmount; i++)
-                {
-                    _currentPlayerClones[i].UseDashModeOnDeath = true;
-                }
+                var _direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * _positionAngle), 0, Mathf.Cos(Mathf.Deg2Rad * _positionAngle)) * 2;
+                _currentPlayerClones[i].FollowPlayerOffset = _direction;
+
+                _positionAngle += (360 / _clonesAmount);
             }
         }
     }

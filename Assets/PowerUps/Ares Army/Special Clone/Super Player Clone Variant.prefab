@@ -258,13 +258,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugLog: 0
-  AttackRange: 3
-  AttackDamage: 1
+  AttackRange: 5
+  AttackDamage: 100
   AttackLength: 1.3
+  DotAttackAngle: 0.1
   Mesh: {fileID: 7658203116269316211}
   AnimationID: 1
   AttackAudioSource: {fileID: 0}
-  DotAttackAngle: 0.1
 --- !u!1001 &1102756952172226206
 PrefabInstance:
   m_ObjectHideFlags: 0

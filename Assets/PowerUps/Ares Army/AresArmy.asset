@@ -31,7 +31,7 @@ MonoBehaviour:
     ClonesLayer: Player Clones
     DashTime: 2
   Levels:
-  - ClonesAmount: 3
+  - ClonesAmount: 1
     CustomPlayer: {fileID: 1102756951653237674, guid: d63dc4c28ff5535478489982fb8053e8, type: 3}
     FollowPlayer: 1
     GenerateInterval: 4
@@ -42,6 +42,7 @@ MonoBehaviour:
     SequencialAttacks: 1
     LifeMultiplier: 1
     MoveSpeedMultiplier: 1
+    ExplodeOnDeath: 0
     ExplosionRange: 2
     ExplosionDamage: 10
     ExplosionPrefab: {fileID: 4860105925515003198, guid: 420e015e4c6a74f489341d98355b05f7, type: 3}

@@ -6,10 +6,6 @@ namespace Game.Mecanics
 {
     public class MelleWeapon : Weapon
     {
-        [Header("Melle Attack")]
-        [Range(0.1f, 1)]
-        public float DotAttackAngle;
-
         public override PlayerCharacter Owner
         {
             get => base.Owner;

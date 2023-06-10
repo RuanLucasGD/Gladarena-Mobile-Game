@@ -18,6 +18,7 @@ namespace Game.Mecanics
         public bool DashModeEnabled { get; private set; }
 
         private PlayerCharacter _originalPlayer;
+        private EnemyBase[] _enemies;
 
         protected virtual void Start()
         {
@@ -113,7 +114,7 @@ namespace Game.Mecanics
 
             //if not have any near enemy follow any enemy (if exist...)
             return FindObjectOfType<EnemyBase>();
-        } 
+        }
 
         protected void EnableDashMode()
         {
@@ -122,6 +123,7 @@ namespace Game.Mecanics
                 return;
             }
 
+            _enemies = FindObjectsOfType<EnemyBase>();
             DashModeEnabled = true;
             Clone.IsInvencible = true;
             Clone.ResetLife();
@@ -130,14 +132,34 @@ namespace Game.Mecanics
         protected void DisableDashMode()
         {
             DashModeEnabled = false;
-            Clone.IsInvencible = false; 
+            Clone.IsInvencible = false;
         }
 
         protected void DashMode()
         {
+            // move with dash
             var _direction = Clone.transform.forward;
             Clone.CharacterMoveDirection = _direction;
             Clone.LookAtDirection = _direction;
+
+            //apply damage on enemies in front
+            for (int i = 0; i < _enemies.Length; i++)
+            {
+                var _enemy = _enemies[i];
+                var _dashAttackDamage = Clone.Weapon.WeaponObject.AttackDamage;
+                var _dashAttackDistance = Clone.CurrentAttackDistance;
+                var _dashAttackDotAngle = Clone.Weapon.WeaponObject.DotAttackAngle;
+
+                if (_enemy.IsDeath) continue;
+
+                // is enemy on back of the clone
+                if (Vector3.Dot((_enemy.transform.position - transform.position).normalized, transform.forward) < _dashAttackDotAngle) continue;
+
+                // is enemy distant
+                if (Vector3.Distance(transform.position, _enemy.transform.position) > _dashAttackDistance) continue;
+
+                _enemy.AddDamage(_dashAttackDamage);
+            }
         }
 
         protected void IdleMode()
