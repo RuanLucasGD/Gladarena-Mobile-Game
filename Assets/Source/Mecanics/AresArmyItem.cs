@@ -11,8 +11,19 @@ namespace Game.Mecanics
 
         private void Update()
         {
+            if (GameManager.Instance.Player.IsDeath)
+            {
+                return;
+            }
+
+            if (powerUp.Levels[powerUp.CurrentLevelIndex].GenerateInterval == 0)
+            {
+                return;
+            }
+
             if (powerUp.CurrentClonesAmount > 0)
             {
+                _regenerateTime = 0;
                 return;
             }
 

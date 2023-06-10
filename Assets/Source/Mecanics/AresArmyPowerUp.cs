@@ -247,7 +247,20 @@ namespace Game.Mecanics
             playerCloneAI.Clone.OnRevive.RemoveAllListeners();
             playerCloneAI.Clone.OnSetWeapon.RemoveAllListeners();
 
-            playerCloneAI.Clone.OnDeath.AddListener(() => _currentPlayerClones.Remove(playerCloneAI));
+            playerCloneAI.Clone.OnDeath.AddListener(() =>
+            {
+                IEnumerator _WaitFinishAllCloneLogic()
+                {
+                    yield return new WaitForEndOfFrame();
+
+                    if (!playerCloneAI.DashModeEnabled)
+                    {
+                        _currentPlayerClones.Remove(playerCloneAI);
+                    }
+                }
+
+                playerCloneAI.StartCoroutine(_WaitFinishAllCloneLogic());
+            });
         }
 
         public void AddExplosion(Vector3 position)
@@ -282,6 +295,15 @@ namespace Game.Mecanics
 
         public void RecreateAllClones()
         {
+            if (Levels[CurrentLevelIndex].CustomPlayer)
+            {
+                // kill all current clones to create new custom clones
+                for (int i = 0; i < _currentPlayerClones.Count; i++)
+                {
+                    _currentPlayerClones[i].Clone.KillCharacter();
+                }
+            }
+
             while (_currentPlayerClones.Count < Levels[CurrentLevelIndex].ClonesAmount)
             {
                 CreateClone();
