@@ -14,6 +14,7 @@ namespace Game.Mecanics
         public PlayerCharacter Clone { get; set; }
 
         public bool UseDashModeOnDeath { get; set; }
+        public float DashTimeOnDeath { get; set; }
 
         public bool IsStoped { get; private set; }
         public bool DashModeEnabled { get; private set; }
@@ -172,7 +173,7 @@ namespace Game.Mecanics
         private void StartDashWithDeath()
         {
             EnableDashMode();
-            Invoke(nameof(FinalizeDashWithDeath), PowerUpController.CloneBehaviour.DashTime);
+            Invoke(nameof(FinalizeDashWithDeath), DashTimeOnDeath);
         }
 
         private void FinalizeDashWithDeath()

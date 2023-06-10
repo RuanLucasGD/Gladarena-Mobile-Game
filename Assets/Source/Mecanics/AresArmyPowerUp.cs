@@ -14,9 +14,6 @@ namespace Game.Mecanics
         {
             public float FindEnemiesDistance;
             public string ClonesLayer;
-
-            [Header("Dash Mode")]
-            public float DashTime;
         }
 
         [System.Serializable]
@@ -51,6 +48,7 @@ namespace Game.Mecanics
 
             [Header("Dash Mode")]
             public bool UseDashModeOnDeath;
+            public float DashTime;
         }
 
         public string PlayerTag;
@@ -109,7 +107,7 @@ namespace Game.Mecanics
             //}
 
             var _lastLevel = Levels[CurrentLevelIndex];
-            var _upgradedLevel = Levels[Mathf.Min(CurrentLevelIndex + 1, Levels.Length -1)];
+            var _upgradedLevel = Levels[Mathf.Min(CurrentLevelIndex + 1, Levels.Length - 1)];
 
             var _message = "";
 
@@ -207,7 +205,7 @@ namespace Game.Mecanics
             {
                 _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
             }
-           
+
             _playerCloneAi.Clone = _playerClone;
             _playerCloneAi.PowerUpController = this;
 
@@ -224,7 +222,8 @@ namespace Game.Mecanics
             var _currentLevel = Levels[CurrentLevelIndex];
 
             cloneAi.ExplodeOnDeath = _currentLevel.ExplodeOnDeath;
-            cloneAi.UseDashModeOnDeath = Levels[CurrentLevelIndex].UseDashModeOnDeath;
+            cloneAi.UseDashModeOnDeath = _currentLevel.UseDashModeOnDeath;
+            cloneAi.DashTimeOnDeath = _currentLevel.DashTime;
 
             _playerClone.enabled = true;
             _playerClone.gameObject.layer = LayerMask.NameToLayer(CloneBehaviour.ClonesLayer);

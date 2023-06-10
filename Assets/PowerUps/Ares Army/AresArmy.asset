@@ -29,22 +29,22 @@ MonoBehaviour:
   CloneBehaviour:
     FindEnemiesDistance: 10
     ClonesLayer: Player Clones
-    DashTime: 2
   Levels:
   - ClonesAmount: 1
     CustomPlayer: {fileID: 0}
     FollowPlayer: 0
     GenerateInterval: 0
-    AttackDamageMultiplier: 1.2
+    AttackDamageMultiplier: 1
     AttackDistanceMultiplier: 1
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
     SequencialAttacks: 1
-    LifeMultiplier: 0.01
+    LifeMultiplier: 1
     MoveSpeedMultiplier: 0.3
-    ExplodeOnDeath: 1
+    ExplodeOnDeath: 0
     ExplosionRange: 2.5
     ExplosionDamage: 70
     ExplosionPrefab: {fileID: 4860105925515003198, guid: 420e015e4c6a74f489341d98355b05f7, type: 3}
     ExplosionPrefabLifeTime: 0.1
-    UseDashModeOnDeath: 1
+    UseDashModeOnDeath: 0
+    DashTime: 2
