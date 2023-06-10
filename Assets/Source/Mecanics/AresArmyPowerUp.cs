@@ -25,7 +25,7 @@ namespace Game.Mecanics
             [Space]
             public bool FollowPlayer;
 
-            [Header("Regenerate Clones")]
+            [Header("On Update")]
             public float GenerateInterval;
 
             [Header("Attack")]
