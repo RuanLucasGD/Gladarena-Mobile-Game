@@ -73,7 +73,7 @@ namespace Game.Mecanics
 
         protected virtual void Update()
         {
-            if (Target && Target.IsDeath)
+            if (!Target || Target.IsDeath)
             {
                 FindPlayer();
             }

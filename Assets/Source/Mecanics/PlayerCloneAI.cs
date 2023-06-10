@@ -190,5 +190,10 @@ namespace Game.Mecanics
                 PowerUpController.AddExplosion(transform.position);
             }
         }
+
+        public void RemoveDeathDashAction()
+        {
+            Clone.OnDeath.RemoveListener(StartDashWithDeath);
+        }
     }
 }

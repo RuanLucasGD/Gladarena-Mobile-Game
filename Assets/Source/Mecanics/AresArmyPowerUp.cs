@@ -307,8 +307,10 @@ namespace Game.Mecanics
                 // kill all current clones to create new custom clones
                 for (int i = 0; i < _currentPlayerClones.Count; i++)
                 {
-                    _currentPlayerClones[i].Clone.KillCharacter();
+                    Destroy(_currentPlayerClones[i].gameObject);
                 }
+
+                _currentPlayerClones.Clear();
             }
 
             while (_currentPlayerClones.Count < Levels[CurrentLevelIndex].ClonesAmount)
