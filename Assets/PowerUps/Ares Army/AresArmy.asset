@@ -111,7 +111,7 @@ MonoBehaviour:
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
     SequencialAttacks: 1
-    LifeMultiplier: 1.44
+    LifeMultiplier: 1.4
     MoveSpeedMultiplier: 0.3
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
@@ -129,7 +129,7 @@ MonoBehaviour:
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
     SequencialAttacks: 1
-    LifeMultiplier: 1.44
+    LifeMultiplier: 1.4
     MoveSpeedMultiplier: 0.3
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
@@ -147,7 +147,7 @@ MonoBehaviour:
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
     SequencialAttacks: 1
-    LifeMultiplier: 1.44
+    LifeMultiplier: 1.4
     MoveSpeedMultiplier: 0.3
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
@@ -165,7 +165,7 @@ MonoBehaviour:
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
     SequencialAttacks: 1
-    LifeMultiplier: 1.44
+    LifeMultiplier: 1.4
     MoveSpeedMultiplier: 1
     ExplodeOnDeath: 0
     ExplosionRange: 5

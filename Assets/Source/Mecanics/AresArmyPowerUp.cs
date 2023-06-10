@@ -121,8 +121,8 @@ namespace Game.Mecanics
             var _moveSpeedUpgrade = _upgradedLevel.MoveSpeedMultiplier - _lastLevel.MoveSpeedMultiplier;
             var _lifeUpgrade = _upgradedLevel.LifeMultiplier - _lastLevel.LifeMultiplier;
 
-            var _addedExplosion = (_lastLevel.ExplosionRange == 0 && _lastLevel.ExplosionDamage == 0) &&
-                                  (_upgradedLevel.ExplosionRange > 0 && _upgradedLevel.ExplosionDamage > 0);
+            var _addedExplosion = !_lastLevel.ExplodeOnDeath && _upgradedLevel.ExplodeOnDeath;
+            var _addedDashOnDeath = !_lastLevel.UseDashModeOnDeath && _upgradedLevel.UseDashModeOnDeath;
 
             var _explosionDistance = (_upgradedLevel.ExplosionRange - _lastLevel.ExplosionRange) / _lastLevel.ExplosionRange;
             var _explosionDamage = (_upgradedLevel.ExplosionDamage - _lastLevel.ExplosionDamage) / _lastLevel.ExplosionDamage;
@@ -144,9 +144,13 @@ namespace Game.Mecanics
                 if (_explosionDamage != 0) _message += $"{(_explosionDamage > 0f ? "+" : "-")}{Mathf.Abs(_explosionDamage * 100)}% explosion damage\n";
             }
 
+            if (_addedDashOnDeath)
+            {
+                _message += "add dash";
+            }
+
             if (_moveSpeedUpgrade != 0) _message += $"{(_moveSpeedUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_moveSpeedUpgrade * 100)}% move speed\n";
             if (_lifeUpgrade != 0) _message += $"{(_lifeUpgrade > 0f ? "+" : "-")}{Mathf.Abs(_lifeUpgrade * 100)}% max life\n";
-
 
             return _message;
         }
