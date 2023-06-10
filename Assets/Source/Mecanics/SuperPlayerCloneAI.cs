@@ -74,6 +74,8 @@ namespace Game.Mecanics
         private void StartDash()
         {
             _dashStarted = true;
+            // don't wait dash cooldown
+            _dashIntervalTimer = DashCooldown;
         }
     }
 }
