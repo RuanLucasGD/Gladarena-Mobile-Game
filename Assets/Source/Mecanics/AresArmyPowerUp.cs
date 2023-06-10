@@ -60,6 +60,8 @@ namespace Game.Mecanics
         private List<PlayerCloneAI> _currentPlayerClones;
         private AresArmyItem _powerUpItem;
 
+        public int CurrentClonesAmount => _currentPlayerClones.Count;
+
         protected override void OnEnable()
         {
             base.OnEnable();

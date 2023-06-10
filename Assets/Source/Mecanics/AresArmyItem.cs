@@ -11,6 +11,11 @@ namespace Game.Mecanics
 
         private void Update()
         {
+            if (powerUp.CurrentClonesAmount > 0)
+            {
+                return;
+            }
+
             _regenerateTime += Time.deltaTime;
             if (_regenerateTime > powerUp.Levels[powerUp.CurrentLevelIndex].GenerateInterval)
             {
