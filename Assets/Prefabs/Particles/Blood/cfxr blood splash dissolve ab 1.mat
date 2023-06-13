@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cfxr blood splash dissolve ab
+  m_Name: cfxr blood splash dissolve ab 1
   m_Shader: {fileID: 4800000, guid: e198026df304af84a85675be636192ea, type: 3}
   m_ShaderKeywords: _ _ALPHABLEND_ON _CELPRIMARYMODE_SINGLE _CFXR_DISSOLVE _CFXR_DITHERED_SHADOWS_ON
     _CFXR_GLOW_POW_P0 _CFXR_OVERLAYBLEND_RGBA _CFXR_OVERLAYTEX_OFF _FADING_ON _UNITYSHADOWMODE_NONE

@@ -45,7 +45,7 @@ MonoBehaviour:
     ExplodeOnDeath: 0
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
@@ -64,7 +64,7 @@ MonoBehaviour:
     ExplodeOnDeath: 0
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
@@ -83,7 +83,7 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
@@ -102,7 +102,7 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
@@ -121,7 +121,7 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
@@ -140,7 +140,7 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
@@ -159,7 +159,7 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
     ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 1
     DashTime: 2
