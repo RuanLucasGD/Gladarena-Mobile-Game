@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyLevelProgression:
     EnemySpawnManager: {fileID: 904689902}
-    KillsToChangeLevel: 3
+    KillsToChangeLevel: 1
   OnStartLevel:
     m_PersistentCalls:
       m_Calls:
@@ -1917,7 +1917,7 @@ MonoBehaviour:
       m_Bits: 64
     MaxAsyncSpawns: 3
     BossLevelInterval: 5
-    MiniBossTimeInterval: 20
+    MiniBossTimeInterval: 10
   Enemies:
   - Name: Death Knight
     Prefabs:
@@ -1983,14 +1983,14 @@ MonoBehaviour:
     VelocityBase: 1
     LifeUpgrade: 2
     DamageUpgrade: 2
-    VelocityUpgrade: 2
+    VelocityUpgrade: 0.6
   Progression:
     LifeBase: 0.2
     DamageBase: 0.2
     VelocityBase: 0.2
     LifeUpgrade: 1
     DamageUpgrade: 1
-    VelocityUpgrade: 1
+    VelocityUpgrade: 0.6
   OnEnemySpawned:
     m_PersistentCalls:
       m_Calls: []
@@ -3333,7 +3333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Life.InicialLife
-      value: 200
+      value: 9999999
       objectReference: {fileID: 0}
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Weapon.WeaponObject
@@ -3878,6 +3878,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllPowerUps:
   - {fileID: 11400000, guid: 0385a31ad2e013d45b182393bbc7a336, type: 2}
+  - {fileID: 11400000, guid: 8f1ca807f22a3be458501e52b1bbc332, type: 2}
+  - {fileID: 11400000, guid: 3687f11968c31b04e899d7731023d77e, type: 2}
   CurrentPowerUps: []
 --- !u!114 &1854284731
 MonoBehaviour:
@@ -3895,7 +3897,7 @@ MonoBehaviour:
   PowerUpsScreen: {fileID: 523584104}
   PowerUpsUiWidgetParent: {fileID: 1091427426}
   PowerUpUiWidgetPrefab: {fileID: 3902647449739932856, guid: 55d915d8c2a038448ad3de4ed636a955, type: 3}
-  PowerUpsToSelect: 2
+  PowerUpsToSelect: 3
 --- !u!1001 &1895536462
 PrefabInstance:
   m_ObjectHideFlags: 0
