@@ -1973,10 +1973,10 @@ MonoBehaviour:
   Boses:
   - {fileID: 4170732870702380631, guid: c508e03c779c5364ba845ee99f6441dc, type: 3}
   MiniBoses:
-  - {fileID: 2788916103115569933, guid: 9b8098cdefd2b23468970c0d5e340ceb, type: 3}
   - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
-  - {fileID: 1379750024057682000, guid: d7e7a92b62915d940965430c22a2015e, type: 3}
-  - {fileID: 8157558022683090608, guid: 2c68f7a158ac15344b4fb5b7777c43c6, type: 3}
+  - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
+  - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
+  - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
   FirstLevel:
     LifeBase: 1
     DamageBase: 1
