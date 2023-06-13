@@ -1917,7 +1917,7 @@ MonoBehaviour:
       m_Bits: 64
     MaxAsyncSpawns: 3
     BossLevelInterval: 5
-    MiniBossTimeInterval: 5
+    MiniBossTimeInterval: 20
   Enemies:
   - Name: Death Knight
     Prefabs:

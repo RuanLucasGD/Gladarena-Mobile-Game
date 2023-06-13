@@ -45,8 +45,8 @@ MonoBehaviour:
     ExplodeOnDeath: 0
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
   - ClonesAmount: 1
@@ -64,8 +64,8 @@ MonoBehaviour:
     ExplodeOnDeath: 0
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
   - ClonesAmount: 1
@@ -83,8 +83,8 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
   - ClonesAmount: 2
@@ -102,8 +102,8 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
   - ClonesAmount: 2
@@ -121,8 +121,8 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
   - ClonesAmount: 3
@@ -140,8 +140,8 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
   - ClonesAmount: 3
@@ -159,8 +159,8 @@ MonoBehaviour:
     ExplodeOnDeath: 1
     ExplosionRange: 2.5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 2906655deb1811a43ad2035e209507d5, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 1
     DashTime: 2
   - ClonesAmount: 8
@@ -178,7 +178,7 @@ MonoBehaviour:
     ExplodeOnDeath: 0
     ExplosionRange: 5
     ExplosionDamage: 70
-    ExplosionPrefab: {fileID: 4860105925515003198, guid: 420e015e4c6a74f489341d98355b05f7, type: 3}
-    ExplosionPrefabLifeTime: 0.1
+    ExplosionPrefab: {fileID: 2089927512781061260, guid: d6a11299d9ea71048be4e11fc69c805c, type: 3}
+    ExplosionPrefabLifeTime: 10
     UseDashModeOnDeath: 0
     DashTime: 2
