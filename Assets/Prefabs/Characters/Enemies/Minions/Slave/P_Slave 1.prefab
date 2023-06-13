@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 6796584207010235829}
   - component: {fileID: 2684747717229687995}
   - component: {fileID: 5648960937048779684}
+  - component: {fileID: 2067670481481583586}
   m_Layer: 8
   m_Name: P_Slave 1
   m_TagString: Untagged
@@ -640,7 +641,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95878559041712836
 Animator:
-  serializedVersion: 5
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -653,12 +654,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &6796584207010235829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -715,6 +714,9 @@ MonoBehaviour:
   OnKilled:
     m_PersistentCalls:
       m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
@@ -731,6 +733,22 @@ MonoBehaviour:
   WeaponID: 0
   NormalAttackLenght: 1.1
   SuperAttackLenght: 1.1
+--- !u!114 &2067670481481583586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817914581278840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a65581c8974624586bf336fe5128ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 5648960937048779684}
+  ParticlesLifeTime: 10
+  DamageParticle: {fileID: 4553287630450876387, guid: e758f2ae977eea74bbd8351a5a1bd3a2, type: 3}
+  SpawnOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &1823181692466790
 GameObject:
   m_ObjectHideFlags: 0

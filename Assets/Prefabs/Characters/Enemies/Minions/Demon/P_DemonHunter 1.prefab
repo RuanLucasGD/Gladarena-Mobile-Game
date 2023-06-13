@@ -306,7 +306,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95420976555068524
 Animator:
-  serializedVersion: 5
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -319,12 +319,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &270587234043610860
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -414,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 2193180014008602258}
   ParticlesLifeTime: 10
-  DamageParticle: {fileID: 4025750706894000198, guid: fc3af57601e16f245a84b1862194ce52, type: 3}
+  DamageParticle: {fileID: 4553287630450876387, guid: e758f2ae977eea74bbd8351a5a1bd3a2, type: 3}
   SpawnOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &1254449423902298
 GameObject:

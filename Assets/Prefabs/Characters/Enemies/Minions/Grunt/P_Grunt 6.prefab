@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1737891518562006, guid: 88e3c50c2fa16da42abaf10bf4957988, type: 3}
       propertyPath: m_Name
-      value: Grunt_Polyart_MaskTint (5)
+      value: P_Grunt 6
       objectReference: {fileID: 0}
     - target: {fileID: 4036346798686858, guid: 88e3c50c2fa16da42abaf10bf4957988, type: 3}
       propertyPath: m_RootOrder
