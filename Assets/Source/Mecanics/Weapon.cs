@@ -26,8 +26,10 @@ namespace Game.Mecanics
 
         [Header("Events")]
         public UnityEvent<PlayerCharacter> OnSetOwner;
+        public UnityEvent OnWeaponHitEnemy;
 
         private bool _isAttacking;
+        private bool _enemyHit;
 
         public virtual PlayerCharacter Owner
         {
@@ -69,6 +71,11 @@ namespace Game.Mecanics
         {
         }
 
+        protected virtual void LateUpdate()
+        {
+            _enemyHit = false;
+        }
+
         public virtual void Attack(EnemyBase target = null)
         {
             if (IsAttacking)
@@ -78,6 +85,14 @@ namespace Game.Mecanics
 
             IsAttacking = true;
             WeaponTarget = target;
+
+            // check to execute only one time per attack
+            if (!_enemyHit)
+            {
+                OnWeaponHitEnemy.Invoke();
+            }
+
+            _enemyHit = true;
         }
     }
 }

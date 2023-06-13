@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 4170732870702380629}
   - component: {fileID: 4170732870702380628}
   - component: {fileID: 4170732870702380631}
+  - component: {fileID: -7260392776263476991}
   m_Layer: 8
   m_Name: Knight Boss
   m_TagString: Untagged
@@ -925,6 +926,9 @@ MonoBehaviour:
   OnKilled:
     m_PersistentCalls:
       m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
@@ -945,6 +949,22 @@ MonoBehaviour:
   IsWalkingAnimParam: Is Walking
   IsAttackinggAnimParam: Is Attacking
   IsPreparingAttackAnimParam: Is Preparing Attack
+--- !u!114 &-7260392776263476991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828062582601009654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a65581c8974624586bf336fe5128ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 4170732870702380631}
+  ParticlesLifeTime: 10
+  DamageParticle: {fileID: 4025750706894000198, guid: fc3af57601e16f245a84b1862194ce52, type: 3}
+  SpawnOffset: {x: 0, y: 2, z: 0}
 --- !u!1 &3932886846053023302
 GameObject:
   m_ObjectHideFlags: 0

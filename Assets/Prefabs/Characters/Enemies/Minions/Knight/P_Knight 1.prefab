@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 4600997979259983998}
   - component: {fileID: 6473210131379457887}
   - component: {fileID: 1746728225941494831}
+  - component: {fileID: -376233781092074049}
   m_Layer: 8
   m_Name: P_Knight 1
   m_TagString: Untagged
@@ -656,6 +657,9 @@ MonoBehaviour:
   OnKilled:
     m_PersistentCalls:
       m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
@@ -672,6 +676,22 @@ MonoBehaviour:
   WeaponID: 0
   NormalAttackLenght: 1.1
   SuperAttackLenght: 1.1
+--- !u!114 &-376233781092074049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559367916495870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a65581c8974624586bf336fe5128ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 1746728225941494831}
+  ParticlesLifeTime: 10
+  DamageParticle: {fileID: 4553287630450876387, guid: 15483e51212e3d74886ea57291f4639a, type: 3}
+  SpawnOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &1621345995067928
 GameObject:
   m_ObjectHideFlags: 0

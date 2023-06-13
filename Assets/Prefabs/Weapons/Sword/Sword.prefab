@@ -54,6 +54,9 @@ MonoBehaviour:
   OnSetOwner:
     m_PersistentCalls:
       m_Calls: []
+  OnWeaponHitEnemy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &834135579954457993
 PrefabInstance:
   m_ObjectHideFlags: 0

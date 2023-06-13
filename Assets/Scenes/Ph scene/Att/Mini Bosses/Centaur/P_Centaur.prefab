@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 4593259904300952}
   - component: {fileID: 95066954459912282}
   m_Layer: 0
-  m_Name: Centaur
+  m_Name: P_Centaur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

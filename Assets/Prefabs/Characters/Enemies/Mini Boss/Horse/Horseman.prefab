@@ -1109,6 +1109,7 @@ GameObject:
   - component: {fileID: 731870065768168091}
   - component: {fileID: 3468212913723198016}
   - component: {fileID: 8157558022683090608}
+  - component: {fileID: -1569058113939622987}
   m_Layer: 8
   m_Name: Horseman
   m_TagString: Untagged
@@ -1209,6 +1210,9 @@ MonoBehaviour:
   OnKilled:
     m_PersistentCalls:
       m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
@@ -1230,6 +1234,22 @@ MonoBehaviour:
   IsPreparingAttackAnimParam: Is Preparing Attack
   IsDeathAnimParam: Is Death
   UseSpecialAttackAnimParam: Use Special Attack
+--- !u!114 &-1569058113939622987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700939730225277385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a65581c8974624586bf336fe5128ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 8157558022683090608}
+  ParticlesLifeTime: 10
+  DamageParticle: {fileID: 5605165213012638216, guid: 258ae629eea24964d8c72923b3030eae, type: 3}
+  SpawnOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &1700950229789571659
 GameObject:
   m_ObjectHideFlags: 0

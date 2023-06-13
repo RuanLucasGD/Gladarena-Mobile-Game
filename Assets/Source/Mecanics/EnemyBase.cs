@@ -31,6 +31,7 @@ namespace Game.Mecanics
         [Header("Events")]
         public UnityEvent OnSpawned;
         public UnityEvent OnKilled;
+        public UnityEvent OnDamaged;
         public UnityEvent OnAttack;
 
         public bool IsStoped => MoveDirectionVelocity.magnitude == 0;
@@ -169,8 +170,9 @@ namespace Game.Mecanics
 
         public virtual void AddDamage(float damage)
         {
-            if (!enabled) return;
+            if (!enabled || IsDeath) return;
             CurrentLife -= damage;
+            OnDamaged.Invoke();
         }
 
         public virtual void AddExternalForce(Vector3 force)
