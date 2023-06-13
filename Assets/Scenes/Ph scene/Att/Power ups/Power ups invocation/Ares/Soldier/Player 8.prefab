@@ -788,17 +788,20 @@ MonoBehaviour:
     TurnSpeed: 10
     StopDistance: 1
     ExternalForceDeceleration: 200
+    MoveSpeedMultiplier: 0
   Weapon:
     WeaponObject: {fileID: 0}
     Hand: {fileID: 728712327388624748}
+    SequencialAttacks: 0
     AttackRate: 1
     AttackLengthMultiplier: 1
     AttackRateMultiplier: 1
     AttackDamageMultiplier: 1
     AttackDistanceMultiplier: 1
   Life:
-    LifeAmount: 650
+    InicialLife: 100
     AutoDestroyOnDeathDelay: 100000
+    LifeMultiplier: 0
     OnResetLife:
       m_PersistentCalls:
         m_Calls: []
