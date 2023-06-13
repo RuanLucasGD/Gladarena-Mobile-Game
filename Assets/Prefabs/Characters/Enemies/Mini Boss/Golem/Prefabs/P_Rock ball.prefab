@@ -128,5 +128,5 @@ MonoBehaviour:
   DestroyDistance: 1
   MoveSpeed: 1000
   Rb: {fileID: 2684967516325444758}
-  SpawnOnDestroy: {fileID: 625924594081731140, guid: a5f051c8f8a719f40a31bf46591d974d, type: 3}
+  SpawnOnDestroy: {fileID: 1462327970484030, guid: f01c1eba69de19e44b04d8d651aaac37, type: 3}
   SpawnLifeTime: 10

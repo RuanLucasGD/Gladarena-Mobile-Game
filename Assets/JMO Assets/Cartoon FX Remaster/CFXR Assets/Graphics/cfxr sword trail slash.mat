@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: cfxr sword trail slash
   m_Shader: {fileID: 4800000, guid: e198026df304af84a85675be636192ea, type: 3}
-  m_ShaderKeywords: _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_HDR_BOOST _CFXR_OVERLAYBLEND_RGBA
-    _CFXR_OVERLAYTEX_1X _CFXR_SINGLE_CHANNEL
+  m_ShaderKeywords: _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_FONT_COLORS _CFXR_HDR_BOOST
+    _CFXR_OVERLAYBLEND_RGBA _CFXR_OVERLAYTEX_1X _CFXR_SINGLE_CHANNEL
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,7 +60,7 @@ Material:
     - _DirectLightingRamp: 1
     - _DissolveAlongUVY: 0
     - _DissolveOffsetStrength: 0
-    - _DissolveSmooth: 0.05
+    - _DissolveSmooth: 0.275
     - _Distort: 0.1
     - _DoubleDissolve: 1
     - _DstBlend: 10
@@ -87,7 +87,7 @@ Material:
     - _UseEF: 0
     - _UseEmission: 0
     - _UseFB: 0
-    - _UseFontColor: 0
+    - _UseFontColor: 1
     - _UseLighting: 0
     - _UseLightingWorldPosOffset: 0
     - _UseNormalMap: 0
@@ -103,3 +103,4 @@ Material:
     - _OverlayTex_Scroll: {r: 1, g: 0, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticlesFadeDistance: {r: 0, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []

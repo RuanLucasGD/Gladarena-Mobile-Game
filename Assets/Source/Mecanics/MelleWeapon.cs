@@ -25,6 +25,8 @@ namespace Game.Mecanics
             }
         }
 
+
+
         public MelleWeapon()
         {
             DotAttackAngle = 0.5f;

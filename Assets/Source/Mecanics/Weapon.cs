@@ -7,6 +7,8 @@ namespace Game.Mecanics
 {
     public class Weapon : MonoBehaviour
     {
+        private PlayerCharacter _owner;
+
         [SerializeField]
         protected bool DebugLog;
 
@@ -22,12 +24,20 @@ namespace Game.Mecanics
         [Header("Animation")]
         public int AnimationID;
 
-        [Header("Sound")]
-        public AudioSource AttackAudioSource;
+        [Header("Events")]
+        public UnityEvent<PlayerCharacter> OnSetOwner;
 
         private bool _isAttacking;
 
-        public virtual PlayerCharacter Owner { get; set; }
+        public virtual PlayerCharacter Owner
+        {
+            get => _owner;
+            set
+            {
+                _owner = value;
+                OnSetOwner.Invoke(_owner);
+            }
+        }
 
         public bool IsAttacking { get; set; }
 
@@ -68,11 +78,6 @@ namespace Game.Mecanics
 
             IsAttacking = true;
             WeaponTarget = target;
-
-            if (AttackAudioSource)
-            {
-                AttackAudioSource.Play();
-            }
         }
     }
 }

@@ -73,6 +73,8 @@ namespace Game.Mecanics
             public float AttackDamageMultiplier;
             public float AttackDistanceMultiplier;
 
+            public UnityEvent OnStartAttack;
+
             public WeaponSlot()
             {
                 AttackRate = 0.2f;
@@ -173,7 +175,7 @@ namespace Game.Mecanics
         public InputAction HorizontalAction { get; private set; }
         public InputAction MobileJoystickAction { get; private set; }
         public Vector3 ExternalForces { get; private set; }
-       
+
         public Vector3 Forward { get; set; }
         public bool CanMove { get; set; }
         public bool EnablePlayerControl { get; set; }
@@ -195,7 +197,7 @@ namespace Game.Mecanics
         {
             InputMaps.InputAsset.Enable();
             CharacterController = GetComponent<CharacterController>();
-            
+
             CanMove = true;
             EnablePlayerControl = true;
             CurrentLife = MaxLife;
@@ -433,11 +435,11 @@ namespace Game.Mecanics
             }
 
             IsAttacking = true;
-
             Weapon.WeaponObject.Attack();
 
             var _attackLength = Weapon.WeaponObject.CurrentAttackLength * Weapon.SequencialAttacks;
             Invoke(nameof(FinalizeAttack), _attackLength);
+            Weapon.OnStartAttack.Invoke();
         }
 
         private void FinalizeAttack()

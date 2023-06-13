@@ -46,12 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugLog: 0
   AttackRange: 4
-  AttackDamage: 40
-  AttackLength: 1.1
+  AttackDamage: 50
+  AttackLength: 0.83
+  DotAttackAngle: 0.6
   Mesh: {fileID: 527510709882196184}
   AnimationID: 0
-  AttackAudioSource: {fileID: 0}
-  DotAttackAngle: 0.6
+  OnSetOwner:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &834135579954457993
 PrefabInstance:
   m_ObjectHideFlags: 0
