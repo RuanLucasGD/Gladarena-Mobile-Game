@@ -17,6 +17,7 @@ namespace Game.Mecanics
 
         [Space]
         public UnityEvent<bool> OnSetPausedGame;
+        public UnityEvent OnGameOver;
 
         [Space]
         public string PlayerTag;
@@ -96,6 +97,8 @@ namespace Game.Mecanics
                 Debug.LogError("Player not finded on scene");
                 return;
             }
+
+            Player.OnDeath.AddListener(() => OnGameOver.Invoke());
         }
 
         void Start()

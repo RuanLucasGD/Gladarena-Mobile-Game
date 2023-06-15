@@ -7,6 +7,9 @@ using Game.Mecanics;
 
 namespace Game.UI
 {
+    /// <summary>
+    /// Mostra informações ao jogador sobre a progressão de level, como "Level Completed/ Next level/ Game Over"
+    /// </summary>
     public class GameMatchWidgets : MonoBehaviour
     {
         [System.Serializable]
@@ -30,7 +33,6 @@ namespace Game.UI
         public Widget CompleteHorder;
         public Widget StartLevel;
         public Widget CompleteLevel;
-        public Widget GameWin;
         public Widget GameOver;
 
         private void Start()
@@ -39,13 +41,20 @@ namespace Game.UI
 
             if (ProgressionManager)
             {
+                // a cada nivel que começar, mostre a informação na tela
                 ProgressionManager.OnStartLevel.AddListener(ShowCompletedLevelWidget);
 
+                // mostre a informação que o jogador morreu quando morrer
+                GameManager.Instance.OnGameOver.AddListener(ShowGameOverWidget);
                 ShowStartLevelWidget(1);
-
             }
         }
 
+        /// <summary>
+        /// Mostra um widget de informação na tela do jogador
+        /// </summary>
+        /// <param name="widget">O modelo de widget que quer mostrar</param>
+        /// <param name="message">A mensagem do widget</param>
         private void ShowWidget(Widget widget, string message)
         {
             if (!widget.MainObject)
@@ -60,47 +69,56 @@ namespace Game.UI
                 return;
             }
 
-            // enable widget
+            // habilitando a informação
             widget.MainObject.SetActive(true);
 
-            // setup widget
+            // define a mensagem que o widget deve mostrar
             widget.Text.text = message;
 
-            // disable widget after time
+            // desabilita o widget apos algum tempo
             Delay(widget.LifeTime, () => DisableWidget(widget));
         }
 
+        // Desabilita algum widget
         private void DisableWidget(Widget widget)
         {
             widget.MainObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Desabilita todos os widgets que estão na tela
+        /// </summary>
         public void DisableAll()
         {
             DisableWidget(StartHorder);
             DisableWidget(CompleteHorder);
             DisableWidget(StartLevel);
             DisableWidget(CompleteLevel);
-            DisableWidget(GameWin);
             DisableWidget(GameOver);
         }
 
+        /// <summary>
+        /// Mostrar widget com informação de "nivel iniciado".
+        /// </summary>
+        /// <param name="newLevel">Qual nivel foi iniciado</param>
         private void ShowStartLevelWidget(int newLevel)
         {
             ShowWidget(StartLevel, $"LEVEL {newLevel} STARTED!");
         }
 
+        /// <summary>
+        /// Mostrar informação de "nivel completado"
+        /// </summary>
+        /// <param name="completedLevel">Qual nivel foi completado</param>
         private void ShowCompletedLevelWidget(int completedLevel)
         {
             ShowWidget(CompleteLevel, $"LEVEL {completedLevel} COMPLETED!");
             DisableWidget(CompleteHorder);
         }
 
-        private void ShowGameWinWidget()
-        {
-            ShowWidget(GameWin, "GAME WIN!");
-        }
-
+        /// <summary>
+        /// Mostra informação que o jogador morreu
+        /// </summary>
         private void ShowGameOverWidget()
         {
             ShowWidget(CompleteLevel, "GAME OVER!");
