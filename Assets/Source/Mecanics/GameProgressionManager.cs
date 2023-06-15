@@ -40,7 +40,7 @@ namespace Game.Mecanics
         {
             EnemyLevelProgression.EnemySpawnManager.OnEnemyKilled.AddListener(OnEnemyDeath);
             EnemyLevelProgression.EnemySpawnManager.OnEnemyKilled.AddListener(e => CheckEnemiesLevel());
-            EnemyLevelProgression.EnemySpawnManager.OnStartLevel.AddListener((l)  => OnStartLevel.Invoke(l));
+            EnemyLevelProgression.EnemySpawnManager.OnStartLevel.AddListener((l) => OnStartLevel.Invoke(l));
         }
 
         private void OnEnemyDeath(EnemyBase e)
@@ -53,6 +53,12 @@ namespace Game.Mecanics
 
         private void CheckEnemiesLevel()
         {
+            // não tem porque verificar o nivel se o jogador está morto.
+            if (GameManager.Instance.Player.IsDeath)
+            {
+                return;
+            }
+
             // don't count kills to not change level.
             // when is on boss level, change level only when kill the boss
             if (EnemyLevelProgression.EnemySpawnManager.IsOnBossLevel)
