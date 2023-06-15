@@ -11,6 +11,11 @@ namespace Game.UI
     {
         private void Awake()
         {
+            GameManager.Instance.OnSetPausedGame.AddListener((p) =>
+            {
+                if (p) DisableControl();
+                else EnableControl();
+            });
         }
 
         public void DisableControl()

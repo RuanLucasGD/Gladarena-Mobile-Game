@@ -23,7 +23,9 @@ namespace Game.UI
         void Start()
         {
             _powerUpsButtons = new List<PowerUpUiWidget>();
-            HidePowerUpsUI();
+
+            // avoid call unecessary "Pause Game"
+            gameObject.SetActive(false);
         }
 
         public void ShowPowerUpsUiIfHasUpgrades()
@@ -34,7 +36,7 @@ namespace Game.UI
                 {
                     ShowPowerUpsUI();
                 }
-               
+
                 return;
             }
 
@@ -50,7 +52,7 @@ namespace Game.UI
 
         public void ShowPowerUpsUI()
         {
-            SetupButtons(); 
+            SetupButtons();
             if (_powerUpsButtons.Count == 0)
             {
                 HidePowerUpsUI();
@@ -94,7 +96,7 @@ namespace Game.UI
 
                 if (_p != null && _b != null)
                 {
-                   
+
                     _b.Setup(_p, PowerUpManager);
                     _b.Button.interactable = !_p.IsFullUpgrade();
                 }

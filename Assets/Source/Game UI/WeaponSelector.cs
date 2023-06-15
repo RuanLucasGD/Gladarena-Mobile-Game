@@ -6,28 +6,24 @@ namespace Game.UI
 {
     public class WeaponSelector : MonoBehaviour
     {
+        public WeaponSelectionButton ButtonPrefab;
+        public Transform WeaponButtonsParent;
+
         public Weapon[] Weapons;
         public UnityEvent OnSelectWeapon;
 
-        private void Awake()
+        private void Start()
         {
-            OnSelectWeapon.AddListener(HideScreen);
-
-            if (MainMenuManager.Instance)
-            {
-                MainMenuManager.Instance.OnHideMainMenu.AddListener(ShowWhenExitMainMenu);
-                HideScreen();
-            }
+            ShowScreen();
         }
 
-        public void SetWeapon(int index)
+        private void OnEnable()
         {
-            if (index > Weapons.Length)
-            {
-                Debug.LogError($"Not exist weapon with index {index}");
-                return;
-            }
+            SetupWeaponsList();
+        }
 
+        public void SetWeapon(Weapon weapon)
+        {
             var _player = GameManager.Instance.Player;
 
             if (!_player)
@@ -36,25 +32,42 @@ namespace Game.UI
                 return;
             }
 
-            var _weapon = Instantiate(Weapons[index].gameObject).GetComponent<Weapon>();
+            var _weapon = Instantiate(weapon);
             _player.SetWeapon(_weapon);
-
             OnSelectWeapon.Invoke();
+            HideScreen();
         }
 
-        private void ShowScreen()
+        private void SetupWeaponsList()
+        {
+            OnSelectWeapon.AddListener(UnsetupWeaponList);
+
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                var _newWeaponButton = Instantiate(ButtonPrefab, WeaponButtonsParent);
+                _newWeaponButton.SetupButton(Weapons[i], this);
+                _newWeaponButton.OnSetWeapon.AddListener(() => OnSelectWeapon.RemoveListener(UnsetupWeaponList));
+            }
+        }
+
+        private void UnsetupWeaponList()
+        {
+            foreach (var b in FindObjectsOfType<WeaponSelectionButton>(true))
+            {
+                Destroy(b.gameObject);
+            }
+        }
+
+        public void ShowScreen()
         {
             gameObject.SetActive(true);
+            GameManager.Instance.GamePaused = true;
         }
 
-        private void HideScreen()
+        public void HideScreen()
         {
             gameObject.SetActive(false);
-        }
-
-        private void ShowWhenExitMainMenu()
-        {
-            ShowScreen();
+            GameManager.Instance.GamePaused = false;
         }
     }
 }

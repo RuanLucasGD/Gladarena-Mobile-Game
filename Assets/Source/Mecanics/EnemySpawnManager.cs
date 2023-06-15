@@ -106,7 +106,7 @@ namespace Game.Mecanics
 
         private void SpawnEnemyAfterTime()
         {
-            if (!CanSpawn)
+            if (!CanSpawn || GameManager.Instance.GamePaused)
             {
                 return;
             }
@@ -159,7 +159,7 @@ namespace Game.Mecanics
 
             var _newEnemy = SpawnEnemy(enemy.Prefabs[enemy.CurrentEnemySpawnedIndex]);
             enemy.CurrentEnemySpawnedIndex++;
-            
+
 
             var _level = CurrentLevels[CurrentLevels.Count - 1];
             var _damage = _level.IsUpgraded ? _level.DamageUpgrade : _level.DamageBase;
@@ -176,7 +176,7 @@ namespace Game.Mecanics
 
         private void SpawnMinBossAfterTime()
         {
-            if (IsOnBossLevel && HasEnemiesOnScene)
+            if ((IsOnBossLevel && HasEnemiesOnScene) || GameManager.Instance.GamePaused)
             {
                 return;
             }

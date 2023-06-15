@@ -350,7 +350,7 @@ namespace Game.Mecanics
 
         public void SetWeapon(Game.Mecanics.Weapon newWeapon)
         {
-            if (!enabled)
+            if (IsDeath)
             {
                 return;
             }
@@ -429,7 +429,7 @@ namespace Game.Mecanics
 
         private void Attack()
         {
-            if (!CanAttack || !enabled)
+            if (!CanAttack || !Weapon.WeaponObject || !enabled)
             {
                 return;
             }
