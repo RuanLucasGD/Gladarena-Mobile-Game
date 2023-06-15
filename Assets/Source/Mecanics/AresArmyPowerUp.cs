@@ -105,13 +105,6 @@ namespace Game.Mecanics
                 return $"{Levels[CurrentLevelIndex].ClonesAmount} player clone";
             }
 
-            //var _isLastedLevel = CurrentLevelIndex >= Levels.Length - 2;
-
-            //if (_isLastedLevel)
-            //{
-            //    return "Super clones";
-            //}
-
             var _lastLevel = Levels[CurrentLevelIndex];
             var _upgradedLevel = Levels[Mathf.Min(CurrentLevelIndex + 1, Levels.Length - 1)];
 
@@ -177,7 +170,7 @@ namespace Game.Mecanics
             else
             {
                 RecreateAllClones();
-            }   
+            }
         }
 
         private void SetupPowerUp()

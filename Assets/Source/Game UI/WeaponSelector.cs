@@ -9,7 +9,7 @@ namespace Game.UI
         public WeaponSelectionButton ButtonPrefab;
         public Transform WeaponButtonsParent;
 
-        public Weapon[] Weapons;
+        public MelleWeapon[] Weapons;
         public UnityEvent OnSelectWeapon;
 
         private void Start()
@@ -22,7 +22,7 @@ namespace Game.UI
             SetupWeaponsList();
         }
 
-        public void SetWeapon(Weapon weapon)
+        public void SetWeapon(MelleWeapon weapon)
         {
             var _player = GameManager.Instance.Player;
 
@@ -34,8 +34,11 @@ namespace Game.UI
 
             var _weapon = Instantiate(weapon);
             _player.SetWeapon(_weapon);
+            
             OnSelectWeapon.Invoke();
             HideScreen();
+
+            _player.StartAttack();
         }
 
         private void SetupWeaponsList()

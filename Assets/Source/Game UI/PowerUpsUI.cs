@@ -25,7 +25,7 @@ namespace Game.UI
             _powerUpsButtons = new List<PowerUpUiWidget>();
 
             // avoid call unecessary "Pause Game"
-            gameObject.SetActive(false);
+            PowerUpsScreen.SetActive(false);
         }
 
         public void ShowPowerUpsUiIfHasUpgrades()

@@ -12,7 +12,7 @@ namespace Game.Mecanics
             {
                 if (_instance == null)
                 {
-                    _instance = FindObjectOfType<PowerUpManager>();
+                    _instance = FindObjectOfType<PowerUpManager>(true);
                 }
 
                 return _instance;
@@ -70,7 +70,7 @@ namespace Game.Mecanics
             if (HasPowerUp(powerUp))
             {
                 powerUp.Upgrade();
-             
+
                 if (!powerUp.IsFullUpgrade())
                 {
                     powerUp.OnUpgrated.Invoke();

@@ -8,7 +8,7 @@ namespace Game.Mecanics
     public class PlayWeaponEffect : MonoBehaviour
     {
         public ParticleSystem AttackEffect;
-        public Weapon Weapon;
+        public MelleWeapon Weapon;
         public PlayerCharacter _player;
 
         void Awake()

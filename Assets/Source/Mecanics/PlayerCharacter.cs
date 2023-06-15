@@ -63,7 +63,7 @@ namespace Game.Mecanics
         [System.Serializable]
         public class WeaponSlot
         {
-            public Weapon WeaponObject;
+            public MelleWeapon WeaponObject;
             public Transform Hand;
 
             public int SequencialAttacks;
@@ -157,10 +157,14 @@ namespace Game.Mecanics
 
         public CharacterController CharacterController { get; set; }
 
-        public float MaxLife => Life.InicialLife * Life.LifeMultiplier;
+        public float CurrentMaxLife => Life.InicialLife * Life.LifeMultiplier;
         public float CurrentAttackRate => Weapon.AttackRate * Weapon.AttackRateMultiplier;
         public float CurrentAttackDistance => Weapon.WeaponObject.AttackRange * Weapon.AttackDistanceMultiplier;
+        public float CurrentAttackDamage => Weapon.WeaponObject.AttackDamage * Weapon.AttackDamageMultiplier;
         public float CurrentMoveSpeed => Movimentation.MoveSpeed * Movimentation.MoveSpeedMultiplier;
+        public float CurrentAttackLength => Weapon.WeaponObject.AttackLength * Weapon.AttackLengthMultiplier;
+
+
         public bool HasWeapon => Weapon.WeaponObject;
         public bool IsGrounded => CharacterController.isGrounded;
         public bool IsStoped => CharacterMoveDirection.magnitude < 0.1f;
@@ -200,7 +204,7 @@ namespace Game.Mecanics
 
             CanMove = true;
             EnablePlayerControl = true;
-            CurrentLife = MaxLife;
+            CurrentLife = CurrentMaxLife;
             LookAtDirection = transform.forward;
 
             if (!CharacterController)
@@ -230,8 +234,6 @@ namespace Game.Mecanics
             VerticalAction = InputMaps.InputAsset.FindAction(InputMaps.VerticalAction, throwIfNotFound: true);
             HorizontalAction = InputMaps.InputAsset.FindAction(InputMaps.HorizontalAction, throwIfNotFound: true);
             MobileJoystickAction = InputMaps.InputAsset.FindAction(InputMaps.MobileJoystickAction, throwIfNotFound: true);
-
-            Attack();
         }
 
         private void Update()
@@ -344,11 +346,11 @@ namespace Game.Mecanics
             {
                 Animation.Animator.SetBool(Animation.IsSuperAttack, Weapon.WeaponObject.IsSuperAttack);
                 Animation.Animator.SetInteger(Animation.AttackAnimationID, Weapon.WeaponObject.AnimationID);
-                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, Weapon.WeaponObject.CurrentAttackLength);
+                Animation.Animator.SetFloat(Animation.AttackAnimSpeed, CurrentAttackLength);
             }
         }
 
-        public void SetWeapon(Game.Mecanics.Weapon newWeapon)
+        public void SetWeapon(Game.Mecanics.MelleWeapon newWeapon)
         {
             if (IsDeath)
             {
@@ -427,7 +429,7 @@ namespace Game.Mecanics
             }
         }
 
-        private void Attack()
+        public void StartAttack()
         {
             if (!CanAttack || !Weapon.WeaponObject || !enabled)
             {
@@ -437,7 +439,7 @@ namespace Game.Mecanics
             IsAttacking = true;
             Weapon.WeaponObject.Attack();
 
-            var _attackLength = Weapon.WeaponObject.CurrentAttackLength * Weapon.SequencialAttacks;
+            var _attackLength = CurrentAttackLength * Weapon.SequencialAttacks;
             Invoke(nameof(FinalizeAttack), _attackLength);
             Weapon.OnStartAttack.Invoke();
         }
@@ -445,8 +447,10 @@ namespace Game.Mecanics
         private void FinalizeAttack()
         {
             IsAttacking = false;
-            Weapon.WeaponObject.IsAttacking = false;
-            Invoke(nameof(Attack), CurrentAttackRate);
+            Weapon.WeaponObject.DisableAttack();
+
+            // reinicie o ataque novamente
+            Invoke(nameof(StartAttack), CurrentAttackRate);
         }
 
         public void KillCharacter()
@@ -461,7 +465,7 @@ namespace Game.Mecanics
 
         public void ResetLife()
         {
-            CurrentLife = MaxLife;
+            CurrentLife = CurrentMaxLife;
             Life.OnResetLife.Invoke();
 
             if (IsDeath)
