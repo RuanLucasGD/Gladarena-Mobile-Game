@@ -914,17 +914,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   StopDistance: 5
-  AttacksAmount: 3
-  AttackForce: 70
-  AttackStopDistance: 10
+  WalkTime: 4
+  DashsAmount: 3
+  PrepareDashTime: 2.2
+  DashTime: 1.5
+  DashAttackForce: 50
+  DashStopOffset: 10
   MoveRandomDistance: 25
   TurnSpeed: 100
   ObstaclesLayer:
     serializedVersion: 2
     m_Bits: 64
-  WalkTime: 4
-  PrepareAttackTime: 2.2
-  AttackTime: 1.3
   IsDeathAnimParam: Is Death
   IsWalkingAnimParam: Is Walking
   IsAttackinggAnimParam: Is Attacking

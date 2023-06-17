@@ -3,25 +3,26 @@ using Game.Utils;
 
 namespace Game.Mecanics
 {
+    /// <summary>
+    /// Boss que anda aleatoriamente pelo mapa e ataca o jogador usando dash jogando o player para longe
+    /// </summary>
     public class KnightBoss : EnemyBase
     {
-        [Header("Basic")]
+        [Header("Walk to Random Points")]
         public float StopDistance;
+        public float WalkTime;
 
-        [Header("Attack")]
-        public int AttacksAmount;
-        public float AttackForce;
-        public float AttackStopDistance;
+        [Header("Dash Attack")]
+        public int DashsAmount;
+        public float PrepareDashTime;
+        public float DashTime;
+        public float DashAttackForce;
+        public float DashStopOffset;
 
         [Header("Walk Random")]
         public float MoveRandomDistance;
         public float TurnSpeed;
         public LayerMask ObstaclesLayer;
-
-        [Header("States Control")]
-        public float WalkTime;
-        public float PrepareAttackTime;
-        public float AttackTime;
 
         [Header("Animation")]
         public string IsDeathAnimParam;
@@ -35,9 +36,14 @@ namespace Game.Mecanics
         private Vector3 _moveTo;
         private Vector3 _startAttackPos;
 
+        // O IsOnScreen padrão não funcionou muito bem para esse modelo em especifico
+        // pois o tamanho dele gerava uma BoundBox grande demais que não representava corretamente
+        // se o modelo do boss está realmente dentro do campo de visão.
+        // Então verificar a posição central dele funcionou melhor nesse caso
         public new bool IsOnScreen => CameraUtils.IsPointOnView(transform.position, Camera.main);
 
-        public bool IsPreparingAttack { get; private set; }
+        // True se o boss está preparando para fazer o dash
+        public bool IsPreparingDash { get; private set; }
 
         protected override void Start()
         {
@@ -51,15 +57,19 @@ namespace Game.Mecanics
 
         protected override void Update()
         {
-            if (CurrentLife <= 0)
+            if (Target.IsDeath)
             {
                 CurrentState = IdleState;
                 CurrentState();
+                return;
+            }
+
+            if (CurrentLife <= 0)
+            {
                 Death();
             }
 
             base.Update();
-
             UpdateAnimations();
         }
 
@@ -70,9 +80,12 @@ namespace Game.Mecanics
                 return;
             }
 
+            // aplica dano no jogador e o joga pra longe se estiver fazendo dash
             if (other.TryGetComponent<PlayerCharacter>(out var player))
             {
-                player.AddExternalForces((player.transform.position - Rb.position).normalized * AttackForce);
+                var _throwPlayerDirection = (player.transform.position - Rb.position).normalized;
+                var _thorwPlayerForce = _throwPlayerDirection * DashAttackForce;
+                player.AddExternalForces(_thorwPlayerForce * DashAttackForce);
                 player.AddDamage(AttackDamage);
             }
         }
@@ -84,12 +97,20 @@ namespace Game.Mecanics
 
         private void FollowTargetState()
         {
-            MoveDirectionVelocity = (Target.transform.position - Rb.position).normalized * MoveSpeed;
+            var _targetDirection = (Target.transform.position - Rb.position).normalized;
+            var _walkVelocity = _targetDirection * MoveSpeed;
+
+            MoveDirectionVelocity = _walkVelocity;
             LookTo(MoveDirectionVelocity, TurnSpeed);
 
+            // só ataque o jogador se o boss estiver na visão do player
             if (IsOnScreen)
             {
-                CurrentState = PrepareAttackState;
+                CurrentState = PrepareDashAttackState;
+
+                // Não caminhe aleatoriamente, vá direto para a preparação de ataque
+                // se não deixaria a gameplay muito lenta
+                //CurrentState = WalkRantomState;
             }
         }
 
@@ -102,43 +123,54 @@ namespace Game.Mecanics
             }
 
             var _distanceToTarget = Vector3.Distance(Rb.position, _moveTo);
-            var _generateNewRandomPos = _distanceToTarget < StopDistance || MoveDirectionVelocity == Vector3.zero;
+            var _isTargetNear = _distanceToTarget < StopDistance;
+
+            // verifica se deve gerar alguma posição aleatoria na qual o boss deve ir
+            var _generateNewRandomPos = _isTargetNear || MoveDirectionVelocity == Vector3.zero;
 
             if (_generateNewRandomPos)
             {
+                // gera alguma posição aleatoria proximo ao boss
                 _moveTo = GetRandomPosition();
 
+                // evita que o boss caminhe em direção a algum obstaculo
+                // casp tenha obstaculo faça com que ele ande até um ponto antes do obstaculo
                 if (Physics.Linecast(Rb.position, _moveTo, out var hit, ObstaclesLayer))
                 {
                     _moveTo = hit.point;
                 }
             }
 
+            // se mova até a posição aleatoria
             MoveDirectionVelocity = (_moveTo - Rb.position).normalized * MoveSpeed;
+            LookTo(MoveDirectionVelocity, TurnSpeed);
 
+            // depois de andar o suficiente se prepare para atacar
             if (StateExecutionTime >= WalkTime)
             {
-                CurrentState = PrepareAttackState;
+                CurrentState = PrepareDashAttackState;
+                return;
             }
-
-            LookTo(MoveDirectionVelocity, TurnSpeed);
         }
 
-        private void PrepareAttackState()
+        private void PrepareDashAttackState()
         {
+            // faça o dash apenas se estiver no campo de visão do jogador
             if (!IsOnScreen)
             {
                 CurrentState = FollowTargetState;
-                IsPreparingAttack = false;
+                IsPreparingDash = false;
                 return;
             }
 
-            IsPreparingAttack = true;
+            // Pare, olhe para o personagem alvo e depois começe o dash
+
+            IsPreparingDash = true;
             MoveDirectionVelocity = Vector3.zero;
 
-            if (StateExecutionTime >= PrepareAttackTime)
+            if (StateExecutionTime >= PrepareDashTime)
             {
-                IsPreparingAttack = false;
+                IsPreparingDash = false;
                 CurrentState = AttackState;
                 return;
             }
@@ -149,44 +181,46 @@ namespace Game.Mecanics
 
         private void AttackState()
         {
-            // start attack
+            // comece o dash descobrindo para onde deve ir
             if (!IsAttacking)
             {
                 IsAttacking = true;
                 var _directionToTarget = (Target.transform.position - Rb.position).normalized;
-                var _stopOffset = _directionToTarget * AttackStopDistance;
+                var _stopOffset = _directionToTarget * DashStopOffset;
 
                 _startAttackPos = Rb.position;
                 _moveTo = Target.transform.position + _stopOffset;
                 _currentAttackProgression = 0f;
 
+                // evite colidir em obstaculos durante o dash
                 if (Physics.Linecast(Rb.position, _moveTo, out var hit, ObstaclesLayer))
                 {
                     _moveTo = hit.point;
 
-                    // avoit to take the obstacle on finish attack
+                    // evite o obstaculo parando antes de bater 
                     _moveTo -= _directionToTarget * StopDistance;
                 }
             }
 
-            _currentAttackProgression += Time.deltaTime * AttackTime;
+            // se movendo até a posição do fim do dash
+            _currentAttackProgression += Time.deltaTime * DashTime;
             _currentAttackProgression = Mathf.Min(_currentAttackProgression, 1);
             Rb.MovePosition(Vector3.Lerp(_startAttackPos, _moveTo, _currentAttackProgression));
 
-            // finish current attack
-            if (StateExecutionTime >= AttackTime)
+            // finaliza o dash
+            if (StateExecutionTime >= DashTime)
             {
                 IsAttacking = false;
                 _currentAttackProgression = 0f;
 
                 _currentAttacksAmount++;
 
-                // remake attack
-                if (_currentAttacksAmount < AttacksAmount)
+                // refaça o dash se necessario
+                if (_currentAttacksAmount < DashsAmount)
                 {
-                    CurrentState = PrepareAttackState;
+                    CurrentState = PrepareDashAttackState;
                 }
-                // start walk
+                // se não volte a andar
                 else
                 {
                     _currentAttacksAmount = 0;
@@ -197,10 +231,9 @@ namespace Game.Mecanics
 
         private Vector3 GetRandomPosition()
         {
-            var _randomOffset = new Vector3(Random.Range(-MoveRandomDistance, MoveRandomDistance),
-                                            0,
-                                            Random.Range(-MoveRandomDistance, MoveRandomDistance));
-
+            var x = Random.Range(-MoveRandomDistance, MoveRandomDistance);
+            var z = Random.Range(-MoveRandomDistance, MoveRandomDistance);
+            var _randomOffset = new Vector3(x, 0, z);
             return Rb.position + _randomOffset;
         }
 
@@ -208,7 +241,7 @@ namespace Game.Mecanics
         {
             Animator.SetBool(IsDeathAnimParam, IsDeath);
             Animator.SetBool(IsWalkingAnimParam, !IsStoped);
-            Animator.SetBool(IsPreparingAttackAnimParam, IsPreparingAttack);
+            Animator.SetBool(IsPreparingAttackAnimParam, IsPreparingDash);
             Animator.SetBool(IsAttackinggAnimParam, IsAttacking);
         }
     }
