@@ -324,7 +324,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7460744865382277442
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -337,10 +337,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &7410771597584302969
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -408,8 +410,8 @@ MonoBehaviour:
   TurnSpeed: 20
   ThrowRockInterval: 2
   Hand: {fileID: 1414435708}
-  Ball: {fileID: 2684967516325444745, guid: 433097676182ff444979c99959e16e12, type: 3}
-  UseMelleAttackDistance: 3
+  BallPrefab: {fileID: 2684967516325444745, guid: 433097676182ff444979c99959e16e12, type: 3}
+  UseMelleAttackDistance: 4
   OnThrowBall:
     m_PersistentCalls:
       m_Calls: []
