@@ -83,9 +83,11 @@ namespace Game.Mecanics
             // aplica dano no jogador e o joga pra longe se estiver fazendo dash
             if (other.TryGetComponent<PlayerCharacter>(out var player))
             {
-                var _throwPlayerDirection = (player.transform.position - Rb.position).normalized;
+                var _throwPlayerDirection = (player.transform.position - Rb.position);
+                _throwPlayerDirection /= _throwPlayerDirection.magnitude;
+
                 var _thorwPlayerForce = _throwPlayerDirection * DashAttackForce;
-                player.AddExternalForces(_thorwPlayerForce * DashAttackForce);
+                player.AddExternalForces(_thorwPlayerForce);
                 player.AddDamage(AttackDamage);
             }
         }

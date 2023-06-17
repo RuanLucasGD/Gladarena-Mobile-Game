@@ -305,13 +305,15 @@ namespace Game.Mecanics
 
         private void UpdateExternalForces(float delta)
         {
-            if (ExternalForces.magnitude <= 0.1f)
+            var _decelerationSpeed = Movimentation.ExternalForceDeceleration * delta;
+
+            if (_decelerationSpeed > ExternalForces.magnitude)
             {
                 ExternalForces = Vector3.zero;
                 return;
             }
 
-            ExternalForces -= (ExternalForces / ExternalForces.magnitude) * Movimentation.ExternalForceDeceleration * delta;
+            ExternalForces -= (ExternalForces / ExternalForces.magnitude) * _decelerationSpeed;
         }
 
         private void UpdateRotation(float delta)
