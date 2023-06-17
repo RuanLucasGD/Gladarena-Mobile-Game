@@ -41,9 +41,9 @@ namespace Game.Mecanics
 
         public PlayerCharacter Target { get; set; }
 
-        public float CurrentLife { get; protected set; }
         public bool IsDeath { get; private set; }
-        public bool IsOnScreen { get; private set; }
+        public float CurrentLife { get; protected set; }
+        public bool IsOnScreen { get; protected set; }
         public bool IsAttacking { get; protected set; }
         public Vector3 ExternalForce { get; private set; }
 

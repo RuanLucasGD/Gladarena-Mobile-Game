@@ -1,4 +1,5 @@
 using UnityEngine;
+using Game.Utils;
 
 namespace Game.Mecanics
 {
@@ -34,6 +35,8 @@ namespace Game.Mecanics
         private Vector3 _moveTo;
         private Vector3 _startAttackPos;
 
+        public new bool IsOnScreen => CameraUtils.IsPointOnView(transform.position, Camera.main);
+
         public bool IsPreparingAttack { get; private set; }
 
         protected override void Start()
@@ -41,17 +44,24 @@ namespace Game.Mecanics
             base.Start();
             CurrentState = WalkRantomState;
             _moveTo = GetRandomPosition();
+
+            // pegue apenas o player original
+            Target = GameManager.Instance.Player;
         }
 
         protected override void Update()
         {
-            base.Update();
-            UpdateAnimations();
-
             if (CurrentLife <= 0)
             {
+                CurrentState = IdleState;
+                CurrentState();
+
                 Death();
             }
+
+            base.Update();
+
+            UpdateAnimations();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -68,8 +78,30 @@ namespace Game.Mecanics
             }
         }
 
+        private void IdleState()
+        {
+            MoveDirectionVelocity = Vector3.zero;
+        }
+
+        private void FollowTargetState()
+        {
+            MoveDirectionVelocity = (Target.transform.position - Rb.position).normalized * MoveSpeed;
+            LookTo(MoveDirectionVelocity, TurnSpeed);
+
+            if (IsOnScreen)
+            {
+                CurrentState = PrepareAttackState;
+            }
+        }
+
         private void WalkRantomState()
         {
+            if (!IsOnScreen)
+            {
+                CurrentState = FollowTargetState;
+                return;
+            }
+
             var _distanceToTarget = Vector3.Distance(Rb.position, _moveTo);
             var _generateNewRandomPos = _distanceToTarget < StopDistance || MoveDirectionVelocity == Vector3.zero;
 
@@ -83,19 +115,11 @@ namespace Game.Mecanics
                 }
             }
 
-            if (!IsOnScreen)
-            {
-                _moveTo = Target.transform.position;
-            }
-
             MoveDirectionVelocity = (_moveTo - Rb.position).normalized * MoveSpeed;
 
-            if (StateExecutionTime >= WalkTime && IsOnScreen)
+            if (StateExecutionTime >= WalkTime)
             {
-                if (!Target.IsDeath)
-                {
-                    CurrentState = PrepareAttackState;
-                }
+                CurrentState = PrepareAttackState;
             }
 
             LookTo(MoveDirectionVelocity, TurnSpeed);
@@ -103,9 +127,9 @@ namespace Game.Mecanics
 
         private void PrepareAttackState()
         {
-            if (Target.IsDeath || !IsOnScreen)
+            if (!IsOnScreen)
             {
-                CurrentState = WalkRantomState;
+                CurrentState = FollowTargetState;
                 IsPreparingAttack = false;
                 return;
             }
@@ -117,6 +141,7 @@ namespace Game.Mecanics
             {
                 IsPreparingAttack = false;
                 CurrentState = AttackState;
+                return;
             }
 
             _moveTo = Target.transform.position;
@@ -125,14 +150,6 @@ namespace Game.Mecanics
 
         private void AttackState()
         {
-            if (!IsOnScreen)
-            {
-                CurrentState = WalkRantomState;
-                _currentAttackProgression = 0f;
-                IsAttacking = false;
-                return;
-            }
-
             // start attack
             if (!IsAttacking)
             {

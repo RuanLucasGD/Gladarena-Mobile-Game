@@ -1912,7 +1912,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
     MaxAsyncSpawns: 3
-    BossLevelInterval: 2
+    BossLevelInterval: 1
     MiniBossTimeInterval: 10
   Enemies:
   - Name: Death Knight
@@ -3410,7 +3410,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Life.InicialLife
-      value: 100
+      value: 9999
       objectReference: {fileID: 0}
     - target: {fileID: 791881012, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
       propertyPath: Weapon.WeaponObject

@@ -57,6 +57,9 @@ namespace Game.Mecanics
         {
             base.Start();
             CurrentState = FollowTargetState;
+
+            // pegue apenas o player original
+            Target = GameManager.Instance.Player;
         }
 
         protected override void Update()
