@@ -1970,9 +1970,6 @@ MonoBehaviour:
   - {fileID: 4170732870702380631, guid: c508e03c779c5364ba845ee99f6441dc, type: 3}
   MiniBoses:
   - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
-  - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
-  - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
-  - {fileID: 7410771597584302970, guid: 53a4dbd39cf3a7f4d85d69af6346ee2d, type: 3}
   FirstLevel:
     LifeBase: 1
     DamageBase: 1

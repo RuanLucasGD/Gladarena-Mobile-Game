@@ -155,7 +155,7 @@ namespace Game.Mecanics
             }
         }
 
-        // called by character animator event
+        /// <inheritdoc/>
         public override void AttackAnimationEvent()
         {
             if (!IsAttacking)

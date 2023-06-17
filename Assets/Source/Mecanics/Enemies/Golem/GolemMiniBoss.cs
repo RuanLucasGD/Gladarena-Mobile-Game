@@ -157,14 +157,7 @@ namespace Game.Mecanics
             Animator.SetBool(IsDeathAnimParam, IsDeath);
         }
 
-        /// <summary>
-        /// executado pelo Animator do golem
-        /// A cada vez que a animação de ataque for executada
-        /// a animação deve chamar esse metodo e aplicar o ataque
-        /// Se esse metodo não estiver sendo executado verifique se a animação
-        /// do golem possui os eventos de animação
-        /// https://docs.unity3d.com/Manual/script-AnimationWindowEvent.html
-        /// </summary>
+        /// <inheritdoc/>
         public override void AttackAnimationEvent()
         {
             base.AttackAnimationEvent();
