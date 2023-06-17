@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Mecanics
 {
-    public class Enemy : EnemyBase
+    public class MinionEnemy : EnemyBase
     {
         [Header("Basic")]
         public float AttackInterval;

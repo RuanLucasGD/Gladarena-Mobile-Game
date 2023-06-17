@@ -35,7 +35,7 @@ namespace Game.Mecanics
                 Player.enabled = !value;
 
                 // disable characters control when pause game
-                foreach (var c in FindObjectsOfType<Enemy>(true))
+                foreach (var c in FindObjectsOfType<MinionEnemy>(true))
                 {
                     c.enabled = !value;
                 }

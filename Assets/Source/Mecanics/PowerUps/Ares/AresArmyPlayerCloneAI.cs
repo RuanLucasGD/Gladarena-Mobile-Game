@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Mecanics
 {
-    public class PlayerCloneAI : MonoBehaviour
+    public class AresArmyPlayerCloneAI : MonoBehaviour
     {
         public bool ExplodeOnDeath { get; set; }
         public bool FollowPlayer { get; set; }

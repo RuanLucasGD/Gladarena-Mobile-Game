@@ -47,7 +47,7 @@ namespace Game.Mecanics
 
             for (int i = 0; i < _colliders.Length; i++)
             {
-                if (_colliders[i].TryGetComponent<Enemy>(out var enemy))
+                if (_colliders[i].TryGetComponent<MinionEnemy>(out var enemy))
                 {
                     var _additionalForce = Force - enemy.ExternalForce.magnitude;
                     ExpelEnemy(enemy, _additionalForce);

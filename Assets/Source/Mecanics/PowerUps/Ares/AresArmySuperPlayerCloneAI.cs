@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Mecanics
 {
-    public class SuperPlayerCloneAI : PlayerCloneAI
+    public class AresArmySuperPlayerCloneAI : AresArmyPlayerCloneAI
     {
         [Header("Super Clone")]
         public float StartDashDelay;

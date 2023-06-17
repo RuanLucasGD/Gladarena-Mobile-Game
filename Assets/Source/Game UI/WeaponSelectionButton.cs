@@ -10,7 +10,7 @@ namespace Game.UI
     /// </summary>
     public class WeaponSelectionButton : MonoBehaviour
     {
-        public MelleWeapon Weapon;
+        public PlayerMelleWeapon Weapon;
         public Button Button;
         public Text WeaponNameText;
 
@@ -21,7 +21,7 @@ namespace Game.UI
         /// </summary>
         /// <param name="weapon"></param>
         /// <param name="selector"></param>
-        public void SetupButton(MelleWeapon weapon, WeaponSelector selector)
+        public void SetupButton(PlayerMelleWeapon weapon, WeaponSelector selector)
         {
             Weapon = weapon;
             WeaponNameText.text = Weapon.name;

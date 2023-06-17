@@ -63,7 +63,7 @@ namespace Game.Mecanics
         [System.Serializable]
         public class WeaponSlot
         {
-            public MelleWeapon WeaponObject;
+            public PlayerMelleWeapon WeaponObject;
             public Transform Hand;
 
             public int SequencialAttacks;
@@ -350,7 +350,7 @@ namespace Game.Mecanics
             }
         }
 
-        public void SetWeapon(Game.Mecanics.MelleWeapon newWeapon)
+        public void SetWeapon(Game.Mecanics.PlayerMelleWeapon newWeapon)
         {
             if (IsDeath)
             {

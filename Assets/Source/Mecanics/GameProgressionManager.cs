@@ -45,7 +45,7 @@ namespace Game.Mecanics
 
         private void OnEnemyDeath(EnemyBase e)
         {
-            if (e.Type == Enemy.EnemyType.Boss)
+            if (e.Type == MinionEnemy.EnemyType.Boss)
             {
                 EnemyLevelProgression.EnemySpawnManager.SetNextLevel();
             }

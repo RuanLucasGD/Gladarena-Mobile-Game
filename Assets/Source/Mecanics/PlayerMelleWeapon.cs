@@ -8,7 +8,7 @@ namespace Game.Mecanics
     /// <summary>
     /// Arma branca do jogador, aplica ataques aos inimigos proximos que estiverem a frente.
     /// </summary>
-    public class MelleWeapon : MonoBehaviour
+    public class PlayerMelleWeapon : MonoBehaviour
     {
         [SerializeField]
         private bool DebugLog;
@@ -79,7 +79,7 @@ namespace Game.Mecanics
         /// </summary>
         public bool IsSuperAttack { get; set; }
 
-        public MelleWeapon()
+        public PlayerMelleWeapon()
         {
             DotAttackAngle = 0.5f;
             AttackRange = 3;

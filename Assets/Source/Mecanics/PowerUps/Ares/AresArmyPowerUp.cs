@@ -58,7 +58,7 @@ namespace Game.Mecanics
         public PlayerCloneBehaviour CloneBehaviour;
         public Level[] Levels;
 
-        private List<PlayerCloneAI> _currentPlayerClones;
+        private List<AresArmyPlayerCloneAI> _currentPlayerClones;
         private AresArmyItem _powerUpItem;
 
         private bool _destroyClonesOnStartLevel;
@@ -81,7 +81,7 @@ namespace Game.Mecanics
             }
 
             OnSetupPowerUp.AddListener(SetupPowerUp);
-            _currentPlayerClones = new List<PlayerCloneAI>();
+            _currentPlayerClones = new List<AresArmyPlayerCloneAI>();
         }
 
         public override bool IsFullUpgrade()
@@ -181,7 +181,7 @@ namespace Game.Mecanics
             }
         }
 
-        private PlayerCloneAI CreateClone()
+        private AresArmyPlayerCloneAI CreateClone()
         {
             var _originalPlayer = GameManager.Instance.Player;
 
@@ -193,7 +193,7 @@ namespace Game.Mecanics
             return CreateClone(_randomSpawnPos);
         }
 
-        private PlayerCloneAI CreateClone(Vector3 position)
+        private AresArmyPlayerCloneAI CreateClone(Vector3 position)
         {
             var _originalPlayer = GameManager.Instance.Player;
             var _hasCustomPlayerModel = Levels[CurrentLevelIndex].CustomPlayer != null;
@@ -217,11 +217,11 @@ namespace Game.Mecanics
             }
 
             // adding AI to clone
-            var _playerCloneAi = _playerClone.GetComponent<PlayerCloneAI>();
+            var _playerCloneAi = _playerClone.GetComponent<AresArmyPlayerCloneAI>();
 
             if (!_playerCloneAi)
             {
-                _playerCloneAi = _playerClone.gameObject.AddComponent<PlayerCloneAI>();
+                _playerCloneAi = _playerClone.gameObject.AddComponent<AresArmyPlayerCloneAI>();
             }
 
             _playerCloneAi.Clone = _playerClone;
@@ -235,7 +235,7 @@ namespace Game.Mecanics
             return _playerCloneAi;
         }
 
-        private void ResetClone(PlayerCloneAI cloneAi)
+        private void ResetClone(AresArmyPlayerCloneAI cloneAi)
         {
             var _playerClone = cloneAi.Clone;
             var _currentLevel = Levels[CurrentLevelIndex];
@@ -259,7 +259,7 @@ namespace Game.Mecanics
             _playerClone.ResetLife();
         }
 
-        private void SetupCloneEvents(PlayerCloneAI playerCloneAI)
+        private void SetupCloneEvents(AresArmyPlayerCloneAI playerCloneAI)
         {
             playerCloneAI.Clone.OnDamaged.RemoveAllListeners();
             playerCloneAI.Clone.OnDeath.RemoveAllListeners();
@@ -337,7 +337,7 @@ namespace Game.Mecanics
 
             for (int i = _currentClonesAmount; i < _maxClonesAmount; i++)
             {
-                PlayerCloneAI _newClone = null;
+                AresArmyPlayerCloneAI _newClone = null;
 
                 if (!Levels[CurrentLevelIndex].FollowPlayer)
                 {
