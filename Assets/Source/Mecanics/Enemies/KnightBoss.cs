@@ -55,7 +55,6 @@ namespace Game.Mecanics
             {
                 CurrentState = IdleState;
                 CurrentState();
-
                 Death();
             }
 

@@ -25,6 +25,8 @@ namespace Game.Mecanics
         protected virtual void Start()
         {
             Clone.EnablePlayerControl = false;
+            Clone.StartAttack();
+
             IsStoped = false;
             _originalPlayer = GameManager.Instance.Player;
 
