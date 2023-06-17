@@ -3467,6 +3467,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9204533177436059720, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204533177436059720, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63da0c9a359dc3f419c66a3129c012e4, type: 3}
 --- !u!1 &1643333197

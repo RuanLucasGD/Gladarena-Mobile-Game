@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Game.Mecanics;
 
@@ -11,18 +9,13 @@ namespace Game.Effects
         public AudioClip WeaponAttackClip;
         public PlayerCharacter Character;
 
-        void Start()
+        private void Start()
         {
-            Character.Weapon.OnStartAttack.AddListener(PlayAttackSound);
-        }
-
-        private void Update()
-        {
-            // works only on original player
+            // deve funcionar apenas no player original
+            // clones do player não possuem a tag Player
             if (transform.tag != "Player")
             {
-                Character.Weapon.OnStartAttack.RemoveListener(PlayAttackSound);
-                Destroy(this);
+                enabled = false;
             }
         }
 
@@ -30,7 +23,22 @@ namespace Game.Effects
         {
             Source.PlayOneShot(WeaponAttackClip);
         }
+
+        /// <summary>
+        /// Chamado pelo AnimatorEvent do jogador.
+        /// Esse metodo deve ser chamado a cada inicio de animação de ataque
+        /// Caso o som não seja executado, certifique-se de que a animação de ataque
+        /// Tenha esse evento anexado
+        /// https://docs.unity3d.com/Manual/script-AnimationWindowEvent.html
+        /// </summary>
+        public void StartAttackAnimationEvent()
+        {
+            if (!enabled)
+            {
+                return;
+            }
+
+            PlayAttackSound();
+        }
     }
 }
-
-
