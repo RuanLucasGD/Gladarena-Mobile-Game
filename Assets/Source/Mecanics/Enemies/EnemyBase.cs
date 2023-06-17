@@ -50,11 +50,7 @@ namespace Game.Mecanics
         /// <summary>
         /// Direção que o inimigo deve se mover
         /// </summary>
-        public Vector3 MoveDirectionVelocity
-        {
-            get => _moveDirectionVelocity;
-            protected set => _moveDirectionVelocity = value.normalized;
-        }
+        public Vector3 MoveDirectionVelocity { get; protected set; }
 
         // tempo que o estado atual está sendo executado
         public float StateExecutionTime { get; private set; }
@@ -73,7 +69,6 @@ namespace Game.Mecanics
             }
         }
 
-        private Vector3 _moveDirectionVelocity;
         private UnityAction _currentState;
 
         protected virtual void Awake()

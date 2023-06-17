@@ -1912,7 +1912,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
     MaxAsyncSpawns: 3
-    BossLevelInterval: 5
+    BossLevelInterval: 2
     MiniBossTimeInterval: 10
   Enemies:
   - Name: Death Knight
