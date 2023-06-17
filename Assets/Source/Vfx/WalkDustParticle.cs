@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Game.Mecanics;
 
@@ -9,14 +7,9 @@ namespace Game.Effects
     {
         public float DustIntensity;
         public ParticleSystem DustParticle;
-        
+
         [Space]
         public PlayerCharacter Character;
-
-        void Start()
-        {
-
-        }
 
         void Update()
         {
