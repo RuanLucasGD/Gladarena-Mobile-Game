@@ -85,6 +85,7 @@ namespace Game.Mecanics
 
         protected virtual void Start()
         {
+            // impede que o personagem caia, ou que rotacione em um eixo incorreto
             if (Rb)
             {
                 Rb.constraints |= RigidbodyConstraints.FreezePositionY;
