@@ -73,7 +73,7 @@ namespace Game.Mecanics
 
         protected virtual void Awake()
         {
-            Target = FindObjectOfType<PlayerCharacter>();
+            FindPlayer();
             CurrentLife = MaxLife;
             CurrentState = () => { };
         }
@@ -154,13 +154,18 @@ namespace Game.Mecanics
             // encontra todos os jogadores da cena. A cena pode ter multiplos players por causa 
             // do power up AresArmy que gera clones do jogador
             var _playersOnScene = FindObjectsOfType<PlayerCharacter>();
+            var _playersCount = _playersOnScene.Length;
 
-            // tenta encontrar algum jogador que esteja vivo
-            for (int i = 0; i < _playersOnScene.Length; i++)
+            Target = _playersOnScene[0];
+
+            // tenta encontrar algum jogador aleatorio que esteja vivo
+            for (int i = 0; i < _playersCount; i++)
             {
-                if (!_playersOnScene[i].IsDeath)
+                var _randomPlayerIndex = Random.Range(0, _playersCount);
+
+                if (!_playersOnScene[_randomPlayerIndex].IsDeath)
                 {
-                    Target = _playersOnScene[i];
+                    Target = _playersOnScene[_randomPlayerIndex];
                     break;
                 }
             }

@@ -75,7 +75,7 @@ namespace Game.Mecanics
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!IsAttacking)
+            if (!IsAttacking || IsDeath)
             {
                 return;
             }
