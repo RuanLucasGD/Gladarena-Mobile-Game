@@ -86,7 +86,7 @@ namespace Game.Mecanics
             var _movePosition = _playerPosition + FollowPlayerOffset;
             var _direction = (_movePosition - transform.position).normalized;
 
-            if (Vector3.Distance(_movePosition, transform.position) < 0.3f)
+            if (Vector3.Distance(_movePosition, transform.position) < 0.3f || float.IsNaN(_direction.magnitude) || float.IsInfinity(_direction.magnitude))
             {
                 _direction = Vector3.zero;
             }
