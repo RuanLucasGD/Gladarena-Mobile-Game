@@ -307,13 +307,13 @@ namespace Game.Mecanics
         {
             var _decelerationSpeed = Movimentation.ExternalForceDeceleration * delta;
 
-            if (_decelerationSpeed > ExternalForces.magnitude)
+            if (ExternalForces.magnitude <= 1)
             {
                 ExternalForces = Vector3.zero;
                 return;
             }
 
-            ExternalForces -= (ExternalForces / ExternalForces.magnitude) * _decelerationSpeed;
+            ExternalForces -= (ExternalForces / Mathf.Max(ExternalForces.magnitude, 1)) * _decelerationSpeed;
         }
 
         private void UpdateRotation(float delta)
