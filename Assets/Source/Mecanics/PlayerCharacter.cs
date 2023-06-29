@@ -203,6 +203,7 @@ namespace Game.Mecanics
             CharacterController = GetComponent<CharacterController>();
 
             CanMove = true;
+            CanAttack = true;
             EnablePlayerControl = true;
             CurrentLife = CurrentMaxLife;
             LookAtDirection = transform.forward;
@@ -228,8 +229,6 @@ namespace Game.Mecanics
                 Debug.LogError("Input action map not added on player!");
                 return;
             }
-
-            CanAttack = true;
 
             VerticalAction = InputMaps.InputAsset.FindAction(InputMaps.VerticalAction, throwIfNotFound: true);
             HorizontalAction = InputMaps.InputAsset.FindAction(InputMaps.HorizontalAction, throwIfNotFound: true);
