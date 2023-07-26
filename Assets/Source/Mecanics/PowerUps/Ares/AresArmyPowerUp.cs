@@ -65,6 +65,11 @@ namespace Game.Mecanics
 
         public int CurrentClonesAmount => _currentPlayerClones.Count;
 
+        public AresArmyPowerUp()
+        {
+            _currentPlayerClones = new List<AresArmyPlayerCloneAI>();
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -81,7 +86,6 @@ namespace Game.Mecanics
             }
 
             OnSetupPowerUp.AddListener(SetupPowerUp);
-            _currentPlayerClones = new List<AresArmyPlayerCloneAI>();
         }
 
         public override bool IsFullUpgrade()
